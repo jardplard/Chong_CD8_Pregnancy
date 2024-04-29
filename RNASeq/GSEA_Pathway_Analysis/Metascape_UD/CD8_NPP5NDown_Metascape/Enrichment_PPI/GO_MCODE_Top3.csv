@@ -1,0 +1,6 @@
+Network,Annotation
+Geneid,R-MMU-1799339|SRP-dependent cotranslational protein targeting to membrane|-6.4;R-MMU-975956|Nonsense Mediated Decay (NMD) independent of the Exon Junction Complex (EJC)|-6.3;WP163|Cytoplasmic ribosomal proteins|-6.2
+Geneid_MCODE_ALL,R-MMU-1799339|SRP-dependent cotranslational protein targeting to membrane|-9.3;R-MMU-975956|Nonsense Mediated Decay (NMD) independent of the Exon Junction Complex (EJC)|-9.2;WP163|Cytoplasmic ribosomal proteins|-9.1
+Geneid_SUB2_MCODE_2,R-MMU-1799339|SRP-dependent cotranslational protein targeting to membrane|-14.3;R-MMU-975956|Nonsense Mediated Decay (NMD) independent of the Exon Junction Complex (EJC)|-14.2;WP163|Cytoplasmic ribosomal proteins|-14.1
+Geneid_SUB1_MCODE_3,R-MMU-418594|G alpha (i) signalling events|-7.5;R-MMU-500792|GPCR ligand binding|-6.9;GO:0030593|neutrophil chemotaxis|-6.3
+Geneid_SUB1_MCODE_5,GO:0006909|phagocytosis|-5.2

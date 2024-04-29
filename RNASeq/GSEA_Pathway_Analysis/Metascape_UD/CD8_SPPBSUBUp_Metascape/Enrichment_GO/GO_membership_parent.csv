@@ -1,0 +1,16 @@
+_MEMBER_Geneid,_LogP_Geneid,GO,Description,_PATTERN_,_RANK_,CHILD_GO_Geneid
+1,-5.626052310908488,GO:0040011,locomotion,M1,1,GO:2000404 regulation of T cell migration
+1,-5.000677543823075,GO:0022610,biological adhesion,M1,1,GO:0030155 regulation of cell adhesion
+1,-4.934377120117906,GO:0002376,immune system process,M1,1,GO:0050863 regulation of T cell activation
+1,-3.7877972262671302,GO:0048518,positive regulation of biological process,M1,1,GO:0032103 positive regulation of response to external stimulus
+1,-3.7018908361131135,GO:0050789,regulation of biological process,M1,1,GO:0050865 regulation of cell activation
+1,-3.5086911448655154,GO:0023052,signaling,M1,1,GO:0030111 regulation of Wnt signaling pathway
+1,-3.331485183391692,GO:0051179,localization,M1,1,GO:0051272 positive regulation of cellular component movement
+1,-3.2656110919800763,GO:0048519,negative regulation of biological process,M1,1,GO:0045596 negative regulation of cell differentiation
+1,-3.0962560912510435,GO:0044419,biological process involved in interspecies interaction between organisms,M1,1,GO:0042269 regulation of natural killer cell mediated cytotoxicity
+1,-2.808471215568109,GO:0009987,cellular process,M1,1,GO:0032943 mononuclear cell proliferation
+1,-2.686273348389618,GO:0032501,multicellular organismal process,M1,1,GO:0032609 interferon-gamma production
+1,-2.6710126526943605,GO:0008152,metabolic process,M1,1,GO:0006778 porphyrin-containing compound metabolic process
+1,-2.617040916726591,GO:0032502,developmental process,M1,1,GO:0010975 regulation of neuron projection development
+1,-2.4957977143100685,GO:0050896,response to stimulus,M1,1,GO:0002526 acute inflammatory response
+1,-2.295115940669,GO:0040007,growth,M1,1,GO:0048843 negative regulation of axon extension involved in axon guidance

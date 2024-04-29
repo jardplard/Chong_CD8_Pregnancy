@@ -1,0 +1,102 @@
+_MEMBER_Geneid,_LogP_Geneid,GO,Description,_PATTERN_,_RANK_,GiniIndex
+1,-2.4,GO:0022408,negative regulation of cell-cell adhesion,M1,1,0
+1,-2.9,GO:2001233,regulation of apoptotic signaling pathway,M1,1,0
+1,-2,GO:2000045,regulation of G1/S transition of mitotic cell cycle,M1,1,0
+1,-3.7,GO:0001775,cell activation,M1,1,0
+1,-2.3,R-MMU-425407,SLC-mediated transmembrane transport,M1,1,0
+1,-2.6,GO:0071456,cellular response to hypoxia,M1,1,0
+1,-2,GO:1903038,negative regulation of leukocyte cell-cell adhesion,M1,1,0
+1,-2.6,GO:0002460,adaptive immune response based on somatic recombination of immune receptors built from immunoglobulin superfamily domains,M1,1,0
+1,-2.2,GO:0043280,positive regulation of cysteine-type endopeptidase activity involved in apoptotic process,M1,1,0
+1,-2.6,mmu05210,Colorectal cancer,M1,1,0
+1,-2.4,GO:0046651,lymphocyte proliferation,M1,1,0
+1,-2.7,GO:0002429,immune response-activating cell surface receptor signaling pathway,M1,1,0
+1,-3.9,GO:0002253,activation of immune response,M1,1,0
+1,-2.1,GO:0001817,regulation of cytokine production,M1,1,0
+1,-2.3,GO:0031668,cellular response to extracellular stimulus,M1,1,0
+1,-2.4,GO:0002696,positive regulation of leukocyte activation,M1,1,0
+1,-2.6,GO:0046631,alpha-beta T cell activation,M1,1,0
+1,-3,GO:0042330,taxis,M1,1,0
+1,-2.6,GO:0051249,regulation of lymphocyte activation,M1,1,0
+1,-2.9,mmu04115,p53 signaling pathway,M1,1,0
+1,-2.6,GO:1903708,positive regulation of hemopoiesis,M1,1,0
+1,-3.3,GO:0050900,leukocyte migration,M1,1,0
+1,-4.2,GO:2001244,positive regulation of intrinsic apoptotic signaling pathway,M1,1,0
+1,-2.3,GO:0002819,regulation of adaptive immune response,M1,1,0
+1,-2.2,GO:0032649,regulation of interferon-gamma production,M1,1,0
+1,-2,GO:0120161,regulation of cold-induced thermogenesis,M1,1,0
+1,-2.2,GO:0002764,immune response-regulating signaling pathway,M1,1,0
+1,-3.6,GO:0030217,T cell differentiation,M1,1,0
+1,-2.5,GO:0031669,cellular response to nutrient levels,M1,1,0
+1,-2,GO:0016358,dendrite development,M1,1,0
+1,-2.8,GO:0002886,regulation of myeloid leukocyte mediated immunity,M1,1,0
+1,-2.8,GO:0008630,intrinsic apoptotic signaling pathway in response to DNA damage,M1,1,0
+1,-2.6,GO:0009410,response to xenobiotic stimulus,M1,1,0
+1,-3.3,GO:0030155,regulation of cell adhesion,M1,1,0
+1,-2.4,GO:0007006,mitochondrial membrane organization,M1,1,0
+1,-3.1,GO:0006935,chemotaxis,M1,1,0
+1,-2.2,GO:0045621,positive regulation of lymphocyte differentiation,M1,1,0
+1,-2.8,GO:0002521,leukocyte differentiation,M1,1,0
+1,-2.2,mmu05200,Pathways in cancer,M1,1,0
+1,-4,GO:0070228,regulation of lymphocyte apoptotic process,M1,1,0
+1,-2.4,GO:0002252,immune effector process,M1,1,0
+1,-2.7,GO:0042110,T cell activation,M1,1,0
+1,-2.2,GO:0030097,hemopoiesis,M1,1,0
+1,-2.1,GO:0010212,response to ionizing radiation,M1,1,0
+1,-2.8,GO:0006919,activation of cysteine-type endopeptidase activity involved in apoptotic process,M1,1,0
+1,-4.6,GO:0050778,positive regulation of immune response,M1,1,0
+1,-2.8,GO:0002694,regulation of leukocyte activation,M1,1,0
+1,-2.2,GO:0009991,response to extracellular stimulus,M1,1,0
+1,-2.3,GO:0036293,response to decreased oxygen levels,M1,1,0
+1,-2.5,GO:0046649,lymphocyte activation,M1,1,0
+1,-2.3,GO:0036294,cellular response to decreased oxygen levels,M1,1,0
+1,-2.5,GO:0043473,pigmentation,M1,1,0
+1,-2.2,GO:0097529,myeloid leukocyte migration,M1,1,0
+1,-2.6,GO:0032103,positive regulation of response to external stimulus,M1,1,0
+1,-2.5,WP373,IL-3 signaling pathway,M1,1,0
+1,-2.6,GO:1902107,positive regulation of leukocyte differentiation,M1,1,0
+1,-2.7,GO:0002768,immune response-regulating cell surface receptor signaling pathway,M1,1,0
+1,-2.4,GO:0002822,regulation of adaptive immune response based on somatic recombination of immune receptors built from immunoglobulin superfamily domains,M1,1,0
+1,-3.1,GO:0030595,leukocyte chemotaxis,M1,1,0
+1,-2,GO:0048534,hematopoietic or lymphoid organ development,M1,1,0
+1,-2.4,GO:0045582,positive regulation of T cell differentiation,M1,1,0
+1,-2.4,GO:1903037,regulation of leukocyte cell-cell adhesion,M1,1,0
+1,-2.1,GO:0032970,regulation of actin filament-based process,M1,1,0
+1,-3.8,mmu04630,JAK-STAT signaling pathway,M1,1,0
+1,-2,GO:0043065,positive regulation of apoptotic process,M1,1,0
+1,-2.4,GO:0032943,mononuclear cell proliferation,M1,1,0
+1,-2.6,GO:0048872,homeostasis of number of cells,M1,1,0
+1,-2.3,GO:0070661,leukocyte proliferation,M1,1,0
+1,-2.7,GO:0002757,immune response-activating signal transduction,M1,1,0
+1,-2.9,GO:2001235,positive regulation of apoptotic signaling pathway,M1,1,0
+1,-2,GO:0008037,cell recognition,M1,1,0
+1,-3.1,GO:0001819,positive regulation of cytokine production,M1,1,0
+1,-3.3,GO:0002250,adaptive immune response,M1,1,0
+1,-2.7,GO:0051251,positive regulation of lymphocyte activation,M1,1,0
+1,-2.5,GO:1902105,regulation of leukocyte differentiation,M1,1,0
+1,-3.4,GO:0045321,leukocyte activation,M1,1,0
+1,-2.2,GO:0051101,regulation of DNA binding,M1,1,0
+1,-2.9,GO:0046632,alpha-beta T cell differentiation,M1,1,0
+1,-4.8,GO:2001242,regulation of intrinsic apoptotic signaling pathway,M1,1,0
+1,-2.3,GO:1903557,positive regulation of tumor necrosis factor superfamily cytokine production,M1,1,0
+1,-2.5,GO:0001666,response to hypoxia,M1,1,0
+1,-3.3,GO:0050865,regulation of cell activation,M1,1,0
+1,-2.5,GO:0015718,monocarboxylic acid transport,M1,1,0
+1,-3.2,GO:1903131,mononuclear cell differentiation,M1,1,0
+1,-2.3,GO:0031667,response to nutrient levels,M1,1,0
+1,-3.5,GO:0030098,lymphocyte differentiation,M1,1,0
+1,-2.1,GO:0071453,cellular response to oxygen levels,M1,1,0
+1,-2.8,R-MMU-425366,"Transport of bile salts and organic acids, metal ions and amine compounds",M1,1,0
+1,-2.9,GO:2000107,negative regulation of leukocyte apoptotic process,M1,1,0
+1,-3.5,GO:0070232,regulation of T cell apoptotic process,M1,1,0
+1,-2.3,GO:0032760,positive regulation of tumor necrosis factor production,M1,1,0
+1,-3.8,GO:0040014,regulation of multicellular organism growth,M1,1,0
+1,-2.3,GO:0050867,positive regulation of cell activation,M1,1,0
+1,-3.3,GO:0022407,regulation of cell-cell adhesion,M1,1,0
+1,-2.4,GO:0060326,cell chemotaxis,M1,1,0
+1,-3,GO:0050851,antigen receptor-mediated signaling pathway,M1,1,0
+1,-2,GO:0002697,regulation of immune effector process,M1,1,0
+1,-2.2,GO:2000116,regulation of cysteine-type endopeptidase activity,M1,1,0
+1,-2.4,GO:0043281,regulation of cysteine-type endopeptidase activity involved in apoptotic process,M1,1,0
+1,-2.2,GO:1903706,regulation of hemopoiesis,M1,1,0
+1,-4.7,GO:2000106,regulation of leukocyte apoptotic process,M1,1,0

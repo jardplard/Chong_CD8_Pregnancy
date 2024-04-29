@@ -1,0 +1,7 @@
+_MEMBER_Geneid,_LogP_Geneid,GO,_PATTERN_,_RANK_,GiniIndex,Category,CategoryID,Description,PARENT_GO,LogP,Enrichment,Z-score,#TotalGeneInLibrary,#GeneInGO,#GeneInHitList,#GeneInGOAndHitList,%InGO,STDV %InGO,GeneID,Hits,Log(q-value),EvidenceCutoff
+1,-6.7,PGB:00287,M1,1,0,PaGenBase,36,Cell-specific: T-cells foxP3+,,-6.7,70,17,20504,9,130,4,3.1,1.5,12477|20371|22163|242484,Ctla4|Foxp3|Tnfrsf4|D630039A03Rik,-3.8,0
+1,-5.1,PGB:00266,M1,1,0,PaGenBase,36,Cell-specific: cd4+ T cell,,-5.1,30,11,20504,21,130,4,3.1,1.5,12477|22163|30925|54167,Ctla4|Tnfrsf4|Slamf6|Icos,-2.6,0
+1,-3.1,PGB:00228,M1,1,0,PaGenBase,36,Cell-specific: neuro2a,,-3.1,4.6,4.5,20504,239,130,7,5.4,2,17760|20257|27053|56175|67971|103712|245607,Map6|Stmn2|Asns|Bace2|Tppp3|6330403K07Rik|Gprasp2,-1.1,0
+1,-2.7,PGB:00279,M1,1,0,PaGenBase,36,Cell-specific: follicular B-cells,,-2.7,12,5.6,20504,39,130,3,2.3,1.3,17068|18987|381777,Ly6d|Pou2f2|Igkv1-110,-0.82,0
+1,-2.6,PGB:00223,M1,1,0,PaGenBase,36,Tissue-specific: lymph node,,-2.6,4.3,3.9,20504,219,130,6,4.6,1.8,12458|12477|18987|22163|54167|380795,Ccr6|Ctla4|Pou2f2|Tnfrsf4|Icos|Ighg3,-0.7,0
+1,-2.5,PGB:00013,M1,1,0,PaGenBase,36,Tissue-specific: brain,,-2.5,2.6,3.4,20504,661,130,11,8.5,2.4,14758|20257|20974|22415|50997|76897|103712|229521|245607|268595|545428,Gpm6b|Stmn2|Syngr3|Wnt3|Mpp2|Ralyl|6330403K07Rik|Syt11|Gprasp2|D430019H16Rik|Ccdc141,-0.66,0

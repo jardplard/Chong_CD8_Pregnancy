@@ -1,0 +1,15 @@
+Network,Annotation
+Geneid,GO:0030155|regulation of cell adhesion|-22.9;GO:0001817|regulation of cytokine production|-22.7;GO:0050865|regulation of cell activation|-22.3
+Geneid_MCODE_ALL,GO:0030155|regulation of cell adhesion|-18.7;GO:0045785|positive regulation of cell adhesion|-18.2;GO:0050900|leukocyte migration|-15.5
+Geneid_SUB1_MCODE_1,R-MMU-6798695|Neutrophil degranulation|-9.2;ko05205|Proteoglycans in cancer|-8.7;mmu05205|Proteoglycans in cancer|-8.6
+Geneid_SUB1_MCODE_2,mmu01524|Platinum drug resistance|-7.7;ko01524|Platinum drug resistance|-7.7;ko00480|Glutathione metabolism|-6.3
+Geneid_SUB1_MCODE_3,R-MMU-418594|G alpha (i) signalling events|-27.2;R-MMU-500792|GPCR ligand binding|-24.9;R-MMU-373076|Class A/1 (Rhodopsin-like receptors)|-23.8
+Geneid_SUB1_MCODE_4,GO:0070269|pyroptosis|-10.6;ko04621|NOD-like receptor signaling pathway|-8.9;mmu04621|NOD-like receptor signaling pathway|-8.9
+Geneid_SUB1_MCODE_5,ko04514|Cell adhesion molecules (CAMs)|-14.5;mmu04514|Cell adhesion molecules (CAMs)|-14.5;GO:0007229|integrin-mediated signaling pathway|-13.9
+Geneid_SUB1_MCODE_6,GO:0000226|microtubule cytoskeleton organization|-6.5;GO:0007051|spindle organization|-5.7;GO:0051225|spindle assembly|-4.6
+Geneid_SUB1_MCODE_7,R-MMU-8957275|Post-translational protein phosphorylation|-8.7;R-MMU-418555|G alpha (s) signalling events|-8.6;R-MMU-381426|Regulation of Insulin-like Growth Factor (IGF) transport and uptake by Insulin-like Growth Factor Binding Proteins (IGFBPs)|-8.5
+Geneid_SUB1_MCODE_8,R-MMU-163125|Post-translational modification: synthesis of GPI-anchored proteins|-11.8
+Geneid_SUB1_MCODE_9,ko04650|Natural killer cell mediated cytotoxicity|-5.7;mmu04650|Natural killer cell mediated cytotoxicity|-5.6;GO:1903532|positive regulation of secretion by cell|-4.3
+Geneid_SUB1_MCODE_10,R-MMU-6798695|Neutrophil degranulation|-4.2
+Geneid_SUB1_MCODE_11,R-MMU-399956|CRMPs in Sema3A signaling|-9.5;R-MMU-373755|Semaphorin interactions|-7.9;R-MMU-422475|Axon guidance|-5.7
+Geneid_SUB1_MCODE_12,R-MMU-5676594|TNF receptor superfamily (TNFSF) members mediating non-canonical NF-kB pathway|-9.3;R-MMU-5668541|TNFR2 non-canonical NF-kB pathway|-7.0;ko04064|NF-kappa B signaling pathway|-7.0

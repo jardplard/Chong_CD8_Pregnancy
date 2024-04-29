@@ -1,0 +1,7 @@
+Network,Annotation
+Geneid,GO:0030155|regulation of cell adhesion|-8.7;WP85|Focal adhesion|-7.5;mmu05210|Colorectal cancer|-6.5
+Geneid_MCODE_ALL,R-MMU-372790|Signaling by GPCR|-8.0;R-MMU-388396|GPCR downstream signalling|-7.0;R-MMU-4641265|Repression of WNT target genes|-6.4
+Geneid_SUB1_MCODE_1,"R-MMU-372790|Signaling by GPCR|-7.3;WP1396|GPCRs, non-odorant|-6.7;WP41|GPCRs, other|-6.4"
+Geneid_SUB1_MCODE_2,R-MMU-6798695|Neutrophil degranulation|-4.2
+Geneid_SUB1_MCODE_3,GO:0048812|neuron projection morphogenesis|-4.2;GO:0120039|plasma membrane bounded cell projection morphogenesis|-4.2;GO:0048858|cell projection morphogenesis|-4.2
+Geneid_SUB1_MCODE_4,R-MMU-4641265|Repression of WNT target genes|-10.1;R-MMU-201722|Formation of the beta-catenin:TCF transactivating complex|-8.9;R-MMU-3769402|Deactivation of the beta-catenin transactivating complex|-8.6

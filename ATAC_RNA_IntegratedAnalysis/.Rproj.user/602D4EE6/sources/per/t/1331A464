@@ -1,0 +1,27 @@
+{
+    "id": "1331A464",
+    "path": "/Volumes/Extreme SSD/Chong Lab Data/Sequencing Data/CD8 Joint Analysis/CD8_DeSEQ2_batch1_filterTest.Rmd",
+    "project_path": "CD8_DeSEQ2_batch1_filterTest.Rmd",
+    "type": "r_markdown",
+    "hash": "2099463116",
+    "contents": "",
+    "dirty": false,
+    "created": 1636582087686.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "chunk_output_type": "console",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "388,62",
+        "scrollLine": "360"
+    },
+    "folds": "250|81|284|0|\n",
+    "lastKnownWriteTime": 1648519171,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1648519171348,
+    "read_only": false,
+    "read_only_alternatives": []
+}

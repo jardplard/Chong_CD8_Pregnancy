@@ -1,0 +1,4 @@
+Network,Annotation
+Geneid,GO:1902105|regulation of leukocyte differentiation|-4.3;GO:0045619|regulation of lymphocyte differentiation|-3.9;GO:1903706|regulation of hemopoiesis|-3.9
+Geneid_MCODE_ALL,R-MMU-418594|G alpha (i) signalling events|-5.7;R-MMU-500792|GPCR ligand binding|-5.2;R-MMU-388396|GPCR downstream signalling|-4.7
+Geneid_SUB2_MCODE_1,R-MMU-418594|G alpha (i) signalling events|-5.7;R-MMU-500792|GPCR ligand binding|-5.2;R-MMU-388396|GPCR downstream signalling|-4.7

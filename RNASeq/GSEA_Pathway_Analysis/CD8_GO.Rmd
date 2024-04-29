@@ -1,0 +1,548 @@
+---
+title: "Schitinger ATAC Test DeSEQ Analysis"
+author: "Jared Pollard"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#GO Enrichment Plotting
+
+###Install Packages (If needed, set eval=TRUE): BiocManager, dplyr, gplots, ggplot2, ggrepel
+```{r install_packages, eval=FALSE, echo=FALSE}
+install.packages(c("tidyverse", "ggplot2"))
+```
+##Import libraries
+```{r import_libraries_andCounts, echo=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(scales)
+library(viridis)
+library(cowplot)
+
+colors_fill <- c("#38F2E0", "#1A74F8", "#F262F7", "#DA0054")
+groupshapes <- c(19, 1, 15, 19, 1, 15, 17)
+```
+##Import Files and setup ggplot options/fxn's
+```{r package_testing}
+#files+paths for new metascape (each pairwise comp. divided into closed vs. open peaks)
+filepath_UD <- "./Metascape_UD/GOcharts"
+filepath_Shared <- "./Metascape_SharedUnique/GOcharts"
+files_UD <- list.files(path=filepath_UD, pattern=".csv")
+files_UD_Filtered <- list.files(path=filepath_UD, pattern="_F.csv")
+files_Shared_Filtered <- list.files(path=filepath_Shared, pattern="_F.csv")
+
+#Brief function for formatting pathway names
+firstup <- function(x) {
+  substr(x, 1, 1) <- toupper(substr(x, 1, 1))
+  x
+}
+
+#Unfiltered Pathways import (Select 10 most significant pathways, remove duplicates)
+for(i in files_UD){
+  objname <- str_replace(i, ".csv", "")
+  dfin <- read.csv(str_c(filepath_UD, "/", i, sep=""), header=TRUE)
+  dfin <- dfin %>% mutate(Sig=1-LogP) %>% dplyr::select(Category, PARENT_GO, Description, Sig, Enrichment) %>%  arrange(desc(Sig))
+  dfin$PARENT_GO <- str_replace_all(dfin$PARENT_GO, "19_GO:", "")
+  dfin$PARENT_GO <- str_replace_all(dfin$PARENT_GO, "[:alpha:]", "")
+  dfin$Description <- firstup(dfin$Description)
+  dfin <- dfin  %>% filter(!duplicated(PARENT_GO))
+  dfin <- dfin  %>% filter(!duplicated(Description))
+  dfin <- dfin %>% dplyr::slice_head(n=10) %>% mutate(Y=rev(row_number()))
+  #make sure to change object name if you want to use this line again
+  #assign(objname, dfin, envir = .GlobalEnv)
+  assign(objname, dfin, envir = .GlobalEnv)
+  rm(dfin)
+  rm(i)
+}
+
+for(i in files_UD_Filtered){
+  objname <- str_replace(i, "_F.csv", "_Filtered")
+  dfin <- read.csv(str_c(filepath_UD, "/", i, sep=""), header=TRUE)
+  dfin <- dfin %>% mutate(Sig=1-LogP) %>% dplyr::select(Description, Sig, Enrichment) %>%  arrange(desc(Sig))
+  dfin$Description <- firstup(dfin$Description)
+  dfin <- dfin %>%  mutate(Y=rev(row_number()))
+  assign(objname, dfin, envir = .GlobalEnv)
+  rm(dfin)
+  rm(i)
+}
+
+for(i in files_Shared_Filtered){
+  objname <- str_replace(i, "_F.csv", "_Filtered")
+  dfin <- read.csv(str_c(filepath_Shared, "/", i, sep=""), header=TRUE)
+  dfin <- dfin %>% mutate(Sig=1-LogP) %>% dplyr::select(Description, Sig, Enrichment) %>%  arrange(desc(Sig))
+  dfin$Description <- firstup(dfin$Description)
+  dfin <- dfin %>%  mutate(Y=rev(row_number()))
+  assign(objname, dfin, envir = .GlobalEnv)
+  rm(dfin)
+  rm(i)
+}
+
+#define function allowing us to squish the center region of the X axis for visualization
+squish_trans <- function(from, to, factor) {
+  
+  trans <- function(x) {
+    
+    if (any(is.na(x))) return(x)
+
+    # get indices for the relevant regions
+    isq <- x > from & x < to
+    ito <- x >= to
+    
+    # apply transformation
+    x[isq] <- from + (x[isq] - from)/factor
+    x[ito] <- from + (to - from)/factor + (x[ito] - to)
+    
+    return(x)
+  }
+
+  inv <- function(x) {
+    
+    if (any(is.na(x))) return(x)
+
+    # get indices for the relevant regions
+    isq <- x > from & x < from + (to - from)/factor
+    ito <- x >= from + (to - from)/factor
+    
+    # apply transformation
+    x[isq] <- from + (x[isq] - from) * factor
+    x[ito] <- to + (x[ito] - (from + (to - from)/factor))
+    
+    return(x)
+  }
+  
+  # return the transformation
+  return(trans_new("squished", trans, inv))
+}
+
+themeset<- theme(
+    panel.background = element_rect(fill = "transparent"), # bg of the panel
+    plot.background = element_rect(fill = "transparent", color = NA), # bg of the plot
+    panel.grid.major = element_blank(), # get rid of major grid
+    panel.grid.minor = element_blank(), # get rid of minor grid
+    axis.line= element_line("black", 0.3),
+    axis.text.y = element_text(color = "black", size = 16)
+  )
+```
+
+#Filtered Analysis for Paper
+##Plot NPP5 Vs. N
+```{r plot_pairs}
+NPP5N_plot <- bind_rows("Naive"=NPP5NDown, "Naive+PP C5"=NPP5NUp, .id="ID")
+
+NPP5N_plot$Sig <- if_else(NPP5N_plot$ID=="Naive", (NPP5N_plot$Sig * -1), (NPP5N_plot$Sig * 1))
+NPP5N_plot$Y <- if_else(NPP5N_plot$ID=="Naive", (NPP5N_plot$Y * -1), (NPP5N_plot$Y * 1))
+
+NPP5N_plot <- NPP5N_plot %>% arrange(Y)
+
+NPP5N_gg <- ggplot(NPP5N_plot, aes(x=Sig, y=Y)) + xlab("-log(p-value)") + ylab("") + themeset
+
+NPP5N_gg <- NPP5N_gg + geom_point(aes(size=Enrichment, color=ID, shape=ID)) +
+  labs(color='Pathways Present In:', shape='Pathways Present In:') +
+  scale_color_manual(values=c(colors_fill[1], colors_fill[2])) +
+  scale_shape_manual(values=c(groupshapes[1], groupshapes[3])) +
+  scale_y_continuous(breaks=c(-10:-1,1:10), labels=NPP5N_plot$Description) +
+  scale_x_continuous(breaks=c(-5, 0, 5, 10, 15), labels=abs(c(-5, 0, 5, 10, 15)), limits=c(-7, 17)) +
+  ggtitle(str_c(as.character(tail(NPP5N_plot$ID, n=1)), "Vs.", as.character(head(NPP5N_plot$ID, n=1)), sep=" "))
+
+NPP5N_gg
+```
+
+##Plot SPP5 Vs. NPP5
+```{r plot_pairs}
+SPP5NPP5_plot <- bind_rows("Naive+PP C5"=SPP5NPP5Down, "Mem+PP C5"=SPP5NPP5Up, .id="ID")
+
+SPP5NPP5_plot$Sig <- if_else(SPP5NPP5_plot$ID=="Naive+PP C5", (SPP5NPP5_plot$Sig * -1), (SPP5NPP5_plot$Sig * 1))
+SPP5NPP5_plot$Y <- if_else(SPP5NPP5_plot$ID=="Naive+PP C5", (SPP5NPP5_plot$Y * -1), (SPP5NPP5_plot$Y * 1))
+
+SPP5NPP5_plot <- SPP5NPP5_plot %>% arrange(Y)
+
+SPP5NPP5_gg <- ggplot(SPP5NPP5_plot, aes(x=Sig, y=Y)) + xlab("-log(p-value)") + ylab("") + themeset
+
+SPP5NPP5_gg <- SPP5NPP5_gg + geom_point(aes(size=Enrichment, color=ID, shape=ID)) +
+  labs(color='Pathways Present In:', shape='Pathways Present In:') +
+  scale_color_manual(values=c(colors_fill[4], colors_fill[2])) +
+  scale_shape_manual(values=c(groupshapes[3], groupshapes[3])) +
+  scale_y_continuous(breaks=c(-10:-1,1:10), labels=SPP5NPP5_plot$Description) +
+  scale_x_continuous(trans=squish_trans(-3, 3, 6), breaks=c(-6:-3, 0, 3:6), labels=abs(c(-6:-3, 0, 3:6)), limits=c(-6,6)) +
+  ggtitle(str_c(as.character(tail(SPP5NPP5_plot$ID, n=1)), "Vs.", as.character(head(SPP5NPP5_plot$ID, n=1)), sep=" "))
+
+SPP5NPP5_gg
+
+#Fiiltered Pathway Lists
+SPP5NPP5_plot_Filtered <- bind_rows("Naive+PP C5"=SPP5NPP5Down_Filtered, "Mem+PP C5"=SPP5NPP5Up_Filtered, .id="ID")
+
+SPP5NPP5_plot_Filtered$Sig <- if_else(SPP5NPP5_plot_Filtered$ID=="Naive+PP C5", (SPP5NPP5_plot_Filtered$Sig * -1), (SPP5NPP5_plot_Filtered$Sig * 1))
+SPP5NPP5_plot_Filtered$Y <- if_else(SPP5NPP5_plot_Filtered$ID=="Naive+PP C5", (SPP5NPP5_plot_Filtered$Y * -1), (SPP5NPP5_plot_Filtered$Y * 1))
+
+SPP5NPP5_plot_Filtered <- SPP5NPP5_plot_Filtered %>% arrange(Y)
+
+SPP5NPP5_gg_Filtered <- ggplot(SPP5NPP5_plot_Filtered, aes(x=Sig, y=Y)) + xlab("-log(p-value)") + ylab("") + themeset
+
+SPP5NPP5_gg_Filtered <- SPP5NPP5_gg_Filtered + geom_point(aes(size=Enrichment, color=ID, shape=ID)) +
+  labs(color='Pathways Present In:', shape='Pathways Present In:') +
+  scale_color_manual(values=c(colors_fill[4], colors_fill[2])) +
+  scale_shape_manual(values=c(groupshapes[3], groupshapes[3])) +
+  scale_y_continuous(breaks=c(-6:-1,1:10), labels=SPP5NPP5_plot_Filtered$Description) +
+  scale_x_continuous( breaks=c(-5, -2.5, 0, 2.5, 5), labels=abs(c(-5, -2.5, 0, 2.5, 5)), limits=c(-5,5)) +
+  ggtitle(str_c(as.character(tail(SPP5NPP5_plot_Filtered$ID, n=1)), "Vs.", as.character(head(SPP5NPP5_plot_Filtered$ID, n=1)), sep=" "))
+
+SPP5NPP5_gg_Filtered
+
+```
+
+##Plot SPP5 Vs. SUB
+```{r plot_pairs}
+SPP5SUB_plot <- bind_rows("Mem"=SPP5SUBDown, "Mem+PP C5"=SPP5SUBUp, .id="ID")
+
+SPP5SUB_plot$Sig <- if_else(SPP5SUB_plot$ID=="Mem", (SPP5SUB_plot$Sig * -1), (SPP5SUB_plot$Sig * 1))
+SPP5SUB_plot$Y <- if_else(SPP5SUB_plot$ID=="Mem", (SPP5SUB_plot$Y * -1), (SPP5SUB_plot$Y * 1))
+
+SPP5SUB_plot <- SPP5SUB_plot %>% arrange(Y)
+
+SPP5SUB_gg <- ggplot(SPP5SUB_plot, aes(x=Sig, y=Y)) + xlab("-log(p-value)") + ylab("") + themeset
+
+SPP5SUB_gg <- SPP5SUB_gg + geom_point(aes(size=Enrichment, color=ID, shape=ID)) +
+  labs(color='Pathways Present In:', shape='Pathways Present In:') +
+  scale_color_manual(values=c(colors_fill[3], colors_fill[4])) +
+  scale_shape_manual(values=c(groupshapes[1], groupshapes[3])) +
+  scale_y_continuous(breaks=c(-10:-1,1:10), labels=SPP5SUB_plot$Description) +
+  scale_x_continuous(trans=squish_trans(-4, 4, 8), breaks=c(seq(-12,-4, by=4), 0, seq(4, 12, by=4)), labels=abs(c(seq(-12,-4, by=4), 0, seq(4, 12, by=4))), limits=c(-8, 13.3)) +
+  ggtitle(str_c(as.character(tail(SPP5SUB_plot$ID, n=1)), "Vs.", as.character(head(SPP5SUB_plot$ID, n=1)), sep=" "))
+
+SPP5SUB_gg
+```
+
+##Plot SPP7 Vs. SPP5
+```{r plot_pairs}
+SPP7SPP5_plot_Filtered <- bind_rows("Mem+PP C5"=SPP7SPP5Down_Filtered, "Mem+PP C7"=SPP7SPP5Up_Filtered, .id="ID")
+
+SPP7SPP5_plot_Filtered$Sig <- if_else(SPP7SPP5_plot_Filtered$ID=="Mem+PP C5", (SPP7SPP5_plot_Filtered$Sig * -1), (SPP7SPP5_plot_Filtered$Sig * 1))
+SPP7SPP5_plot_Filtered$Y <- if_else(SPP7SPP5_plot_Filtered$ID=="Mem+PP C5", (SPP7SPP5_plot_Filtered$Y * -1), (SPP7SPP5_plot_Filtered$Y * 1))
+
+SPP7SPP5_plot_Filtered <- SPP7SPP5_plot_Filtered %>% arrange(Y)
+
+SPP7SPP5_plot_Filtered_gg <- ggplot(SPP7SPP5_plot_Filtered, aes(x=Sig, y=Y)) + xlab("-log(p-value)") + ylab("") + themeset
+
+SPP7SPP5_plot_Filtered_gg <- SPP7SPP5_plot_Filtered_gg + geom_point(aes(size=Enrichment, color=ID)) +
+  labs(color='Pathways Present In:', shape='Pathways Present In:') +
+  #scale_color_manual(values=c(colors_fill[4], colors_fill[4])) +
+  #scale_shape_manual(values=c(groupshapes[3], groupshapes[7])) +
+  scale_y_continuous(breaks=c(-3:-1,1:5), labels=SPP7SPP5_plot_Filtered$Description) +
+  scale_x_continuous(trans=squish_trans(-3, 3, 6), breaks=c(-6:-3, 0, 3:6), labels=as.character(c(6:3, 0, 3:6)), limits=c(-6, 6)) +
+  ggtitle(str_c(as.character(tail(SPP7SPP5_plot_Filtered$ID, n=1)), "Vs.", as.character(head(SPP7SPP5_plot_Filtered$ID, n=1)), sep=" "))
+
+SPP7SPP5_plot_Filtered_gg
+```
+
+##Plot SUB Vs. N
+```{r plot_pairs}
+SUBN_plot_Filtered <- bind_rows("Naive"=SUBNDown_Filtered, "Mem"=SUBNUp_Filtered, .id="ID")
+
+SUBN_plot_Filtered$Sig <- if_else(SUBN_plot_Filtered$ID=="Naive", (SUBN_plot_Filtered$Sig * -1), (SUBN_plot_Filtered$Sig * 1))
+SUBN_plot_Filtered$Y <- if_else(SUBN_plot_Filtered$ID=="Naive", (SUBN_plot_Filtered$Y * -1), (SUBN_plot_Filtered$Y * 1))
+
+SUBN_plot_Filtered <- SUBN_plot_Filtered %>% arrange(Y)
+
+SUBN_gg_Filtered <- ggplot(SUBN_plot_Filtered, aes(x=Sig, y=Y)) + xlab("-log(p-value)") + ylab("") + themeset
+
+SUBN_gg_Filtered <- SUBN_gg_Filtered + geom_point(aes(size=Enrichment, color=ID)) +
+  labs(color='Pathways Present In:', shape='Pathways Present In:') +
+  #scale_color_manual(values=c(colors_fill[3], colors_fill[1])) +
+  #scale_shape_manual(values=c(groupshapes[1], groupshapes[1])) +
+  scale_y_continuous(breaks=c(-5:-1,1:6), labels=SUBN_plot_Filtered$Description) +
+  scale_x_continuous(breaks=c(-15, -10, -5, 0, 5, 10, 15), labels=c(-15, -10, -5, 0, 5, 10, 15), limits=c(-15, 15.1)) +
+  ggtitle(str_c(as.character(tail(SUBN_plot_Filtered$ID, n=1)), "Vs.", as.character(head(SUBN_plot_Filtered$ID, n=1)), sep=" "))
+
+SUBN_gg_Filtered
+```
+##Plot SPP5 Vs. NPP5 SHARED Upregulated
+```{r plot_pairs}
+SPP5NPP5_SharedUp_plot <- SPP5NPP5_SharedUp_Filtered
+
+SPP5NPP5_SharedUp_plot <- SPP5NPP5_SharedUp_plot %>% arrange(Y)
+
+#original plot
+SPP5NPP5_SharedUp_gg <- ggplot(SPP5NPP5_SharedUp_plot, aes(x=Sig, y=Y)) + xlab("-log(p-value)") + ylab("") + themeset
+
+SPP5NPP5_SharedUp_gg <- SPP5NPP5_SharedUp_gg + geom_point(aes(size=Enrichment, color=Sig), shape=groupshapes[3]) +
+  labs(color='-log(P-value)') +
+  scale_y_continuous(breaks=c(1:9), labels=SPP5NPP5_SharedUp_plot$Description) +
+  scale_x_continuous(breaks=c(0, 3, 6, 9, 12), limits=c(0,12)) +
+  scale_color_gradientn(colors=turbo(n=100, begin=0.1, end=0.8)) +
+  #scale_color_gradient(low=turbo(n=1, begin=0.15), high=turbo(n=1, begin=0.85)) +
+  ggtitle("Pathways Present in Shared Pregnancy Transcription")
+
+SPP5NPP5_SharedUp_gg
+
+#updated barplot for figure
+
+SPP5NPP5_SharedUp_gg2 <- ggplot(SPP5NPP5_SharedUp_plot, aes(x=Y, y=Sig, fill=Enrichment)) + ylab("Normalized Enrichment Score") + xlab("") + themeset
+
+SPP5NPP5_SharedUp_gg2 <- SPP5NPP5_SharedUp_gg2 + geom_col(color="black") +
+  labs(color='Pathway Enrichment') +
+  #scale_fill_gradientn(colors=mako(n=100, begin=0.71, end=0.15), limits=c(0,1)) +
+  scale_fill_gradientn(colors=plasma(n=100, begin=0, end=0.8)) +
+  scale_x_continuous(breaks=c(1:9), labels=SPP5NPP5_SharedUp_plot$Description) +
+  scale_y_continuous(breaks=c(0, 3, 6, 9, 12), limits=c(0, 12)) +
+  ggtitle("Pathway Analysis of Shared Pregnancy Transcription")
+
+SPP5NPP5_SharedUp_gg2 + coord_flip()
+```
+
+##Plot SPP5 Vs. NPP5, NPP5 UNIQUE Pathways
+```{r plot_pairs}
+SPP5NPP5_NPP5U_plot <- bind_rows("Downregulated"=SPP5NPP5_NPP5U_Down_Filtered, "Upregulated"=SPP5NPP5_NPP5U_Up_Filtered, .id="ID")
+
+SPP5NPP5_NPP5U_plot$Sig <- if_else(SPP5NPP5_NPP5U_plot$ID=="Downregulated", (SPP5NPP5_NPP5U_plot$Sig * -1), (SPP5NPP5_NPP5U_plot$Sig * 1))
+SPP5NPP5_NPP5U_plot$Y <- if_else(SPP5NPP5_NPP5U_plot$ID=="Downregulated", (SPP5NPP5_NPP5U_plot$Y * -1), (SPP5NPP5_NPP5U_plot$Y * 1))
+
+SPP5NPP5_NPP5U_plot <- SPP5NPP5_NPP5U_plot %>% arrange(Y)
+SPP5NPP5_NPP5U_plot$Description <- SPP5NPP5_NPP5U_plot$Description %>% str_replace("receptor superfamily \\(TNFSF\\) members" , "superfamily")
+
+SPP5NPP5_NPP5U_gg <- ggplot(SPP5NPP5_NPP5U_plot, aes(x=Sig, y=Y)) + xlab("-log(p-value)") + ylab("") + themeset
+
+SPP5NPP5_NPP5U_gg <- SPP5NPP5_NPP5U_gg + geom_point(aes(size=Enrichment, color=ID, shape=ID)) +
+  labs(color='Naive+PP C5 Unique Pathways:', shape='Naive+PP C5 Unique Pathways:') +
+  #scale_color_manual(values=c(colors_fill[1], colors_fill[2])) +
+  scale_shape_manual(values=c(groupshapes[3], groupshapes[3])) +
+  scale_y_continuous(breaks=c(-4:-1,1:8), labels=SPP5NPP5_NPP5U_plot$Description) +
+  scale_x_continuous(breaks=c(-10, -5, 0, 5, 10), labels=abs(c(-10, -5, 0, 5, 10)), limits=c(-10,10)) +
+  ggtitle("Pathways Present in Unique Naive+PP-C5 Transcription")
+
+SPP5NPP5_NPP5U_gg
+```
+
+##Plot SPP5 Vs. NPP5, SPP5 UNIQUE Pathways
+```{r plot_pairs}
+SPP5NPP5_SPP5U_plot <- bind_rows("Downregulated"=SPP5NPP5_SPP5U_Down_Filtered, "Upregulated"=SPP5NPP5_SPP5U_Up_Filtered, .id="ID")
+
+SPP5NPP5_SPP5U_plot$Sig <- if_else(SPP5NPP5_SPP5U_plot$ID=="Downregulated", (SPP5NPP5_SPP5U_plot$Sig * -1), (SPP5NPP5_SPP5U_plot$Sig * 1))
+SPP5NPP5_SPP5U_plot$Y <- if_else(SPP5NPP5_SPP5U_plot$ID=="Downregulated", (SPP5NPP5_SPP5U_plot$Y * -1), (SPP5NPP5_SPP5U_plot$Y * 1))
+
+SPP5NPP5_SPP5U_plot <- SPP5NPP5_SPP5U_plot %>% arrange(Y)
+#SPP5NPP5_SPP5U_plot$Description <- SPP5NPP5_SPP5U_plot$Description %>% str_replace("receptor superfamily \\(TNFSF\\) members" , "superfamily")
+
+SPP5NPP5_SPP5U_gg <- ggplot(SPP5NPP5_SPP5U_plot, aes(x=Sig, y=Y)) + xlab("-log(p-value)") + ylab("") + themeset
+
+SPP5NPP5_SPP5U_gg <- SPP5NPP5_SPP5U_gg + geom_point(aes(size=Enrichment, color=ID, shape=ID)) +
+  labs(color='Naive+PP C5 Unique Pathways:', shape='Naive+PP C5 Unique Pathways:') +
+  #scale_color_manual(values=c(colors_fill[1], colors_fill[2])) +
+  scale_shape_manual(values=c(groupshapes[3], groupshapes[3])) +
+  scale_y_continuous(breaks=c(-7:-1,1:6), labels=SPP5NPP5_SPP5U_plot$Description) +
+  scale_x_continuous(breaks=c(-8, -6, -4, -2, 0, 2, 4, 6, 8), labels=abs(c(-8, -6, -4, -2, 0, 2, 4, 6, 8)), limits=c(-8,8)) +
+  ggtitle("Pathways Present in Unique Sens+PP-C5 Transcription") +
+  theme(axis.text.y = element_text(color = "black", size = 14.5))
+
+SPP5NPP5_SPP5U_gg
+```
+
+
+
+
+
+#Old Plots
+##Plot NPPB Vs. N
+```{r plot_pairs}
+NPPBN_plot <- bind_rows("Naive"=NPPBNDown, "Naive+PP Bulk"=NPPBNUp, .id="ID")
+
+NPPBN_plot$Sig <- if_else(NPPBN_plot$ID=="Naive", (NPPBN_plot$Sig * -1), (NPPBN_plot$Sig * 1))
+NPPBN_plot$Y <- if_else(NPPBN_plot$ID=="Naive", (NPPBN_plot$Y * -1), (NPPBN_plot$Y * 1))
+
+NPPBN_plot <- NPPBN_plot %>% arrange(Y)
+
+NPPBN_gg <- ggplot(NPPBN_plot, aes(x=Sig, y=Y)) + xlab("-log(p-value)") + ylab("") + themeset
+
+NPPBN_gg <- NPPBN_gg + geom_point(aes(size=Enrichment, color=ID, shape=ID)) +
+  labs(color='Pathways Present In:', shape='Pathways Present In:') +
+  scale_color_manual(values=c(colors_fill[1], colors_fill[2])) +
+  scale_shape_manual(values=c(groupshapes[1], groupshapes[2])) +
+  scale_y_continuous(breaks=c(-10:-1,1:10), labels=NPPBN_plot$Description) +
+  scale_x_continuous(trans=squish_trans(-2, 2, 3), breaks=c(-5:-2, 0, 2:7), labels=as.character(abs(c(-5:-2, 0, 2:7))), limits=c(-5,7)) +
+  ggtitle(str_c(as.character(tail(NPPBN_plot$ID, n=1)), "Vs.", as.character(head(NPPBN_plot$ID, n=1)), sep=" "))
+
+NPPBN_gg
+```
+##Plot SPP7 Vs. SPP5
+```{r plot_pairs}
+SPP7SPP5_plot <- bind_rows("Mem+PP C5"=SPP7SPP5Down, "Mem+PP C7"=SPP7SPP5Up, .id="ID")
+
+SPP7SPP5_plot$Sig <- if_else(SPP7SPP5_plot$ID=="Mem+PP C5", (SPP7SPP5_plot$Sig * -1), (SPP7SPP5_plot$Sig * 1))
+SPP7SPP5_plot$Y <- if_else(SPP7SPP5_plot$ID=="Mem+PP C5", (SPP7SPP5_plot$Y * -1), (SPP7SPP5_plot$Y * 1))
+
+SPP7SPP5_plot <- SPP7SPP5_plot %>% arrange(Y)
+
+SPP7SPP5_gg <- ggplot(SPP7SPP5_plot, aes(x=Sig, y=Y)) + xlab("-log(p-value)") + ylab("") + themeset
+
+SPP7SPP5_gg <- SPP7SPP5_gg + geom_point(aes(size=Enrichment, color=ID, shape=ID)) +
+  labs(color='Pathways Present In:', shape='Pathways Present In:') +
+  scale_color_manual(values=c(colors_fill[4], colors_fill[4])) +
+  scale_shape_manual(values=c(groupshapes[3], groupshapes[7])) +
+  scale_y_continuous(breaks=c(-4:-1,1:10), labels=SPP7SPP5_plot$Description) +
+  scale_x_continuous(trans=squish_trans(-3, 3, 6), breaks=c(-7:-3, 0, 3:7), labels=as.character(c(7:3, 0, 3:7)), limits=c(-5, 6.2)) +
+  ggtitle(str_c(as.character(tail(SPP7SPP5_plot$ID, n=1)), "Vs.", as.character(head(SPP7SPP5_plot$ID, n=1)), sep=" "))
+
+SPP7SPP5_gg
+```
+
+
+
+##Plot SUB Vs. N
+```{r plot_pairs}
+SUBN_plot <- bind_rows("Naive"=SUBNDown, "Mem"=SUBNUp, .id="ID")
+
+SUBN_plot$Sig <- if_else(SUBN_plot$ID=="Naive", (SUBN_plot$Sig * -1), (SUBN_plot$Sig * 1))
+SUBN_plot$Y <- if_else(SUBN_plot$ID=="Naive", (SUBN_plot$Y * -1), (SUBN_plot$Y * 1))
+
+SUBN_plot <- SUBN_plot %>% arrange(Y)
+
+SUBN_gg <- ggplot(SUBN_plot, aes(x=Sig, y=Y)) + xlab("-log(p-value)") + ylab("") + themeset
+
+SUBN_gg <- SUBN_gg + geom_point(aes(size=Enrichment, color=ID, shape=ID)) +
+  labs(color='Pathways Present In:', shape='Pathways Present In:') +
+  scale_color_manual(values=c(colors_fill[3], colors_fill[1])) +
+  scale_shape_manual(values=c(groupshapes[1], groupshapes[1])) +
+  scale_y_continuous(breaks=c(-10:-1,1:10), labels=SUBN_plot$Description) +
+  scale_x_continuous(trans=squish_trans(-4, 4, 6), breaks=c(-15, -10, -5, -4, 0, 4, 5, 10, 15), labels=c(-15, -10, -5, "", 0, "", 5, 10, 15), limits=c(-10, 15.1)) +
+  ggtitle(str_c(as.character(tail(SUBN_plot$ID, n=1)), "Vs.", as.character(head(SUBN_plot$ID, n=1)), sep=" "))
+
+SUBN_gg
+```
+##Plot SPP5 Vs. N
+```{r plot_pairs}
+SPP5N_plot <- bind_rows("Naive"=SPP5NDown, "Mem+PP C5"=SPP5NUp, .id="ID")
+
+SPP5N_plot$Sig <- if_else(SPP5N_plot$ID=="Naive", (SPP5N_plot$Sig * -1), (SPP5N_plot$Sig * 1))
+SPP5N_plot$Y <- if_else(SPP5N_plot$ID=="Naive", (SPP5N_plot$Y * -1), (SPP5N_plot$Y * 1))
+
+SPP5N_plot <- SPP5N_plot %>% arrange(Y)
+
+SPP5N_gg <- ggplot(SPP5N_plot, aes(x=Sig, y=Y)) + xlab("-log(p-value)") + ylab("") + themeset
+
+SPP5N_gg <- SPP5N_gg + geom_point(aes(size=Enrichment, color=ID, shape=ID)) +
+  labs(color='Pathways Present In:', shape='Pathways Present In:') +
+  scale_color_manual(values=c(colors_fill[4], colors_fill[1])) +
+  scale_shape_manual(values=c(groupshapes[3], groupshapes[1])) +
+  scale_y_continuous(breaks=c(-10:-1,1:10), labels=SPP5N_plot$Description) +
+  scale_x_continuous(trans=squish_trans(-5, 5, 6), breaks=c(seq(-25, 25, by=5)), labels=c(25, 20, 15, 10, "", 0, "", 10, 15, 20, 25), limits=c(-23.3, 23)) +
+  ggtitle(str_c(as.character(tail(SPP5N_plot$ID, n=1)), "Vs.", as.character(head(NPPBN_plot$ID, n=1)), sep=" "))
+
+SPP5N_gg
+```
+
+
+
+
+##Plot SPP7 Vs. SUB
+```{r plot_pairs}
+SPP7SUB_plot <- bind_rows("Mem"=SPP7SUBDown, "Mem+PP C7"=SPP7SUBUp, .id="ID")
+
+SPP7SUB_plot$Sig <- if_else(SPP7SUB_plot$ID=="Mem", (SPP7SUB_plot$Sig * -1), (SPP7SUB_plot$Sig * 1))
+SPP7SUB_plot$Y <- if_else(SPP7SUB_plot$ID=="Mem", (SPP7SUB_plot$Y * -1), (SPP7SUB_plot$Y * 1))
+
+SPP7SUB_plot <- SPP7SUB_plot %>% arrange(Y)
+
+SPP7SUB_gg <- ggplot(SPP7SUB_plot, aes(x=Sig, y=Y)) + xlab("-log(p-value)") + ylab("") + themeset
+
+SPP7SUB_gg <- SPP7SUB_gg + geom_point(aes(size=Enrichment, color=ID, shape=ID)) +
+  labs(color='Pathways Present In:', shape='Pathways Present In:') +
+  scale_color_manual(values=c(colors_fill[3], colors_fill[4])) +
+  scale_shape_manual(values=c(groupshapes[1], groupshapes[7])) +
+  scale_y_continuous(breaks=c(-10:-1,1:10), labels=SPP7SUB_plot$Description) +
+  scale_x_continuous(trans=squish_trans(-3, 3, 6), breaks=c(-7:-4, 0, 4:7), labels=as.character(c(7:4, 0, 4:7)), limits=c(-7.5, 7.5)) +
+  ggtitle(str_c(as.character(tail(SPP7SUB_plot$ID, n=1)), "Vs.", as.character(head(SPP7SUB_plot$ID, n=1)), sep=" "))
+
+SPP7SUB_gg
+```
+
+##Plot SUB Vs. NPP5
+```{r plot_pairs}
+SUBNPP5_plot <- bind_rows("Naive+PP C5"=SUBNPP5Down, "Mem"=SUBNPP5Up, .id="ID")
+
+SUBNPP5_plot$Sig <- if_else(SUBNPP5_plot$ID=="Naive+PP C5", (SUBNPP5_plot$Sig * -1), (SUBNPP5_plot$Sig * 1))
+SUBNPP5_plot$Y <- if_else(SUBNPP5_plot$ID=="Naive+PP C5", (SUBNPP5_plot$Y * -1), (SUBNPP5_plot$Y * 1))
+
+SUBNPP5_plot <- SUBNPP5_plot %>% arrange(Y)
+
+SUBNPP5_gg <- ggplot(SUBNPP5_plot, aes(x=Sig, y=Y)) + xlab("-log(p-value)") + ylab("") + themeset
+
+SUBNPP5_gg <- SUBNPP5_gg + geom_point(aes(size=Enrichment, color=ID, shape=ID)) +
+  labs(color='Pathways Present In:', shape='Pathways Present In:') +
+  scale_color_manual(values=c(colors_fill[3], colors_fill[2])) +
+  scale_shape_manual(values=c(groupshapes[1], groupshapes[3])) +
+  scale_y_continuous(breaks=c(-10:-1,1:10), labels=SUBNPP5_plot$Description) +
+  scale_x_continuous(trans=squish_trans(-5, 5, 3), breaks=c(-10, -5, 0, 5, 10), labels=abs(c(-10, -5, 0, 5, 10)), limits=c(-11.1, 11.1)) +
+  ggtitle(str_c(as.character(tail(SUBNPP5_plot$ID, n=1)), "Vs.", as.character(head(SUBNPP5_plot$ID, n=1)), sep=" "))
+
+SUBNPP5_gg
+```
+
+##Plot SPPB Vs. SUB
+```{r plot_pairs}
+SPPBSUB_plot <- bind_rows("Mem"=SPPBSUBDown, "Mem+PP Bulk"=SPPBSUBUp, .id="ID")
+
+SPPBSUB_plot$Sig <- if_else(SPPBSUB_plot$ID=="Mem", (SPPBSUB_plot$Sig * -1), (SPPBSUB_plot$Sig * 1))
+SPPBSUB_plot$Y <- if_else(SPPBSUB_plot$ID=="Mem", (SPPBSUB_plot$Y * -1), (SPPBSUB_plot$Y * 1))
+
+SPPBSUB_plot <- SPPBSUB_plot %>% arrange(Y)
+
+SPPBSUB_gg <- ggplot(SPPBSUB_plot, aes(x=Sig, y=Y)) + xlab("-log(p-value)") + ylab("") + themeset
+
+SPPBSUB_gg <- SPPBSUB_gg + geom_point(aes(size=Enrichment, color=ID, shape=ID)) +
+  labs(color='Pathways Present In:', shape='Pathways Present In:') +
+  scale_color_manual(values=c(colors_fill[3], colors_fill[4])) +
+  scale_shape_manual(values=c(groupshapes[1], groupshapes[2])) +
+  scale_y_continuous(breaks=c(-9:-1,1:10), labels=SPPBSUB_plot$Description) +
+  scale_x_continuous(trans=squish_trans(-3, 3, 3), breaks=c(seq(-8,-2, by=2), 0, seq(2, 8, by=2)), labels=as.character(c(rev(seq(2, 8, by=2)), 0, seq(2, 8, by=2))), limits=c(-5, 6.66)) +
+  ggtitle(str_c(as.character(tail(SPPBSUB_plot$ID, n=1)), "Vs.", as.character(head(SPPBSUB_plot$ID, n=1)), sep=" "))
+
+SPPBSUB_gg
+```
+
+##Plot NPP5 Vs. NPPB
+```{r plot_pairs}
+NPP5NPPB_plot <- bind_rows("Naive+PP Bulk"=NPP5NPPBDown, "Naive+PP C5"=NPP5NPPBUp, .id="ID")
+NPP5NPPB_plot$Description <- NPP5NPPB_plot$Description %>% str_replace("via plasma membrane cell adhesion molecules", "")
+
+NPP5NPPB_plot$Sig <- if_else(NPP5NPPB_plot$ID=="Naive+PP Bulk", (NPP5NPPB_plot$Sig * -1), (NPP5NPPB_plot$Sig * 1))
+NPP5NPPB_plot$Y <- if_else(NPP5NPPB_plot$ID=="Naive+PP Bulk", (NPP5NPPB_plot$Y * -1), (NPP5NPPB_plot$Y * 1))
+
+NPP5NPPB_plot <- NPP5NPPB_plot %>% arrange(Y)
+
+NPP5NPPB_gg <- ggplot(NPP5NPPB_plot, aes(x=Sig, y=Y)) + xlab("-log(p-value)") + ylab("") + themeset
+
+NPP5NPPB_gg <- NPP5NPPB_gg + geom_point(aes(size=Enrichment, color=ID, shape=ID)) +
+  labs(color='Pathways Present In:', shape='Pathways Present In:') +
+  scale_color_manual(values=c(colors_fill[2], colors_fill[2])) +
+  scale_shape_manual(values=c(groupshapes[2], groupshapes[3])) +
+  scale_y_continuous(breaks=c(-9:-1,1:10), labels=NPP5NPPB_plot$Description) +
+  scale_x_continuous(breaks=c(-10, -5, 0, 5, 10, 15), labels=abs(c(-10, -5, 0, 5, 10, 15)), limits=c(-6,15)) +
+  ggtitle(str_c(as.character(tail(NPP5NPPB_plot$ID, n=1)), "Vs.", as.character(head(NPP5NPPB_plot$ID, n=1)), sep=" "))
+
+NPP5NPPB_gg
+```
+
+
+
+#Save all plots
+```{r saveplots}
+savepath <- "./Plots"
+ls(pattern="_gg")
+plots <- align_plots(NPP5N_gg, NPP5NPPB_gg, NPPBN_gg, SPP5N_gg, SPP5NPP5_gg, SPP5NPP5_gg_Filtered, SPP5NPP5_SharedUp_gg, SPP5SUB_gg, SPP7SPP5_gg, SPP7SUB_gg, SPPBSUB_gg, SUBN_gg, SUBNPP5_gg, align="v")
+ggdraw(plots[[1]])
+
+for(i in 1:13){
+  list <- ls(pattern="_gg")
+  objname <- str_replace(list[i], "_gg", "")
+  ggsave(str_c(objname, ".pdf"), ggdraw(plots[[i]]), path=savepath)
+  
+  rm(i)
+  rm(objname)
+  rm(list)
+}
+
+```

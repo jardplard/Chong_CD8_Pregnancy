@@ -1,0 +1,7 @@
+Network,Annotation
+Geneid,GO:0031347|regulation of defense response|-8.5;GO:1990840|response to lectin|-8.5;GO:0002223|stimulatory C-type lectin receptor signaling pathway|-8.5
+Geneid_MCODE_ALL,R-MMU-418594|G alpha (i) signalling events|-10.8;R-MMU-388396|GPCR downstream signalling|-10.2;GO:0032103|positive regulation of response to external stimulus|-10.1
+Geneid_SUB1_MCODE_1,GO:1990840|response to lectin|-10.7;GO:0002223|stimulatory C-type lectin receptor signaling pathway|-10.7;GO:1990858|cellular response to lectin|-10.7
+Geneid_SUB1_MCODE_2,R-MMU-418594|G alpha (i) signalling events|-17.9;R-MMU-500792|GPCR ligand binding|-16.3;R-MMU-373076|Class A/1 (Rhodopsin-like receptors)|-14.9
+Geneid_SUB1_MCODE_3,GO:0048002|antigen processing and presentation of peptide antigen|-6.7;GO:0050766|positive regulation of phagocytosis|-6.6;GO:0050764|regulation of phagocytosis|-6.2
+Geneid_SUB1_MCODE_4,R-MMU-983168|Antigen processing: Ubiquitination & Proteasome degradation|-7.4;R-MMU-983169|Class I MHC mediated antigen processing & presentation|-7.1;R-MMU-1280218|Adaptive Immune System|-6.0

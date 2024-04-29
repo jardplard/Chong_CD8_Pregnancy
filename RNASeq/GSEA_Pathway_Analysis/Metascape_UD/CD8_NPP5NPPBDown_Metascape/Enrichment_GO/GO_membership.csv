@@ -1,0 +1,28 @@
+_MEMBER_Geneid,_LogP_Geneid,GO,Description,_PATTERN_,_RANK_,GiniIndex
+1,-3.9,GO:0051604,protein maturation,M1,1,0
+1,-2.8,R-MMU-421270,Cell-cell junction organization,M1,1,0
+1,-2.3,GO:0007156,homophilic cell adhesion via plasma membrane adhesion molecules,M1,1,0
+1,-4.3,GO:0070613,regulation of protein processing,M1,1,0
+1,-2.4,R-MMU-1474244,Extracellular matrix organization,M1,1,0
+1,-2.7,GO:0030031,cell projection assembly,M1,1,0
+1,-2.1,GO:0090090,negative regulation of canonical Wnt signaling pathway,M1,1,0
+1,-2.5,GO:0030178,negative regulation of Wnt signaling pathway,M1,1,0
+1,-2.2,R-MMU-446728,Cell junction organization,M1,1,0
+1,-4.2,GO:1903317,regulation of protein maturation,M1,1,0
+1,-2.8,GO:0035082,axoneme assembly,M1,1,0
+1,-3.3,GO:0010954,positive regulation of protein processing,M1,1,0
+1,-2.8,R-MMU-1592389,Activation of Matrix Metalloproteinases,M1,1,0
+1,-3.2,GO:1903319,positive regulation of protein maturation,M1,1,0
+1,-3.1,GO:0001578,microtubule bundle formation,M1,1,0
+1,-2.3,GO:0030162,regulation of proteolysis,M1,1,0
+1,-4.6,GO:0016485,protein processing,M1,1,0
+1,-4.3,GO:0016339,calcium-dependent cell-cell adhesion via plasma membrane cell adhesion molecules,M1,1,0
+1,-2,GO:0098742,cell-cell adhesion via plasma-membrane adhesion molecules,M1,1,0
+1,-2,GO:0097722,sperm motility,M1,1,0
+1,-3,R-MMU-418990,Adherens junctions interactions,M1,1,0
+1,-2.8,GO:0120031,plasma membrane bounded cell projection assembly,M1,1,0
+1,-2.1,GO:0030317,flagellated sperm motility,M1,1,0
+1,-2.1,GO:0003341,cilium movement,M1,1,0
+1,-2.4,GO:0007264,small GTPase mediated signal transduction,M1,1,0
+1,-2.3,R-MMU-1474228,Degradation of the extracellular matrix,M1,1,0
+1,-2.6,GO:0048536,spleen development,M1,1,0

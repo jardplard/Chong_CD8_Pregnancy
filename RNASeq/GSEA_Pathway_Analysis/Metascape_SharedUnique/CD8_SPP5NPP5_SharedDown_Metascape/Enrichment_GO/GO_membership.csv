@@ -1,0 +1,6 @@
+_MEMBER_Geneid,_LogP_Geneid,GO,Description,_PATTERN_,_RANK_,GiniIndex
+1,-2.2,GO:0048880,sensory system development,M1,1,0
+1,-2.2,GO:0150063,visual system development,M1,1,0
+1,-2.2,GO:0001654,eye development,M1,1,0
+1,-2.6,GO:0006909,phagocytosis,M1,1,0
+1,-2.6,GO:0007423,sensory organ development,M1,1,0

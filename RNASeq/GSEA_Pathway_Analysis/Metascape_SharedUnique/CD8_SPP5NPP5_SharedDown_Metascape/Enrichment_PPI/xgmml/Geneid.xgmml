@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<graph label="Geneid" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cy="http://www.cytoscape.org" xmlns="http://www.cs.rpi.edu/XGMML" >
+  <att name="documentVersion" value="1.1"/>
+  <att name="networkMetadata">
+    <rdf:RDF>
+      <rdf:Description rdf:about="http://www.cytoscape.org/">
+        <dc:type>Protein-Protein Interaction</dc:type>
+        <dc:description>N/A</dc:description>
+        <dc:identifier>N/A</dc:identifier>
+        <dc:date>2022-03-03 13:08:50</dc:date>
+        <dc:title>Cytoscape Network</dc:title>
+        <dc:source>http://www.cytoscape.org/</dc:source>
+        <dc:format>Cytoscape-XGMML</dc:format>
+      </rdf:Description>
+    </rdf:RDF>
+  </att>
+  <att type="string" name="backgroundColor" value="#ffffff"/>
+  <att type="real" name="GRAPH_VIEW_ZOOM" value="1.0"/>
+  <att type="real" name="GRAPH_VIEW_CENTER_X" value="300.0"/>
+  <att type="real" name="GRAPH_VIEW_CENTER_Y" value="300.0"/>
+  <node label="Cdh1" id="1">
+    <att type="string" name="canonicalName" value="Cdh1"/>
+    <att type="string" name="Gene" value="12550"/>
+    <att type="string" name="Symbol" value="Cdh1"/>
+    <att type="integer" name="DEGREE" value="1"/>
+    <graphics type="CIRCLE" x="349.6837903155515" y="277.87999929844636"/>
+  </node>
+  <node label="Armc2" id="2">
+    <att type="string" name="canonicalName" value="Armc2"/>
+    <att type="string" name="Gene" value="213402"/>
+    <att type="string" name="Symbol" value="Armc2"/>
+    <att type="integer" name="DEGREE" value="1"/>
+    <graphics type="CIRCLE" x="448.4830005624957" y="254.6577515029391"/>
+  </node>
+  <edge label="12550 (pp) 213402" source="1" target="2">
+    <att type="string" name="canonicalName" value="12550 (pp) 213402"/>
+    <att type="string" name="interaction" value="pp"/>
+    <att type="int" name="SCORE" value="197"/>
+    <att type="string" name="support" value="{&quot;StringDB&quot;: &quot;physical&quot;, &quot;StringEvidence&quot;: &quot;experiments:0.163,coexpression:0.021,textmining:0.007&quot;, &quot;String_Score_Physical&quot;: 197, &quot;String_Score_Combined&quot;: 219}"/>
+  </edge>
+</graph>

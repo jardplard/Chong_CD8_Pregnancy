@@ -1,0 +1,17 @@
+_MEMBER_Geneid,_LogP_Geneid,GO,Description,_PATTERN_,_RANK_,CHILD_GO_Geneid
+1,-6.122174631372729,GO:0022610,biological adhesion,M1,1,GO:1903039 positive regulation of leukocyte cell-cell adhesion
+1,-4.644111232577878,GO:0009987,cellular process,M1,1,GO:0034330 cell junction organization
+1,-4.419042209283167,GO:0002376,immune system process,M1,1,GO:0050863 regulation of T cell activation
+1,-4.216419482429412,GO:0044419,biological process involved in interspecies interaction between organisms,M1,1,GO:0042832 defense response to protozoan
+1,-4.069524746033216,GO:0023052,signaling,M1,1,GO:0046578 regulation of Ras protein signal transduction
+1,-3.574784137071253,GO:0040011,locomotion,M1,1,GO:0050920 regulation of chemotaxis
+1,-3.5689777306530566,GO:0048518,positive regulation of biological process,M1,1,GO:0032946 positive regulation of mononuclear cell proliferation
+1,-3.558271953930755,GO:0040007,growth,M1,1,GO:0045927 positive regulation of growth
+1,-3.323956586427435,GO:0032502,developmental process,M1,1,GO:0010975 regulation of neuron projection development
+1,-3.259153980021554,GO:0048519,negative regulation of biological process,M1,1,GO:0045596 negative regulation of cell differentiation
+1,-3.167112516555956,GO:0050789,regulation of biological process,M1,1,GO:0120035 regulation of plasma membrane bounded cell projection organization
+1,-2.689745567171858,GO:0051179,localization,M1,1,GO:0099149 regulation of postsynaptic neurotransmitter receptor internalization
+1,-2.667007230722861,GO:0065007,biological regulation,M1,1,GO:0051347 positive regulation of transferase activity
+1,-2.624961008230031,GO:0008152,metabolic process,M1,1,GO:0043549 regulation of kinase activity
+1,-2.538646166499512,GO:0032501,multicellular organismal process,M1,1,GO:0001817 regulation of cytokine production
+1,-2.243535487177612,GO:0050896,response to stimulus,M1,1,GO:0080135 regulation of cellular response to stress

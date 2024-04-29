@@ -1,0 +1,17 @@
+_MEMBER_Geneid,_LogP_Geneid,GO,Description,_PATTERN_,_RANK_,CHILD_GO_Geneid
+1,-12.247206175891595,GO:0022610,biological adhesion,M1,1,GO:0030155 regulation of cell adhesion
+1,-11.792911612969485,GO:0002376,immune system process,M1,1,GO:0050863 regulation of T cell activation
+1,-9.479243051293945,GO:0050789,regulation of biological process,M1,1,GO:0050865 regulation of cell activation
+1,-9.376893825542725,GO:0032501,multicellular organismal process,M1,1,GO:0001817 regulation of cytokine production
+1,-7.7880943974706,GO:0009987,cellular process,M1,1,GO:0032943 mononuclear cell proliferation
+1,-7.2492386435021094,GO:0040011,locomotion,M1,1,GO:0050920 regulation of chemotaxis
+1,-6.960846879833633,GO:0048518,positive regulation of biological process,M1,1,GO:0032103 positive regulation of response to external stimulus
+1,-6.691713751286987,GO:0048519,negative regulation of biological process,M1,1,GO:0045596 negative regulation of cell differentiation
+1,-5.6730440502630035,GO:0032502,developmental process,M1,1,GO:0061564 axon development
+1,-5.141103484810534,GO:0050896,response to stimulus,M1,1,GO:0006954 inflammatory response
+1,-4.568291179968775,GO:0040007,growth,M1,1,GO:0048841 regulation of axon extension involved in axon guidance
+1,-4.534264195472134,GO:0051179,localization,M1,1,GO:0051272 positive regulation of cellular component movement
+1,-4.3547387054689,GO:0023052,signaling,M1,1,GO:0007264 small GTPase mediated signal transduction
+1,-4.343317559322582,GO:0044419,biological process involved in interspecies interaction between organisms,M1,1,GO:0042832 defense response to protozoan
+1,-3.56137517020396,GO:0008152,metabolic process,M1,1,GO:0043433 negative regulation of DNA-binding transcription factor activity
+1,-3.419404734093483,GO:0065007,biological regulation,M1,1,GO:0043087 regulation of GTPase activity

@@ -1,0 +1,7 @@
+Network,Annotation
+Geneid,GO:0030155|regulation of cell adhesion|-7.9;GO:0042330|taxis|-7.1;WP85|Focal adhesion|-6.6
+Geneid_MCODE_ALL,R-MMU-372790|Signaling by GPCR|-8.3;R-MMU-388396|GPCR downstream signalling|-7.4;GO:0006935|chemotaxis|-6.9
+Geneid_SUB1_MCODE_1,R-MMU-8957275|Post-translational protein phosphorylation|-5.8;R-MMU-381426|Regulation of Insulin-like Growth Factor (IGF) transport and uptake by Insulin-like Growth Factor Binding Proteins (IGFBPs)|-5.7;R-MMU-1280218|Adaptive Immune System|-5.2
+Geneid_SUB1_MCODE_2,R-MMU-500792|GPCR ligand binding|-10.4;R-MMU-372790|Signaling by GPCR|-9.3;R-MMU-380108|Chemokine receptors bind chemokines|-9.2
+Geneid_SUB1_MCODE_3,R-MMU-6798695|Neutrophil degranulation|-3.9
+Geneid_SUB1_MCODE_4,GO:0007409|axonogenesis|-4.3;GO:0061564|axon development|-4.2;GO:0048667|cell morphogenesis involved in neuron differentiation|-3.9

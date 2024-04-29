@@ -1,0 +1,125 @@
+Name,Category,CategoryID,GO,Description,PARENT_GO,LogP,Enrichment,Z-score,#TotalGeneInLibrary,#GeneInGO,#GeneInHitList,#GeneInGOAndHitList,%InGO,STDV %InGO,GeneID,Hits,Log(q-value)
+Geneid,GO Biological Processes,19,GO:0001578,microtubule bundle formation,19_GO:0009987 cellular process,-5.1,18,9,20504,119,48,5,10,4.4,14159|102747|213402|231214|627872,Fes|Lrrc49|Armc2|Cc2d2a|Dnah7a,-1.8
+Geneid,GO Biological Processes,19,GO:0006935,chemotaxis,19_GO:0040011 locomotion,-4.9,6.2,6.3,20504,623,48,9,19,5.6,12273|13508|14131|14159|14268|18028|57257|108699|238130,C5ar1|Dscam|Fcgr3|Fes|Fn1|Nfib|Vav3|Chn1|Dock4,-1.7
+Geneid,GO Biological Processes,19,GO:0042330,taxis,19_GO:0040011 locomotion,-4.9,6.1,6.3,20504,628,48,9,19,5.6,12273|13508|14131|14159|14268|18028|57257|108699|238130,C5ar1|Dscam|Fcgr3|Fes|Fn1|Nfib|Vav3|Chn1|Dock4,-1.7
+Geneid,Reactome Gene Sets,6,R-MMU-216083,Integrin cell surface interactions,,-4.7,24,9.5,20504,70,48,4,8.3,4,12828|14268|15898|16399,Col4a3|Fn1|Icam5|Itga2b,-1.5
+Geneid,Reactome Gene Sets,6,R-MMU-422475,Axon guidance,,-4.5,10,7,20504,256,48,6,12,4.8,11733|12828|13508|14159|16399|57257,Ank1|Col4a3|Dscam|Fes|Itga2b|Vav3,-1.5
+Geneid,Reactome Gene Sets,6,R-MMU-9675108,Nervous system development,,-4.5,10,7,20504,257,48,6,12,4.8,11733|12828|13508|14159|16399|57257,Ank1|Col4a3|Dscam|Fes|Itga2b|Vav3,-1.5
+Geneid,Reactome Gene Sets,6,R-MMU-9013149,RAC1 GTPase cycle,,-4.4,13,7.4,20504,166,48,5,10,4.4,24001|57257|106952|108699|238130,Tiam2|Vav3|Arap3|Chn1|Dock4,-1.4
+Geneid,Reactome Gene Sets,6,R-MMU-9012999,RHO GTPase cycle,,-4.3,7.2,6.2,20504,413,48,7,15,5.1,24001|57257|71228|106952|108699|238130|263803,Tiam2|Vav3|Dlg5|Arap3|Chn1|Dock4|Pkn3,-1.4
+Geneid,GO Biological Processes,19,GO:0035082,axoneme assembly,19_GO:0009987 cellular process,-4.3,20,8.5,20504,86,48,4,8.3,4,102747|213402|231214|627872,Lrrc49|Armc2|Cc2d2a|Dnah7a,-1.4
+Geneid,Reactome Gene Sets,6,R-MMU-5620912,Anchoring of the basal body to the plasma membrane,,-4.1,18,8,20504,95,48,4,8.3,4,18005|27078|53885|231214,Nek2|B9d1|Nphp1|Cc2d2a,-1.3
+Geneid,GO Biological Processes,19,GO:0007264,small GTPase mediated signal transduction,19_GO:0023052 signaling,-3.3,6,5.1,20504,425,48,6,12,4.8,24001|57257|106952|108699|234353|238130,Tiam2|Vav3|Arap3|Chn1|Psd3|Dock4,-0.57
+Geneid,KEGG Pathway,24,ko04720,Long-term potentiation,,-3.3,19,7.2,20504,67,48,3,6.2,3.5,12322|12323|67071,Camk2a|Camk2b|Rps6ka6,-0.52
+Geneid,KEGG Pathway,24,mmu04720,Long-term potentiation,,-3.3,19,7.1,20504,68,48,3,6.2,3.5,12322|12323|67071,Camk2a|Camk2b|Rps6ka6,-0.52
+Geneid,Reactome Gene Sets,6,R-MMU-1266738,Developmental Biology,,-3.2,5.6,4.8,20504,454,48,6,12,4.8,11733|12828|13508|14159|16399|57257,Ank1|Col4a3|Dscam|Fes|Itga2b|Vav3,-0.46
+Geneid,GO Biological Processes,19,GO:0097120,receptor localization to synapse,19_GO:0051179 localization,-3.1,17,6.8,20504,75,48,3,6.2,3.5,12322|23859|77531,Camk2a|Dlg2|Anks1b,-0.42
+Geneid,Reactome Gene Sets,6,R-MMU-194315,Signaling by Rho GTPases,,-3.1,4.6,4.5,20504,652,48,7,15,5.1,24001|57257|71228|106952|108699|238130|263803,Tiam2|Vav3|Dlg5|Arap3|Chn1|Dock4|Pkn3,-0.42
+Geneid,GO Biological Processes,19,GO:0048667,cell morphogenesis involved in neuron differentiation,19_GO:0032502 developmental process,-3.1,4.6,4.5,20504,657,48,7,15,5.1,12322|12323|13508|14268|18028|24001|108699,Camk2a|Camk2b|Dscam|Fn1|Nfib|Tiam2|Chn1,-0.41
+Geneid,Reactome Gene Sets,6,R-MMU-9716542,"Signaling by Rho GTPases, Miro GTPases and RHOBTB3",,-3.1,4.5,4.4,20504,667,48,7,15,5.1,24001|57257|71228|106952|108699|238130|263803,Tiam2|Vav3|Dlg5|Arap3|Chn1|Dock4|Pkn3,-0.38
+Geneid,GO Biological Processes,19,GO:0050770,regulation of axonogenesis,19_GO:0032502 developmental process,-3,9.2,5.5,20504,185,48,4,8.3,4,13508|14268|24001|108699,Dscam|Fn1|Tiam2|Chn1,-0.37
+Geneid,KEGG Pathway,24,ko04512,ECM-receptor interaction,,-3,15,6.4,20504,83,48,3,6.2,3.5,12828|14268|16399,Col4a3|Fn1|Itga2b,-0.37
+Geneid,KEGG Pathway,24,ko05222,Small cell lung cancer,,-3,15,6.4,20504,83,48,3,6.2,3.5,12828|14268|16399,Col4a3|Fn1|Itga2b,-0.37
+Geneid,KEGG Pathway,24,mmu04512,ECM-receptor interaction,,-3,15,6.3,20504,85,48,3,6.2,3.5,12828|14268|16399,Col4a3|Fn1|Itga2b,-0.37
+Geneid,KEGG Pathway,24,mmu05222,Small cell lung cancer,,-3,15,6.3,20504,86,48,3,6.2,3.5,12828|14268|16399,Col4a3|Fn1|Itga2b,-0.37
+Geneid,Reactome Gene Sets,6,R-MMU-5617833,Cilium Assembly,,-3,8.8,5.3,20504,194,48,4,8.3,4,18005|27078|53885|231214,Nek2|B9d1|Nphp1|Cc2d2a,-0.37
+Geneid,KEGG Pathway,24,ko04024,cAMP signaling pathway,,-2.9,8.7,5.2,20504,197,48,4,8.3,4,12322|12323|57257|106952,Camk2a|Camk2b|Vav3|Arap3,-0.37
+Geneid,GO Biological Processes,19,GO:0018105,peptidyl-serine phosphorylation,19_GO:0008152 metabolic process,-2.9,6.3,4.8,20504,340,48,5,10,4.4,12322|12323|67071|227120|263803,Camk2a|Camk2b|Rps6ka6|Plcl1|Pkn3,-0.37
+Geneid,KEGG Pathway,24,ko04510,Focal adhesion,,-2.9,8.6,5.2,20504,199,48,4,8.3,4,12828|14268|16399|57257,Col4a3|Fn1|Itga2b|Vav3,-0.37
+Geneid,GO Biological Processes,19,GO:0060271,cilium assembly,19_GO:0009987 cellular process,-2.9,6.2,4.7,20504,343,48,5,10,4.4,27078|102747|213402|231214|627872,B9d1|Lrrc49|Armc2|Cc2d2a|Dnah7a,-0.37
+Geneid,KEGG Pathway,24,mmu04024,cAMP signaling pathway,,-2.9,8.5,5.2,20504,200,48,4,8.3,4,12322|12323|57257|106952,Camk2a|Camk2b|Vav3|Arap3,-0.37
+Geneid,GO Biological Processes,19,GO:0048812,neuron projection morphogenesis,19_GO:0032502 developmental process,-2.9,4.2,4.2,20504,710,48,7,15,5.1,12322|12323|13508|14268|18028|24001|108699,Camk2a|Camk2b|Dscam|Fn1|Nfib|Tiam2|Chn1,-0.37
+Geneid,KEGG Pathway,24,ko04151,PI3K-Akt signaling pathway,,-2.9,6.2,4.7,20504,346,48,5,10,4.4,12828|14268|16197|16399|263803,Col4a3|Fn1|Il7r|Itga2b|Pkn3,-0.37
+Geneid,KEGG Pathway,24,mmu04510,Focal adhesion,,-2.9,8.4,5.1,20504,203,48,4,8.3,4,12828|14268|16399|57257,Col4a3|Fn1|Itga2b|Vav3,-0.36
+Geneid,KEGG Pathway,24,mmu04151,PI3K-Akt signaling pathway,,-2.9,6.1,4.7,20504,350,48,5,10,4.4,12828|14268|16197|16399|263803,Col4a3|Fn1|Il7r|Itga2b|Pkn3,-0.36
+Geneid,KEGG Pathway,24,ko05205,Proteoglycans in cancer,,-2.9,8.3,5.1,20504,206,48,4,8.3,4,11733|12322|12323|14268,Ank1|Camk2a|Camk2b|Fn1,-0.35
+Geneid,GO Biological Processes,19,GO:0120039,plasma membrane bounded cell projection morphogenesis,19_GO:0032502 developmental process,-2.9,4.1,4.1,20504,725,48,7,15,5.1,12322|12323|13508|14268|18028|24001|108699,Camk2a|Camk2b|Dscam|Fn1|Nfib|Tiam2|Chn1,-0.35
+Geneid,GO Biological Processes,19,GO:0048858,cell projection morphogenesis,19_GO:0032502 developmental process,-2.8,4.1,4.1,20504,730,48,7,15,5.1,12322|12323|13508|14268|18028|24001|108699,Camk2a|Camk2b|Dscam|Fn1|Nfib|Tiam2|Chn1,-0.35
+Geneid,GO Biological Processes,19,GO:0007229,integrin-mediated signaling pathway,19_GO:0023052 signaling,-2.8,13,5.9,20504,96,48,3,6.2,3.5,14268|16399|57257,Fn1|Itga2b|Vav3,-0.35
+Geneid,GO Biological Processes,19,GO:0051962,positive regulation of nervous system development,19_GO:0048518 positive regulation of biological process,-2.8,5.9,4.6,20504,359,48,5,10,4.4,12323|13508|14268|24001|71228,Camk2b|Dscam|Fn1|Tiam2|Dlg5,-0.35
+Geneid,KEGG Pathway,24,mmu05205,Proteoglycans in cancer,,-2.8,8.1,5,20504,211,48,4,8.3,4,11733|12322|12323|14268,Ank1|Camk2a|Camk2b|Fn1,-0.35
+Geneid,GO Biological Processes,19,GO:0018209,peptidyl-serine modification,19_GO:0008152 metabolic process,-2.8,5.9,4.5,20504,365,48,5,10,4.4,12322|12323|67071|227120|263803,Camk2a|Camk2b|Rps6ka6|Plcl1|Pkn3,-0.33
+Geneid,GO Biological Processes,19,GO:1990778,protein localization to cell periphery,19_GO:0051179 localization,-2.8,5.8,4.5,20504,369,48,5,10,4.4,11733|12322|12323|23859|71648,Ank1|Camk2a|Camk2b|Dlg2|Optn,-0.33
+Geneid,GO Biological Processes,19,GO:0120031,plasma membrane bounded cell projection assembly,19_GO:0009987 cellular process,-2.8,4.7,4.2,20504,548,48,6,12,4.8,27078|57257|102747|213402|231214|627872,B9d1|Vav3|Lrrc49|Armc2|Cc2d2a|Dnah7a,-0.33
+Geneid,GO Biological Processes,19,GO:0050772,positive regulation of axonogenesis,19_GO:0048518 positive regulation of biological process,-2.8,13,5.7,20504,101,48,3,6.2,3.5,13508|14268|24001,Dscam|Fn1|Tiam2,-0.33
+Geneid,GO Biological Processes,19,GO:0010975,regulation of neuron projection development,19_GO:0032502 developmental process,-2.8,4.7,4.2,20504,550,48,6,12,4.8,12323|13508|14159|14268|24001|108699,Camk2b|Dscam|Fes|Fn1|Tiam2|Chn1,-0.33
+Geneid,GO Biological Processes,19,GO:0032990,cell part morphogenesis,19_GO:0032502 developmental process,-2.8,4,4,20504,753,48,7,15,5.1,12322|12323|13508|14268|18028|24001|108699,Camk2a|Camk2b|Dscam|Fn1|Nfib|Tiam2|Chn1,-0.33
+Geneid,GO Biological Processes,19,GO:0030593,neutrophil chemotaxis,19_GO:0040011 locomotion,-2.8,13,5.7,20504,102,48,3,6.2,3.5,12273|14131|57257,C5ar1|Fcgr3|Vav3,-0.33
+Geneid,Reactome Gene Sets,6,R-MMU-1852241,Organelle biogenesis and maintenance,,-2.7,7.7,4.9,20504,222,48,4,8.3,4,18005|27078|53885|231214,Nek2|B9d1|Nphp1|Cc2d2a,-0.33
+Geneid,GO Biological Processes,19,GO:0044782,cilium organization,19_GO:0009987 cellular process,-2.7,5.7,4.4,20504,376,48,5,10,4.4,27078|102747|213402|231214|627872,B9d1|Lrrc49|Armc2|Cc2d2a|Dnah7a,-0.33
+Geneid,GO Biological Processes,19,GO:0030031,cell projection assembly,19_GO:0009987 cellular process,-2.7,4.6,4.1,20504,563,48,6,12,4.8,27078|57257|102747|213402|231214|627872,B9d1|Vav3|Lrrc49|Armc2|Cc2d2a|Dnah7a,-0.31
+Geneid,Reactome Gene Sets,6,R-MMU-5653656,Vesicle-mediated transport,,-2.7,4.5,4.1,20504,566,48,6,12,4.8,11733|16197|17957|71648|73094|278679,Ank1|Il7r|Napb|Optn|Sgip1|Apol7b,-0.3
+Geneid,GO Biological Processes,19,GO:0030155,regulation of cell adhesion,19_GO:0022610 biological adhesion,-2.7,3.9,3.9,20504,772,48,7,15,5.1,13508|14159|14268|16197|57257|71228|320832,Dscam|Fes|Fn1|Il7r|Vav3|Dlg5|Sirpb1a,-0.3
+Geneid,WikiPathways,27,WP539,Wnt signaling pathway (NetPath),,-2.7,12,5.5,20504,108,48,3,6.2,3.5,12322|12323|23859,Camk2a|Camk2b|Dlg2,-0.29
+Geneid,GO Biological Processes,19,GO:0002526,acute inflammatory response,19_GO:0050896 response to stimulus,-2.7,12,5.4,20504,110,48,3,6.2,3.5,11477|14131|14268,Acvr1|Fcgr3|Fn1,-0.28
+Geneid,GO Biological Processes,19,GO:0046777,protein autophosphorylation,19_GO:0008152 metabolic process,-2.6,7.2,4.6,20504,238,48,4,8.3,4,12322|12323|14159|18005,Camk2a|Camk2b|Fes|Nek2,-0.26
+Geneid,KEGG Pathway,24,ko04114,Oocyte meiosis,,-2.6,11,5.3,20504,116,48,3,6.2,3.5,12322|12323|67071,Camk2a|Camk2b|Rps6ka6,-0.22
+Geneid,GO Biological Processes,19,GO:1902414,protein localization to cell junction,19_GO:0051179 localization,-2.6,11,5.2,20504,119,48,3,6.2,3.5,12322|23859|71228,Camk2a|Dlg2|Dlg5,-0.2
+Geneid,KEGG Pathway,24,mmu04722,Neurotrophin signaling pathway,,-2.5,11,5.1,20504,121,48,3,6.2,3.5,12322|12323|67071,Camk2a|Camk2b|Rps6ka6,-0.19
+Geneid,KEGG Pathway,24,mmu04114,Oocyte meiosis,,-2.5,11,5.1,20504,121,48,3,6.2,3.5,12322|12323|67071,Camk2a|Camk2b|Rps6ka6,-0.19
+Geneid,KEGG Pathway,24,ko04722,Neurotrophin signaling pathway,,-2.5,11,5.1,20504,121,48,3,6.2,3.5,12322|12323|67071,Camk2a|Camk2b|Rps6ka6,-0.19
+Geneid,Reactome Gene Sets,6,R-MMU-1474244,Extracellular matrix organization,,-2.5,6.7,4.4,20504,256,48,4,8.3,4,12828|14268|15898|16399,Col4a3|Fn1|Icam5|Itga2b,-0.18
+Geneid,GO Biological Processes,19,GO:0000226,microtubule cytoskeleton organization,19_GO:0009987 cellular process,-2.5,4.1,3.8,20504,620,48,6,12,4.8,14159|18005|102747|213402|231214|627872,Fes|Nek2|Lrrc49|Armc2|Cc2d2a|Dnah7a,-0.17
+Geneid,Reactome Gene Sets,6,R-MMU-5673001,RAF/MAP kinase cascade,,-2.5,6.6,4.4,20504,259,48,4,8.3,4,12322|12323|14268|16399,Camk2a|Camk2b|Fn1|Itga2b,-0.17
+Geneid,GO Biological Processes,19,GO:0032103,positive regulation of response to external stimulus,19_GO:0048518 positive regulation of biological process,-2.5,5,4,20504,427,48,5,10,4.4,12273|13508|14131|14268|71648,C5ar1|Dscam|Fcgr3|Fn1|Optn,-0.17
+Geneid,GO Biological Processes,19,GO:0071621,granulocyte chemotaxis,19_GO:0040011 locomotion,-2.5,10,5,20504,127,48,3,6.2,3.5,12273|14131|57257,C5ar1|Fcgr3|Vav3,-0.16
+Geneid,GO Biological Processes,19,GO:0060996,dendritic spine development,19_GO:0032502 developmental process,-2.5,10,5,20504,128,48,3,6.2,3.5,12322|12323|71228,Camk2a|Camk2b|Dlg5,-0.16
+Geneid,GO Biological Processes,19,GO:1990266,neutrophil migration,19_GO:0040011 locomotion,-2.5,10,5,20504,128,48,3,6.2,3.5,12273|14131|57257,C5ar1|Fcgr3|Vav3,-0.16
+Geneid,GO Biological Processes,19,GO:0031503,protein-containing complex localization,19_GO:0051179 localization,-2.5,6.4,4.3,20504,265,48,4,8.3,4,12322|23859|30959|77531,Camk2a|Dlg2|Ddx25|Anks1b,-0.16
+Geneid,Reactome Gene Sets,6,R-MMU-5684996,MAPK1/MAPK3 signaling,,-2.5,6.4,4.3,20504,265,48,4,8.3,4,12322|12323|14268|16399,Camk2a|Camk2b|Fn1|Itga2b,-0.16
+Geneid,GO Biological Processes,19,GO:0031346,positive regulation of cell projection organization,19_GO:0048518 positive regulation of biological process,-2.4,4.8,4,20504,441,48,5,10,4.4,12323|13508|14159|14268|24001,Camk2b|Dscam|Fes|Fn1|Tiam2,-0.14
+Geneid,Reactome Gene Sets,6,R-MMU-8980692,RHOA GTPase cycle,,-2.4,9.6,4.8,20504,134,48,3,6.2,3.5,57257|106952|263803,Vav3|Arap3|Pkn3,-0.12
+Geneid,Reactome Gene Sets,6,R-MMU-9013148,CDC42 GTPase cycle,,-2.4,9.6,4.8,20504,134,48,3,6.2,3.5,57257|106952|108699,Vav3|Arap3|Chn1,-0.12
+Geneid,Reactome Gene Sets,6,R-MMU-5683057,MAPK family signaling cascades,,-2.3,5.9,4.1,20504,288,48,4,8.3,4,12322|12323|14268|16399,Camk2a|Camk2b|Fn1|Itga2b,-0.05
+Geneid,GO Biological Processes,19,GO:0050769,positive regulation of neurogenesis,19_GO:0048518 positive regulation of biological process,-2.3,5.7,4,20504,298,48,4,8.3,4,12323|13508|14268|24001,Camk2b|Dscam|Fn1|Tiam2,-0.0022
+Geneid,GO Biological Processes,19,GO:0050921,positive regulation of chemotaxis,19_GO:0040011 locomotion,-2.3,8.5,4.5,20504,151,48,3,6.2,3.5,12273|13508|14268,C5ar1|Dscam|Fn1,0
+Geneid,GO Biological Processes,19,GO:0072659,protein localization to plasma membrane,19_GO:0051179 localization,-2.3,5.7,4,20504,301,48,4,8.3,4,11733|12322|12323|71648,Ank1|Camk2a|Camk2b|Optn,0
+Geneid,GO Biological Processes,19,GO:0007409,axonogenesis,19_GO:0032502 developmental process,-2.3,4.4,3.7,20504,487,48,5,10,4.4,13508|14268|18028|24001|108699,Dscam|Fn1|Nfib|Tiam2|Chn1,0
+Geneid,GO Biological Processes,19,GO:0022412,cellular process involved in reproduction in multicellular organism,19_GO:0022414 reproductive process,-2.2,4.3,3.6,20504,496,48,5,10,4.4,11477|17864|30959|53885|213402,Acvr1|Mybl1|Ddx25|Nphp1|Armc2,0
+Geneid,GO Biological Processes,19,GO:0007224,smoothened signaling pathway,19_GO:0023052 signaling,-2.2,8.2,4.4,20504,157,48,3,6.2,3.5,27078|71228|231214,B9d1|Dlg5|Cc2d2a,0
+Geneid,GO Biological Processes,19,GO:0008360,regulation of cell shape,19_GO:0032502 developmental process,-2.2,8.2,4.4,20504,157,48,3,6.2,3.5,14159|14268|106952,Fes|Fn1|Arap3,0
+Geneid,GO Biological Processes,19,GO:0097530,granulocyte migration,19_GO:0040011 locomotion,-2.2,8.2,4.4,20504,157,48,3,6.2,3.5,12273|14131|57257,C5ar1|Fcgr3|Vav3,0
+Geneid,GO Biological Processes,19,GO:0060326,cell chemotaxis,19_GO:0040011 locomotion,-2.2,5.5,3.9,20504,313,48,4,8.3,4,12273|14131|57257|238130,C5ar1|Fcgr3|Vav3|Dock4,0
+Geneid,GO Biological Processes,19,GO:0016358,dendrite development,19_GO:0032502 developmental process,-2.2,5.5,3.9,20504,313,48,4,8.3,4,12322|12323|13508|71228,Camk2a|Camk2b|Dscam|Dlg5,0
+Geneid,GO Biological Processes,19,GO:0043087,regulation of GTPase activity,19_GO:0065007 biological regulation,-2.2,5.2,3.7,20504,326,48,4,8.3,4,24001|57257|106952|108699,Tiam2|Vav3|Arap3|Chn1,0
+Geneid,GO Biological Processes,19,GO:0120035,regulation of plasma membrane bounded cell projection organization,19_GO:0050789 regulation of biological process,-2.1,3.5,3.3,20504,737,48,6,12,4.8,12323|13508|14159|14268|24001|108699,Camk2b|Dscam|Fes|Fn1|Tiam2|Chn1,0
+Geneid,GO Biological Processes,19,GO:0061564,axon development,19_GO:0032502 developmental process,-2.1,4,3.4,20504,531,48,5,10,4.4,13508|14268|18028|24001|108699,Dscam|Fn1|Nfib|Tiam2|Chn1,0
+Geneid,GO Biological Processes,19,GO:0022604,regulation of cell morphogenesis,19_GO:0032502 developmental process,-2.1,5.1,3.6,20504,337,48,4,8.3,4,12323|14159|14268|106952,Camk2b|Fes|Fn1|Arap3,0
+Geneid,GO Biological Processes,19,GO:0031344,regulation of cell projection organization,19_GO:0050789 regulation of biological process,-2.1,3.4,3.3,20504,753,48,6,12,4.8,12323|13508|14159|14268|24001|108699,Camk2b|Dscam|Fes|Fn1|Tiam2|Chn1,0
+Geneid,Reactome Gene Sets,6,R-MMU-199991,Membrane Trafficking,,-2.1,4,3.4,20504,533,48,5,10,4.4,11733|16197|17957|71648|73094,Ank1|Il7r|Napb|Optn|Sgip1,0
+Geneid,KEGG Pathway,24,ko04360,Axon guidance,,-2.1,7.3,4.1,20504,175,48,3,6.2,3.5,12322|12323|14159,Camk2a|Camk2b|Fes,0
+Geneid,KEGG Pathway,24,ko05152,Tuberculosis,,-2.1,7.2,4,20504,178,48,3,6.2,3.5,12322|12323|14131,Camk2a|Camk2b|Fcgr3,0
+Geneid,KEGG Pathway,24,mmu04360,Axon guidance,,-2.1,7.2,4,20504,178,48,3,6.2,3.5,12322|12323|14159,Camk2a|Camk2b|Fes,0
+Geneid,GO Biological Processes,19,GO:0001525,angiogenesis,19_GO:0032502 developmental process,-2.1,3.9,3.4,20504,541,48,5,10,4.4,11477|12273|12828|14268|57257,Acvr1|C5ar1|Col4a3|Fn1|Vav3,0
+Geneid,GO Biological Processes,19,GO:0034330,cell junction organization,19_GO:0009987 cellular process,-2.1,3.3,3.2,20504,766,48,6,12,4.8,12273|12323|14268|53885|71228|80749,C5ar1|Camk2b|Fn1|Nphp1|Dlg5|Lrfn1,0
+Geneid,GO Biological Processes,19,GO:0051345,positive regulation of hydrolase activity,19_GO:0065007 biological regulation,-2.1,3.9,3.4,20504,544,48,5,10,4.4,12323|12828|24001|106952|108699,Camk2b|Col4a3|Tiam2|Arap3|Chn1,0
+Geneid,KEGG Pathway,24,mmu05152,Tuberculosis,,-2.1,7.1,4,20504,181,48,3,6.2,3.5,12322|12323|14131,Camk2a|Camk2b|Fcgr3,0
+Geneid,GO Biological Processes,19,GO:0051960,regulation of nervous system development,19_GO:0032502 developmental process,-2,3.9,3.3,20504,550,48,5,10,4.4,12323|13508|14268|24001|71228,Camk2b|Dscam|Fn1|Tiam2|Dlg5,0
+Geneid,GO Biological Processes,19,GO:0048813,dendrite morphogenesis,19_GO:0032502 developmental process,-2,6.9,3.9,20504,186,48,3,6.2,3.5,12322|12323|13508,Camk2a|Camk2b|Dscam,0
+Geneid,GO Biological Processes,19,GO:0001944,vasculature development,19_GO:0032502 developmental process,-2,3.2,3.1,20504,789,48,6,12,4.8,11477|12273|12828|14268|27078|57257,Acvr1|C5ar1|Col4a3|Fn1|B9d1|Vav3,0
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-5620912,Anchoring of the basal body to the plasma membrane,,-7.8,1.2e+02,22,20504,95,7,4,57,19,18005|27078|53885|231214,Nek2|B9d1|Nphp1|Cc2d2a,-4.1
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-5617833,Cilium Assembly,,-6.6,60,15,20504,194,7,4,57,19,18005|27078|53885|231214,Nek2|B9d1|Nphp1|Cc2d2a,-3.1
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-1852241,Organelle biogenesis and maintenance,,-6.3,53,14,20504,222,7,4,57,19,18005|27078|53885|231214,Nek2|B9d1|Nphp1|Cc2d2a,-2.9
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0060996,dendritic spine development,19_GO:0032502 developmental process,-5.1,69,14,20504,128,7,3,43,19,12322|12323|71228,Camk2a|Camk2b|Dlg5,-1.8
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0007224,smoothened signaling pathway,19_GO:0023052 signaling,-4.8,56,13,20504,157,7,3,43,19,27078|71228|231214,B9d1|Dlg5|Cc2d2a,-1.7
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0046777,protein autophosphorylation,19_GO:0008152 metabolic process,-4.3,37,10,20504,238,7,3,43,19,12322|12323|18005,Camk2a|Camk2b|Nek2,-1.4
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0016358,dendrite development,19_GO:0032502 developmental process,-3.9,28,8.9,20504,313,7,3,43,19,12322|12323|71228,Camk2a|Camk2b|Dlg5,-1.1
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0043010,camera-type eye development,19_GO:0032502 developmental process,-3.7,23,8,20504,381,7,3,43,19,27078|53885|231214,B9d1|Nphp1|Cc2d2a,-0.84
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0001654,eye development,19_GO:0032502 developmental process,-3.5,20,7.5,20504,431,7,3,43,19,27078|53885|231214,B9d1|Nphp1|Cc2d2a,-0.71
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0150063,visual system development,19_GO:0032502 developmental process,-3.5,20,7.5,20504,434,7,3,43,19,27078|53885|231214,B9d1|Nphp1|Cc2d2a,-0.71
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0048880,sensory system development,19_GO:0032502 developmental process,-3.5,20,7.5,20504,438,7,3,43,19,27078|53885|231214,B9d1|Nphp1|Cc2d2a,-0.71
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0002009,morphogenesis of an epithelium,19_GO:0032502 developmental process,-3.1,15,6.4,20504,583,7,3,43,19,53885|71228|231214,Nphp1|Dlg5|Cc2d2a,-0.42
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0007423,sensory organ development,19_GO:0032502 developmental process,-3,13,6,20504,651,7,3,43,19,27078|53885|231214,B9d1|Nphp1|Cc2d2a,-0.37
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0048729,tissue morphogenesis,19_GO:0032502 developmental process,-2.9,13,5.8,20504,690,7,3,43,19,53885|71228|231214,Nphp1|Dlg5|Cc2d2a,-0.37
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:1903047,mitotic cell cycle process,19_GO:0009987 cellular process,-2.9,13,5.7,20504,701,7,3,43,19,12322|12323|18005,Camk2a|Camk2b|Nek2,-0.37
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0034330,cell junction organization,19_GO:0009987 cellular process,-2.8,11,5.5,20504,766,7,3,43,19,12323|53885|71228,Camk2b|Nphp1|Dlg5,-0.33
+Geneid_SUB2_MCODE_1,Reactome Gene Sets,6,R-MMU-5620912,Anchoring of the basal body to the plasma membrane,,-9.4,2.2e+02,29,20504,95,4,4,1e+02,22,18005|27078|53885|231214,Nek2|B9d1|Nphp1|Cc2d2a,-5.1
+Geneid_SUB2_MCODE_1,Reactome Gene Sets,6,R-MMU-5617833,Cilium Assembly,,-8.1,1.1e+02,20,20504,194,4,4,1e+02,22,18005|27078|53885|231214,Nek2|B9d1|Nphp1|Cc2d2a,-4.1
+Geneid_SUB2_MCODE_1,Reactome Gene Sets,6,R-MMU-1852241,Organelle biogenesis and maintenance,,-7.9,92,19,20504,222,4,4,1e+02,22,18005|27078|53885|231214,Nek2|B9d1|Nphp1|Cc2d2a,-4.1
+Geneid_SUB2_MCODE_1,GO Biological Processes,19,GO:0043010,camera-type eye development,19_GO:0032502 developmental process,-4.6,40,11,20504,381,4,3,75,22,27078|53885|231214,B9d1|Nphp1|Cc2d2a,-1.5
+Geneid_SUB2_MCODE_1,GO Biological Processes,19,GO:0001654,eye development,19_GO:0032502 developmental process,-4.4,36,10,20504,431,4,3,75,22,27078|53885|231214,B9d1|Nphp1|Cc2d2a,-1.4
+Geneid_SUB2_MCODE_1,GO Biological Processes,19,GO:0150063,visual system development,19_GO:0032502 developmental process,-4.4,35,10,20504,434,4,3,75,22,27078|53885|231214,B9d1|Nphp1|Cc2d2a,-1.4
+Geneid_SUB2_MCODE_1,GO Biological Processes,19,GO:0048880,sensory system development,19_GO:0032502 developmental process,-4.4,35,10,20504,438,4,3,75,22,27078|53885|231214,B9d1|Nphp1|Cc2d2a,-1.4
+Geneid_SUB2_MCODE_1,GO Biological Processes,19,GO:0007423,sensory organ development,19_GO:0032502 developmental process,-3.9,24,8.2,20504,651,4,3,75,22,27078|53885|231214,B9d1|Nphp1|Cc2d2a,-1.1
+Geneid_SUB1_MCODE_2,GO Biological Processes,19,GO:0060996,dendritic spine development,19_GO:0032502 developmental process,-6.6,1.6e+02,22,20504,128,3,3,1e+02,27,12322|12323|71228,Camk2a|Camk2b|Dlg5,-3.1
+Geneid_SUB1_MCODE_2,GO Biological Processes,19,GO:0016358,dendrite development,19_GO:0032502 developmental process,-5.5,66,14,20504,313,3,3,1e+02,27,12322|12323|71228,Camk2a|Camk2b|Dlg5,-2.1

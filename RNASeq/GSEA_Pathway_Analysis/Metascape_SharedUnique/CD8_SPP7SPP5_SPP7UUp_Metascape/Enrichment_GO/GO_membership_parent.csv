@@ -1,0 +1,7 @@
+_MEMBER_Geneid,_LogP_Geneid,GO,Description,_PATTERN_,_RANK_,CHILD_GO_Geneid
+1,-4.294905101152059,GO:0009987,cellular process,M1,1,GO:0051301 cell division
+1,-2.9845199451782873,GO:0008152,metabolic process,M1,1,GO:0072593 reactive oxygen species metabolic process
+1,-2.706206151794662,GO:0044419,biological process involved in interspecies interaction between organisms,M1,1,GO:0002218 activation of innate immune response
+1,-2.6906955455230572,GO:0040011,locomotion,M1,1,GO:0060326 cell chemotaxis
+1,-2.1484451177278308,GO:0048518,positive regulation of biological process,M1,1,GO:0010638 positive regulation of organelle organization
+1,-2.116195121563743,GO:0050789,regulation of biological process,M1,1,GO:0051983 regulation of chromosome segregation

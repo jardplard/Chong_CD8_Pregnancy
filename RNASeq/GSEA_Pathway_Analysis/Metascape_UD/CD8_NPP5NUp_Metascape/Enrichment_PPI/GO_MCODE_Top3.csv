@@ -1,0 +1,13 @@
+Network,Annotation
+Geneid,GO:0042110|T cell activation|-17.8;GO:0030155|regulation of cell adhesion|-17.7;GO:0050865|regulation of cell activation|-17.0
+Geneid_MCODE_ALL,R-MMU-388396|GPCR downstream signalling|-14.2;GO:0006954|inflammatory response|-13.8;R-MMU-372790|Signaling by GPCR|-13.7
+Geneid_SUB1_MCODE_1,GO:0051345|positive regulation of hydrolase activity|-6.9;ko05205|Proteoglycans in cancer|-6.3;mmu05205|Proteoglycans in cancer|-6.2
+Geneid_SUB1_MCODE_2,GO:0030155|regulation of cell adhesion|-10.5;R-MMU-8957275|Post-translational protein phosphorylation|-9.7;R-MMU-381426|Regulation of Insulin-like Growth Factor (IGF) transport and uptake by Insulin-like Growth Factor Binding Proteins (IGFBPs)|-9.6
+Geneid_SUB1_MCODE_3,R-MMU-418594|G alpha (i) signalling events|-17.0;R-MMU-388396|GPCR downstream signalling|-14.2;R-MMU-372790|Signaling by GPCR|-14.0
+Geneid_SUB1_MCODE_4,R-MMU-399956|CRMPs in Sema3A signaling|-7.8;R-MMU-373755|Semaphorin interactions|-6.2;GO:0010975|regulation of neuron projection development|-6.1
+Geneid_SUB1_MCODE_5,R-MMU-418555|G alpha (s) signalling events|-13.5;R-MMU-388396|GPCR downstream signalling|-9.4;R-MMU-372790|Signaling by GPCR|-9.3
+Geneid_SUB1_MCODE_6,R-MMU-983189|Kinesins|-6.8;R-MMU-6811434|COPI-dependent Golgi-to-ER retrograde traffic|-6.1;GO:0007052|mitotic spindle organization|-5.7
+Geneid_SUB1_MCODE_7,mmu04730|Long-term depression|-9.5;ko04730|Long-term depression|-9.5;ko04724|Glutamatergic synapse|-8.3
+Geneid_SUB1_MCODE_8,WP2185|Purine metabolism|-8.3;ko00230|Purine metabolism|-8.3;mmu00230|Purine metabolism|-8.3
+Geneid_SUB1_MCODE_9,GO:0016045|detection of bacterium|-9.2;GO:0098543|detection of other organism|-9.0;GO:0098581|detection of external biotic stimulus|-8.6
+Geneid_SUB1_MCODE_10,R-MMU-5676594|TNF receptor superfamily (TNFSF) members mediating non-canonical NF-kB pathway|-9.3;R-MMU-5668541|TNFR2 non-canonical NF-kB pathway|-7.0;ko04064|NF-kappa B signaling pathway|-7.0

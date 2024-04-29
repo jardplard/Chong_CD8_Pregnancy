@@ -1,0 +1,46 @@
+_MEMBER_Geneid,_LogP_Geneid,GO,Description,_PATTERN_,_RANK_,GiniIndex
+1,-2.2,R-MMU-9013149,RAC1 GTPase cycle,M1,1,0
+1,-2.2,mmu05150,Staphylococcus aureus infection,M1,1,0
+1,-2.2,GO:0016358,dendrite development,M1,1,0
+1,-2,R-MMU-9675108,Nervous system development,M1,1,0
+1,-3.2,GO:0030031,cell projection assembly,M1,1,0
+1,-2.2,GO:0061245,establishment or maintenance of bipolar cell polarity,M1,1,0
+1,-3.5,GO:0006525,arginine metabolic process,M1,1,0
+1,-2,R-MMU-422475,Axon guidance,M1,1,0
+1,-3,mmu05146,Amoebiasis,M1,1,0
+1,-2.4,GO:0045197,establishment or maintenance of epithelial cell apical/basal polarity,M1,1,0
+1,-2.5,GO:0006897,endocytosis,M1,1,0
+1,-2.8,R-MMU-216083,Integrin cell surface interactions,M1,1,0
+1,-2,GO:0006520,cellular amino acid metabolic process,M1,1,0
+1,-3.7,GO:0031667,response to nutrient levels,M1,1,0
+1,-2.1,GO:0044458,motile cilium assembly,M1,1,0
+1,-2.3,GO:0044782,cilium organization,M1,1,0
+1,-2.4,GO:0043068,positive regulation of programmed cell death,M1,1,0
+1,-2.2,R-MMU-983712,Ion channel transport,M1,1,0
+1,-2.1,R-MMU-9012999,RHO GTPase cycle,M1,1,0
+1,-2.2,R-MMU-936837,Ion transport by P-type ATPases,M1,1,0
+1,-2.4,R-MMU-5620912,Anchoring of the basal body to the plasma membrane,M1,1,0
+1,-3.5,GO:0035082,axoneme assembly,M1,1,0
+1,-2,GO:0045834,positive regulation of lipid metabolic process,M1,1,0
+1,-3.4,GO:0009991,response to extracellular stimulus,M1,1,0
+1,-2.5,GO:0060271,cilium assembly,M1,1,0
+1,-2.3,R-MMU-193648,NRAGE signals death through JNK,M1,1,0
+1,-2.2,ko05150,Staphylococcus aureus infection,M1,1,0
+1,-3.7,GO:0001578,microtubule bundle formation,M1,1,0
+1,-2.1,GO:0008285,negative regulation of cell population proliferation,M1,1,0
+1,-2.6,ko05222,Small cell lung cancer,M1,1,0
+1,-2.8,GO:1901605,alpha-amino acid metabolic process,M1,1,0
+1,-3,R-MMU-204998,"Cell death signalling via NRAGE, NRIF and NADE",M1,1,0
+1,-2.6,R-MMU-193704,p75 NTR receptor-mediated signalling,M1,1,0
+1,-2.2,GO:0035088,establishment or maintenance of apical/basal cell polarity,M1,1,0
+1,-2.7,GO:0002021,response to dietary excess,M1,1,0
+1,-2,GO:0043065,positive regulation of apoptotic process,M1,1,0
+1,-3.3,GO:0120031,plasma membrane bounded cell projection assembly,M1,1,0
+1,-2.7,GO:0060996,dendritic spine development,M1,1,0
+1,-2.5,mmu05222,Small cell lung cancer,M1,1,0
+1,-2,GO:0048813,dendrite morphogenesis,M1,1,0
+1,-2.1,GO:0006887,exocytosis,M1,1,0
+1,-2,GO:1902414,protein localization to cell junction,M1,1,0
+1,-2.8,GO:1901606,alpha-amino acid catabolic process,M1,1,0
+1,-3.1,ko05146,Amoebiasis,M1,1,0
+1,-2.1,GO:0010942,positive regulation of cell death,M1,1,0

@@ -1,0 +1,7 @@
+Network,Annotation
+Geneid,GO:0050863|regulation of T cell activation|-7.4;GO:0050920|regulation of chemotaxis|-7.1;GO:0030335|positive regulation of cell migration|-6.7
+Geneid_MCODE_ALL,R-MMU-163125|Post-translational modification: synthesis of GPI-anchored proteins|-8.0;GO:0021604|cranial nerve structural organization|-6.9;R-MMU-399954|Sema3A PAK dependent Axon repulsion|-6.8
+Geneid_SUB1_MCODE_1,R-MMU-1799339|SRP-dependent cotranslational protein targeting to membrane|-8.8;R-MMU-975956|Nonsense Mediated Decay (NMD) independent of the Exon Junction Complex (EJC)|-8.8;WP163|Cytoplasmic ribosomal proteins|-8.7
+Geneid_SUB2_MCODE_2,R-MMU-163125|Post-translational modification: synthesis of GPI-anchored proteins|-11.8
+Geneid_SUB1_MCODE_3,R-MMU-399954|Sema3A PAK dependent Axon repulsion|-9.0;R-MMU-373755|Semaphorin interactions|-7.3;GO:0021954|central nervous system neuron development|-6.4
+Geneid_SUB1_MCODE_4,R-MMU-204005|COPII-mediated vesicle transport|-7.5;R-MMU-199977|ER to Golgi Anterograde Transport|-6.5;R-MMU-948021|Transport to the Golgi and subsequent modification|-6.3

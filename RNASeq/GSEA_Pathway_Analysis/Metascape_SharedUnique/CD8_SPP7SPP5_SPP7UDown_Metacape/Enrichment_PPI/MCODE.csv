@@ -1,0 +1,9 @@
+Cluster,Score,Type,Gene,Symbol,Network
+1,2.0,Clustered,12802,Cnr2,Geneid_SUB1
+1,2.0,Seed,110168,Gpr18,Geneid_SUB1
+1,2.0,Clustered,83771,Tas1r3,Geneid_SUB1
+1,2.0,Clustered,321019,Gpr183,Geneid_SUB1
+1,2.0,Clustered,12273,C5ar1,Geneid_SUB1
+2,1.0,Clustered,13807,Eno2,Geneid_SUB4
+2,1.0,Clustered,71994,Cnn3,Geneid_SUB4
+2,1.0,Seed,12193,Zfp36l2,Geneid_SUB4

@@ -1,0 +1,512 @@
+scale_shape_manual(labels=grouplabels, values=groupshapes) +
+labs(color="Group", shape= "Group")
+p_PPShared + themeset
+umapdata_PPShared <- heatmapdata %>% mutate(genename=rownames(heatmapdata)) %>% filter(genename %in% PPSpecific_ATACRegions$gene) %>% select(-genename)
+umapdata_PPShared <- t(umapdata_PPShared)
+zmap_PPShared <- as.data.frame(umap(umapdata_PPShared, n_neighbors=6, min_dist=0.8))
+zmap_PPShared <- zmap_PPShared %>% dplyr::rename("umap_1" = "V1") %>% dplyr::rename("umap_2"="V2")
+#Format UMAP data and plot
+umapdata_PPShared <- cbind(umapdata_PPShared, zmap_PPShared, samp)
+umapdata_PPShared <- umapdata_PPShared %>% dplyr::rename("Group" = "samp")
+umapdata_PPShared$Group <- factor(umapdata_PPShared$Group, levels=c("Naive", "Naive+PP-Bulk", "Naive+PP-C5", "Mem", "Mem+PP-Bulk", "Mem+PP-C5", "Mem+PP-C7"))
+p_PPShared <- ggplot(zmap_PPShared, aes(x=umap_1, y=umap_2, color=umapdata_PPShared$Group, shape=umapdata_PPShared$Group)) +
+geom_point(size=6) +
+scale_color_manual(labels=grouplabels, values=groupcolors) +
+scale_shape_manual(labels=grouplabels, values=groupshapes) +
+labs(color="Group", shape= "Group")
+p_PPShared + themeset
+umapdata_PPShared <- heatmapdata %>% mutate(genename=rownames(heatmapdata)) %>% filter(genename %in% PPSpecific_ATACRegions$gene) %>% select(-genename)
+umapdata_PPShared <- t(umapdata_PPShared)
+zmap_PPShared <- as.data.frame(umap(umapdata_PPShared, n_neighbors=6, min_dist=0.8))
+zmap_PPShared <- zmap_PPShared %>% dplyr::rename("umap_1" = "V1") %>% dplyr::rename("umap_2"="V2")
+#Format UMAP data and plot
+umapdata_PPShared <- cbind(umapdata_PPShared, zmap_PPShared, samp)
+umapdata_PPShared <- umapdata_PPShared %>% dplyr::rename("Group" = "samp")
+umapdata_PPShared$Group <- factor(umapdata_PPShared$Group, levels=c("Naive", "Naive+PP-Bulk", "Naive+PP-C5", "Mem", "Mem+PP-Bulk", "Mem+PP-C5", "Mem+PP-C7"))
+p_PPShared <- ggplot(zmap_PPShared, aes(x=umap_1, y=umap_2, color=umapdata_PPShared$Group, shape=umapdata_PPShared$Group)) +
+geom_point(size=6) +
+scale_color_manual(labels=grouplabels, values=groupcolors) +
+scale_shape_manual(labels=grouplabels, values=groupshapes) +
+labs(color="Group", shape= "Group")
+p_PPShared + themeset
+View(PPSpecific_ATACRegions)
+View(regionsMatrix)
+temp <- regionsMatrix %>% mutate(genename=rownames(regionsMatrix))
+View(temp)
+View(PPSpecific_ATACRegions)
+View(SPPU_ATACRegions)
+View(CD8R_Shared_Up)
+View(CD8R_NPP5U_Up)
+View(CD8R_Shared_Up)
+View(listSPP5SUB)
+View(listSPP5SPP7SUB)
+View(listSPP5NPP5)
+library(GenomicRanges)
+library(ChIPpeakAnno)
+library("EnsDb.Mmusculus.v79")
+library(org.Mm.eg.db)
+library(Repitools)
+library(DESeq2)
+library(ggplot2)
+library(gplots)
+library(viridis)
+library(RColorBrewer)
+library(uwot)
+library(gtable)
+library(grid)
+library(ggpubr)
+library(tidyverse)
+rawCounts <- read.csv('CD8CountsFin.csv', header=1)
+colors_fill <- c("#38F2E0", "#1A74F8", "#F262F7", "#DA0054")
+sessionInfo()
+View(listSPP5NPP5)
+?which
+which(listSPP5NPP5$SPP5NPP5_change=="Up")
+sum(listSPP5NPP5$SPP5NPP5_change[which(listSPP5NPP5$SPP5NPP5_change=="Up")])
+sum(listSPP5NPP5$SPP5NPP5_change[which(listSPP5NPP5$SPP5NPP5_change=="Up"),])
+sum(listSPP5NPP5$SPP5NPP5_change[,which(listSPP5NPP5$SPP5NPP5_change=="Up")])
+sum(listSPP5NPP5$SPP5NPP5_change == "Up"
+)
+sum(listSPP5NPP5$SPP5NPP5_change == "Down")
+library(GenomicRanges)
+library(ChIPpeakAnno)
+library("EnsDb.Mmusculus.v79")
+library(org.Mm.eg.db)
+library(Repitools)
+library(DESeq2)
+library(ggplot2)
+library(gplots)
+library(viridis)
+library(RColorBrewer)
+library(uwot)
+library(gtable)
+library(grid)
+library(ggpubr)
+library(tidyverse)
+rawCounts <- read.csv('CD8CountsFin.csv', header=1)
+colors_fill <- c("#38F2E0", "#1A74F8", "#F262F7", "#DA0054")
+?annotatePeakInBatch
+View(countsAnno)
+View(countsAnnoMatrix)
+mean(countsAnnoMatrix$shortestDistance)
+mean(!isNA(countsAnnoMatrix$shortestDistance))
+(!isNA(countsAnnoMatrix$shortestDistance))
+(countsAnnoMatrix$shortestDistance[!isNA(countsAnnoMatrix$shortestDistance)])
+mean(countsAnnoMatrix$shortestDistance[!isNA(countsAnnoMatrix$shortestDistance)])
+View(listSPP5SUB)
+temp <- countsAnnoMatrix %>% filter(Symbol %in% listSPP5SUB$Geneid)
+temp <- countsAnnoMatrix %>% filter(symbol %in% listSPP5SUB$Geneid)
+View(temp)
+mean(temp$symbol)
+mean(temp$shortestDistance)
+median(temp$shortestDistance)
+write.csv(heatmapdata_boxplot_gg, file=paste("ATAC_heatmapdata_boxplot.csv", sep=""), col.names=FALSE, row.names=TRUE, quote=FALSE)
+View(listSPP5SUB)
+library(GenomicRanges)
+library(ChIPpeakAnno)
+library("EnsDb.Mmusculus.v79")
+library(org.Mm.eg.db)
+library(Repitools)
+library(DESeq2)
+library(ggplot2)
+library(gplots)
+library(viridis)
+library(RColorBrewer)
+library(uwot)
+library(gtable)
+library(grid)
+library(ggpubr)
+library(tidyverse)
+rawCounts <- read.csv('CD8CountsFin.csv', header=1)
+colors_fill <- c("#38F2E0", "#1A74F8", "#F262F7", "#DA0054")
+View(heatmapdata_boxplot_RNA)
+View(SPPNPPShared_ATACRegions)
+#Make UMAP filtered on Schietinger's ATAC data (Memory vs. Naive)
+Schiet_ATAC_MN_Up <- read.csv('Schiet_ATAC_MN_Up.csv', header=1)
+Schiet_ATAC_MN_Dn <- read.csv('Schiet_ATAC_MN_Down.csv', header=1)
+Schiet_ATAC_MN_Dn <- rbind(Schiet_ATAC_MN_Up, Schiet_ATAC_MN_Dn)
+Schiet_ATAC_MN_Up <- read.csv('Schiet_ATAC_MN_Up.csv', header=1)
+Schiet_ATAC_MN_Dn <- read.csv('Schiet_ATAC_MN_Down.csv', header=1)
+Schiet_ATAC_MN_Full <- rbind(Schiet_ATAC_MN_Up, Schiet_ATAC_MN_Dn)
+?distinct
+View(Schiet_ATAC_MN_Full)
+Schiet_ATAC_MN_Full <- Schiet_ATAC_MN_Full %>% distinct(gene)
+View(Schiet_ATAC_MN_Full)
+Schiet_ATAC_MN_Full <- rbind(Schiet_ATAC_MN_Up, Schiet_ATAC_MN_Dn)
+Schiet_ATAC_MN_Full <- Schiet_ATAC_MN_Full %>% distinct(gene, .keep_all = T)
+View(Schiet_ATAC_MN_Full)
+SchietShared_ATACRegions <- heatmapdata_boxplot_RNA %>% filter(str_detect(gene, paste(Schiet_ATAC_MN_Full$gene, collapse="(?![:alnum:])|"))) %>% select(gene)
+umapdata_SchietShared <- heatmapdata %>% mutate(genename=rownames(heatmapdata)) %>% filter(genename %in% SchietShared_ATACRegions$gene) %>% select(-genename)
+umapdata_SchietShared <- t(umapdata_SchietShared)
+zmap_SchietShared <- as.data.frame(umap(umapdata_SchietShared, n_neighbors=6, min_dist=0.8))
+zmap_SchietShared <- zmap_SchietShared %>% dplyr::rename("umap_1" = "V1") %>% dplyr::rename("umap_2"="V2")
+umapdata_SchietShared <- cbind(umapdata_SchietShared, zmap_SchietShared, samp)
+umapdata_SchietShared <- umapdata_SchietShared %>% dplyr::rename("Group" = "samp")
+umapdata_SchietShared$Group <- factor(umapdata_SchietShared$Group, levels=c("Naive", "Naive+PP-Bulk", "Naive+PP-C5", "Mem", "Mem+PP-Bulk", "Mem+PP-C5", "Mem+PP-C7"))
+p_SchietShared <- ggplot(zmap_SchietShared, aes(x=umap_1, y=umap_2, color=umapdata_SchietShared$Group, shape=umapdata_SchietShared$Group)) +
+geom_point(size=6) +
+scale_color_manual(labels=grouplabels, values=groupcolors) +
+scale_shape_manual(labels=grouplabels, values=groupshapes) +
+labs(color="Group", shape= "Group")
+p_SchietShared + themeset
+Schiet_ATAC_LN_Up <- read.csv('Schiet_ATAC_LN_Up.csv', header=1)
+Schiet_ATAC_LN_Dn <- read.csv('Schiet_ATAC_LN_Down.csv', header=1)
+Schiet_ATAC_LN_Full <- rbind(Schiet_ATAC_LN_Up, Schiet_ATAC_LN_Dn)
+Schiet_ATAC_LN_Full <- Schiet_ATAC_LN_Full %>% distinct(gene, .keep_all = T)
+rm(SchietShared_ATACRegions)
+SchietShared_ATACRegions_MN <- heatmapdata_boxplot_RNA %>% filter(str_detect(gene, paste(Schiet_ATAC_MN_Full$gene, collapse="(?![:alnum:])|"))) %>% select(gene)
+SchietShared_ATACRegions_LN <- heatmapdata_boxplot_RNA %>% filter(str_detect(gene, paste(Schiet_ATAC_LN_Full$gene, collapse="(?![:alnum:])|"))) %>% select(gene)
+umapdata_SchietShared <- heatmapdata %>% mutate(genename=rownames(heatmapdata)) %>% filter(genename %in% SchietShared_ATACRegions_LN$gene) %>% select(-genename)
+umapdata_SchietShared <- t(umapdata_SchietShared)
+zmap_SchietShared <- as.data.frame(umap(umapdata_SchietShared, n_neighbors=6, min_dist=0.8))
+zmap_SchietShared <- zmap_SchietShared %>% dplyr::rename("umap_1" = "V1") %>% dplyr::rename("umap_2"="V2")
+#Format UMAP data and plot
+umapdata_SchietShared <- cbind(umapdata_SchietShared, zmap_SchietShared, samp)
+umapdata_SchietShared <- umapdata_SchietShared %>% dplyr::rename("Group" = "samp")
+umapdata_SchietShared$Group <- factor(umapdata_SchietShared$Group, levels=c("Naive", "Naive+PP-Bulk", "Naive+PP-C5", "Mem", "Mem+PP-Bulk", "Mem+PP-C5", "Mem+PP-C7"))
+p_SchietShared <- ggplot(zmap_SchietShared, aes(x=umap_1, y=umap_2, color=umapdata_SchietShared$Group, shape=umapdata_SchietShared$Group)) +
+geom_point(size=6) +
+scale_color_manual(labels=grouplabels, values=groupcolors) +
+scale_shape_manual(labels=grouplabels, values=groupshapes) +
+labs(color="Group", shape= "Group")
+p_SchietShared + themeset
+umapdata_SchietShared <- heatmapdata %>% mutate(genename=rownames(heatmapdata)) %>% filter(genename %in% SchietShared_ATACRegions_LN$gene) %>% select(-genename)
+umapdata_SchietShared <- t(umapdata_SchietShared)
+zmap_SchietShared <- as.data.frame(umap(umapdata_SchietShared, n_neighbors=12, min_dist=1.8))
+zmap_SchietShared <- zmap_SchietShared %>% dplyr::rename("umap_1" = "V1") %>% dplyr::rename("umap_2"="V2")
+#Format UMAP data and plot
+umapdata_SchietShared <- cbind(umapdata_SchietShared, zmap_SchietShared, samp)
+umapdata_SchietShared <- umapdata_SchietShared %>% dplyr::rename("Group" = "samp")
+umapdata_SchietShared$Group <- factor(umapdata_SchietShared$Group, levels=c("Naive", "Naive+PP-Bulk", "Naive+PP-C5", "Mem", "Mem+PP-Bulk", "Mem+PP-C5", "Mem+PP-C7"))
+p_SchietShared <- ggplot(zmap_SchietShared, aes(x=umap_1, y=umap_2, color=umapdata_SchietShared$Group, shape=umapdata_SchietShared$Group)) +
+geom_point(size=6) +
+scale_color_manual(labels=grouplabels, values=groupcolors) +
+scale_shape_manual(labels=grouplabels, values=groupshapes) +
+labs(color="Group", shape= "Group")
+p_SchietShared + themeset
+listSUBNUp <- genList(res.SUBN, direction = "Up")
+listSPP5SUBDown <- genList(res.SPP5SUB, direction = "Down")
+listSPP7SUBDown <- genList(res.SPP7SUB, direction = "Down")
+View(listSPP7SUBDown)
+#Make list of loci OPENING in mem and CLOSING in mem+PP
+NSUBSPP_OpenClose <- inner_join(listSUBNUp, listSPP5SUBDown, by="Geneid")
+View(NSUBSPP_OpenClose)
+NSUBSPP_OpenClose2 <- inner_join(listSUBNUp, listSPP7SUBDown, by="Geneid")
+View(NSUBSPP_OpenClose2)
+library(GenomicRanges)
+library(ChIPpeakAnno)
+library("EnsDb.Mmusculus.v79")
+library(org.Mm.eg.db)
+library(Repitools)
+library(DESeq2)
+library(ggplot2)
+library(gplots)
+library(viridis)
+library(RColorBrewer)
+library(uwot)
+library(gtable)
+library(grid)
+library(ggpubr)
+library(tidyverse)
+rawCounts <- read.csv('CD8CountsFin.csv', header=1)
+colors_fill <- c("#38F2E0", "#1A74F8", "#F262F7", "#DA0054")
+p_SchietShared + themeset
+umapdata_SchietShared <- heatmapdata %>% mutate(genename=rownames(heatmapdata)) %>% filter(genename %in% SchietShared_ATACRegions_MN$gene) %>% select(-genename)
+#generate filtered UMAP (LATENT)
+#umapdata_SchietShared <- heatmapdata %>% mutate(genename=rownames(heatmapdata)) %>% filter(genename %in% SchietShared_ATACRegions_LN$gene) %>% select(-genename)
+umapdata_SchietShared <- t(umapdata_SchietShared)
+zmap_SchietShared <- as.data.frame(umap(umapdata_SchietShared, n_neighbors=12, min_dist=1.8))
+zmap_SchietShared <- zmap_SchietShared %>% dplyr::rename("umap_1" = "V1") %>% dplyr::rename("umap_2"="V2")
+#Format UMAP data and plot
+umapdata_SchietShared <- cbind(umapdata_SchietShared, zmap_SchietShared, samp)
+umapdata_SchietShared <- umapdata_SchietShared %>% dplyr::rename("Group" = "samp")
+umapdata_SchietShared$Group <- factor(umapdata_SchietShared$Group, levels=c("Naive", "Naive+PP-Bulk", "Naive+PP-C5", "Mem", "Mem+PP-Bulk", "Mem+PP-C5", "Mem+PP-C7"))
+p_SchietShared <- ggplot(zmap_SchietShared, aes(x=umap_1, y=umap_2, color=umapdata_SchietShared$Group, shape=umapdata_SchietShared$Group)) +
+geom_point(size=6) +
+scale_color_manual(labels=grouplabels, values=groupcolors) +
+scale_shape_manual(labels=grouplabels, values=groupshapes) +
+labs(color="Group", shape= "Group")
+p_SchietShared + themeset
+umapdata_SchietShared <- heatmapdata %>% mutate(genename=rownames(heatmapdata)) %>% filter(genename %in% SchietShared_ATACRegions_MN$gene) %>% select(-genename)
+#generate filtered UMAP (LATENT)
+#umapdata_SchietShared <- heatmapdata %>% mutate(genename=rownames(heatmapdata)) %>% filter(genename %in% SchietShared_ATACRegions_LN$gene) %>% select(-genename)
+umapdata_SchietShared <- t(umapdata_SchietShared)
+zmap_SchietShared <- as.data.frame(umap(umapdata_SchietShared, n_neighbors=6, min_dist=0.8))
+zmap_SchietShared <- zmap_SchietShared %>% dplyr::rename("umap_1" = "V1") %>% dplyr::rename("umap_2"="V2")
+#Format UMAP data and plot
+umapdata_SchietShared <- cbind(umapdata_SchietShared, zmap_SchietShared, samp)
+umapdata_SchietShared <- umapdata_SchietShared %>% dplyr::rename("Group" = "samp")
+umapdata_SchietShared$Group <- factor(umapdata_SchietShared$Group, levels=c("Naive", "Naive+PP-Bulk", "Naive+PP-C5", "Mem", "Mem+PP-Bulk", "Mem+PP-C5", "Mem+PP-C7"))
+p_SchietShared <- ggplot(zmap_SchietShared, aes(x=umap_1, y=umap_2, color=umapdata_SchietShared$Group, shape=umapdata_SchietShared$Group)) +
+geom_point(size=6) +
+scale_color_manual(labels=grouplabels, values=groupcolors) +
+scale_shape_manual(labels=grouplabels, values=groupshapes) +
+labs(color="Group", shape= "Group")
+p_SchietShared + themeset
+umapdata_SchietShared <- heatmapdata %>% mutate(genename=rownames(heatmapdata)) %>% filter(genename %in% SchietShared_ATACRegions_MN$gene) %>% select(-genename)
+#generate filtered UMAP (LATENT)
+#umapdata_SchietShared <- heatmapdata %>% mutate(genename=rownames(heatmapdata)) %>% filter(genename %in% SchietShared_ATACRegions_LN$gene) %>% select(-genename)
+umapdata_SchietShared <- t(umapdata_SchietShared)
+zmap_SchietShared <- as.data.frame(umap(umapdata_SchietShared, n_neighbors=6, min_dist=0.8))
+zmap_SchietShared <- zmap_SchietShared %>% dplyr::rename("umap_1" = "V1") %>% dplyr::rename("umap_2"="V2")
+#Format UMAP data and plot
+umapdata_SchietShared <- cbind(umapdata_SchietShared, zmap_SchietShared, samp)
+umapdata_SchietShared <- umapdata_SchietShared %>% dplyr::rename("Group" = "samp")
+umapdata_SchietShared$Group <- factor(umapdata_SchietShared$Group, levels=c("Naive", "Naive+PP-Bulk", "Naive+PP-C5", "Mem", "Mem+PP-Bulk", "Mem+PP-C5", "Mem+PP-C7"))
+p_SchietShared <- ggplot(zmap_SchietShared, aes(x=umap_1, y=umap_2, color=umapdata_SchietShared$Group, shape=umapdata_SchietShared$Group)) +
+geom_point(size=6) +
+scale_color_manual(labels=grouplabels, values=groupcolors) +
+scale_shape_manual(labels=grouplabels, values=groupshapes) +
+labs(color="Group", shape= "Group")
+p_SchietShared + themeset
+View(NSUBSPP_OpenClose)
+View(NSUBSPP_OpenClose2)
+library(GenomicRanges)
+library(ChIPpeakAnno)
+library("EnsDb.Mmusculus.v79")
+library(org.Mm.eg.db)
+library(Repitools)
+library(DESeq2)
+library(ggplot2)
+library(gplots)
+library(viridis)
+library(RColorBrewer)
+library(uwot)
+library(gtable)
+library(grid)
+library(ggpubr)
+library(tidyverse)
+rawCounts <- read.csv('CD8CountsFin.csv', header=1)
+colors_fill <- c("#38F2E0", "#1A74F8", "#F262F7", "#DA0054")
+filepath_RNA_C7 <- "./SPPNPP_RNA_C7"
+files_RNA_C7 <- list.files(path=filepath_RNA_C7, pattern=".csv")
+for(i in files_RNA_C7){
+objname <- str_replace(i, ".csv", "")
+dfin <- read.csv(str_c(filepath_RNA, "/", i, sep=""), header=TRUE)
+assign(objname, dfin, envir = .GlobalEnv)
+rm(dfin)
+rm(i)
+}
+library(GenomicRanges)
+library(ChIPpeakAnno)
+library("EnsDb.Mmusculus.v79")
+library(org.Mm.eg.db)
+library(Repitools)
+library(DESeq2)
+library(ggplot2)
+library(gplots)
+library(viridis)
+library(RColorBrewer)
+library(uwot)
+library(gtable)
+library(grid)
+library(ggpubr)
+library(tidyverse)
+rawCounts <- read.csv('CD8CountsFin.csv', header=1)
+colors_fill <- c("#38F2E0", "#1A74F8", "#F262F7", "#DA0054")
+filepath_RNA_C7 <- "./SPPNPP_RNA_C7"
+files_RNA_C7 <- list.files(path=filepath_RNA_C7, pattern=".csv")
+for(i in files_RNA_C7){
+objname <- str_replace(i, ".csv", "")
+dfin <- read.csv(str_c(filepath_RNA, "/", i, sep=""), header=TRUE)
+assign(objname, dfin, envir = .GlobalEnv)
+rm(dfin)
+rm(i)
+}
+#Create Same boxplots as above for S+P C7
+filepath_RNA_C7 <- "./SPPNPP_RNA_C7"
+files_RNA_C7 <- list.files(path=filepath_RNA_C7, pattern=".csv")
+for(i in files_RNA_C7){
+objname <- str_replace(i, ".csv", "")
+dfin <- read.csv(str_c(filepath_RNA, "/", i, sep=""), header=TRUE)
+assign(objname, dfin, envir = .GlobalEnv)
+rm(dfin)
+rm(i)
+}
+for(i in files_RNA_C7){
+objname <- str_replace(i, ".csv", "")
+dfin <- read.csv(str_c(filepath_RNA_C7, "/", i, sep=""), header=TRUE)
+assign(objname, dfin, envir = .GlobalEnv)
+rm(dfin)
+rm(i)
+}
+filepath_RNA_C7 <- "./SPPNPP_RNA_C7"
+files_RNA_C7 <- list.files(path=filepath_RNA_C7, pattern=".csv")
+for(i in files_RNA_C7){
+objname <- str_replace(i, ".csv", "")
+dfin <- read.csv(str_c(filepath_RNA_C7, "/", i, sep=""), header=TRUE)
+assign(objname, dfin, envir = .GlobalEnv)
+rm(dfin)
+rm(i)
+}
+filepath_RNA_C7 <- "./SPPNPP_RNA_C7"
+files_RNA_C7 <- list.files(path=filepath_RNA_C7, pattern=".csv")
+for(i in files_RNA_C7){
+objname <- str_replace(i, ".csv", "")
+dfin <- read.csv(str_c(filepath_RNA_C7, "/", i, sep=""), header=TRUE)
+assign(objname, dfin, envir = .GlobalEnv)
+rm(dfin)
+rm(i)
+}
+rm(CD8RNPP5UUp_C7)
+heatmapdata_boxplot_RNA_C7 <- as.data.frame(heatmapdata_boxplot)
+heatmapdata_boxplot_RNA_C7 <- heatmapdata_boxplot_RNA_C7 %>% mutate(gene=rownames(heatmapdata_clustered4)) %>% select(-c(Cluster, NPP_B, SPP_B, SPP_C5))
+heatmapdata_boxplot_NPPU_Up_C7 <- heatmapdata_boxplot_RNA_C7 %>% filter(str_detect(gene, paste(CD8R_NPP5U_Up_C7$genename, collapse="(?![:alnum:])|")))
+heatmapdata_boxplot_NPPU_Up_C7 <- stack(heatmapdata_boxplot_NPPU_Up_C7, -gene) %>% mutate(Expression="N+P Unique RNA Exp., Up")
+heatmapdata_boxplot_NPPU_Down_C7 <- heatmapdata_boxplot_RNA_C7 %>% filter(str_detect(gene, paste(CD8R_NPP5U_Down_C7$genename, collapse="(?![:alnum:])|")))
+heatmapdata_boxplot_NPPU_Down_C7 <- stack(heatmapdata_boxplot_NPPU_Down_C7, -gene) %>% mutate(Expression="N+P Unique RNA Exp., Down")
+heatmapdata_boxplot_NPPU_Up_C7 <- heatmapdata_boxplot_RNA_C7 %>% filter(str_detect(gene, paste(CD8R_NPP5U_Up_C7$genename, collapse="(?![:alnum:])|")))
+heatmapdata_boxplot_NPPU_Up_C7 <- stack(heatmapdata_boxplot_NPPU_Up_C7, -gene) %>% mutate(Expression="N+P Unique RNA Exp., Up")
+filepath_RNA_C7 <- "./SPPNPP_RNA_C7"
+files_RNA_C7 <- list.files(path=filepath_RNA_C7, pattern=".csv")
+for(i in files_RNA_C7){
+objname <- str_replace(i, ".csv", "")
+dfin <- read.csv(str_c(filepath_RNA_C7, "/", i, sep=""), header=TRUE)
+assign(objname, dfin, envir = .GlobalEnv)
+rm(dfin)
+rm(i)
+}
+heatmapdata_boxplot_RNA_C7 <- as.data.frame(heatmapdata_boxplot)
+heatmapdata_boxplot_RNA_C7 <- heatmapdata_boxplot_RNA_C7 %>% mutate(gene=rownames(heatmapdata_clustered4)) %>% select(-c(Cluster, NPP_B, SPP_B, SPP_C5))
+heatmapdata_boxplot_NPPU_Up_C7 <- heatmapdata_boxplot_RNA_C7 %>% filter(str_detect(gene, paste(CD8R_NPP5U_Up_C7$genename, collapse="(?![:alnum:])|")))
+heatmapdata_boxplot_NPPU_Up_C7 <- stack(heatmapdata_boxplot_NPPU_Up_C7, -gene) %>% mutate(Expression="N+P Unique RNA Exp., Up")
+heatmapdata_boxplot_NPPU_Down_C7 <- heatmapdata_boxplot_RNA_C7 %>% filter(str_detect(gene, paste(CD8R_NPP5U_Down_C7$genename, collapse="(?![:alnum:])|")))
+heatmapdata_boxplot_NPPU_Down_C7 <- stack(heatmapdata_boxplot_NPPU_Down_C7, -gene) %>% mutate(Expression="N+P Unique RNA Exp., Down")
+heatmapdata_boxplot_SPPU_Up_C7 <- heatmapdata_boxplot_RNA_C7 %>% filter(str_detect(gene, paste(CD8R_SPP7U_Up_C7$genename, collapse="(?![:alnum:])|")))
+heatmapdata_boxplot_SPPU_Up_C7 <- stack(heatmapdata_boxplot_SPPU_Up_C7, -gene) %>% mutate(Expression="S+P Unique RNA Exp., Up")
+heatmapdata_boxplot_SPPU_Down_C7 <- heatmapdata_boxplot_RNA_C7 %>% filter(str_detect(gene, paste(CD8R_SPP7U_Down_C7$genename, collapse="(?![:alnum:])|")))
+heatmapdata_boxplot_SPPU_Down_C7 <- stack(heatmapdata_boxplot_SPPU_Down_C7, -gene) %>% mutate(Expression="S+P Unique RNA Exp., Down")
+heatmapdata_boxplot_Shared_Up_C7 <- heatmapdata_boxplot_RNA_C7 %>% filter(str_detect(gene, paste(CD8R_Shared_Up_C7$genename, collapse="(?![:alnum:])|")))
+heatmapdata_boxplot_Shared_Up_C7 <- stack(heatmapdata_boxplot_Shared_Up_C7, -gene) %>% mutate(Expression="Shared RNA Expression, Up")
+heatmapdata_boxplot_Shared_Down_C7 <- heatmapdata_boxplot_RNA_C7 %>% filter(str_detect(gene, paste(CD8R_Shared_Down_C7$genename, collapse="(?![:alnum:])|")))
+heatmapdata_boxplot_Shared_Down_C7 <- stack(heatmapdata_boxplot_Shared_Down_C7, -gene) %>% mutate(Expression="Shared RNA Expression, Down")
+heatmapdata_boxplot_RNA_C7_gg <- rbind(heatmapdata_boxplot_NPPU_Up_C7, heatmapdata_boxplot_NPPU_Down_C7, heatmapdata_boxplot_SPPU_Up_C7, heatmapdata_boxplot_SPPU_Down_C7, heatmapdata_boxplot_Shared_Up_C7, heatmapdata_boxplot_Shared_Down_C7) %>% rename("Group"="ind")
+heatmapdata_boxplot_RNA_C7_gg$Expression <- factor(heatmapdata_boxplot_RNA_C7_gg$Expression, levels=c("N+P Unique RNA Exp., Up", "S+P Unique RNA Exp., Up", "Shared RNA Expression, Up", "N+P Unique RNA Exp., Down", "S+P Unique RNA Exp., Down", "Shared RNA Expression, Down"))
+b_RNA_C7 <- ggplot(data = heatmapdata_boxplot_RNA_C7_gg, aes(x=Group, y=values))+
+geom_boxplot(aes(color=Group), fill=NA, outlier.shape=NA, coef=0) +
+geom_point(aes(color=Group, shape=Group), size=1) +
+scale_shape_manual(values=groupshapes[c(1,3,4,6)], labels=grouplabels[c(1,3,4,6)]) +
+scale_color_manual(values=c(colors_fill[1], colors_fill[2], colors_fill[3], colors_fill[4]), labels=grouplabels[c(1,3,4,6)]) +
+ylab("Z-Score")
+b_RNA_C7 <- b_RNA_C7 + facet_wrap(~Expression, scales="fixed") +
+themeset + theme(axis.text.x=element_blank()) +
+ggtitle("Chromatin States in Regions of Shared+Unique RNA Expression")
+b_RNA_C7
+View(heatmapdata_boxplot_NPPU_Down_C7)
+View(heatmapdata_boxplot_Shared_Down_C7)
+View(heatmapdata_boxplot_SPPU_Down_C7)
+b_RNA_C7 <- ggplot(data = heatmapdata_boxplot_RNA_C7_gg, aes(x=Group, y=values))+
+geom_boxplot(aes(color=Group), fill=NA, outlier.shape=NA, coef=0) +
+geom_point(aes(color=Group, shape=Group), size=1) +
+scale_shape_manual(values=groupshapes[c(1,3,4,6)], labels=grouplabels[c(1,3,4,7)]) +
+scale_color_manual(values=c(colors_fill[1], colors_fill[2], colors_fill[3], colors_fill[4]), labels=grouplabels[c(1,3,4,6)]) +
+ylab("Z-Score")
+b_RNA_C7 <- b_RNA_C7 + facet_wrap(~Expression, scales="fixed") +
+themeset + theme(axis.text.x=element_blank()) +
+ggtitle("Chromatin States in Regions of Shared+Unique RNA Expression")
+b_RNA_C7
+b_RNA_C7 <- ggplot(data = heatmapdata_boxplot_RNA_C7_gg, aes(x=Group, y=values))+
+geom_boxplot(aes(color=Group), fill=NA, outlier.shape=NA, coef=0) +
+geom_point(aes(color=Group, shape=Group), size=1) +
+scale_shape_manual(values=groupshapes[c(1,3,4,7)], labels=grouplabels[c(1,3,4,7)]) +
+scale_color_manual(values=c(colors_fill[1], colors_fill[2], colors_fill[3], colors_fill[4]), labels=grouplabels[c(1,3,4,7)]) +
+ylab("Z-Score")
+b_RNA_C7 <- b_RNA_C7 + facet_wrap(~Expression, scales="fixed") +
+themeset + theme(axis.text.x=element_blank()) +
+ggtitle("Chromatin States in Regions of Shared+Unique RNA Expression")
+b_RNA_C7
+b_RNA_C7 <- ggplot(data = heatmapdata_boxplot_RNA_C7_gg, aes(x=Group, y=values))+
+geom_boxplot(aes(color=Group), fill=NA, outlier.shape=NA, coef=0) +
+geom_point(aes(color=Group, shape=Group), size=1) +
+scale_shape_manual(values=groupshapes[c(1,3,4,7)], labels=grouplabels[c(1,3,4,7)]) +
+scale_color_manual(values=c(colors_fill[1], colors_fill[2], colors_fill[3], colors_fill[4]), labels=grouplabels[c(1,3,4,7)]) +
+ylab("Z-Score")
+b_RNA_C7 <- b_RNA_C7 + facet_wrap(~Expression, scales="fixed") +
+themeset + theme(axis.text.x=element_blank()) +
+ggtitle("Chromatin States in Regions of Shared+Unique RNA Expression, CLUSTER 7")
+b_RNA_C7
+RNAbox_C7 <- c(ls(pattern="boxplot_"))
+RNAbox_C7 <- RNAbox_C7[str_detect("C7")]
+RNAbox_C7 <- RNAbox_C7[str_detect(RNAbox_C7, "C7")]
+RNAbox_C7
+for(i in RNAbox_C7){
+expListRNA(str2lang(i))
+rm(i)
+}
+View(listNPP5N)
+View(listSUBN)
+View(listSPP5SUB)
+library(GenomicRanges)
+library(ChIPpeakAnno)
+library("EnsDb.Mmusculus.v79")
+library(org.Mm.eg.db)
+library(Repitools)
+library(DESeq2)
+library(ggplot2)
+library(gplots)
+library(viridis)
+library(RColorBrewer)
+library(uwot)
+library(gtable)
+library(grid)
+library(ggpubr)
+library(tidyverse)
+rawCounts <- read.csv('CD8CountsFin.csv', header=1)
+colors_fill <- c("#38F2E0", "#1A74F8", "#F262F7", "#DA0054")
+sessionInfo()
+library(GenomicRanges)
+library(ChIPpeakAnno)
+library("EnsDb.Mmusculus.v79")
+library(org.Mm.eg.db)
+library(Repitools)
+library(DESeq2)
+library(ggplot2)
+library(gplots)
+library(viridis)
+library(RColorBrewer)
+library(uwot)
+library(gtable)
+library(grid)
+library(ggpubr)
+library(tidyverse)
+rawCounts <- read.csv('CD8CountsFin.csv', header=1)
+colors_fill <- c("#38F2E0", "#1A74F8", "#F262F7", "#DA0054")
+View(listSUBN)
+View(listSUBNUp)
+expList(listSUBN)
+expList(str2lang(listSUBN))
+comparisons
+write.csv(listSUBN, file="CD8_SUBNgenelist", col.names=FALSE, row.names=TRUE, quote=FALSE)
+write.csv(listSUBN, file="CD8_SUBNgenelist.csv", col.names=FALSE, row.names=TRUE, quote=FALSE)
+library(GenomicRanges)
+library(ChIPpeakAnno)
+library("EnsDb.Mmusculus.v79")
+library(org.Mm.eg.db)
+library(Repitools)
+library(DESeq2)
+library(ggplot2)
+library(gplots)
+library(viridis)
+library(RColorBrewer)
+library(uwot)
+library(gtable)
+library(grid)
+library(ggpubr)
+library(tidyverse)
+rawCounts <- read.csv('CD8CountsFin.csv', header=1)
+colors_fill <- c("#38F2E0", "#1A74F8", "#F262F7", "#DA0054")
+GeneList_hmcluster4 <- heatmapdata_clustered4 #%>% filter(cluster4==4)
+GeneList_hmcluster4 <- GeneList_hmcluster4 %>% mutate(gene=row.names(GeneList_hmcluster4), .before=N1_a) %>% left_join(anno, by=c("gene" = "ENSEMBL")) %>% relocate(SYMBOL, .after=gene) %>% mutate(genename = coalesce(SYMBOL, gene), .after=gene) %>% select(c(genename, cluster4))
+View(heatmapdata)
+GeneList_hmcluster4 <- GeneList_hmcluster4 %>% mutate(gene=row.names(GeneList_hmcluster4), .before=B6N1) %>% left_join(anno, by=c("gene" = "ENSEMBL")) %>% relocate(SYMBOL, .after=gene) %>% mutate(genename = coalesce(SYMBOL, gene), .after=gene) %>% select(c(genename, cluster4))
+View(heatmapdata)
+GeneList_hmcluster4 <- heatmapdata_clustered4 #%>% filter(cluster4==4)
+GeneList_hmcluster4 <- GeneList_hmcluster4 %>% mutate(gene=row.names(GeneList_hmcluster4), .before=B6N1) %>% select(c(genename, cluster4))
+View(GeneList_hmcluster4)
+GeneList_hmcluster4 <- heatmapdata_clustered4 #%>% filter(cluster4==4)
+GeneList_hmcluster4 <- GeneList_hmcluster4 %>% mutate(gene=row.names(GeneList_hmcluster4), .before=B6N1) %>% select(c(gene, cluster4))
+View(GeneList_hmcluster4)
+write.csv(GeneList_hmcluster4, "ATAC_heatmap_genelist.csv")
+heatmap.2(as.matrix(heatmapdata_clustered4[,1:(ncol(heatmapdata_clustered4)-1)]), col=plasma(n=30), main="KMeans-clustered Heatmap", trace= "none", density.info="none", key=TRUE, symkey=FALSE, keysize=1.26, key.xlab="Z-score", Colv=FALSE, Rowv=FALSE, margins=c(6,4), cexCol=1, labRow=FALSE, RowSideColors=clustercolors4, ColSideColors=heatmapgroupcolors, breaks=seq(-2, 3.5, length.out=31))
+install.packages(c('BiocManager', 'dplyr', 'gplots', 'ggplot2', 'ggrepel', 'stringr', 'Signac'))
+BiocManager::install(c('imma', 'DESeq2', 'AnnotationDbi', 'org.Mm.eg.db', 'ReportingTools', 'GO.db', 'GOstats', 'pathview', 'gage', 'gageData', 'select', 'ChIPpeakAnno', 'GenomicRanges', 'EnsDb.Mmusculus.v79'))

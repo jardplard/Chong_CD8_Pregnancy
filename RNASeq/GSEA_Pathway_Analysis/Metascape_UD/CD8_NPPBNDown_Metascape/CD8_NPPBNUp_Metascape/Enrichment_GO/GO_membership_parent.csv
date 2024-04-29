@@ -1,0 +1,17 @@
+_MEMBER_Geneid,_LogP_Geneid,GO,Description,_PATTERN_,_RANK_,CHILD_GO_Geneid
+1,-4.9683730164928885,GO:0002376,immune system process,M1,1,GO:0002695 negative regulation of leukocyte activation
+1,-4.752026802455854,GO:0023052,signaling,M1,1,GO:0019932 second-messenger-mediated signaling
+1,-4.559990289708198,GO:0048519,negative regulation of biological process,M1,1,GO:0050866 negative regulation of cell activation
+1,-4.336730253143356,GO:0050789,regulation of biological process,M1,1,GO:0050865 regulation of cell activation
+1,-3.9955255012887694,GO:0048518,positive regulation of biological process,M1,1,GO:0032103 positive regulation of response to external stimulus
+1,-3.5922451330193774,GO:0050896,response to stimulus,M1,1,GO:0031347 regulation of defense response
+1,-3.569439437811549,GO:0022610,biological adhesion,M1,1,GO:0045785 positive regulation of cell adhesion
+1,-3.5244668784120026,GO:0032501,multicellular organismal process,M1,1,GO:0032663 regulation of interleukin-2 production
+1,-3.3546024351440367,GO:0051179,localization,M1,1,GO:0001504 neurotransmitter uptake
+1,-3.2461311532869774,GO:0032502,developmental process,M1,1,GO:0001944 vasculature development
+1,-3.242633693934533,GO:0044419,biological process involved in interspecies interaction between organisms,M1,1,GO:0016045 detection of bacterium
+1,-3.0017628289892366,GO:0009987,cellular process,M1,1,GO:0097435 supramolecular fiber organization
+1,-2.8275745795878477,GO:0065007,biological regulation,M1,1,GO:0050878 regulation of body fluid levels
+1,-2.782447904480515,GO:0040011,locomotion,M1,1,GO:0010761 fibroblast migration
+1,-2.7013409882499517,GO:0008152,metabolic process,M1,1,GO:0046470 phosphatidylcholine metabolic process
+1,-2.136762602482375,GO:0040007,growth,M1,1,GO:0016049 cell growth

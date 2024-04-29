@@ -1,0 +1,9 @@
+Network,Annotation
+Geneid,GO:0006935|chemotaxis|-5.7;GO:0042330|taxis|-5.7;GO:1902105|regulation of leukocyte differentiation|-5.5
+Geneid_MCODE_ALL,"R-MMU-163125|Post-translational modification: synthesis of GPI-anchored proteins|-7.2;GO:0006120|mitochondrial electron transport, NADH to ubiquinone|-5.3;R-MMU-156590|Glutathione conjugation|-5.1"
+Geneid_SUB2_MCODE_1,R-MMU-163125|Post-translational modification: synthesis of GPI-anchored proteins|-11.8
+Geneid_SUB1_MCODE_2,R-MMU-983168|Antigen processing: Ubiquitination & Proteasome degradation|-7.4;R-MMU-983169|Class I MHC mediated antigen processing & presentation|-7.1;R-MMU-1280218|Adaptive Immune System|-6.0
+Geneid_SUB1_MCODE_3,WP2292|Chemokine signaling pathway|-6.2;ko04062|Chemokine signaling pathway|-6.1;mmu04062|Chemokine signaling pathway|-6.1
+Geneid_SUB1_MCODE_4,R-MMU-8957275|Post-translational protein phosphorylation|-6.8;R-MMU-381426|Regulation of Insulin-like Growth Factor (IGF) transport and uptake by Insulin-like Growth Factor Binding Proteins (IGFBPs)|-6.7;GO:0048871|multicellular organismal homeostasis|-4.7
+Geneid_SUB3_MCODE_6,"GO:0006120|mitochondrial electron transport, NADH to ubiquinone|-8.6;GO:0019646|aerobic electron transport chain|-7.8;GO:0010257|NADH dehydrogenase complex assembly|-7.7"
+Geneid_SUB4_MCODE_7,R-MMU-156590|Glutathione conjugation|-8.4;ko00480|Glutathione metabolism|-7.6;mmu00480|Glutathione metabolism|-7.6

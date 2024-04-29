@@ -1,0 +1,9 @@
+Cluster,Score,Type,Gene,Symbol,Network
+1,1.5,Clustered,14676,Gna15,Geneid_SUB1
+1,1.5,Clustered,545156,Kalrn,Geneid_SUB1
+1,1.5,Seed,14064,F2rl2,Geneid_SUB1
+1,1.5,Clustered,23832,Xcr1,Geneid_SUB1
+2,1.25,Clustered,329278,Tnn,Geneid_SUB1
+2,1.25,Clustered,14083,Ptk2,Geneid_SUB1
+2,1.25,Clustered,20971,Sdc4,Geneid_SUB1
+2,1.25,Seed,12826,Col4a1,Geneid_SUB1

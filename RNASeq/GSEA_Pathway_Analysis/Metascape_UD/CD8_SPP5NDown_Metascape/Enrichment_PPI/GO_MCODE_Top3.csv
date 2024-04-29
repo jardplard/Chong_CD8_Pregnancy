@@ -1,0 +1,9 @@
+Network,Annotation
+Geneid,R-MMU-1799339|SRP-dependent cotranslational protein targeting to membrane|-27.3;R-MMU-975956|Nonsense Mediated Decay (NMD) independent of the Exon Junction Complex (EJC)|-27.1;WP163|Cytoplasmic ribosomal proteins|-26.5
+Geneid_MCODE_ALL,R-MMU-1799339|SRP-dependent cotranslational protein targeting to membrane|-37.8;R-MMU-975956|Nonsense Mediated Decay (NMD) independent of the Exon Junction Complex (EJC)|-37.6;WP163|Cytoplasmic ribosomal proteins|-37.0
+Geneid_SUB1_MCODE_1,R-MMU-1799339|SRP-dependent cotranslational protein targeting to membrane|-50.0;R-MMU-975956|Nonsense Mediated Decay (NMD) independent of the Exon Junction Complex (EJC)|-49.7;WP163|Cytoplasmic ribosomal proteins|-49.1
+Geneid_SUB1_MCODE_2,WP85|Focal adhesion|-8.4;R-MMU-390522|Striated Muscle Contraction|-8.1;GO:0055002|striated muscle cell development|-6.7
+Geneid_SUB1_MCODE_3,R-MMU-4641265|Repression of WNT target genes|-9.1;R-MMU-201722|Formation of the beta-catenin:TCF transactivating complex|-7.9;R-MMU-3769402|Deactivation of the beta-catenin transactivating complex|-7.6
+Geneid_SUB1_MCODE_4,"WP1396|GPCRs, non-odorant|-7.6;R-MMU-500792|GPCR ligand binding|-6.9;R-MMU-372790|Signaling by GPCR|-6.2"
+Geneid_SUB1_MCODE_5,R-MMU-388396|GPCR downstream signalling|-6.3;R-MMU-372790|Signaling by GPCR|-6.2;R-MMU-418555|G alpha (s) signalling events|-6.1
+Geneid_SUB3_MCODE_6,R-MMU-8957275|Post-translational protein phosphorylation|-6.8;R-MMU-381426|Regulation of Insulin-like Growth Factor (IGF) transport and uptake by Insulin-like Growth Factor Binding Proteins (IGFBPs)|-6.7

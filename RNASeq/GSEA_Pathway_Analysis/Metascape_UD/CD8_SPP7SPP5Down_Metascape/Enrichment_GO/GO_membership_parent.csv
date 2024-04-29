@@ -1,0 +1,5 @@
+_MEMBER_Geneid,_LogP_Geneid,GO,Description,_PATTERN_,_RANK_,CHILD_GO_Geneid
+1,-3.819306575540113,GO:0002376,immune system process,M1,1,GO:0030217 T cell differentiation
+1,-3.272590438436489,GO:0040011,locomotion,M1,1,GO:0002690 positive regulation of leukocyte chemotaxis
+1,-2.241942523925256,GO:0048518,positive regulation of biological process,M1,1,GO:0032103 positive regulation of response to external stimulus
+1,-2.024262147098736,GO:0008152,metabolic process,M1,1,GO:0008654 phospholipid biosynthetic process

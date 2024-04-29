@@ -1,0 +1,5 @@
+Network,Annotation
+Geneid,GO:0030155|regulation of cell adhesion|-13.0;GO:0001817|regulation of cytokine production|-10.8;GO:0042110|T cell activation|-10.0
+Geneid_MCODE_ALL,GO:0006898|receptor-mediated endocytosis|-6.4;R-MMU-216083|Integrin cell surface interactions|-6.1;ko04512|ECM-receptor interaction|-5.9
+Geneid_SUB1_MCODE_1,R-MMU-8856828|Clathrin-mediated endocytosis|-6.6;GO:0006898|receptor-mediated endocytosis|-5.7;R-MMU-199991|Membrane Trafficking|-4.8
+Geneid_SUB1_MCODE_2,R-MMU-216083|Integrin cell surface interactions|-7.4;ko04512|ECM-receptor interaction|-7.2;mmu04512|ECM-receptor interaction|-7.2

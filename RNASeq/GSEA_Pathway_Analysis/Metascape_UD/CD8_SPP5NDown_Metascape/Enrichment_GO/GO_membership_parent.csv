@@ -1,0 +1,16 @@
+_MEMBER_Geneid,_LogP_Geneid,GO,Description,_PATTERN_,_RANK_,CHILD_GO_Geneid
+1,-8.83001172673433,GO:0008152,metabolic process,M1,1,GO:0006412 translation
+1,-5.424248493643435,GO:0022610,biological adhesion,M1,1,GO:0030155 regulation of cell adhesion
+1,-4.909824660782594,GO:0040011,locomotion,M1,1,GO:0014911 positive regulation of smooth muscle cell migration
+1,-4.889638954242909,GO:0009987,cellular process,M1,1,GO:0030036 actin cytoskeleton organization
+1,-4.834732195122598,GO:0002376,immune system process,M1,1,GO:0050857 positive regulation of antigen receptor-mediated signaling pathway
+1,-4.631216248032533,GO:0050896,response to stimulus,M1,1,GO:0009409 response to cold
+1,-4.308076362392601,GO:0032502,developmental process,M1,1,GO:0060487 lung epithelial cell differentiation
+1,-3.856967497725496,GO:0050789,regulation of biological process,M1,1,GO:2000209 regulation of anoikis
+1,-3.6488000888917975,GO:0065007,biological regulation,M1,1,GO:0043462 regulation of ATPase activity
+1,-3.339458847858744,GO:0023052,signaling,M1,1,GO:0097193 intrinsic apoptotic signaling pathway
+1,-3.307591132428085,GO:0040007,growth,M1,1,GO:0045926 negative regulation of growth
+1,-3.133683665645187,GO:0032501,multicellular organismal process,M1,1,GO:0001503 ossification
+1,-3.1209757787216734,GO:0048519,negative regulation of biological process,M1,1,GO:2000811 negative regulation of anoikis
+1,-3.1206346484022767,GO:0048518,positive regulation of biological process,M1,1,GO:0070665 positive regulation of leukocyte proliferation
+1,-2.3818819440857757,GO:0051179,localization,M1,1,GO:0051272 positive regulation of cellular component movement

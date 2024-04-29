@@ -1,0 +1,5 @@
+Network,Annotation
+Geneid,GO:0120031|plasma membrane bounded cell projection assembly|-5.5;GO:0032534|regulation of microvillus assembly|-5.4;GO:0030031|cell projection assembly|-5.4
+Geneid_MCODE_ALL,GO:0097529|myeloid leukocyte migration|-11.4;GO:0050900|leukocyte migration|-9.6;GO:0030595|leukocyte chemotaxis|-9.5
+Geneid_SUB1_MCODE_1,GO:0030036|actin cytoskeleton organization|-5.5;GO:0007015|actin filament organization|-4.8;GO:0008154|actin polymerization or depolymerization|-4.2
+Geneid_SUB1_MCODE_2,GO:0097529|myeloid leukocyte migration|-11.8;R-MMU-418594|G alpha (i) signalling events|-11.3;R-MMU-373076|Class A/1 (Rhodopsin-like receptors)|-11.0

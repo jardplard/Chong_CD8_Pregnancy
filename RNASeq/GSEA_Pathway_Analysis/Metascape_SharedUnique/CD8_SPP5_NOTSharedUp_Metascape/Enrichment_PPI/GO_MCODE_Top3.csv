@@ -1,0 +1,5 @@
+Network,Annotation
+Geneid,GO:0046578|regulation of Ras protein signal transduction|-6.6;GO:0051056|regulation of small GTPase mediated signal transduction|-6.0;GO:0010975|regulation of neuron projection development|-5.5
+Geneid_MCODE_ALL,R-MMU-418594|G alpha (i) signalling events|-9.2;mmu04061|Viral protein interaction with cytokine and cytokine receptor|-8.1;GO:0006874|cellular calcium ion homeostasis|-7.5
+Geneid_SUB1_MCODE_1,R-MMU-418594|G alpha (i) signalling events|-11.3;R-MMU-500792|GPCR ligand binding|-10.4;WP2292|Chemokine signaling pathway|-9.5
+Geneid_SUB1_MCODE_2,R-MMU-8957275|Post-translational protein phosphorylation|-9.0;R-MMU-381426|Regulation of Insulin-like Growth Factor (IGF) transport and uptake by Insulin-like Growth Factor Binding Proteins (IGFBPs)|-9.0;GO:0040008|regulation of growth|-3.8

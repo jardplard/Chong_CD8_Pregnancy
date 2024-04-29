@@ -1,0 +1,1114 @@
+---
+title: "Schitinger ATAC Test DeSEQ Analysis"
+author: "Jared Pollard"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Differential Accesibility Analysis
+
+###Install Packages (If needed, set eval=TRUE): BiocManager, dplyr, gplots, ggplot2, ggrepel
+```{r install_packages, eval=FALSE, echo=FALSE}
+install.packages(c('BiocManager', 'dplyr', 'gplots', 'ggplot2', 'ggrepel', 'stringr', 'Signac'))
+BiocManager::install(c('imma', 'DESeq2', 'AnnotationDbi', 'org.Mm.eg.db', 'ReportingTools', 'GO.db', 'GOstats', 'pathview', 'gage', 'gageData', 'select', 'ChIPpeakAnno', 'GenomicRanges', 'EnsDb.Mmusculus.v79'))
+BiocManager::install('Repitools')
+install.packages(c("viridis", "uwot", "tidyverse"))
+```
+##Import libraries and counts file
+There is some specific code in this file, as I forgot to remove the rownames before sorting the file in linux. normally, this will not be an issue, and the lines with as.integer and filter_all won't be necessary
+```{r import_libraries_andCounts, echo=FALSE}
+library(org.Mm.eg.db)
+#library(biomaRt)
+library(DESeq2)
+library(viridis)
+library(uwot)
+library(RColorBrewer)
+library(gplots)
+library(ggplot2)
+library(ggrepel)
+library(scales)
+library(gtable)
+library(grid)
+library(VennDiagram)
+library(tidyverse)
+rawCounts <- read.csv('CD8_featureCounts_batch1.csv', header=1)
+
+colors_fill <- c("#38F2E0", "#1A74F8", "#F262F7", "#DA0054")
+```
+
+#Annotate DeSEQ Results with Gene Symbol (If Needed)
+```{r annotate_geneSymbol}
+#Generate list of Gene ID's and Symbols
+anno <- AnnotationDbi::select(org.Mm.eg.db,keys=rawCounts$Geneid,
+              columns=c("ENSEMBL","SYMBOL"),
+              keytype="ENSEMBL")
+anno <- anno %>% filter(!duplicated(ENSEMBL))
+
+
+#Merge Gene Symbol with EnsID
+
+#countsAnnoFinal <- left_join(rawCounts, anno, by=c("Geneid" = "ENSEMBL")) %>% relocate(SYMBOL, .after=Geneid)
+#countsAnnoFinal <- countsAnnoFinal %>% mutate(genename = coalesce(SYMBOL, Geneid)) %>% relocate(genename, .before = Geneid)
+```
+
+#Differential Expression Analysis! Construct DDS, run deseq, obtain pairwise results
+```{r DESeq_4Filtering}
+#import sample metadata
+sampleinfo <- read.csv("CD8_sampleinfo.csv", header=1)
+rownames(sampleinfo) = sampleinfo$X
+sampleinfo <- sampleinfo %>% dplyr::select(-c(X))
+
+#Add rownames to rawCounts
+countsMatrix <- rawCounts
+row.names(countsMatrix) <- countsMatrix$Geneid
+countsMatrix <- countsMatrix %>% dplyr::select(-c(Geneid))
+countsMatrix[] <- sapply(countsMatrix, as.numeric)
+
+#construct DeSeqDataSet, Filter for low read counts, set Naive as ref/control
+dds <- DESeqDataSetFromMatrix(countData = countsMatrix,
+                              colData = sampleinfo,
+                              design = ~ condition)
+keep <- rowSums(counts(dds)) >= 250
+dds <- dds[keep,]
+dds$condition <- relevel(dds$condition, ref = "Naive")
+
+#Run Deseq and Size Factors for BigWIGs (DESeq fxn has normalization built in)
+dseq <- DESeq(dds)
+
+vsd <- vst(dseq)
+vsd$condition <- factor(vsd$condition, levels=c("Naive", "NPP_B", "NPP_C5", "SUB", "SPP_B", "SPP_C5", "SPP_C7"))
+
+#ggplot options
+themeset<- theme(
+    panel.background = element_rect(fill = "transparent"), # bg of the panel
+    plot.background = element_rect(fill = "transparent", color = NA), # bg of the plot
+    panel.grid.major = element_blank(), # get rid of major grid
+    panel.grid.minor = element_blank(), # get rid of minor grid
+    axis.line= element_line("black", 0.3),
+    aspect.ratio=1
+  )
+
+#Plot PCA
+grouplabels <- c("Naive", "Naive+Preg C5+7-Depleted", "Naive+Preg C5", "Sensitized", "Sensitized+Preg C5+7-Depleted", "Sensitized+Preg C5", "Sensitized+Preg C7")
+groupcolors <- c(colors_fill[1], rep(colors_fill[2], 2), colors_fill[3], rep(colors_fill[4], 3))
+groupshapes <- c(19, 1, 15, 19, 1, 15, 17)
+
+pcaData <- plotPCA(vsd, intgroup = "condition", returnData = TRUE)
+percentVar <- round(100 * attr(pcaData, "percentVar"))
+
+z <- ggplot(pcaData, aes(x=PC1, y=PC2, color=condition, shape=condition)) + 
+  geom_point(size=3.6, stroke=1) +
+  scale_color_manual(labels=grouplabels, values=groupcolors) +
+  scale_shape_manual(labels=grouplabels, values=groupshapes) +
+  xlab(paste0("PC1: ", percentVar[1], "% variance")) + 
+  ylab(paste0("PC2: ", percentVar[2], "% variance")) +
+  labs(color="OVA+CD8+ T cells from:", shape="OVA+CD8+ T cells from:")
+
+z + themeset
+
+#Chcek Technical Replicates by labeling each sample
+z + themeset + geom_label_repel(data=pcaData, aes(label=name), size=2, nudge_x=5, force=1.6)
+#Calculate UMAP
+umapdataraw <- as.data.frame(assay(vsd))
+umapdata <- t(umapdataraw)
+
+zmap <- as.data.frame(umap(umapdata, n_neighbors=20, min_dist=0.15))
+zmap <- zmap %>% dplyr::rename("umap_1" = "V1") %>% dplyr::rename("umap_2"="V2")
+
+#Format UMAP data and plot
+samp <- c(rep("Naive", 6), rep("Naive+PP-Bulk", 6), rep("Naive+PP-C5", 6), rep("Mem", 8), rep("Mem+PP-Bulk", 10), rep("Mem+PP-C5", 10), rep("Mem+PP-C7", 10))
+sampname <- row.names(umapdata)
+umapdata <- cbind(umapdata, zmap, samp, sampname)
+umapdata <- umapdata %>% dplyr::rename("Group" = "samp")
+umapdata$Group <- factor(umapdata$Group, levels=c("Naive", "Naive+PP-Bulk", "Naive+PP-C5", "Mem", "Mem+PP-Bulk", "Mem+PP-C5", "Mem+PP-C7"))
+
+p <- ggplot(zmap, aes(x=umap_1, y=umap_2, color=umapdata$Group, shape=umapdata$Group)) + 
+  geom_point(size=3.6, stroke=1) + 
+  scale_color_manual(labels=grouplabels, values=groupcolors) +
+  scale_shape_manual(labels=grouplabels, values=groupshapes) +
+  labs(color="OVA+CD8+ T cells from:", shape= "OVA+CD8+ T cells from:")
+p + themeset
+```
+
+##Identify lists of differential peaks for each pair, merge all pairs and match with regions
+```{R DiffGeneLists}
+#This function parses results down to significant changes, adds "change metric" which is q x log2FC, and orders from highest to lowest Change Metric,
+#and adds "identity" column specifying direction of change (for future merging)
+genList <- function(x, direction="NULL", include_symbol=TRUE){
+name <- deparse(substitute(x))
+identity <- str_replace(name, "res.", "")
+identitychange <- paste(identity, "change", sep="_")
+identitypadj <- paste(identity, "padj", sep="_")
+identityfc <- paste(identity, "log2FC", sep="_")
+identitycm <- paste(identity, "Change Metric", sep="_")
+
+y <- as.data.frame(x[order(abs(x$log2FoldChange), decreasing=T),])
+y <- y[which(y$padj<0.1),]
+y <- y[which(abs(y$log2FoldChange)>0.9),]
+y <- y %>% mutate(!!identitychange := ifelse(y$log2FoldChange<0, "Down", "Up"))
+y <- y %>% mutate(change_metric = log2FoldChange * -log10(padj))
+y <- y %>% dplyr::select(c(!!identitychange, log2FoldChange, padj, change_metric))
+y <- y %>% arrange(desc(abs(y$change_metric)))
+
+if(include_symbol==TRUE){
+y <- y %>% mutate(Geneid=row.names(y), .before=!!identitychange) %>% left_join(anno, by=c("Geneid" = "ENSEMBL")) %>% relocate(SYMBOL, .after=Geneid) %>% mutate(genename = coalesce(SYMBOL, Geneid), .after=Geneid) %>% select(-c(SYMBOL))
+}
+
+if(direction=="Down"){
+  y <- y %>% filter(change_metric<0)
+}
+if(direction=="Up"){
+  y <- y %>% filter(change_metric>0)
+}
+y <- y %>% dplyr::rename(!!identitypadj := "padj")
+y <- y %>% dplyr::rename(!!identityfc := "log2FoldChange")
+y <- y %>% arrange(desc(abs(y$change_metric)))
+y <- y %>% dplyr::rename(!!identitycm := "change_metric")
+}
+expList <- function(x){
+  name <- x
+  identity <- str_replace(name, "list", "")
+  x <- eval(x) 
+  x <- x %>% mutate(gene=row.names(x))
+  x$gene <- gsub('_[^_]*$', '', x$gene)
+  x <- x[,c(ncol(x),1:ncol(x)-1)]
+  write.csv(x, file=paste("CD8_", identity, "genelist.csv", sep=""), col.names=FALSE, row.names=TRUE, quote=FALSE)
+}
+bigMerge <- function(a, b, ...){
+  
+  argnames <- sys.call()
+  list <- paste(lapply(argnames[-1], as.character))
+  
+  x <- merge(a, b, by=0,  all=TRUE)
+  rownames(x) <- x$Row.names
+  if(as.numeric(length(list))>=3){
+    x <- x %>% dplyr::select(-c(Row.names))
+    for(i in list[3:(as.numeric(length(list)))]){
+      
+      name <- deparse(substitute(i))
+      name <- str_replace(name, "\"", "")
+      name <- str_replace(name, "\"", "")
+      x <- merge(x, get(name), by=0,  all=TRUE)
+      rownames(x) <- x$Row.names
+      if(i != list[as.numeric(length(list))]){
+        x <- x %>% dplyr::select(-c(Row.names))
+        }
+    }
+  }
+  else{
+  x <- x[!(row.names(x) %in% c(1)),]
+  dplyr::rename(x, "gene" = "Row.names")
+  x <- x %>% dplyr::select(-c(Row.names))
+  }
+  x <- x[!(row.names(x) %in% c(1)),]
+  dplyr::rename(x, "gene" = "Row.names")
+}
+genListFull <- function(x, direction="NULL", include_symbol=TRUE){
+name <- deparse(substitute(x))
+identity <- str_replace(name, "res.", "")
+identitychange <- paste(identity, "change", sep="_")
+identitypadj <- paste(identity, "padj", sep="_")
+identityfc <- paste(identity, "log2FC", sep="_")
+identitycm <- paste(identity, "Change Metric", sep="_")
+
+y <- as.data.frame(x[order(abs(x$log2FoldChange), decreasing=T),])
+y <- y %>% mutate(!!identitychange := ifelse(y$log2FoldChange<0, "Down", "Up"))
+y <- y %>% dplyr::select(c(!!identitychange, log2FoldChange, padj, pvalue))
+
+if(include_symbol==TRUE){
+y <- y %>% mutate(Geneid=row.names(y), .before=!!identitychange) %>% left_join(anno, by=c("Geneid" = "ENSEMBL")) %>% relocate(SYMBOL, .after=Geneid) %>% mutate(genename = coalesce(SYMBOL, Geneid), .after=Geneid) %>% select(-c(SYMBOL))
+}
+y <- y %>% dplyr::rename(!!identitypadj := "padj")
+y <- y %>% dplyr::rename(!!identityfc := "log2FoldChange")
+}
+
+#res and genlist----
+#Effect of Pregnancy
+res.NPPBN <- results(dseq, contrast=c("condition","NPP_B","Naive"))
+res.NPP5N <- results(dseq, contrast=c("condition","NPP_C5","Naive"))
+res.NPP5NPPB <- results(dseq, contrast=c("condition","NPP_C5","NPP_B"))
+
+#Antigen encounter from preg vs. sens
+res.SUBNPP5 <- results(dseq, contrast=c("condition","SUB","NPP_C5"))
+
+#How does pregnancy change memory cells?
+res.SPPBSUB <- results(dseq, contrast=c("condition","SPP_B","SUB"))
+res.SPP5SUB <- results(dseq, contrast=c("condition","SPP_C5","SUB"))
+res.SPP7SUB <- results(dseq, contrast=c("condition","SPP_C7","SUB"))
+res.SPP7SPP5 <- results(dseq, contrast=c("condition","SPP_C7","SPP_C5"))
+
+#how do final outcomes of pregnancies differ?
+res.SPP5NPP5 <- results(dseq, contrast=c("condition","SPP_C5", "NPP_C5"))
+
+#for diffGeneList
+res.SUBN <- results(dseq, contrast=c("condition","SUB","Naive"))
+res.SPP5N <- results(dseq, contrast=c("condition","SPP_C5","Naive"))
+
+#generate lists
+listNPPBN <- genList(res.NPPBN)
+listNPP5N <- genList(res.NPP5N)
+listNPP5NPPB <- genList(res.NPP5NPPB)
+listSUBNPP5 <- genList(res.SUBNPP5)
+listSPPBSUB <- genList(res.SPPBSUB)
+listSPP5NPP5 <- genList(res.SPP5NPP5)
+listSPP5SUB <- genList(res.SPP5SUB)
+listSPP7SUB <- genList(res.SPP7SUB)
+listSPP7SPP5 <- genList(res.SPP7SPP5)
+
+listSUBN <- genList(res.SUBN)
+listSPP5N <- genList(res.SPP5N)
+
+listNPP5N_full <- genListFull(res.NPP5N)
+listSUBN_full <- genListFull(res.SUBN)
+listSUBNPP5_full <- genListFull(res.SUBNPP5)
+listSPP5NPP5_full <- genListFull(res.SPP5NPP5)
+listSPP5SUB_full <- genListFull(res.SPP5SUB)
+
+diffGeneList <- bigMerge(listNPPBN, listNPP5N, listNPP5NPPB, listSUBNPP5, listSPPBSUB, listSPP5NPP5, listSPP5SUB, listSPP7SUB, listSUBN, listSPP5N)
+
+#Build list of shared transcriptional shanges between NPP and SPP---- 
+SPP5NPP5_SharedUp <- inner_join(listNPP5NUp, listSPP5SUBUp, by="Geneid", suffix=c("_NPP5N", "_SPP5SUB"))
+SPP5NPP5_SharedDown <- inner_join(listNPP5NDown, listSPP5SUBDown, by="Geneid", suffix=c("_NPP5N", "_SPP5SUB"))
+SPP5NPP5_Shared <- inner_join(listNPP5N, listSPP5SUB, by="Geneid") 
+SPP5NPP5_Shared <- SPP5NPP5_Shared %>% filter(NPP5N_change==SPP5SUB_change)
+
+SPP5NPP5_Shared <- SPP5NPP5_Shared %>% mutate(difference=abs(`SPP5SUB_Change Metric`)-abs(`NPP5N_Change Metric`))
+SPP5NPP5_Shared <- SPP5NPP5_Shared %>% mutate(folddifference=abs(`SPP5SUB_log2FC`)-abs(`NPP5N_log2FC`))
+
+SPP5NPP5_SharedUnequal <- inner_join(SPP5NPP5_Shared, listSPP5NPP5, by="Geneid", suffix=c("_Shared", "_diff"))
+
+#Verified that 164/168 are NOT significantly different between SPP and NPP: both upregulated from control and at same level
+#SPP5NPP5_SharedUp_check <- SPP5NPP5_SharedUp %>% filter(Geneid %in% listSPP5NPP5$Geneid)
+
+#Build list of transcription UNIQUE to NPP and SPP only (sig. different from N/SUB AND SPP vs. NPP)
+SPP5NPP5_SPP5U <- listSPP5SUB %>% filter(!Geneid %in% listNPP5N$Geneid)
+colnames(SPP5NPP5_SPP5U) <- colnames(SPP5NPP5_SPP5U) %>% str_replace_all("SPP5SUB_", "")
+SPP5NPP5_SPP5UDown <- SPP5NPP5_SPP5U %>% filter(`Change Metric`<0)
+SPP5NPP5_SPP5UUp <- SPP5NPP5_SPP5U %>% filter(`Change Metric`>0)
+
+SPP5NPP5_NPP5U <- listNPP5N %>% filter(!Geneid %in% listSPP5SUB$Geneid)
+colnames(SPP5NPP5_NPP5U) <- colnames(SPP5NPP5_NPP5U) %>% str_replace_all("NPP5N_", "")
+SPP5NPP5_NPP5UDown <- SPP5NPP5_NPP5U %>% filter(`Change Metric`<0)
+SPP5NPP5_NPP5UUp <- SPP5NPP5_NPP5U %>% filter(`Change Metric`>0)
+
+SPP5NPP5_Shared_Equal <- SPP5NPP5_Shared %>% filter(!Geneid %in% listSPP5NPP5$Geneid)
+SPP5NPP5_Shared_Unequal <- SPP5NPP5_Shared %>% filter(Geneid %in% listSPP5NPP5$Geneid)
+
+#Build list of SPP5+SUB vs. Naive (as control for Venn diagrams, but old)
+SPP5SUB_Shared <- inner_join(listSPP5NPP5, listSUBN, by="Geneid") 
+SPP5SUB_Shared <- SPP5SUB_Shared %>% filter(SPP5NPP5_change==SUBN_change)
+
+SPP5SUB_SPP5U <- listSPP5NPP5 %>% filter(!Geneid %in% listSUBN$Geneid)
+SPP5SUB_SUBU <- listSUBN %>% filter(!Geneid %in% listSPP5NPP5$Geneid)
+
+
+#Build Shared/unique list for Cluster 7 vs. Cluster 5
+SPP7SPP5_SharedUp <- inner_join(listSPP7SUBUp, listSPP5SUBUp, by="Geneid")
+SPP7SPP5_SharedDown <- inner_join(listSPP7SUBDown, listSPP5SUBDown, by="Geneid")
+SPP7SPP5_Shared <- inner_join(listSPP7SUB, listSPP5SUB, by="Geneid") 
+SPP7SPP5_Shared <- SPP7SPP5_Shared %>% filter(SPP7SUB_change==SPP5SUB_change)
+
+SPP7SPP5_SPP5U <- listSPP5SUB %>% filter(!Geneid %in% listSPP7SUB$Geneid)
+colnames(SPP7SPP5_SPP5U) <- colnames(SPP7SPP5_SPP5U) %>% str_replace_all("SPP5SUB_", "")
+SPP7SPP5_SPP5UDown <- SPP7SPP5_SPP5U %>% filter(`Change Metric`<0)
+SPP7SPP5_SPP5UUp <- SPP7SPP5_SPP5U %>% filter(`Change Metric`>0)
+
+SPP7SPP5_SPP7U <- listSPP7SUB %>% filter(!Geneid %in% listSPP5SUB$Geneid)
+colnames(SPP7SPP5_SPP7U) <- colnames(SPP7SPP5_SPP7U) %>% str_replace_all("SPP7SUB_", "")
+SPP7SPP5_SPP7UDown <- SPP7SPP5_SPP7U %>% filter(`Change Metric`<0)
+SPP7SPP5_SPP7UUp <- SPP7SPP5_SPP7U %>% filter(`Change Metric`>0)
+
+#Shared By all 3
+
+SPP7SPP5NPP5_Shared <- inner_join(SPP5NPP5_Shared, SPP7SPP5_Shared, by="Geneid")
+
+#Build Shared/unique list for S+P Cluster 7 vs. NPP5
+SPP7NPP5_SharedUp <- inner_join(listSPP7SUBUp, listNPP5NUp, by="Geneid")
+SPP7NPP5_SharedDown <- inner_join(listSPP7SUBDown, listNPP5NDown, by="Geneid")
+SPP7NPP5_Shared <- inner_join(listSPP7SUB, listNPP5N, by="Geneid") 
+SPP7NPP5_Shared <- SPP7NPP5_Shared %>% filter(SPP7SUB_change==NPP5N_change)
+
+SPP7NPP5_NPP5U <- listNPP5N %>% filter(!Geneid %in% listSPP7SUB$Geneid)
+colnames(SPP7NPP5_NPP5U) <- colnames(SPP7NPP5_NPP5U) %>% str_replace_all("NPP5N_", "")
+SPP7NPP5_NPP5UDown <- SPP7NPP5_NPP5U %>% filter(`Change Metric`<0)
+SPP7NPP5_NPP5UUp <- SPP7NPP5_NPP5U %>% filter(`Change Metric`>0)
+
+SPP7NPP5_SPP7U <- listSPP7SUB %>% filter(!Geneid %in% listNPP5N$Geneid)
+colnames(SPP7NPP5_SPP7U) <- colnames(SPP7NPP5_SPP7U) %>% str_replace_all("SPP7SUB_", "")
+SPP7NPP5_SPP7UDown <- SPP7NPP5_SPP7U %>% filter(`Change Metric`<0)
+SPP7NPP5_SPP7UUp <- SPP7NPP5_SPP7U %>% filter(`Change Metric`>0)
+
+#Export lists of up vs. downregulated genes----
+res <- ls(pattern="res.")
+for(i in res){
+  dfin <- eval(str2lang(i))
+  down <- genList(dfin, "Down")
+  up <- genList(dfin, "Up")
+  assign(str_c(str_replace(i, "res.", "list"), "Down", sep=""), down, envir = .GlobalEnv)
+  assign(str_c(str_replace(i, "res.", "list"), "Up", sep=""), up, envir = .GlobalEnv)
+  rm(dfin)
+  rm(up)
+  rm(down)
+  rm(i)
+}
+
+comparisons <- c(ls(pattern="Up"), ls(pattern="Down"))
+comparisons <- comparisons[str_detect(comparisons, "SPP7NPP5_")]
+for(i in comparisons){
+  expList(str2lang(i))
+}
+```
+
+##Make Lists to export for GSEA
+```{r GSEA}
+Mouse2Human <- function(MouseGenes){
+
+  human = useMart("ensembl", dataset = "hsapiens_gene_ensembl")
+  mouse = useMart("ensembl", dataset = "mmusculus_gene_ensembl")
+
+  genesMousetoHuman = getLDS(attributes = c("ensembl_gene_id","mgi_symbol"), 
+                             filters = "mgi_symbol", 
+                             values = MouseGenes , 
+                             mart = mouse, 
+                             attributesL = c("ensembl_gene_id", "hgnc_symbol"), 
+                             martL = human, 
+                             uniqueRows = TRUE)
+
+  colnames(genesMousetoHuman) <- c("Mouse.Gene_ID", "MGI", "Human.Gene_ID", "HGNC")
+
+  return(genesMousetoHuman) 
+
+}
+## create the conversion table
+#Mouse2HumanTable <- Mouse2Human(MouseGenes = GseaNPP5NDown$genename)
+
+genListGSEA <- function(x, direction="NULL"){
+name <- deparse(substitute(x))
+identity <- str_replace(name, "res.", "")
+
+y <- as.data.frame(x[order(abs(x$log2FoldChange), decreasing=T),])
+y <- y %>% mutate(change_metric = log2FoldChange * -log10(padj))
+y <- y %>% dplyr::select(c(change_metric))
+#y <- y %>% arrange(desc(abs(y$change_metric)))
+y <- y %>% arrange(desc(y$change_metric))
+y <- y %>% mutate(Geneid=row.names(y), .before=change_metric) %>% left_join(anno, by=c("Geneid" = "ENSEMBL")) %>% relocate(SYMBOL, .after=Geneid) %>% select(-c(Geneid))
+y <- y %>% drop_na()
+y <- y %>% dplyr::rename("genename" = "SYMBOL")
+y <- y %>% filter(abs(change_metric)>0)
+y$genename <- y$genename %>% str_to_upper
+
+if(direction=="Down"){
+  y <- y %>% filter(change_metric<0) %>% slice_head(n=6000)
+}
+if(direction=="Up"){
+  y <- y %>% filter(change_metric>0) %>% slice_head(n=6000)
+}
+return(y)
+}
+expListGSEA <- function(x){
+  name <- x
+  identity <- str_replace(name, "Gsea", "")
+  x <- eval(x) 
+  write.table(x, file=paste("CD8_", identity, ".rnk"), col.names=FALSE, row.names=FALSE, quote=FALSE, sep='\t')
+}
+
+#generate unfiltered results of pairwise comparisons
+GSEAres.NPP5N <- results(dseq, contrast=c("condition","NPP_C5","Naive"))
+GSEAres.SPP5SUB <- results(dseq, contrast=c("condition","SPP_C5","SUB"), cooksCutoff=FALSE, independentFiltering=FALSE)
+GSEAres.SPP5NPP5 <- results(dseq, contrast=c("condition","SPP_C5","NPP_C5"), cooksCutoff=FALSE, independentFiltering=FALSE)
+
+GSEAres.SUBN <- results(dseq, contrast=c("condition","SUB","Naive"), cooksCutoff=FALSE, independentFiltering=FALSE)
+
+GseaNPP5N <- genListGSEA(GSEAres.NPP5N)
+GseaNPP5NUp <- genListGSEA(GSEAres.NPP5N, direction="Up")
+GseaNPP5NDown <- genListGSEA(GSEAres.NPP5N, direction="Down")
+
+GseaSPP5SUB <- genListGSEA(GSEAres.SPP5SUB)
+GseaSPP5SUBUp <- genListGSEA(GSEAres.SPP5SUB, direction="Up")
+GseaSPP5SUBDown <- genListGSEA(GSEAres.SPP5SUB, direction="Down")
+
+GseaSUBN <- genListGSEA(GSEAres.SUBN)
+GseaSUBNUp <- genListGSEA(GSEAres.SUBN, direction="Up")
+GseaSUBNDown <- genListGSEA(GSEAres.SUBN, direction="Down")
+
+GseaSPP5NPP5_Shared <- SPP5NPP5_Shared %>% select(c(genename.x, `NPP5N_Change Metric`, `SPP5SUB_Change Metric`)) %>% rename("genename" = "genename.x") %>% rowwise() %>% mutate(change_metric = mean(c(`NPP5N_Change Metric`, `SPP5SUB_Change Metric`))) %>% select(-c(`NPP5N_Change Metric`, `SPP5SUB_Change Metric`)) %>% arrange(desc(change_metric)) 
+GseaSPP5NPP5_Shared$genename <- GseaSPP5NPP5_Shared$genename %>% str_to_upper()
+
+GseaSPP5NPP5_NPP5U <- SPP5NPP5_NPP5U %>% select(c(genename, `Change Metric`)) %>% rename("change_metric" = "Change Metric") %>% arrange(desc(change_metric)) %>% filter(str_detect(genename, "ENSMUSG", negate=TRUE))
+GseaSPP5NPP5_NPP5U$genename <- GseaSPP5NPP5_NPP5U$genename %>% str_to_upper()
+
+GseaSPP5NPP5_SPP5U <- SPP5NPP5_SPP5U %>% select(c(genename, `Change Metric`)) %>% rename("change_metric" = "Change Metric") %>% arrange(desc(change_metric)) %>% filter(str_detect(genename, "ENSMUSG", negate=TRUE))
+GseaSPP5NPP5_SPP5U$genename <- GseaSPP5NPP5_SPP5U$genename %>% str_to_upper()
+
+
+#GseaSPP5NPP5Up <- genListGSEA(GSEAres.SPP5NPP5, direction="Up")
+#GseaSPP5NPP5Down <- genListGSEA(GSEAres.SPP5NPP5, direction="Down")
+
+
+
+GSEAexp <- ls(pattern="Gsea")
+for(i in GSEAexp){
+  expListGSEA(str2lang(i))
+}
+
+```
+
+##Plot Heatmap with top differentially accessible peaks
+```{R PlotHeatmap2}
+#select top genes from each pairwise comparison
+topgenes <- rbind(slice_head(listNPPBN, n=50) %>% select(Geneid), slice_head(listNPP5N, n=50) %>% select(Geneid), slice_head(listNPP5NPPB, n=50) %>% select(Geneid), slice_head(listSUBNPP5, n=50) %>% select(Geneid), slice_head(listSPPBSUB, n=50) %>% select(Geneid), slice_head(listSPP5NPP5, n=50) %>% select(Geneid), slice_head(listSPP5SUB, n=50) %>% select(Geneid), slice_head(listSPP7SUB, n=50) %>% select(Geneid), slice_head(listSUBN, n=50) %>% select(Geneid), slice_head(listSPP5N, n=50) %>% select(Geneid))
+topgenes <- topgenes %>% distinct(Geneid, .keep_all = TRUE)
+
+#Generate heatmap dataset. Takes vsd-transformed values from topgenes, and scales data for visualization. data plotted with hclusters and kmeans
+heatmapdata <- as.data.frame(assay(vsd))
+heatmapdata$gene <- as.character(row.names(heatmapdata))
+heatmapdata <- heatmapdata %>% dplyr::filter(gene %in% diffGeneList)
+heatmapdata <- heatmapdata %>% dplyr::select(-c(gene))
+heatmapdata_scaled <- t(scale(t(heatmapdata)))
+
+#define color palettes for heatmap and cluster sidebar
+clusterpalette <- brewer.pal(8, "Accent")
+heatmapgroupcolors <- c(rep(colors_fill[1], 6), rep(alpha(colors_fill[2], 0.6), 6), rep(colors_fill[2], 6), rep(colors_fill[3], 8), rep(alpha(colors_fill[4], 0.72), 10), rep(colors_fill[4], 10), rep(colors_fill[4], 10))
+
+#K-means clustering----
+hmclusters4 <- kmeans(heatmapdata_scaled, 4, iter.max=100)
+heatmapdata_clustered4 <- as.data.frame(cbind(heatmapdata_scaled, hmclusters4$cluster)) %>% dplyr::rename("cluster4" = "V57") %>% arrange(cluster4)
+
+GeneList_hmcluster4 <- heatmapdata_clustered4 #%>% filter(cluster4==4) 
+GeneList_hmcluster4 <- GeneList_hmcluster4 %>% mutate(gene=row.names(GeneList_hmcluster4), .before=N1_a) %>% left_join(anno, by=c("gene" = "ENSEMBL")) %>% relocate(SYMBOL, .after=gene) %>% mutate(genename = coalesce(SYMBOL, gene), .after=gene) %>% select(c(genename, cluster4))
+
+clustercolors4 <- unlist(lapply(heatmapdata_clustered4[,'cluster4'], function(x){
+  for(i in 1:6){
+    if(x==i) return(clusterpalette[i])
+  }
+}))
+
+hmclusters2 <- kmeans(heatmapdata_scaled, 2, iter.max=100)
+heatmapdata_clustered2 <- as.data.frame(cbind(heatmapdata_scaled, hmclusters2$cluster)) %>% dplyr::rename("cluster2" = "V57") %>% arrange(cluster2)
+
+clustercolors2 <- unlist(lapply(heatmapdata_clustered2[,'cluster2'], function(x){
+  for(i in 1:6){
+    if(x==i) return(clusterpalette[i])
+  }
+}))
+
+dev.off()
+#K-Means
+heatmap.2(as.matrix(heatmapdata_clustered4[,1:(ncol(heatmapdata_clustered4)-1)]), col=plasma(n=30), main="KMeans-clustered Heatmap", trace= "none", density.info="none", key=TRUE, symkey=FALSE, keysize=1.26, key.xlab="Z-score", Colv=FALSE, Rowv=FALSE, margins=c(6,4), cexCol=1, labRow=FALSE, RowSideColors=clustercolors4, ColSideColors=heatmapgroupcolors, breaks=seq(-2, 3.5, length.out=31))
+
+#hierarchical----
+#heatmap.2(heatmapdata_scaled, col=plasma(n=30), main="H-clustered Heatmap", trace= "none", density.info="none", key=TRUE, keysize=1.2, key.xlab="Z-score", Colv=FALSE, margins=c(6,4), cexCol=1, labRow=FALSE, ColSideColors=heatmapgroupcolors)
+
+?heatmap.2
+
+
+#Plot Boxplots of Each Cluster Expression Patterns----
+
+heatmapdata_boxplot <- as.data.frame(heatmapdata_clustered4)
+heatmapdata_boxplot <- heatmapdata_boxplot %>% rowwise() %>% 
+  mutate(Naive = mean(c(N1_a, N1_b, N2_a, N2_b, N3_a, N3_b))) %>% 
+  mutate(NPP_B = mean(c(NPP1_B_a, NPP1_B_b, NPP2_B_a, NPP2_B_b, NPP3_B_a, NPP3_B_b))) %>%
+  mutate(NPP_C5 = mean(c(NPP1_5_a, NPP1_5_b, NPP2_5_a, NPP2_5_b, NPP3_5_a, NPP3_5_b))) %>%
+  mutate(SUB = mean(c(SUB1_a, SUB1_b, SUB2_a, SUB2_b, SUB3_a, SUB3_b, SUB4_a, SUB4_b))) %>%
+  mutate(SPP_B = mean(c(SPP1_B_a, SPP1_B_b, SPP2_B_a, SPP3_B_a, SPP4_B_a, SPP4_B_b, SPP5_B_a, SPP5_B_b, SPP6_B_a, SPP6_B_b))) %>% 
+  mutate(SPP_C5 = mean(c(SPP1_5_a, SPP1_5_b, SPP2_5_a, SPP3_5_a, SPP4_5_a, SPP4_5_b, SPP5_5_a, SPP5_5_b, SPP6_5_a, SPP6_5_b))) %>% 
+  mutate(SPP_C7 = mean(c(SPP1_7_a, SPP1_7_b, SPP2_7_a, SPP3_7_a, SPP4_7_a, SPP4_7_b, SPP5_7_a, SPP5_7_b, SPP6_7_a, SPP6_7_b)))
+
+heatmapdata_boxplot <- heatmapdata_boxplot %>% select(!contains("_a", ignore.case=FALSE) & !contains("_b", ignore.case=FALSE)) %>% rename("Cluster" = "cluster4")
+#filter+format data for boxplot
+heatmapdata_boxplot1 <- as.data.frame(heatmapdata_boxplot) %>% filter(Cluster==1)
+heatmapdata_boxplot1 <- stack(heatmapdata_boxplot1, -Cluster) %>% mutate(Cluster=1)
+heatmapdata_boxplot2 <- as.data.frame(heatmapdata_boxplot) %>% filter(Cluster==2)
+heatmapdata_boxplot2 <- stack(heatmapdata_boxplot2, -Cluster) %>% mutate(Cluster=2)
+heatmapdata_boxplot3 <- as.data.frame(heatmapdata_boxplot) %>% filter(Cluster==3)
+heatmapdata_boxplot3 <- stack(heatmapdata_boxplot3, -Cluster) %>% mutate(Cluster=3)
+heatmapdata_boxplot4 <- as.data.frame(heatmapdata_boxplot) %>% filter(Cluster==4)
+heatmapdata_boxplot4 <- stack(heatmapdata_boxplot4, -Cluster) %>% mutate(Cluster=4)
+#heatmapdata_boxplot5 <- as.data.frame(heatmapdata_boxplot) %>% filter(Cluster==5)
+#heatmapdata_boxplot5 <- stack(heatmapdata_boxplot5, -Cluster) %>% mutate(Cluster=5)
+#heatmapdata_boxplot6 <- as.data.frame(heatmapdata_boxplot) %>% filter(Cluster==6)
+#heatmapdata_boxplot6 <- stack(heatmapdata_boxplot6, -Cluster) %>% mutate(Cluster=6)
+
+#join formatted data and plot
+heatmapdata_boxplot_gg <- rbind(heatmapdata_boxplot1, heatmapdata_boxplot2, heatmapdata_boxplot3, heatmapdata_boxplot4) %>% rename("Group"="ind")
+
+heatmapdata_boxplot_gg$Cluster <- heatmapdata_boxplot_gg$Cluster %>% str_replace_all("1", "Cluster 1") %>% str_replace_all("2", "Cluster 2") %>% str_replace_all("3", "Cluster 3") %>% str_replace_all("4", "Cluster 4") %>% str_replace_all("5", "Cluster 5") %>% str_replace_all("6", "Cluster 6")
+
+b <- ggplot(data = heatmapdata_boxplot_gg, aes(x=Group, y=values))+ 
+  geom_boxplot(aes(color=Group), fill=NA, outlier.shape=NA, coef=0) +
+  geom_point(aes(color=Group, shape=Group), size=1) +
+  scale_shape_manual(values=groupshapes, labels=grouplabels) +
+  scale_color_manual(values=c(colors_fill[1], alpha(colors_fill[2], 0.4), colors_fill[2], colors_fill[3], alpha(colors_fill[4], 0.55), rep(colors_fill[4], 2)), labels=grouplabels) +
+  ylab("Z-Score")
+b <- b + facet_wrap( ~ Cluster, scales="free") + themeset + theme(axis.text.x=element_blank()) + ggtitle("Per-Cluster Gene Expression")
+b
+
+#manual inclusion of Cluster colors in facet wrap
+b_colors <- ggplot_gtable(ggplot_build(b))
+b_stripr <- which(grepl('strip-t', b_colors$layout$name))
+b_fills <- clusterpalette[1:4]
+#NOTE: GGPLOT BUILDS GROBS FROM BOTTOM TO TOP ROW: Mut re-order the grob elements to match the order of the cluster colors (Row 1-1, 1-2, 1-3 are 4-6, row 2-1+2-2 are 1+2)
+b_stripr <- b_stripr[c(3, 4, 1, 2)]
+k <- 1
+for (i in b_stripr) {
+  j <- which(grepl('rect', b_colors$grobs[[i]]$grobs[[1]]$childrenOrder))
+  b_colors$grobs[[i]]$grobs[[1]]$children[[j]]$gp$fill <- b_fills[k]
+  k <- k+1
+}
+grid.draw(b_colors)
+
+
+#Plot filtered boxplot above: only N, NPP5, SUB, SPP5
+heatmapdata_boxplot_gg_C5 <- heatmapdata_boxplot_gg %>% filter(Group != "NPP_B") %>% filter(Group != "SPP_B") %>% filter(Group != "SPP_C7")
+
+write.csv(heatmapdata_boxplot_gg_C5, file=paste("heatmapdata_boxplot_C5.csv", sep=""), col.names=FALSE, row.names=TRUE, quote=FALSE)
+
+b_C5 <- ggplot(data = heatmapdata_boxplot_gg_C5, aes(x=Group, y=values))+ 
+  geom_boxplot(aes(color=Group), fill=NA, outlier.shape=NA, coef=0) +
+  geom_point(aes(color=Group, shape=Group), size=1) +
+  scale_shape_manual(values=groupshapes[c(1,3,4,6)], labels=grouplabels[c(1,3,4,6)]) +
+  scale_color_manual(values=c(colors_fill[1], colors_fill[2], colors_fill[3], colors_fill[4]), labels=grouplabels[c(1,3,4,6)]) +
+  ylab("Z-Score")
+b_C5 <- b_C5 + facet_wrap( ~ Cluster, scales="free") + themeset + theme(axis.text.x=element_blank()) + ggtitle("Per-Cluster Gene Expression")
+b_C5
+
+#manual inclusion of Cluster colors in facet wrap
+b_C5_colors <- ggplot_gtable(ggplot_build(b_C5))
+b_C5_stripr <- which(grepl('strip-t', b_C5_colors$layout$name))
+b_C5_fills <- clusterpalette[1:4]
+#NOTE: GGPLOT BUILDS GROBS FROM BOTTOM TO TOP ROW: Mut re-order the grob elements to match the order of the cluster colors (Row 1-1, 1-2, 1-3 are 4-6, row 2-1+2-2 are 1+2)
+b_C5_stripr <- b_C5_stripr[c(3, 4, 1, 2)]
+k <- 1
+for (i in b_C5_stripr) {
+  j <- which(grepl('rect', b_C5_colors$grobs[[i]]$grobs[[1]]$childrenOrder))
+  b_C5_colors$grobs[[i]]$grobs[[1]]$children[[j]]$gp$fill <- b_C5_fills[k]
+  k <- k+1
+}
+grid.draw(b_C5_colors)
+
+#Plot filtered boxplot above: SPP5+7
+heatmapdata_boxplot_gg_C5C7 <- heatmapdata_boxplot_gg %>% filter(Group != "Naive") %>% filter(Group != "NPP_B") %>% filter(Group != "NPP_C5") %>% filter(Group != "SUB") %>% filter(Group != "SPP_B")
+
+write.csv(heatmapdata_boxplot_gg_C5C7, file=paste("heatmapdata_boxplot_C5C7.csv", sep=""), col.names=FALSE, row.names=TRUE, quote=FALSE)
+
+b_C5C7 <- ggplot(data = heatmapdata_boxplot_gg_C5C7, aes(x=Group, y=values))+ 
+  geom_boxplot(aes(color=Group), fill=NA, outlier.shape=NA, coef=0) +
+  geom_point(aes(color=Group, shape=Group), size=1) +
+  scale_shape_manual(values=groupshapes[c(6,7)], labels=grouplabels[c(6,7)]) +
+  scale_color_manual(values=c(colors_fill[4], colors_fill[4]), labels=grouplabels[c(6,7)]) +
+  ylab("Z-Score")
+b_C5C7 <- b_C5C7 + facet_wrap( ~ Cluster, scales="free") + themeset + theme(axis.text.x=element_blank()) + ggtitle("Per-Cluster Gene Expression")
+b_C5C7
+
+#manual inclusion of Cluster colors in facet wrap
+b_C5C7_colors <- ggplot_gtable(ggplot_build(b_C5C7))
+b_C5C7_stripr <- which(grepl('strip-t', b_C5C7_colors$layout$name))
+b_C5C7_fills <- clusterpalette[1:4]
+#NOTE: GGPLOT BUILDS GROBS FROM BOTTOM TO TOP ROW: Mut re-order the grob elements to match the order of the cluster colors (Row 1-1, 1-2, 1-3 are 4-6, row 2-1+2-2 are 1+2)
+b_C5C7_stripr <- b_C5C7_stripr[c(3, 4, 1, 2)]
+k <- 1
+for (i in b_C5C7_stripr) {
+  j <- which(grepl('rect', b_C5C7_colors$grobs[[i]]$grobs[[1]]$childrenOrder))
+  b_C5C7_colors$grobs[[i]]$grobs[[1]]$children[[j]]$gp$fill <- b_C5C7_fills[k]
+  k <- k+1
+}
+grid.draw(b_C5C7_colors)
+
+```
+
+```{R heatmap_sharedUp}
+heatmapdata_full <- as.data.frame(assay(vsd))
+heatmapdata_full$gene <- as.character(row.names(heatmapdata_full))
+heatmapdata_shared <- heatmapdata_full %>% dplyr::filter(gene %in% SPP5NPP5_SharedUp$Geneid)
+heatmapdata_shared <- heatmapdata_shared %>% dplyr::select(-c(gene))
+heatmapdata_shared <- t(scale(t(heatmapdata_shared)))
+
+heatmapdata_sharedboxplot <- as.data.frame(heatmapdata_shared)
+
+heatmapdata_sharedboxplot <- heatmapdata_sharedboxplot %>% rowwise() %>% 
+  mutate(Naive = mean(c(N1_a, N1_b, N2_a, N2_b, N3_a, N3_b))) %>%
+  mutate(NPP_C5 = mean(c(NPP1_5_a, NPP1_5_b, NPP2_5_a, NPP2_5_b, NPP3_5_a, NPP3_5_b))) %>%
+  mutate(SUB = mean(c(SUB1_a, SUB1_b, SUB2_a, SUB2_b, SUB3_a, SUB3_b, SUB4_a, SUB4_b))) %>% 
+  mutate(SPP_C5 = mean(c(SPP1_5_a, SPP1_5_b, SPP2_5_a, SPP3_5_a, SPP4_5_a, SPP4_5_b, SPP5_5_a, SPP5_5_b, SPP6_5_a, SPP6_5_b)))
+
+heatmapdata_sharedboxplot <- heatmapdata_sharedboxplot %>% select(!contains("_a", ignore.case=FALSE) & !contains("_b", ignore.case=FALSE))
+
+heatmapdata_sharedboxplot_gg <- stack(as.data.frame(heatmapdata_sharedboxplot)) %>% rename("Group"="ind") #%>% mutate(line=rep(1:(n()/4), 4))
+
+write.csv(heatmapdata_sharedboxplot_gg, file=paste("heatmapdata_sharedboxplot.csv", sep=""), col.names=FALSE, row.names=TRUE, quote=FALSE)
+
+#heatmapdata_sharedboxplot_gg$line <- ifelse(heatmapdata_sharedboxplot_gg$Group=="NPP_C5" | heatmapdata_sharedboxplot_gg$Group=="SPP_C5", heatmapdata_sharedboxplot_gg$line, NA)
+
+b_shared <- ggplot(data = heatmapdata_sharedboxplot_gg, aes(x=Group, y=values))+ 
+  geom_boxplot(aes(color=Group), fill=NA, outlier.shape=NA, coef=0) +
+  geom_point(aes(color=Group, shape=Group), size=1) +
+  scale_color_manual(labels=grouplabels[c(1,3,4,6)], values=groupcolors[c(1,3,4,6)])+
+  scale_shape_manual(labels=grouplabels[c(1,3,4,6)], values=groupshapes[c(1,3,4,6)])+
+  ylab("Z-Score")
+b_shared + themeset + theme(axis.text.x=element_blank()) + ggtitle("Gene Expression at Shared Loci")
+
+#view expression differences between NPP and SPP at shared loci
+heatmapdata_sharedscatterplot_gg <- heatmapdata_sharedboxplot %>% select(c(NPP_C5, SPP_C5)) %>% mutate(Group=ifelse(SPP_C5>NPP_C5, "SPP_C5", "NPP_C5"))
+
+s_shared <- ggplot(data = heatmapdata_sharedscatterplot_gg, aes(x=NPP_C5, y=SPP_C5))+ 
+  geom_point(aes(color=Group), size=1) +
+  geom_abline(slope=1, intercept=0) +
+  annotate("text", x = -0.25, y = 2, label = "n=111") +
+  annotate("text", x = 2, y = -0.25, label = "n=57") +
+  scale_color_manual(labels=grouplabels[c(3,6)], values=groupcolors[c(3,6)])+
+  xlim(-0.6, 2.1) + ylim(-0.6, 2.1) +
+  ylab("Z-Score of Mem+PP C5") +
+  xlab("Z-Score of Naive+PP C5") +
+  labs(color="Higher expression in:")
+s_shared + themeset + ggtitle("Gene Expression at Shared Loci")
+
+#Plot heatmap of ALL SPPNPP Genes (SPP5-Unique, Shared, NPP5Unique)
+#select top genes from each pairwise comparison
+SPP5NPP5genes <- rbind(SPP5NPP5_NPP5U %>% mutate(identity="NPP5U") %>% select(Geneid, identity, change), 
+                       SPP5NPP5_SPP5U %>% mutate(identity="SPP5U") %>% select(Geneid, identity, change), 
+                       SPP5NPP5_SharedUp %>% mutate(identity="Shared") %>% rename("change"="dfin_change.x") %>% select(Geneid, identity, change),
+                       SPP5NPP5_SharedDown %>% mutate(identity="Shared") %>% rename("change"="dfin_change.x") %>% select(Geneid, identity, change))
+
+
+SPP5NPP5genes <- SPP5NPP5genes %>% distinct(Geneid, .keep_all = TRUE) %>% rename("gene"="Geneid")
+
+#Generate heatmap dataset. Takes vsd-transformed values from topgenes, and scales data for visualization. data plotted with hclusters and kmeans
+heatmapdata_SPP5NPP5 <- as.data.frame(assay(vsd)) %>% select(!contains("_B_", ignore.case=FALSE) & !contains("_7_", ignore.case=FALSE))
+heatmapdata_SPP5NPP5$gene <- as.character(row.names(heatmapdata_SPP5NPP5))
+heatmapdata_SPP5NPP5 <- heatmapdata_SPP5NPP5 %>% dplyr::filter(gene %in% SPP5NPP5genes$gene)
+heatmapdata_SPP5NPP5 <- heatmapdata_SPP5NPP5 %>% dplyr::select(-c(gene))
+heatmapdata_scaled_SPP5NPP5 <- t(scale(t(heatmapdata_SPP5NPP5)))
+heatmapdata_scaled_SPP5NPP5 <- as.data.frame(heatmapdata_scaled_SPP5NPP5) %>% mutate(gene=row.names(heatmapdata_scaled_SPP5NPP5))
+heatmapdata_scaled_SPP5NPP5 <- inner_join(heatmapdata_scaled_SPP5NPP5, SPP5NPP5genes, by="gene") %>% arrange(identity, change)
+
+heatmapgroupcolors_SPP5NPP5 <- c(rep(colors_fill[1], 6), rep(colors_fill[2], 6), rep(colors_fill[3], 8), rep(colors_fill[4], 10))
+
+#K-means clustering----
+#hmclusters3_SPP5NPP5 <- kmeans(heatmapdata_scaled_SPP5NPP5, 3, iter.max=100)
+#heatmapdata_clustered3_SPP5NPP5 <- as.data.frame(cbind(heatmapdata_scaled_SPP5NPP5, hmclusters3_SPP5NPP5$cluster)) %>% dplyr::rename("cluster3" = "V31") %>% arrange(cluster3)
+heatmapdata_clustered3_SPP5NPP5 <- heatmapdata_scaled_SPP5NPP5
+
+identitypallette <- c("#1A74F8", "purple2", "#DA0054")
+
+#clustercolors3_SPP5NPP5 <- unlist(lapply(heatmapdata_clustered3_SPP5NPP5[,'cluster3'], function(x){
+  for(i in 1:6){
+    if(x==i) return(clusterpalette[i])
+  }
+}))
+
+identitycolors3_SPP5NPP5 <- unlist(lapply(heatmapdata_clustered3_SPP5NPP5[,'identity'], function(x){
+  identityvalues <- c("NPP5U", "Shared", "SPP5U")
+  for(i in 1:3){
+    if(x==identityvalues[i]) return(identitypallette[i])
+  }
+}))
+
+dev.off()
+#K-Means
+heatmap.2(as.matrix(heatmapdata_clustered3_SPP5NPP5[,1:(ncol(heatmapdata_clustered3_SPP5NPP5)-3)]), col=plasma(n=30), main="KMeans-clustered Heatmap", trace= "none", density.info="none", key=TRUE, symkey=FALSE, keysize=1.26, key.xlab="Z-score", Colv=FALSE, Rowv=FALSE, margins=c(6,4), cexCol=1, labRow=FALSE, RowSideColors=identitycolors3_SPP5NPP5, ColSideColors=heatmapgroupcolors_SPP5NPP5, breaks=seq(-2, 3.5, length.out=31))
+
+```
+
+```{R Heatmap_flowMarkers}
+#Create Heatmap of Flow panel Loci for RNA-Seq Data Verification
+flowmarkers <- c("Mki67", "Il7r", "Cd44", "Sell", "Izumo1r", "Nt5e", "Pdcd1", "Lag3", "Tigit", "Havcr2")
+flowmapdata <- as.data.frame(assay(vsd))
+flowmapdata$gene <- as.character(row.names(flowmapdata))
+flowmapdata <- flowmapdata %>% left_join(anno, by=c("gene" = "ENSEMBL")) %>% relocate(SYMBOL, .after=gene) %>% mutate(genename = coalesce(SYMBOL, gene), .after=gene) %>% select(-c(SYMBOL))
+flowmapdata <- flowmapdata %>% dplyr::filter(genename %in% flowmarkers)
+row.names(flowmapdata) <- flowmapdata$genename
+flowmapdata <- flowmapdata %>% dplyr::select(-c(gene, genename))
+flowmapdata_scaled <- t(scale(t(flowmapdata)))
+
+heatmap.2(flowmapdata_scaled, col=plasma(n=30), main="H-clustered Heatmap", trace= "none", density.info="none", key=TRUE, keysize=1.26, key.xlab="Z-score", Colv=FALSE, margins=c(11,8), cexCol=1, ColSideColors=heatmapgroupcolors)
+```
+
+```{R Heatmap_ExhaustionAnergy_bad}
+#Import genes from exhaustion and Anergy genesets
+Bengsh_Safford_Geneset <- read.csv('Exhaustion_Anergy_Geneset.csv', header=1)
+Bengsh_Safford_Geneset <- Bengsh_Safford_Geneset %>% distinct(genename, .keep_all = TRUE)
+Bengsh_Safford_Geneset$genename <- str_to_title(Bengsh_Safford_Geneset$genename)
+
+#Generate heatmap dataset. Takes vsd-transformed values from topgenes, and scales data for visualization. data plotted with hclusters and kmeans
+heatmapdata_ExAn <- as.data.frame(assay(vsd))
+heatmapdata_ExAn <- as.data.frame(t(scale(t(heatmapdata_ExAn))))
+heatmapdata_ExAn$gene <- as.character(row.names(heatmapdata_ExAn))
+heatmapdata_ExAn <- heatmapdata_ExAn %>% left_join(anno, by=c("gene" = "ENSEMBL")) %>% relocate(SYMBOL, .after=gene) %>% mutate(genename = coalesce(SYMBOL, gene), .after=gene) %>% select(-c(SYMBOL))
+heatmapdata_ExAn <- inner_join(heatmapdata_ExAn, Bengsh_Safford_Geneset, by="genename")
+heatmapdata_ExAn <- heatmapdata_ExAn %>% dplyr::filter(gene %in% diffGeneList$gene)
+heatmapdata_ExAn <- heatmapdata_ExAn %>% dplyr::select(-c(gene, genename))
+heatmapdata_ExAn$geneset <- factor(heatmapdata_ExAn$geneset, levels=c("Exhaustion_Up", "Exhaustion_Down", "Anergy_Up", "Anergy_Down"))
+heatmapdata_ExAn <- heatmapdata_ExAn %>% mutate(genesetcode=as.numeric(geneset))
+heatmapdata_ExAn <- heatmapdata_ExAn %>% arrange((geneset))
+
+
+clustercolors_ExAn <- unlist(lapply(heatmapdata_ExAn[,'genesetcode'], function(x){
+  for(i in 1:4){
+    if(x==i) return(clusterpalette[i])
+  }
+}))
+
+dev.off()
+#K-Means
+heatmap.2(as.matrix(heatmapdata_ExAn[,1:(ncol(heatmapdata_ExAn)-2)]), col=plasma(n=30), main="Exhaustion/Anergy Heatmap", trace= "none", density.info="none", key=TRUE, symkey=FALSE, keysize=1.26, key.xlab="Z-score", Colv=FALSE, Rowv=FALSE, margins=c(6,4), cexCol=1, labRow=FALSE, RowSideColors=clustercolors_ExAn, ColSideColors=heatmapgroupcolors, breaks=seq(-2, 3.5, length.out=31))
+
+heatmapdata_ExAn_boxplot <- as.data.frame(heatmapdata_ExAn)
+heatmapdata_ExAn_boxplot <- heatmapdata_ExAn_boxplot %>% rowwise() %>% 
+  mutate(Naive = mean(c(N1_a, N1_b, N2_a, N2_b, N3_a, N3_b))) %>% 
+  mutate(NPP_B = mean(c(NPP1_B_a, NPP1_B_b, NPP2_B_a, NPP2_B_b, NPP3_B_a, NPP3_B_b))) %>%
+  mutate(NPP_C5 = mean(c(NPP1_5_a, NPP1_5_b, NPP2_5_a, NPP2_5_b, NPP3_5_a, NPP3_5_b))) %>%
+  mutate(SUB = mean(c(SUB1_a, SUB1_b, SUB2_a, SUB2_b, SUB3_a, SUB3_b, SUB4_a, SUB4_b))) %>%
+  mutate(SPP_B = mean(c(SPP1_B_a, SPP1_B_b, SPP2_B_a, SPP3_B_a, SPP4_B_a, SPP4_B_b, SPP5_B_a, SPP5_B_b, SPP6_B_a, SPP6_B_b))) %>% 
+  mutate(SPP_C5 = mean(c(SPP1_5_a, SPP1_5_b, SPP2_5_a, SPP3_5_a, SPP4_5_a, SPP4_5_b, SPP5_5_a, SPP5_5_b, SPP6_5_a, SPP6_5_b))) %>% 
+  mutate(SPP_C7 = mean(c(SPP1_7_a, SPP1_7_b, SPP2_7_a, SPP3_7_a, SPP4_7_a, SPP4_7_b, SPP5_7_a, SPP5_7_b, SPP6_7_a, SPP6_7_b)))
+
+heatmapdata_ExAn_boxplot <- heatmapdata_ExAn_boxplot %>% select(!contains("_a", ignore.case=FALSE) & !contains("_b", ignore.case=FALSE)) %>% select(-c(geneset)) %>% rename("Geneset" = "genesetcode")
+#filter+format data for boxplot
+heatmapdata_ExAn_boxplot1 <- as.data.frame(heatmapdata_ExAn_boxplot) %>% filter(Geneset==1)
+heatmapdata_ExAn_boxplot1 <- stack(heatmapdata_ExAn_boxplot1, -Geneset) %>% mutate(Geneset=1)
+heatmapdata_ExAn_boxplot2 <- as.data.frame(heatmapdata_ExAn_boxplot) %>% filter(Geneset==2)
+heatmapdata_ExAn_boxplot2 <- stack(heatmapdata_ExAn_boxplot2, -Geneset) %>% mutate(Geneset=2)
+heatmapdata_ExAn_boxplot3 <- as.data.frame(heatmapdata_ExAn_boxplot) %>% filter(Geneset==3)
+heatmapdata_ExAn_boxplot3 <- stack(heatmapdata_ExAn_boxplot3, -Geneset) %>% mutate(Geneset=3)
+heatmapdata_ExAn_boxplot4 <- as.data.frame(heatmapdata_ExAn_boxplot) %>% filter(Geneset==4)
+heatmapdata_ExAn_boxplot4 <- stack(heatmapdata_ExAn_boxplot4, -Geneset) %>% mutate(Geneset=4)
+
+#join formatted data and plot
+heatmapdata_ExAn_boxplot_gg <- rbind(heatmapdata_ExAn_boxplot1, heatmapdata_ExAn_boxplot2, heatmapdata_ExAn_boxplot3, heatmapdata_ExAn_boxplot4) %>% rename("Group"="ind")
+
+heatmapdata_ExAn_boxplot_gg$Geneset <- heatmapdata_ExAn_boxplot_gg$Geneset %>% str_replace_all("1", "Exhaustion Up") %>% str_replace_all("2", "Exhaustion Down") %>% str_replace_all("3", "Anergy Up") %>% str_replace_all("4", "Anergy Down")
+
+
+#Plot filtered boxplot above: only N, NPP5, SUB, SPP5
+heatmapdata_ExAn_boxplot_gg <- heatmapdata_ExAn_boxplot_gg %>% filter(Group != "NPP_B") %>% filter(Group != "SPP_B") %>% filter(Group != "SPP_C7")
+
+b_ExAn <- ggplot(data = heatmapdata_ExAn_boxplot_gg, aes(x=Group, y=values))+ 
+  geom_boxplot(aes(color=Group), fill=NA, outlier.shape=NA, coef=0) +
+  geom_point(aes(color=Group, shape=Group), size=1) +
+  scale_shape_manual(values=groupshapes[c(1,3,4,6)], labels=grouplabels[c(1,3,4,6)]) +
+  scale_color_manual(values=c(colors_fill[1], colors_fill[2], colors_fill[3], colors_fill[4]), labels=grouplabels[c(1,3,4,6)]) +
+  ylab("Z-Score")
+b_ExAn <- b_ExAn + facet_wrap(~ Geneset, scales="free") + themeset + theme(axis.text.x=element_blank()) + ggtitle("ExAn Gene Expression")
+b_ExAn
+
+```
+
+```{R Plotcounts}
+#Plot normalized counts of individual loci (lowkey just Tox)
+toxData <- plotCounts(dseq, "ENSMUSG00000041272", intgroup = "condition", returnData = TRUE)
+toxData <- toxData %>% filter(condition=="Naive" | condition=="NPP_C5" | condition=="SUB" | condition=="SPP_C5")
+toxData$condition <- factor(toxData$condition, levels=c("Naive", "NPP_C5", "SUB", "SPP_C5"))
+
+toxplot <- ggplot(toxData, aes(x=condition, y=count, color=condition, shape=condition)) + 
+  geom_boxplot(fill=NA, outlier.shape=NA, coef=0) +
+  geom_point(aes(color=condition, shape=condition), size=3) +
+  scale_color_manual(labels=grouplabels[c(1,3,4,6)], values=groupcolors[c(1,3,4,6)]) +
+  scale_shape_manual(labels=grouplabels[c(1,3,4,6)], values=groupshapes[c(1,3,4,6)]) +
+  xlab("") + 
+  ylab("Normalized Read Counts") +
+  labs(color="OVA+CD8+ T cells from:", shape="OVA+CD8+ T cells from:") +
+  ggtitle("Transcription at Tox Locus")
+
+toxplot + themeset
+
+satData <- plotCounts(dseq, "ENSMUSG00000023927", intgroup = "condition", returnData = TRUE)
+satData <- satData %>% filter(condition=="Naive" | condition=="NPP_C5" | condition=="SUB" | condition=="SPP_C5")
+satData$condition <- factor(satData$condition, levels=c("Naive", "NPP_C5", "SUB", "SPP_C5"))
+
+satplot <- ggplot(satData, aes(x=condition, y=count, color=condition, shape=condition)) + 
+  geom_boxplot(fill=NA, outlier.shape=NA, coef=0) +
+  geom_point(aes(color=condition, shape=condition), size=3) +
+  scale_color_manual(labels=grouplabels[c(1,3,4,6)], values=groupcolors[c(1,3,4,6)]) +
+  scale_shape_manual(labels=grouplabels[c(1,3,4,6)], values=groupshapes[c(1,3,4,6)]) +
+  xlab("") + 
+  ylab("Normalized Read Counts") +
+  labs(color="OVA+CD8+ T cells from:", shape="OVA+CD8+ T cells from:") +
+  ggtitle("Transcription at Satb1 Locus")
+
+satplot + themeset
+
+ikzf2Data <- plotCounts(dseq, "ENSMUSG00000025997", intgroup = "condition", returnData = TRUE)
+ikzf2Data <- ikzf2Data %>% filter(condition=="Naive" | condition=="NPP_C5" | condition=="SUB" | condition=="SPP_C5")
+ikzf2Data$condition <- factor(ikzf2Data$condition, levels=c("Naive", "NPP_C5", "SUB", "SPP_C5"))
+
+ikzf2plot <- ggplot(ikzf2Data, aes(x=condition, y=count, color=condition, shape=condition)) + 
+  geom_boxplot(fill=NA, outlier.shape=NA, coef=0) +
+  geom_point(aes(color=condition, shape=condition), size=3) +
+  scale_color_manual(labels=grouplabels[c(1,3,4,6)], values=groupcolors[c(1,3,4,6)]) +
+  scale_shape_manual(labels=grouplabels[c(1,3,4,6)], values=groupshapes[c(1,3,4,6)]) +
+  xlab("") + 
+  ylab("Normalized Read Counts") +
+  labs(color="OVA+CD8+ T cells from:", shape="OVA+CD8+ T cells from:") +
+  ggtitle("Transcription at Ikzf2 Locus")
+
+ikzf2plot + themeset
+
+ikzf3Data <- plotCounts(dseq, "ENSMUSG00000018168", intgroup = "condition", returnData = TRUE)
+ikzf3Data <- ikzf3Data %>% filter(condition=="Naive" | condition=="NPP_C5" | condition=="SUB" | condition=="SPP_C5")
+ikzf3Data$condition <- factor(ikzf3Data$condition, levels=c("Naive", "NPP_C5", "SUB", "SPP_C5"))
+
+ikzf3plot <- ggplot(ikzf3Data, aes(x=condition, y=count, color=condition, shape=condition)) + 
+  geom_boxplot(fill=NA, outlier.shape=NA, coef=0) +
+  geom_point(aes(color=condition, shape=condition), size=3) +
+  scale_color_manual(labels=grouplabels[c(1,3,4,6)], values=groupcolors[c(1,3,4,6)]) +
+  scale_shape_manual(labels=grouplabels[c(1,3,4,6)], values=groupshapes[c(1,3,4,6)]) +
+  xlab("") + 
+  ylab("Normalized Read Counts") +
+  labs(color="OVA+CD8+ T cells from:", shape="OVA+CD8+ T cells from:") +
+  ggtitle("Transcription at Ikzf3 Locus")
+
+ikzf3plot + themeset
+
+
+#Export normalized counts of leading edge genes for Fig. 3
+LE_normCounts <- as.data.frame(counts(dseq, normalized=T))
+LE_normCounts <- LE_normCounts %>% mutate(Geneid=row.names(LE_normCounts), .before = N1_a) %>% left_join(anno, by=c("Geneid" = "ENSEMBL")) %>% relocate(SYMBOL, .after=Geneid) %>% mutate(genename = coalesce(SYMBOL, Geneid), .before=Geneid) %>% select(-c(Geneid, SYMBOL))
+
+LE_normCounts <- LE_normCounts %>% filter(genename=="Satb1" | genename=="Tox" | genename=="Il10" | genename=="Il21" | genename=="Ccr7" | genename=="Tnfsf4" | genename=="Nfatc1")
+
+write.csv(LE_normCounts, file="CD8_LeadingEdge_NormCounts.csv", col.names=FALSE, row.names=TRUE, quote=FALSE)
+
+Ribo_normCounts <- as.data.frame(counts(dseq, normalized=T))
+Ribo_normCounts <- Ribo_normCounts %>% mutate(Geneid=row.names(Ribo_normCounts), .before = N1_a) %>% left_join(anno, by=c("Geneid" = "ENSEMBL")) %>% relocate(SYMBOL, .after=Geneid) %>% mutate(genename = coalesce(SYMBOL, Geneid), .before=Geneid) %>% select(-c(Geneid, SYMBOL))
+
+Ribo_normCounts <- Ribo_normCounts %>% filter(genename=="Rpl37a" | genename=="Rps24" | genename=="Rplp1" | genename=="Rps20" | genename=="Rpl31"| genename=="Rpl12")
+
+write.csv(Ribo_normCounts, file="CD8_Ribosome_NormCounts.csv", col.names=FALSE, row.names=TRUE, quote=FALSE)
+
+
+
+```
+
+##Plot Venn Diagram wwith shared+Unique NPP vs. SPP Expression
+```{R Venn_SPPNPP}
+#Create Venn diagram to show expression similarity between NPP and SPP
+NPP5_totalVenn <- nrow(SPP5NPP5_NPP5U) + nrow(SPP5NPP5_Shared)
+SPP5_totalVenn <- nrow(SPP5NPP5_SPP5U) + nrow(SPP5NPP5_Shared)
+SPP5NPP5_sharedVenn <- nrow(SPP5NPP5_Shared)
+
+SPP5SUB_SUBVenn <- nrow(SPP5SUB_SUBU) + nrow(SPP5SUB_Shared)
+SPP5SUB_SPP5Venn <- nrow(SPP5SUB_SPP5U) + nrow(SPP5SUB_Shared)
+SPP5SUB_sharedVenn <- nrow(SPP5SUB_Shared)
+
+SPP7SPP5_SPP5Venn <- nrow(SPP7SPP5_SPP5U) + nrow(SPP7SPP5_Shared)
+SPP7SPP5_SPP7Venn <- nrow(SPP7SPP5_SPP7U) + nrow(SPP7SPP5_Shared)
+SPP7SPP5_sharedVenn <- nrow(SPP7SPP5_Shared)
+
+
+dev.off()
+grid.newpage()
+draw.pairwise.venn(area1=NPP5_totalVenn, area2=SPP5_totalVenn, cross.area=SPP5NPP5_sharedVenn, lty="blank", fill=colors_fill[c(2,4)], alpha=0.8, category=c("N+P C5 vs. N", "S+P C5 vs. S"), cat.pos=c(0,0), cat.fontfamily="Arial", cat.fontface="bold", cat.cex=2, cex=c(6, 4, 6))
+
+dev.off()
+grid.newpage()
+draw.pairwise.venn(area1=SPP5SUB_SUBVenn, area2=SPP5SUB_SPP5Venn, cross.area=SPP5SUB_sharedVenn, lty="blank", fill=colors_fill[c(3,4)], alpha=0.8, category=c("Sensitized", "Sens+PP C5"), cat.pos=c(0,0), cat.fontfamily="Arial", cat.fontface="bold", cat.cex=2, cex=c(8, 2.5, 4.5))
+
+dev.off()
+grid.newpage()
+draw.pairwise.venn(area1=SPP7SPP5_SPP5Venn, area2=SPP7SPP5_SPP7Venn, cross.area=SPP7SPP5_sharedVenn, lty="blank", fill=c("#A21C5F","#A22FD2"), alpha=0.8, category=c("Sens+PP C5", "Sens+PP C7"), cat.pos=c(0,0), cat.fontfamily="Arial", cat.fontface="bold", cat.cex=2, cex=c(4, 6, 4))
+
+
+
+```
+
+##Volcano+MA Plots
+```{R volcanoplot_MA}
+volcanodf <- function(x, group1="group1", group2="group2"){
+  
+#import results as dataframe
+y <- as.data.frame(x)
+
+#clean up and select relevant columns
+y <- y %>% mutate(Geneid=row.names(y), .before = log2FoldChange) %>% left_join(anno, by=c("Geneid" = "ENSEMBL")) %>% relocate(SYMBOL, .after=Geneid) %>% mutate(genename = coalesce(SYMBOL, Geneid), .before=Geneid) %>% select(c(genename, log2FoldChange, padj)) %>% mutate(sig=ifelse(y$padj<0.1, "q<0.1", "N.S.")) %>% arrange(padj)
+
+v <- ggplot(y, aes(x=log2FoldChange, y=-log10(padj))) + 
+  geom_point(aes(col=sig)) + 
+  scale_color_manual(values=c("black", "blue")) + 
+  ggtitle(paste(group1, "vs.", group2)) +
+  geom_label_repel(data=head(y, 10), aes(label=genename), size=2, nudge_x=5, force=1.6) +
+  themeset + theme(plot.title = element_text(hjust = 0.5))
+
+return(v)
+}
+
+volcanodf(res.NPP5N, "Naive+Preg C5", "Naive")
+volcanodf(res.SPP5SUB, "Sens+Preg-C5", "Sensitized")
+volcanodf(res.SPP5NPP5, "Sens+Preg-C5", "Naive+Preg C5")
+volcanodf(res.SPP7SUB, "Sens+Preg-C5", "Sensitized")
+
+
+#Make customized volcano's for paper
+volcano_NPP5N <- as.data.frame(res.NPP5N)
+volcano_NPP5N <- volcano_NPP5N %>% mutate(Geneid=row.names(volcano_NPP5N), .before = log2FoldChange) %>% left_join(anno, by=c("Geneid" = "ENSEMBL")) %>% relocate(SYMBOL, .after=Geneid) %>% mutate(genename = coalesce(SYMBOL, Geneid), .before=Geneid) %>% select(c(genename, log2FoldChange, padj)) %>% filter(padj<0.1 & abs(log2FoldChange)>1) %>% arrange(log2FoldChange)
+
+volcano_NPP5N_highlight <- str_c("Tnfsf4", "Tnfsf11", "Pdcd1", "Lag3", "Tox", "Tigit", "Il10", "Nfatc1", "Slamf6", "Ikzf3", "Runx2", "Slamf7", "Nfatc3", "Satb1", "Rpl37a", "Rps24", "Rplp1", "Rps20", "Rpl31", "Rpl12", sep="|")
+volcano_NPP5N <- volcano_NPP5N %>% mutate(highlight=str_detect(genename, volcano_NPP5N_highlight)) %>% arrange(highlight)
+
+v_NPP5N <- ggplot(volcano_NPP5N, aes(x=log2FoldChange, y=-log10(padj))) + 
+  geom_point(aes(color=highlight, size=highlight)) + 
+  geom_vline(xintercept=0, linetype="dotted") +
+  scale_color_manual(values=c("#85B4F2", "purple2")) + 
+  scale_size_manual(values=c(1.2, 3)) +
+  ylim(0,50) +
+  geom_label_repel(data=volcano_NPP5N[which(volcano_NPP5N$highlight==TRUE),], aes(label=genename), size=2, nudge_x=c(rep(-8, 5), rep(11, 14)), nudge_y=14, force=3.6) +
+  themeset + theme(plot.title = element_text(hjust = 0.5)) + ggtitle("NPP5 vs. N")
+
+v_NPP5N
+
+volcano_SPP5SUB <- as.data.frame(res.SPP5SUB)
+volcano_SPP5SUB <- volcano_SPP5SUB %>% mutate(Geneid=row.names(volcano_SPP5SUB), .before = log2FoldChange) %>% left_join(anno, by=c("Geneid" = "ENSEMBL")) %>% relocate(SYMBOL, .after=Geneid) %>% mutate(genename = coalesce(SYMBOL, Geneid), .before=Geneid) %>% select(c(genename, log2FoldChange, padj)) %>% filter(padj<0.1 & abs(log2FoldChange)>1) %>% arrange(log2FoldChange)
+
+volcano_SPP5SUB_highlight <- str_c("Tnfsf4", "Tnfsf11", "Pdcd1", "Lag3", "Tox", "Tigit", "Il10", "Nfatc1", "Slamf6", "Satb1", "Ikzf2", "Lef1", "Id1", "Smad3", "Tcf7l2", "Pik31r", "Tle1", "Csf1", "Il7", "Havcr2",  sep="|")
+volcano_SPP5SUB <- volcano_SPP5SUB %>% mutate(highlight=str_detect(genename, volcano_SPP5SUB_highlight)) %>% arrange(highlight)
+
+v_SPP5SUB <- ggplot(volcano_SPP5SUB, aes(x=log2FoldChange, y=-log10(padj))) + 
+  geom_point(aes(color=highlight, size=highlight)) + 
+  geom_vline(xintercept=0, linetype="dotted") +
+  scale_color_manual(values=c("#F2ACC6", "purple2")) + 
+  scale_size_manual(values=c(1.2, 3)) +
+  ylim(0,150) +
+  geom_label_repel(data=volcano_SPP5SUB[which(volcano_SPP5SUB$highlight==TRUE),], aes(label=genename), size=2, nudge_x=c(rep(-30, 7), rep(18, 14)), nudge_y=42, force=6) +
+  themeset + theme(plot.title = element_text(hjust = 0.5)) + ggtitle("SPP5 vs. SUB")
+
+v_SPP5SUB
+
+
+
+volcano_SUBN <- as.data.frame(res.SUBN)
+volcano_SUBN <- volcano_SUBN %>% mutate(Geneid=row.names(volcano_SUBN), .before = log2FoldChange) %>% left_join(anno, by=c("Geneid" = "ENSEMBL")) %>% relocate(SYMBOL, .after=Geneid) %>% mutate(genename = coalesce(SYMBOL, Geneid), .before=Geneid) %>% select(c(genename, log2FoldChange, padj)) %>% filter(padj<0.1 & abs(log2FoldChange)>1) %>% arrange(log2FoldChange)
+
+volcano_SUBN_highlight <- str_c("Tnfsf11", "Csf1", "Sell", "Cd44", "Ccrl2", "Klrg1", "Ifng", "Il2", "Il21", "Ccr5", "Ccr2",  sep="|")
+volcano_SUBN <- volcano_SUBN %>% mutate(highlight=str_detect(genename, volcano_SUBN_highlight)) %>% arrange(highlight)
+
+v_SUBN <- ggplot(volcano_SUBN, aes(x=log2FoldChange, y=-log10(padj))) + 
+  geom_point(aes(color=highlight, size=highlight)) + 
+  geom_vline(xintercept=0, linetype="dotted") +
+  scale_color_manual(values=c("#FDCAFF", "purple2")) + 
+  scale_size_manual(values=c(1.2, 3)) +
+  ylim(0,50) +
+  geom_label_repel(data=volcano_SUBN[which(volcano_SUBN$highlight==TRUE),], aes(label=genename), size=2, nudge_x=c(rep(-6, 3), rep(6, 9)), nudge_y=12, force=6) +
+  themeset + theme(plot.title = element_text(hjust = 0.5)) + ggtitle("SUB vs. Naive")
+
+v_SUBN
+
+
+
+volcano_SPP7SPP5 <- as.data.frame(res.SPP7SPP5)
+volcano_SPP7SPP5 <- volcano_SPP7SPP5 %>% mutate(Geneid=row.names(volcano_SPP7SPP5), .before = log2FoldChange) %>% left_join(anno, by=c("Geneid" = "ENSEMBL")) %>% relocate(SYMBOL, .after=Geneid) %>% mutate(genename = coalesce(SYMBOL, Geneid), .before=Geneid) %>% select(c(genename, log2FoldChange, padj)) %>% filter(padj<0.1 & abs(log2FoldChange)>1) %>% arrange(log2FoldChange)
+
+volcano_SPP7SPP5_highlight <- str_c("Smad3", "Id2", "Tcf7l2", "Ccl5", "Ifngr1", "Tnfsf8", "Slamf6", "Icos", "Sox4", "Il7r", "Tcf7", "Cxcl13", "Il13ra1", sep="|")
+volcano_SPP7SPP5 <- volcano_SPP7SPP5 %>% mutate(highlight=str_detect(genename, volcano_SPP7SPP5_highlight)) %>% arrange(highlight)
+
+v_SPP7SPP5 <- ggplot(volcano_SPP7SPP5, aes(x=log2FoldChange, y=-log10(padj))) + 
+  geom_point(aes(color=highlight, size=highlight)) + 
+  geom_vline(xintercept=0, linetype="dotted") +
+  scale_color_manual(values=c("#DA6D97", "purple2")) + 
+  scale_size_manual(values=c(1.2, 3)) +
+  ylim(0,60) +
+  geom_label_repel(data=volcano_SPP7SPP5[which(volcano_SPP7SPP5$highlight==TRUE),], aes(label=genename), size=2, nudge_x=c(rep(-12, 7), rep(18, 6)), nudge_y=24, force=6) +
+  themeset + theme(plot.title = element_text(hjust = 0.5)) + ggtitle("SPP7 vs. SPP5")
+
+v_SPP7SPP5
+
+volcano_NPPBN <- as.data.frame(res.NPPBN)
+volcano_NPPBN <- volcano_NPPBN %>% mutate(Geneid=row.names(volcano_NPPBN), .before = log2FoldChange) %>% left_join(anno, by=c("Geneid" = "ENSEMBL")) %>% relocate(SYMBOL, .after=Geneid) %>% mutate(genename = coalesce(SYMBOL, Geneid), .before=Geneid) %>% select(c(genename, log2FoldChange, padj)) %>% filter(padj<0.1 & abs(log2FoldChange)>1) %>% arrange(log2FoldChange)
+
+volcano_NPPBN_highlight <- str_c("Tnfsf4", "Tnfsf13b", "Tnfsf11", "Il10", "Il21", "Il13ra1",  sep="|")
+volcano_NPPBN <- volcano_NPPBN %>% mutate(highlight=str_detect(genename, volcano_NPPBN_highlight)) %>% arrange(highlight)
+
+v_NPPBN <- ggplot(volcano_NPPBN, aes(x=log2FoldChange, y=-log10(padj))) + 
+  geom_point(aes(color=highlight, size=highlight)) + 
+  geom_vline(xintercept=0, linetype="dotted") +
+  scale_color_manual(values=c("#85B4F2", "purple2")) + 
+  scale_size_manual(values=c(1.2, 3)) +
+  ylim(0,40) +
+  geom_label_repel(data=volcano_NPPBN[which(volcano_NPPBN$highlight==TRUE),], aes(label=genename), size=3.6, nudge_x=6, nudge_y=12, force=6) +
+  themeset + theme(plot.title = element_text(hjust = 0.5)) + ggtitle("N+P C1 vs. Naive")
+
+v_NPPBN
+
+volcano_SPPBSUB <- as.data.frame(res.SPPBSUB)
+volcano_SPPBSUB <- volcano_SPPBSUB %>% mutate(Geneid=row.names(volcano_SPPBSUB), .before = log2FoldChange) %>% left_join(anno, by=c("Geneid" = "ENSEMBL")) %>% relocate(SYMBOL, .after=Geneid) %>% mutate(genename = coalesce(SYMBOL, Geneid), .before=Geneid) %>% select(c(genename, log2FoldChange, padj)) %>% filter(padj<0.1 & abs(log2FoldChange)>1) %>% arrange(log2FoldChange)
+
+volcano_SPPBSUB_highlight <- str_c("Il10", "Ccr6", "Csf1", "Wnt3", "Il21", "Cd81", "Cxcl13", "Tnfsf4", sep="|")
+volcano_SPPBSUB <- volcano_SPPBSUB %>% mutate(highlight=str_detect(genename, volcano_SPPBSUB_highlight)) %>% arrange(highlight)
+
+v_SPPBSUB <- ggplot(volcano_SPPBSUB, aes(x=log2FoldChange, y=-log10(padj))) + 
+  geom_point(aes(color=highlight, size=highlight)) + 
+  geom_vline(xintercept=0, linetype="dotted") +
+  scale_color_manual(values=c("#DA6D97", "purple2")) + 
+  scale_size_manual(values=c(1.2, 3)) +
+  ylim(0,120) +
+  geom_label_repel(data=volcano_SPPBSUB[which(volcano_SPPBSUB$highlight==TRUE),], aes(label=genename), size=3.6, nudge_x=2, nudge_y=12, force=6) +
+  themeset + theme(plot.title = element_text(hjust = 0.5)) + ggtitle("S+P C4 vs. Sens")
+
+v_SPPBSUB
+
+#Make detailed plot of shared genes (expression of SPP5 vs. NPP5)
+volcano_SPP5NPP5Shared_highlight <- str_c("Il10", "Tnfsf4", "Tox", "Foxp3", "Ccr6", "Pdcd1", "Il21", "Tigit", "Satb1", sep="|")
+volcano_SPP5NPP5Shared <- SPP5NPP5_Shared %>% mutate(highlight=str_detect(genename.x, volcano_SPP5NPP5Shared_highlight)) 
+
+volcano_SPP5NPP5Shared <- volcano_SPP5NPP5Shared %>% mutate(color="NONE")
+volcano_SPP5NPP5Shared$color <- ifelse(abs(volcano_SPP5NPP5Shared$`SPP5SUB_Change Metric`)>abs(volcano_SPP5NPP5Shared$`NPP5N_Change Metric`), "SPP5", "NPP5")
+volcano_SPP5NPP5Shared$color <- ifelse(volcano_SPP5NPP5Shared$highlight==TRUE, "highlight", volcano_SPP5NPP5Shared$color)
+volcano_SPP5NPP5Shared$color <- factor(volcano_SPP5NPP5Shared$color, levels=rev(c("highlight", "NPP5", "SPP5")))
+
+
+volcano_SPP5NPP5Shared <- volcano_SPP5NPP5Shared %>% arrange(color)
+
+
+
+dp_SPP5NPP5_Shared <- ggplot(data=volcano_SPP5NPP5Shared, 
+                             aes(x=(log10(abs(`NPP5N_Change Metric`)))*(`NPP5N_Change Metric`/abs(`NPP5N_Change Metric`)),
+                                 y=(log10(abs(`SPP5SUB_Change Metric`)))*(`SPP5SUB_Change Metric`/abs(`SPP5SUB_Change Metric`)))) + 
+  geom_point(aes(color=color, size=color)) + 
+  scale_colour_manual(values=rev(c("purple2", colors_fill[2], colors_fill[4]))) +
+  scale_size_manual(values=rev(c(2, 1, 1))) +
+  xlab("log10(N+P C5 vs. N Change Metric)") +
+  ylab("log10(S+P C5 vs. S Change Metric)") +
+  xlim(-4,4) +
+  ylim(-4,4) +
+  geom_abline() +
+  geom_hline(yintercept=0, linetype="dotted") +
+  geom_vline(xintercept=0, linetype="dotted") +
+  geom_label_repel(data=volcano_SPP5NPP5Shared[which(volcano_SPP5NPP5Shared$highlight==TRUE),], aes(label=genename.x), size=2, force=8.6)
+
+dp_SPP5NPP5_Shared + themeset
+
+#remake volcano plots for NPP5 UNIQUE and SPP5 UNIQUE
+volcano_NPP5NU_highlight <- str_c("Tnfsf11", "Tnfsf14", "Tlr4", "Hyal2", "Maged1", "Tnfrsf13c", "Ikzf3", "Runx2", "Slamf7", "Nfatc3", "Rpl37a", "Rps24", "Rplp1", "Rps20", "Rpl31", "Rpl12", sep="|")
+volcano_SPP5NPP5_NPP5U <- SPP5NPP5_NPP5U %>% mutate(highlight=str_detect(genename, volcano_NPP5NU_highlight)) %>% arrange(highlight)
+
+v_SPP5NPP5_NPP5U <- ggplot(volcano_SPP5NPP5_NPP5U, aes(x=log2FC, y=-log10(padj))) + 
+  geom_point(aes(color=highlight, size=highlight)) + 
+  geom_vline(xintercept=0, linetype="dotted") +
+  scale_color_manual(values=c("#85B4F2", "purple2")) + 
+  scale_size_manual(values=c(1.2, 3)) +
+  ylim(0,50) +
+  geom_label_repel(data=volcano_SPP5NPP5_NPP5U[which(volcano_SPP5NPP5_NPP5U$highlight==TRUE),], aes(label=genename), size=2, nudge_x=c(rep(11, 10), rep(-8, 6)), nudge_y=14, force=3.6) +
+  themeset + theme(plot.title = element_text(hjust = 0.5)) + ggtitle("NPP5 vs. N")
+
+v_SPP5NPP5_NPP5U
+
+volcano_SPP5SUBU_highlight <- str_c("Tnfsf4", "Ikzf2", "Lef1", "Id1", "Id3", "Smad3", "Tcf7l2", "Pik3r3", "Tle1", "Csf1", "Il7", "Il7r", "Havcr2",  sep="|")
+volcano_SPP5NPP5_SPP5U <- SPP5NPP5_SPP5U %>% mutate(highlight=str_detect(genename, volcano_SPP5SUBU_highlight)) %>% arrange(highlight)
+
+v_SPP5NPP5_SPP5U <- ggplot(volcano_SPP5NPP5_SPP5U, aes(x=log2FC, y=-log10(padj))) + 
+  geom_point(aes(color=highlight, size=highlight)) + 
+  geom_vline(xintercept=0, linetype="dotted") +
+  scale_color_manual(values=c("#F2ACC6", "purple2")) + 
+  scale_size_manual(values=c(1.2, 3)) +
+  ylim(0,50) +
+  xlim(-50,50) +
+  geom_label_repel(data=volcano_SPP5NPP5_SPP5U[which(volcano_SPP5NPP5_SPP5U$highlight==TRUE),], aes(label=genename), size=2, nudge_x=c(rep(11, 6), rep(-8, 6)), nudge_y=14, force=3.6) +
+  themeset + theme(plot.title = element_text(hjust = 0.5)) + ggtitle("SPP5 vs. S")
+
+v_SPP5NPP5_SPP5U
+
+
+```

@@ -1,0 +1,4 @@
+Network,Annotation
+Geneid,GO:0050728|negative regulation of inflammatory response|-5.4;GO:0001775|cell activation|-4.8;GO:0031348|negative regulation of defense response|-4.3
+Geneid_MCODE_ALL,R-MMU-418594|G alpha (i) signalling events|-7.7;R-MMU-500792|GPCR ligand binding|-6.9;R-MMU-388396|GPCR downstream signalling|-6.2
+Geneid_SUB1_MCODE_1,R-MMU-418594|G alpha (i) signalling events|-9.4;R-MMU-500792|GPCR ligand binding|-8.7;R-MMU-388396|GPCR downstream signalling|-7.9

@@ -1,0 +1,7 @@
+Network,Annotation
+Geneid,GO:0030155|regulation of cell adhesion|-12.8;GO:0050863|regulation of T cell activation|-10.4;GO:0045596|negative regulation of cell differentiation|-10.3
+Geneid_MCODE_ALL,R-MMU-8957275|Post-translational protein phosphorylation|-11.4;R-MMU-381426|Regulation of Insulin-like Growth Factor (IGF) transport and uptake by Insulin-like Growth Factor Binding Proteins (IGFBPs)|-11.2;WP2292|Chemokine signaling pathway|-9.8
+Geneid_SUB1_MCODE_1,R-MMU-8957275|Post-translational protein phosphorylation|-14.7;R-MMU-381426|Regulation of Insulin-like Growth Factor (IGF) transport and uptake by Insulin-like Growth Factor Binding Proteins (IGFBPs)|-14.5;R-MMU-418594|G alpha (i) signalling events|-9.7
+Geneid_SUB1_MCODE_3,GO:0042060|wound healing|-4.7;GO:0009611|response to wounding|-4.2;GO:0008285|negative regulation of cell population proliferation|-3.7
+Geneid_SUB2_MCODE_4,R-MMU-163125|Post-translational modification: synthesis of GPI-anchored proteins|-9.4
+Geneid_SUB1_MCODE_5,R-MMU-416476|G alpha (q) signalling events|-6.1;R-MMU-388396|GPCR downstream signalling|-4.7;R-MMU-372790|Signaling by GPCR|-4.7

@@ -1,0 +1,27 @@
+{
+    "id": "45B3F255",
+    "path": "/Volumes/Extreme SSD/Chong Lab Data/Sequencing Data/RNA/CD8 RNASeq/110521 Batch1 DESeq FilterTest/CD8_DeSEQ2_batch1_filterTest.Rmd",
+    "project_path": "CD8_DeSEQ2_batch1_filterTest.Rmd",
+    "type": "r_markdown",
+    "hash": "3987431233",
+    "contents": "",
+    "dirty": false,
+    "created": 1688334951837.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "chunk_output_type": "console",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "269,0",
+        "scrollLine": "256"
+    },
+    "folds": "141|62|171|0|\n172|23|180|0|\n181|32|209|0|\n210|66|227|0|\n",
+    "lastKnownWriteTime": 1687482581,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1688576009737,
+    "read_only": false,
+    "read_only_alternatives": []
+}

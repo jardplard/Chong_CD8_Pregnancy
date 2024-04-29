@@ -1,0 +1,7 @@
+Cluster,Score,Type,Gene,Symbol,Network
+1,1.0,Clustered,215114,Hip1,Geneid_SUB1
+1,1.0,Seed,229521,Syt11,Geneid_SUB1
+1,1.0,Clustered,13043,Cttn,Geneid_SUB1
+2,1.0,Seed,320910,Itgb8,Geneid_SUB1
+2,1.0,Clustered,20750,Spp1,Geneid_SUB1
+2,1.0,Clustered,16410,Itgav,Geneid_SUB1

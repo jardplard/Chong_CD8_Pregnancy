@@ -1,0 +1,4 @@
+Network,Annotation
+Geneid,GO:0016339|calcium-dependent cell-cell adhesion via plasma membrane cell adhesion molecules|-5.9;R-MMU-418990|Adherens junctions interactions|-4.3;R-MMU-421270|Cell-cell junction organization|-4.0
+Geneid_MCODE_ALL,GO:0007264|small GTPase mediated signal transduction|-5.6;GO:0006909|phagocytosis|-3.9
+Geneid_SUB1_MCODE_1,GO:0007264|small GTPase mediated signal transduction|-5.6;GO:0006909|phagocytosis|-3.9

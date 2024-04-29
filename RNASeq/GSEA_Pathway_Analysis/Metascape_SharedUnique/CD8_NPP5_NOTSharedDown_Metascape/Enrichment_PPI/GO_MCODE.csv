@@ -1,0 +1,108 @@
+Name,Category,CategoryID,GO,Description,PARENT_GO,LogP,Enrichment,Z-score,#TotalGeneInLibrary,#GeneInGO,#GeneInHitList,#GeneInGOAndHitList,%InGO,STDV %InGO,GeneID,Hits,Log(q-value)
+Geneid,Reactome Gene Sets,6,R-MMU-1799339,SRP-dependent cotranslational protein targeting to membrane,,-7.4,31,13,20580,88,45,6,13,5.1,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-4.8
+Geneid,Reactome Gene Sets,6,R-MMU-975956,Nonsense Mediated Decay (NMD) independent of the Exon Junction Complex (EJC),,-7.4,30,13,20580,90,45,6,13,5.1,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-4.8
+Geneid,WikiPathways,27,WP163,Cytoplasmic ribosomal proteins,,-7.2,29,13,20580,95,45,6,13,5.1,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-4.6
+Geneid,Reactome Gene Sets,6,R-MMU-72689,Formation of a pool of free 40S subunits,,-7.2,28,13,20580,97,45,6,13,5.1,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-4.6
+Geneid,Reactome Gene Sets,6,R-MMU-156827,L13a-mediated translational silencing of Ceruloplasmin expression,,-6.9,26,12,20580,107,45,6,13,5.1,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-4.3
+Geneid,Reactome Gene Sets,6,R-MMU-72706,GTP hydrolysis and joining of the 60S ribosomal subunit,,-6.9,25,12,20580,108,45,6,13,5.1,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-4.3
+Geneid,Reactome Gene Sets,6,R-MMU-975957,Nonsense Mediated Decay (NMD) enhanced by the Exon Junction Complex (EJC),,-6.9,25,12,20580,110,45,6,13,5.1,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-4.3
+Geneid,Reactome Gene Sets,6,R-MMU-927802,Nonsense-Mediated Decay (NMD),,-6.9,25,12,20580,110,45,6,13,5.1,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-4.3
+Geneid,Reactome Gene Sets,6,R-MMU-72613,Eukaryotic Translation Initiation,,-6.7,24,12,20580,115,45,6,13,5.1,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-4.2
+Geneid,Reactome Gene Sets,6,R-MMU-72737,Cap-dependent Translation Initiation,,-6.7,24,12,20580,115,45,6,13,5.1,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-4.2
+Geneid,KEGG Pathway,24,mmu05171,Coronavirus disease - COVID-19,,-6,13,8.9,20580,247,45,7,16,5.4,12273|19981|20088|56040|67427|114641|269261,C5ar1|Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-3.5
+Geneid,Reactome Gene Sets,6,R-MMU-72312,rRNA processing,,-5.7,16,9.2,20580,171,45,6,13,5.1,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-3.2
+Geneid,Reactome Gene Sets,6,R-MMU-6791226,Major pathway of rRNA processing in the nucleolus and cytosol,,-5.7,16,9.2,20580,171,45,6,13,5.1,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-3.2
+Geneid,Reactome Gene Sets,6,R-MMU-8868773,rRNA processing in the nucleus and cytosol,,-5.7,16,9.2,20580,171,45,6,13,5.1,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-3.2
+Geneid,KEGG Pathway,24,mmu03010,Ribosome,,-5.6,15,9,20580,179,45,6,13,5.1,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-3.1
+Geneid,Reactome Gene Sets,6,R-MMU-72766,Translation,,-5.1,12,8,20580,220,45,6,13,5.1,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-2.6
+Geneid,GO Biological Processes,19,GO:0003341,cilium movement,19_GO:0009987 cellular process,-4.3,12,7.2,20580,188,45,5,11,4.7,71233|71870|78801|110082|211535,Enkur|Cfap45|Ak7|Dnah5|Odad1,-1.8
+Geneid,GO Biological Processes,19,GO:0003351,epithelial cilium movement involved in extracellular fluid movement,19_GO:0051179 localization,-3.9,32,9.5,20580,43,45,3,6.7,3.7,71870|78801|110082,Cfap45|Ak7|Dnah5,-1.5
+Geneid,GO Biological Processes,19,GO:0006412,translation,19_GO:0008152 metabolic process,-3.9,7.7,6,20580,355,45,6,13,5.1,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-1.5
+Geneid,GO Biological Processes,19,GO:0006858,extracellular transport,19_GO:0051179 localization,-3.9,30,9.2,20580,46,45,3,6.7,3.7,71870|78801|110082,Cfap45|Ak7|Dnah5,-1.4
+Geneid,GO Biological Processes,19,GO:0043043,peptide biosynthetic process,19_GO:0008152 metabolic process,-3.8,7.3,5.8,20580,376,45,6,13,5.1,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-1.3
+Geneid,GO Biological Processes,19,GO:0007018,microtubule-based movement,19_GO:0009987 cellular process,-3.7,7.1,5.7,20580,388,45,6,13,5.1,71233|71870|73804|78801|110082|211535,Enkur|Cfap45|Kif2c|Ak7|Dnah5|Odad1,-1.3
+Geneid,GO Biological Processes,19,GO:0008360,regulation of cell shape,19_GO:0032502 developmental process,-3.4,12,6.3,20580,157,45,4,8.9,4.2,14163|20739|73296|320609,Fgd1|Spta1|Rhobtb3|Strip2,-0.98
+Geneid,GO Biological Processes,19,GO:0030593,neutrophil chemotaxis,19_GO:0040011 locomotion,-3.2,19,7.1,20580,74,45,3,6.7,3.7,12273|20305|20308,C5ar1|Ccl6|Ccl9,-0.82
+Geneid,GO Biological Processes,19,GO:0043604,amide biosynthetic process,19_GO:0008152 metabolic process,-3.2,5.7,4.9,20580,478,45,6,13,5.1,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-0.82
+Geneid,GO Biological Processes,19,GO:0071621,granulocyte chemotaxis,19_GO:0040011 locomotion,-3.1,17,6.7,20580,81,45,3,6.7,3.7,12273|20305|20308,C5ar1|Ccl6|Ccl9,-0.71
+Geneid,GO Biological Processes,19,GO:0022604,regulation of cell morphogenesis,19_GO:0032502 developmental process,-3.1,6.8,5,20580,338,45,5,11,4.7,14163|20739|73296|320609|330662,Fgd1|Spta1|Rhobtb3|Strip2|Dock1,-0.68
+Geneid,GO Biological Processes,19,GO:0006518,peptide metabolic process,19_GO:0008152 metabolic process,-3.1,5.3,4.6,20580,519,45,6,13,5.1,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-0.66
+Geneid,GO Biological Processes,19,GO:1990266,neutrophil migration,19_GO:0040011 locomotion,-3,16,6.5,20580,87,45,3,6.7,3.7,12273|20305|20308,C5ar1|Ccl6|Ccl9,-0.65
+Geneid,GO Biological Processes,19,GO:0035082,axoneme assembly,19_GO:0009987 cellular process,-3,15,6.3,20580,91,45,3,6.7,3.7,78801|110082|211535,Ak7|Dnah5|Odad1,-0.6
+Geneid,KEGG Pathway,24,mmu04666,Fc gamma R-mediated phagocytosis,,-3,15,6.3,20580,92,45,3,6.7,3.7,14130|242894|330662,Fcgr2b|Actr3b|Dock1,-0.59
+Geneid,Reactome Gene Sets,6,R-MMU-8953854,Metabolism of RNA,,-2.9,5,4.5,20580,546,45,6,13,5.1,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-0.56
+Geneid,GO Biological Processes,19,GO:0097530,granulocyte migration,19_GO:0040011 locomotion,-2.9,14,6,20580,98,45,3,6.7,3.7,12273|20305|20308,C5ar1|Ccl6|Ccl9,-0.52
+Geneid,KEGG Pathway,24,mmu04810,Regulation of actin cytoskeleton,,-2.9,8.3,5.1,20580,220,45,4,8.9,4.2,14163|242894|330662|404710,Fgd1|Actr3b|Dock1|Iqgap3,-0.51
+Geneid,GO Biological Processes,19,GO:0007017,microtubule-based process,19_GO:0009987 cellular process,-2.8,4,4.1,20580,796,45,7,16,5.4,66442|71233|71870|73804|78801|110082|211535,Spc25|Enkur|Cfap45|Kif2c|Ak7|Dnah5|Odad1,-0.44
+Geneid,GO Biological Processes,19,GO:0120031,plasma membrane bounded cell projection assembly,19_GO:0009987 cellular process,-2.7,5.6,4.4,20580,406,45,5,11,4.7,14163|71769|78801|110082|211535,Fgd1|Bbs10|Ak7|Dnah5|Odad1,-0.38
+Geneid,GO Biological Processes,19,GO:0030031,cell projection assembly,19_GO:0009987 cellular process,-2.7,5.4,4.3,20580,422,45,5,11,4.7,14163|71769|78801|110082|211535,Fgd1|Bbs10|Ak7|Dnah5|Odad1,-0.31
+Geneid,GO Biological Processes,19,GO:0001578,microtubule bundle formation,19_GO:0009987 cellular process,-2.6,11,5.3,20580,124,45,3,6.7,3.7,78801|110082|211535,Ak7|Dnah5|Odad1,-0.26
+Geneid,GO Biological Processes,19,GO:0097529,myeloid leukocyte migration,19_GO:0040011 locomotion,-2.6,11,5.2,20580,127,45,3,6.7,3.7,12273|20305|20308,C5ar1|Ccl6|Ccl9,-0.23
+Geneid,GO Biological Processes,19,GO:0007368,determination of left/right symmetry,19_GO:0032502 developmental process,-2.6,11,5.2,20580,128,45,3,6.7,3.7,71233|71870|110082,Enkur|Cfap45|Dnah5,-0.23
+Geneid,Reactome Gene Sets,6,R-MMU-418594,G alpha (i) signalling events,,-2.6,6.8,4.5,20580,269,45,4,8.9,4.2,12273|20305|20308|71729,C5ar1|Ccl6|Ccl9|Rgs12,-0.23
+Geneid,GO Biological Processes,19,GO:0030317,flagellated sperm motility,19_GO:0040011 locomotion,-2.6,11,5.1,20580,129,45,3,6.7,3.7,71233|71870|110082,Enkur|Cfap45|Dnah5,-0.23
+Geneid,GO Biological Processes,19,GO:0097722,sperm motility,19_GO:0040011 locomotion,-2.5,10,5,20580,133,45,3,6.7,3.7,71233|71870|110082,Enkur|Cfap45|Dnah5,-0.19
+Geneid,GO Biological Processes,19,GO:0009855,determination of bilateral symmetry,19_GO:0032502 developmental process,-2.5,10,5,20580,134,45,3,6.7,3.7,71233|71870|110082,Enkur|Cfap45|Dnah5,-0.19
+Geneid,Reactome Gene Sets,6,R-MMU-9716542,"Signaling by Rho GTPases, Miro GTPases and RHOBTB3",,-2.5,4.1,3.8,20580,667,45,6,13,5.1,14163|66442|73296|73804|330662|404710,Fgd1|Spc25|Rhobtb3|Kif2c|Dock1|Iqgap3,-0.19
+Geneid,GO Biological Processes,19,GO:0009799,specification of symmetry,19_GO:0032502 developmental process,-2.5,10,5,20580,135,45,3,6.7,3.7,71233|71870|110082,Enkur|Cfap45|Dnah5,-0.19
+Geneid,GO Biological Processes,19,GO:0060294,cilium movement involved in cell motility,19_GO:0040011 locomotion,-2.5,10,5,20580,137,45,3,6.7,3.7,71233|71870|110082,Enkur|Cfap45|Dnah5,-0.18
+Geneid,GO Biological Processes,19,GO:0030595,leukocyte chemotaxis,19_GO:0040011 locomotion,-2.5,10,5,20580,137,45,3,6.7,3.7,12273|20305|20308,C5ar1|Ccl6|Ccl9,-0.18
+Geneid,GO Biological Processes,19,GO:0001539,cilium or flagellum-dependent cell motility,19_GO:0040011 locomotion,-2.4,9.4,4.8,20580,146,45,3,6.7,3.7,71233|71870|110082,Enkur|Cfap45|Dnah5,-0.12
+Geneid,GO Biological Processes,19,GO:0060285,cilium-dependent cell motility,19_GO:0040011 locomotion,-2.4,9.4,4.8,20580,146,45,3,6.7,3.7,71233|71870|110082,Enkur|Cfap45|Dnah5,-0.12
+Geneid,GO Biological Processes,19,GO:0006954,inflammatory response,19_GO:0050896 response to stimulus,-2.4,4.7,3.9,20580,485,45,5,11,4.7,12273|20305|20308|58992|78801,C5ar1|Ccl6|Ccl9|F12|Ak7,-0.12
+Geneid,GO Biological Processes,19,GO:0060271,cilium assembly,19_GO:0009987 cellular process,-2.3,5.9,4.1,20580,309,45,4,8.9,4.2,71769|78801|110082|211535,Bbs10|Ak7|Dnah5|Odad1,-0.063
+Geneid,GO Biological Processes,19,GO:0060322,head development,19_GO:0032502 developmental process,-2.3,3.8,3.6,20580,724,45,6,13,5.1,11864|12273|14130|17387|78801|110082,Arnt2|C5ar1|Fcgr2b|Mmp14|Ak7|Dnah5,-0.056
+Geneid,GO Biological Processes,19,GO:0000226,microtubule cytoskeleton organization,19_GO:0009987 cellular process,-2.2,4.3,3.6,20580,526,45,5,11,4.7,66442|73804|78801|110082|211535,Spc25|Kif2c|Ak7|Dnah5|Odad1,0
+Geneid,GO Biological Processes,19,GO:0043603,cellular amide metabolic process,19_GO:0008152 metabolic process,-2.2,3.6,3.4,20580,758,45,6,13,5.1,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,0
+Geneid,Reactome Gene Sets,6,R-MMU-388396,GPCR downstream signalling,,-2.2,4.2,3.5,20580,549,45,5,11,4.7,12273|14163|20305|20308|71729,C5ar1|Fgd1|Ccl6|Ccl9|Rgs12,0
+Geneid,GO Biological Processes,19,GO:0043087,regulation of GTPase activity,19_GO:0065007 biological regulation,-2.2,5.3,3.8,20580,345,45,4,8.9,4.2,14163|20305|20308|110351,Fgd1|Ccl6|Ccl9|Rap1gap,0
+Geneid,GO Biological Processes,19,GO:0044782,cilium organization,19_GO:0009987 cellular process,-2.2,5.3,3.8,20580,346,45,4,8.9,4.2,71769|78801|110082|211535,Bbs10|Ak7|Dnah5|Odad1,0
+Geneid,Reactome Gene Sets,6,R-MMU-375276,Peptide ligand-binding receptors,,-2.1,7.5,4.1,20580,184,45,3,6.7,3.7,12273|20305|20308,C5ar1|Ccl6|Ccl9,0
+Geneid,Reactome Gene Sets,6,R-MMU-372790,Signaling by GPCR,,-2.1,4,3.4,20580,578,45,5,11,4.7,12273|14163|20305|20308|71729,C5ar1|Fgd1|Ccl6|Ccl9|Rgs12,0
+Geneid,GO Biological Processes,19,GO:0099111,microtubule-based transport,19_GO:0051179 localization,-2,6.8,3.9,20580,201,45,3,6.7,3.7,71870|78801|110082,Cfap45|Ak7|Dnah5,0
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-1799339,SRP-dependent cotranslational protein targeting to membrane,,-12,1.6e+02,30,20580,88,9,6,67,16,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-9.3
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-975956,Nonsense Mediated Decay (NMD) independent of the Exon Junction Complex (EJC),,-12,1.5e+02,30,20580,90,9,6,67,16,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-9.2
+Geneid_MCODE_ALL,WikiPathways,27,WP163,Cytoplasmic ribosomal proteins,,-12,1.4e+02,29,20580,95,9,6,67,16,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-9.1
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-72689,Formation of a pool of free 40S subunits,,-12,1.4e+02,29,20580,97,9,6,67,16,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-9.1
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-156827,L13a-mediated translational silencing of Ceruloplasmin expression,,-12,1.3e+02,28,20580,107,9,6,67,16,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-8.9
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-72706,GTP hydrolysis and joining of the 60S ribosomal subunit,,-12,1.3e+02,27,20580,108,9,6,67,16,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-8.9
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-975957,Nonsense Mediated Decay (NMD) enhanced by the Exon Junction Complex (EJC),,-12,1.2e+02,27,20580,110,9,6,67,16,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-8.9
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-927802,Nonsense-Mediated Decay (NMD),,-12,1.2e+02,27,20580,110,9,6,67,16,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-8.9
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-72613,Eukaryotic Translation Initiation,,-12,1.2e+02,27,20580,115,9,6,67,16,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-8.8
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-72737,Cap-dependent Translation Initiation,,-12,1.2e+02,27,20580,115,9,6,67,16,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-8.8
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-6791226,Major pathway of rRNA processing in the nucleolus and cytosol,,-11,80,22,20580,171,9,6,67,16,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-7.8
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-72312,rRNA processing,,-11,80,22,20580,171,9,6,67,16,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-7.8
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-8868773,rRNA processing in the nucleus and cytosol,,-11,80,22,20580,171,9,6,67,16,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-7.8
+Geneid_MCODE_ALL,KEGG Pathway,24,mmu03010,Ribosome,,-10,77,21,20580,179,9,6,67,16,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-7.7
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-72766,Translation,,-9.9,62,19,20580,220,9,6,67,16,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-7.2
+Geneid_MCODE_ALL,KEGG Pathway,24,mmu05171,Coronavirus disease - COVID-19,,-9.6,56,18,20580,247,9,6,67,16,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-6.9
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0006412,translation,19_GO:0008152 metabolic process,-8.7,39,15,20580,355,9,6,67,16,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-6
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0043043,peptide biosynthetic process,19_GO:0008152 metabolic process,-8.5,36,15,20580,376,9,6,67,16,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-5.9
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0043604,amide biosynthetic process,19_GO:0008152 metabolic process,-7.9,29,13,20580,478,9,6,67,16,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-5.3
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0006518,peptide metabolic process,19_GO:0008152 metabolic process,-7.7,26,12,20580,519,9,6,67,16,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-5.1
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-8953854,Metabolism of RNA,,-7.6,25,12,20580,546,9,6,67,16,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-4.9
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0043603,cellular amide metabolic process,19_GO:0008152 metabolic process,-6.7,18,10,20580,758,9,6,67,16,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-4.2
+Geneid_MCODE_ALL,WikiPathways,27,WP310,mRNA processing,,-3.1,15,6.4,20580,453,9,3,33,16,20088|67427|269261,Rps24|Rps20|Rpl12,-0.68
+Geneid_SUB2_MCODE_1,Reactome Gene Sets,6,R-MMU-1799339,SRP-dependent cotranslational protein targeting to membrane,,-14,2.3e+02,37,20580,88,6,6,1e+02,15,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-10
+Geneid_SUB2_MCODE_1,Reactome Gene Sets,6,R-MMU-975956,Nonsense Mediated Decay (NMD) independent of the Exon Junction Complex (EJC),,-14,2.3e+02,37,20580,90,6,6,1e+02,15,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-10
+Geneid_SUB2_MCODE_1,WikiPathways,27,WP163,Cytoplasmic ribosomal proteins,,-14,2.2e+02,36,20580,95,6,6,1e+02,15,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-10
+Geneid_SUB2_MCODE_1,Reactome Gene Sets,6,R-MMU-72689,Formation of a pool of free 40S subunits,,-14,2.1e+02,36,20580,97,6,6,1e+02,15,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-10
+Geneid_SUB2_MCODE_1,Reactome Gene Sets,6,R-MMU-156827,L13a-mediated translational silencing of Ceruloplasmin expression,,-14,1.9e+02,34,20580,107,6,6,1e+02,15,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-10
+Geneid_SUB2_MCODE_1,Reactome Gene Sets,6,R-MMU-72706,GTP hydrolysis and joining of the 60S ribosomal subunit,,-14,1.9e+02,34,20580,108,6,6,1e+02,15,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-10
+Geneid_SUB2_MCODE_1,Reactome Gene Sets,6,R-MMU-975957,Nonsense Mediated Decay (NMD) enhanced by the Exon Junction Complex (EJC),,-14,1.9e+02,33,20580,110,6,6,1e+02,15,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-10
+Geneid_SUB2_MCODE_1,Reactome Gene Sets,6,R-MMU-927802,Nonsense-Mediated Decay (NMD),,-14,1.9e+02,33,20580,110,6,6,1e+02,15,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-10
+Geneid_SUB2_MCODE_1,Reactome Gene Sets,6,R-MMU-72613,Eukaryotic Translation Initiation,,-14,1.8e+02,33,20580,115,6,6,1e+02,15,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-10
+Geneid_SUB2_MCODE_1,Reactome Gene Sets,6,R-MMU-72737,Cap-dependent Translation Initiation,,-14,1.8e+02,33,20580,115,6,6,1e+02,15,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-10
+Geneid_SUB2_MCODE_1,Reactome Gene Sets,6,R-MMU-6791226,Major pathway of rRNA processing in the nucleolus and cytosol,,-13,1.2e+02,27,20580,171,6,6,1e+02,15,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-9.4
+Geneid_SUB2_MCODE_1,Reactome Gene Sets,6,R-MMU-72312,rRNA processing,,-13,1.2e+02,27,20580,171,6,6,1e+02,15,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-9.4
+Geneid_SUB2_MCODE_1,Reactome Gene Sets,6,R-MMU-8868773,rRNA processing in the nucleus and cytosol,,-13,1.2e+02,27,20580,171,6,6,1e+02,15,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-9.4
+Geneid_SUB2_MCODE_1,KEGG Pathway,24,mmu03010,Ribosome,,-12,1.1e+02,26,20580,179,6,6,1e+02,15,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-9.3
+Geneid_SUB2_MCODE_1,Reactome Gene Sets,6,R-MMU-72766,Translation,,-12,94,24,20580,220,6,6,1e+02,15,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-8.9
+Geneid_SUB2_MCODE_1,KEGG Pathway,24,mmu05171,Coronavirus disease - COVID-19,,-12,83,22,20580,247,6,6,1e+02,15,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-8.7
+Geneid_SUB2_MCODE_1,GO Biological Processes,19,GO:0006412,translation,19_GO:0008152 metabolic process,-11,58,18,20580,355,6,6,1e+02,15,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-7.8
+Geneid_SUB2_MCODE_1,GO Biological Processes,19,GO:0043043,peptide biosynthetic process,19_GO:0008152 metabolic process,-10,55,18,20580,376,6,6,1e+02,15,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-7.7
+Geneid_SUB2_MCODE_1,GO Biological Processes,19,GO:0043604,amide biosynthetic process,19_GO:0008152 metabolic process,-9.8,43,16,20580,478,6,6,1e+02,15,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-7.1
+Geneid_SUB2_MCODE_1,GO Biological Processes,19,GO:0006518,peptide metabolic process,19_GO:0008152 metabolic process,-9.6,40,15,20580,519,6,6,1e+02,15,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-6.9
+Geneid_SUB2_MCODE_1,Reactome Gene Sets,6,R-MMU-8953854,Metabolism of RNA,,-9.5,38,15,20580,546,6,6,1e+02,15,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-6.8
+Geneid_SUB2_MCODE_1,GO Biological Processes,19,GO:0043603,cellular amide metabolic process,19_GO:0008152 metabolic process,-8.6,27,13,20580,758,6,6,1e+02,15,19981|20088|56040|67427|114641|269261,Rpl37a|Rps24|Rplp1|Rps20|Rpl31|Rpl12,-5.9
+Geneid_SUB2_MCODE_1,WikiPathways,27,WP310,mRNA processing,,-3.7,23,8,20580,453,6,3,50,20,20088|67427|269261,Rps24|Rps20|Rpl12,-1.3

@@ -1,0 +1,27 @@
+Name,Category,CategoryID,GO,Description,PARENT_GO,LogP,Enrichment,Z-score,#TotalGeneInLibrary,#GeneInGO,#GeneInHitList,#GeneInGOAndHitList,%InGO,STDV %InGO,GeneID,Hits,Log(q-value)
+Geneid,Reactome Gene Sets,6,R-MMU-416482,G alpha (12/13) signalling events,,-4.7,56,13,20580,69,16,3,19,9.8,13605|14696|277360,Ect2|Gnb4|Prex1,-0.59
+Geneid,GO Biological Processes,19,GO:0051301,cell division,19_GO:0009987 cellular process,-4.6,13,7.5,20580,496,16,5,31,12,13605|14211|21973|58220|66197,Ect2|Smc2|Top2a|Pard6b|Cks2,-0.59
+Geneid,GO Biological Processes,19,GO:0051321,meiotic cell cycle,19_GO:0022414 reproductive process,-4.2,17,7.9,20580,297,16,4,25,11,14211|17345|21973|66197,Smc2|Mki67|Top2a|Cks2,-0.38
+Geneid,GO Biological Processes,19,GO:0022402,cell cycle process,19_GO:0009987 cellular process,-3.7,8.4,5.8,20580,769,16,5,31,12,13605|14211|21973|58220|66197,Ect2|Smc2|Top2a|Pard6b|Cks2,-0.024
+Geneid,GO Biological Processes,19,GO:0140013,meiotic nuclear division,19_GO:0022414 reproductive process,-3.6,23,8,20580,168,16,3,19,9.8,14211|21973|66197,Smc2|Top2a|Cks2,-0.024
+Geneid,WikiPathways,27,WP2292,Chemokine signaling pathway,,-3.5,21,7.7,20580,181,16,3,19,9.8,14696|20290|277360,Gnb4|Ccl1|Prex1,-0.024
+Geneid,GO Biological Processes,19,GO:1903046,meiotic cell cycle process,19_GO:0022414 reproductive process,-3.4,21,7.6,20580,185,16,3,19,9.8,14211|21973|66197,Smc2|Top2a|Cks2,-0.024
+Geneid,KEGG Pathway,24,mmu04062,Chemokine signaling pathway,,-3.4,20,7.4,20580,192,16,3,19,9.8,14696|20290|277360,Gnb4|Ccl1|Prex1,-0.024
+Geneid,GO Biological Processes,19,GO:0000278,mitotic cell cycle,19_GO:0009987 cellular process,-3.2,9.4,5.6,20580,546,16,4,25,11,13605|14211|22146|66197,Ect2|Smc2|Tuba1c|Cks2,0
+Geneid,Reactome Gene Sets,6,R-MMU-388396,GPCR downstream signalling,,-3.2,9.4,5.5,20580,549,16,4,25,11,13605|14696|20290|277360,Ect2|Gnb4|Ccl1|Prex1,0
+Geneid,Reactome Gene Sets,6,R-MMU-372790,Signaling by GPCR,,-3.1,8.9,5.4,20580,578,16,4,25,11,13605|14696|20290|277360,Ect2|Gnb4|Ccl1|Prex1,0
+Geneid,GO Biological Processes,19,GO:0043547,positive regulation of GTPase activity,19_GO:0065007 biological regulation,-3,15,6.3,20580,256,16,3,19,9.8,13605|20290|277360,Ect2|Ccl1|Prex1,0
+Geneid,Reactome Gene Sets,6,R-MMU-194315,Signaling by Rho GTPases,,-2.9,7.9,5,20580,652,16,4,25,11,13605|22146|58220|277360,Ect2|Tuba1c|Pard6b|Prex1,0
+Geneid,Reactome Gene Sets,6,R-MMU-9716542,"Signaling by Rho GTPases, Miro GTPases and RHOBTB3",,-2.8,7.7,4.9,20580,667,16,4,25,11,13605|22146|58220|277360,Ect2|Tuba1c|Pard6b|Prex1,0
+Geneid,GO Biological Processes,19,GO:0000280,nuclear division,19_GO:0009987 cellular process,-2.8,13,5.8,20580,301,16,3,19,9.8,14211|21973|66197,Smc2|Top2a|Cks2,0
+Geneid,GO Biological Processes,19,GO:0048285,organelle fission,19_GO:0009987 cellular process,-2.7,12,5.5,20580,326,16,3,19,9.8,14211|21973|66197,Smc2|Top2a|Cks2,0
+Geneid,GO Biological Processes,19,GO:0043087,regulation of GTPase activity,19_GO:0065007 biological regulation,-2.7,11,5.3,20580,345,16,3,19,9.8,13605|20290|277360,Ect2|Ccl1|Prex1,0
+Geneid,GO Biological Processes,19,GO:0055080,cation homeostasis,19_GO:0065007 biological regulation,-2.6,6.8,4.5,20580,755,16,4,25,11,11927|11979|16517|20290,Atox1|Atp7b|Kcnj16|Ccl1,0
+Geneid,GO Biological Processes,19,GO:0098771,inorganic ion homeostasis,19_GO:0065007 biological regulation,-2.6,6.7,4.5,20580,764,16,4,25,11,11927|11979|16517|20290,Atox1|Atp7b|Kcnj16|Ccl1,0
+Geneid,Reactome Gene Sets,6,R-MMU-9012999,RHO GTPase cycle,,-2.4,9.3,4.8,20580,413,16,3,19,9.8,13605|58220|277360,Ect2|Pard6b|Prex1,0
+Geneid,GO Biological Processes,19,GO:0098662,inorganic cation transmembrane transport,19_GO:0051179 localization,-2.3,8.5,4.5,20580,456,16,3,19,9.8,11927|11979|16517,Atox1|Atp7b|Kcnj16,0
+Geneid,GO Biological Processes,19,GO:1903047,mitotic cell cycle process,19_GO:0009987 cellular process,-2.3,8.1,4.4,20580,477,16,3,19,9.8,13605|14211|66197,Ect2|Smc2|Cks2,0
+Geneid,GO Biological Processes,19,GO:0098655,cation transmembrane transport,19_GO:0051179 localization,-2.2,7.8,4.3,20580,494,16,3,19,9.8,11927|11979|16517,Atox1|Atp7b|Kcnj16,0
+Geneid,GO Biological Processes,19,GO:0098660,inorganic ion transmembrane transport,19_GO:0051179 localization,-2.2,7.6,4.2,20580,510,16,3,19,9.8,11927|11979|16517,Atox1|Atp7b|Kcnj16,0
+Geneid,GO Biological Processes,19,GO:0051345,positive regulation of hydrolase activity,19_GO:0065007 biological regulation,-2.1,7.1,4,20580,540,16,3,19,9.8,13605|20290|277360,Ect2|Ccl1|Prex1,0
+Geneid,GO Biological Processes,19,GO:0030001,metal ion transport,19_GO:0051179 localization,-2,6.5,3.8,20580,591,16,3,19,9.8,11927|11979|16517,Atox1|Atp7b|Kcnj16,0

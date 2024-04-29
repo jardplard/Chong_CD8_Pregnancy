@@ -1,0 +1,5 @@
+Network,Annotation
+Geneid,GO:0031032|actomyosin structure organization|-7.7;GO:0030036|actin cytoskeleton organization|-6.5;WP512|Id signaling pathway|-5.6
+Geneid_MCODE_ALL,ko04512|ECM-receptor interaction|-5.5;mmu04512|ECM-receptor interaction|-5.4;ko05146|Amoebiasis|-5.1
+Geneid_SUB1_MCODE_1,R-MMU-416476|G alpha (q) signalling events|-5.5;GO:0007204|positive regulation of cytosolic calcium ion concentration|-4.7;GO:0051480|regulation of cytosolic calcium ion concentration|-4.6
+Geneid_SUB1_MCODE_2,ko04512|ECM-receptor interaction|-6.6;mmu04512|ECM-receptor interaction|-6.6;WP85|Focal adhesion|-5.5

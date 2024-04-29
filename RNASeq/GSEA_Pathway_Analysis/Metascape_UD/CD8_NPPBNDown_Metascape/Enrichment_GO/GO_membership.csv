@@ -1,0 +1,34 @@
+_MEMBER_Geneid,_LogP_Geneid,GO,Description,_PATTERN_,_RANK_,GiniIndex
+1,-2.2,GO:2001251,negative regulation of chromosome organization,M1,1,0
+1,-2.5,GO:0042058,regulation of epidermal growth factor receptor signaling pathway,M1,1,0
+1,-2.2,GO:0000819,sister chromatid segregation,M1,1,0
+1,-2.5,GO:0021591,ventricular system development,M1,1,0
+1,-2.5,GO:0048469,cell maturation,M1,1,0
+1,-2.7,GO:0042551,neuron maturation,M1,1,0
+1,-2.8,GO:0018195,peptidyl-arginine modification,M1,1,0
+1,-2.6,R-MMU-199991,Membrane Trafficking,M1,1,0
+1,-2.6,R-MMU-2132295,MHC class II antigen presentation,M1,1,0
+1,-2.8,R-MMU-5653656,Vesicle-mediated transport,M1,1,0
+1,-2.5,GO:0051301,cell division,M1,1,0
+1,-3,GO:0007018,microtubule-based movement,M1,1,0
+1,-2.1,GO:0034330,cell junction organization,M1,1,0
+1,-2.1,GO:0006858,extracellular transport,M1,1,0
+1,-2.5,GO:0008608,attachment of spindle microtubules to kinetochore,M1,1,0
+1,-2.2,GO:0048041,focal adhesion assembly,M1,1,0
+1,-2,GO:0030835,negative regulation of actin filament depolymerization,M1,1,0
+1,-2.4,GO:1901184,regulation of ERBB signaling pathway,M1,1,0
+1,-2.2,GO:0035082,axoneme assembly,M1,1,0
+1,-2.6,R-MMU-5694530,Cargo concentration in the ER,M1,1,0
+1,-2.2,GO:0003351,epithelial cilium movement involved in extracellular fluid movement,M1,1,0
+1,-2.4,GO:0045577,regulation of B cell differentiation,M1,1,0
+1,-2.3,GO:0061097,regulation of protein tyrosine kinase activity,M1,1,0
+1,-2.5,GO:0000226,microtubule cytoskeleton organization,M1,1,0
+1,-2,GO:0006873,cellular ion homeostasis,M1,1,0
+1,-2.7,GO:0007176,regulation of epidermal growth factor-activated receptor activity,M1,1,0
+1,-2,GO:0003341,cilium movement,M1,1,0
+1,-2.2,GO:0051983,regulation of chromosome segregation,M1,1,0
+1,-2.3,GO:0010639,negative regulation of organelle organization,M1,1,0
+1,-2.2,GO:0036465,synaptic vesicle recycling,M1,1,0
+1,-2.8,GO:0051928,positive regulation of calcium ion transport,M1,1,0
+1,-2.6,R-MMU-917977,Transferrin endocytosis and recycling,M1,1,0
+1,-2,GO:0007059,chromosome segregation,M1,1,0

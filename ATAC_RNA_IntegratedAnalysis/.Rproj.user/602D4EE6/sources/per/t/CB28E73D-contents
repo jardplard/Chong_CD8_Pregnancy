@@ -1,0 +1,631 @@
+---
+title: "Schitinger ATAC Test DeSEQ Analysis"
+author: "Jared Pollard"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Differential Accesibility Analysis
+
+###Install Packages (If needed, set eval=TRUE): BiocManager, dplyr, gplots, ggplot2, ggrepel
+```{r install_packages, eval=FALSE, echo=FALSE}
+install.packages(c('BiocManager', 'dplyr', 'gplots', 'ggplot2', 'ggrepel', 'stringr', 'Signac'))
+BiocManager::install(c('imma', 'DESeq2', 'AnnotationDbi', 'org.Mm.eg.db', 'ReportingTools', 'GO.db', 'GOstats', 'pathview', 'gage', 'gageData', 'select', 'ChIPpeakAnno', 'GenomicRanges', 'EnsDb.Mmusculus.v79'))
+BiocManager::install('Repitools')
+install.packages("uwot")
+```
+##Import libraries and counts file
+There is some specific code in this file, as I forgot to remove the rownames before sorting the file in linux. normally, this will not be an issue, and the lines with as.integer and filter_all won't be necessary
+```{r import_libraries_andCounts, echo=FALSE}
+library(GenomicRanges)
+library(ChIPpeakAnno)
+library("EnsDb.Mmusculus.v79")
+library(org.Mm.eg.db)
+library(Repitools)
+library(DESeq2)
+library(ggplot2)
+library(gplots)
+library(viridis)
+library(RColorBrewer)
+library(uwot)
+library(gtable)
+library(grid)
+library(ggpubr)
+library(tidyverse)
+rawCounts <- read.csv('CD8CountsFin.csv', header=1)
+
+colors_fill <- c("#38F2E0", "#1A74F8", "#F262F7", "#DA0054")
+```
+#Annotation of BED peaks with Gene names/ID's
+##Method two (YES): ChIPPeakAnno
+```{r CPA_annotate}
+#convert counts data and annotations to GRanges objects
+geneCounts <- makeGRangesFromDataFrame(rawCounts,
+                         keep.extra.columns=TRUE,
+                         ignore.strand=TRUE,
+                         seqinfo=NULL,
+                         seqnames.field=c("chr"),
+                         start.field=c("start"),
+                         end.field=c("end"),
+                         strand.field="strand",
+                         starts.in.df.are.0based=FALSE)
+#import Ensdb into GRanges object
+annoData <- toGRanges(EnsDb.Mmusculus.v79)
+
+
+## keep the seqnames in the same style
+seqlevelsStyle(geneCounts) <- seqlevelsStyle(annoData)
+
+## do annotation by nearest TSS, add gene symbol and convert back to dataframe
+countsAnno <- annotatePeakInBatch(geneCounts, AnnotationData=annoData)
+
+countsAnno <- addGeneIDs(countsAnno, orgAnn="org.Mm.eg.db", 
+                  feature_id_type="ensembl_gene_id",
+                   IDs2Add=c("symbol"))
+
+countsAnnoMatrix <- annoGR2DF(countsAnno)
+
+#select for counts, add EnsID and GeneName----
+countsAnnoFinal <- countsAnnoMatrix %>% dplyr::select("B6N1",	"B6N2",	"B6N3",	"B6NPP1_B",	"B6NPP1_C5",	"B6NPP2_B",	"B6NPP2_C5",	"B6NPP3_B",	"B6NPP3_C5",	"B6SUB1",	"B6SUB2",	"B6SUB3",	"B6SUB4",	"B6SPP1_B",	"B6SPP1_C5", "B6SPP1_C7",	"B6SPP2_B", "B6SPP2_C5",	"B6SPP2_C7",	"B6SPP3_B",	"B6SPP3_C5",	"B6SPP3_C7",	"B6SPP4_B",	"B6SPP4_C5",	"B6SPP4_C7", "feature", "symbol")
+
+#Merge GeneNames and replace with EnsID if none, and add tags for duplicate gene peaks
+countsAnnoFinal <- countsAnnoFinal %>% mutate(genename = coalesce(symbol, feature))
+countsAnnoFinal$genename <- make.unique(as.character(countsAnnoFinal$genename), sep = "_")
+#Omit NA (CHECK final rowcount). change genename to rownames and drop symbol+feature.
+countsAnnoFinal <- countsAnnoFinal %>% drop_na(genename)
+rownames(countsAnnoFinal) = countsAnnoFinal$genename
+#countsAnnoFinal <- countsAnnoFinal %>% dplyr::select(-c(symbol, feature, genename))
+countsAnnoFinal <- countsAnnoFinal %>% dplyr::select(-c(feature, symbol, genename))
+
+#convert counts columns to numeric
+countsAnnoFinal[] <- sapply(countsAnnoFinal, as.numeric)
+
+#Separate table with chr,start, and end matched with feature/symbol (see code above)----
+regionsMatrix <- countsAnnoMatrix %>% dplyr::select("chr", "start", "end", "feature", "symbol")
+regionsMatrix <- regionsMatrix %>% mutate(genename = coalesce(symbol, feature))
+regionsMatrix$genename <- make.unique(as.character(regionsMatrix$genename), sep = "_")
+regionsMatrix <- regionsMatrix %>% drop_na(genename)
+rownames(regionsMatrix) = regionsMatrix$genename
+regionsMatrix <- regionsMatrix %>% dplyr::select(-c(feature, symbol, genename))
+```
+
+#Differential Expression Analysis! Construct DDS, run deseq, obtain pairwise results
+```{r DESeq}
+#import sample metadata
+sampleinfo <- read.csv("CD8_sampleinfo.csv", header=1)
+rownames(sampleinfo) = sampleinfo$X
+sampleinfo <- sampleinfo %>% dplyr::select(-c(X))
+
+#construct DeSeqDataSet, Filter for low read counts, set Naive as ref/control
+dds <- DESeqDataSetFromMatrix(countData = countsAnnoFinal,
+                              colData = sampleinfo,
+                              design = ~ condition)
+keep <- rowSums(counts(dds)) >= 10
+dds <- dds[keep,]
+dds$condition <- relevel(dds$condition, ref = "Naive")
+
+#Run Deseq and Size Factors for BigWIGs (DESeq fxn has normalization built in)
+dseq <- DESeq(dds)
+sizeFactors(dseq)
+
+#Obtain Results for each pairwise comparison
+#NOTE: "Contrast=Condition, A, B" means to compare A AGAINST B
+
+#Effect of Pregnancy
+res.NPPBN <- results(dseq, contrast=c("condition","NPP_B","Naive"), cooksCutoff=FALSE, independentFiltering=FALSE)
+res.NPP5N <- results(dseq, contrast=c("condition","NPP_C5","Naive"), cooksCutoff=FALSE, independentFiltering=FALSE)
+res.NPP5NPPB <- results(dseq, contrast=c("condition","NPP_C5","NPP_B"), cooksCutoff=FALSE, independentFiltering=FALSE)
+
+#Antigen encounter from preg vs. sens
+res.SUBNPP5 <- results(dseq, contrast=c("condition","SUB","NPP_C5"), cooksCutoff=FALSE, independentFiltering=FALSE)
+
+#How does pregnancy change memory cells?
+res.SPPBSUB <- results(dseq, contrast=c("condition","SPP_B","SUB"), cooksCutoff=FALSE, independentFiltering=FALSE)
+res.SPP5SUB <- results(dseq, contrast=c("condition","SPP_C5","SUB"), cooksCutoff=FALSE, independentFiltering=FALSE)
+res.SPP7SUB <- results(dseq, contrast=c("condition","SPP_C7","SUB"), cooksCutoff=FALSE, independentFiltering=FALSE)
+res.SPP7SPP5 <- results(dseq, contrast=c("condition","SPP_C7","SPP_C5"), cooksCutoff=FALSE, independentFiltering=FALSE)
+
+#how do final outcomes of pregnancies differ?
+res.SPP5NPP5 <- results(dseq, contrast=c("condition","SPP_C5", "NPP_C5"), cooksCutoff=FALSE, independentFiltering=FALSE)
+
+res.SUBN <- results(dseq, contrast=c("condition","SUB","Naive"), cooksCutoff=FALSE, independentFiltering=FALSE)
+
+```
+
+##Summary Graphs: Plot PCA graph for all replicates and plot MA Plots for each pairwise comparison
+```{R PlotPCA}
+
+rld <- rlog(dseq)
+
+rld$condition <- factor(rld$condition, levels=c("Naive", "NPP_B", "NPP_C5", "SUB", "SPP_B", "SPP_C5", "SPP_C7"))
+
+#Set standard ggplot theme to use
+
+themeset<- theme(
+    panel.background = element_rect(fill = "transparent"), # bg of the panel
+    plot.background = element_rect(fill = "transparent", color = NA), # bg of the plot
+    panel.grid.major = element_blank(), # get rid of major grid
+    panel.grid.minor = element_blank(), # get rid of minor grid
+    axis.line= element_line("black", 0.3),
+    aspect.ratio=1
+  )
+
+#Plot PCA
+grouplabels <- c("Naive", "Naive+Preg C5+7-Depleted", "Naive+Preg C5", "Sensitized", "Sensitized+Preg C5+7-Depleted", "Sensitized+Preg C5", "Sensitized+Preg C7")
+groupcolors <- c(colors_fill[1], rep(colors_fill[2], 2), colors_fill[3], rep(colors_fill[4], 3))
+groupshapes <- c(19, 1, 15, 19, 1, 15, 17)
+
+pcaData <- plotPCA(rld, intgroup = "condition", returnData = TRUE)
+percentVar <- round(100 * attr(pcaData, "percentVar")) 
+
+z <- ggplot(pcaData, aes(x=PC1, y=PC2, color=condition, shape=condition)) + 
+  geom_point(size=5.5) +
+  scale_color_manual(labels=grouplabels, values=groupcolors) +
+  scale_shape_manual(labels=grouplabels, values=groupshapes) + 
+  xlab(paste0("PC1: ", percentVar[1], "% variance")) + 
+  ylab(paste0("PC2: ", percentVar[2], "% variance")) +
+  labs(color="Group", shape= "Group")
+
+z + themeset
+
+#Calculate UMAP
+umapdata <- t(heatmapdata)
+zmap <- as.data.frame(umap(umapdata, n_neighbors=15, min_dist=0.48))
+zmap <- zmap %>% dplyr::rename("umap_1" = "V1") %>% dplyr::rename("umap_2"="V2")
+
+#Format UMAP data and plot
+samp <- c(rep("Naive", 3), rep("Naive+PP-Bulk", 3), rep("Naive+PP-C5", 3), rep("Mem", 4), rep("Mem+PP-Bulk", 4), rep("Mem+PP-C5", 4), rep("Mem+PP-C7", 4))
+umapdata <- cbind(umapdata, zmap, samp)
+umapdata <- umapdata %>% dplyr::rename("Group" = "samp")
+umapdata$Group <- factor(umapdata$Group, levels=c("Naive", "Naive+PP-Bulk", "Naive+PP-C5", "Mem", "Mem+PP-Bulk", "Mem+PP-C5", "Mem+PP-C7"))
+
+p <- ggplot(zmap, aes(x=umap_1, y=umap_2, color=umapdata$Group, shape=umapdata$Group)) + 
+  geom_point(size=6) + 
+  scale_color_manual(labels=grouplabels, values=groupcolors) +
+  scale_shape_manual(labels=grouplabels, values=groupshapes) +
+  labs(color="Group", shape= "Group")
+p + themeset
+#Identifies main drivers of each PC ----
+
+  rv <- rowVars(assay(rld))
+
+  # select the ntop genes by variance
+  select <- order(rv, decreasing=TRUE)[seq_len(min(500, length(rv)))]
+
+  # perform a PCA on the data in assay(x) for the selected genes
+  pca <- prcomp(t(assay(rld)[select,]))
+
+loadings <- as.data.frame(pca$rotation)
+
+
+#MA Plots (Significant points in blue). More reads AND higher fold-change=greater confidence----
+
+plotMA(res.NPPBN, main="NPP Bulk vs. Naive", ylim=c(-3,3))
+plotMA(res.NPP5N, main="NPP C5 vs. Naive", ylim=c(-3,3))
+plotMA(res.NPP5NPPB, main="NPP C5 vs. NPP Bulk", ylim=c(-3,3))
+
+plotMA(res.SPP5NPP5, main="SPP C5 vs. NPP C5", ylim=c(-6,6))
+
+plotMA(res.SPPBSUB, main="SPP Bulk vs. SUB", ylim=c(-3,3))
+plotMA(res.SPP5SUB, main="SPP C5 vs. SUB", ylim=c(-3,3))
+plotMA(res.SPP7SUB, main="SPP C7 vs. SUB", ylim=c(-3,3))
+plotMA(res.SPP7SPP5, main="SPP C7 vs. SPP C5", ylim=c(-3,3))
+
+plotMA(res.SUBN, main="SUB vs. Naive", ylim=c(-3,3))
+```
+
+##Identify lists of differential peaks for each pair, merge all pairs and match with regions
+```{R DiffGeneLists}
+#This function parses results down to significant changes, orders from highest to lowest fold-E,
+#and adds "identity" column specifying direction of change (for future merging)
+genList <- function(x, direction="NULL", include_symbol=TRUE){
+name <- deparse(substitute(x))
+identity <- str_replace(name, "res.", "")
+identitychange <- paste(identity, "change", sep="_")
+identitypadj <- paste(identity, "padj", sep="_")
+identityfc <- paste(identity, "log2FC", sep="_")
+identitycm <- paste(identity, "Change Metric", sep="_")
+y <- as.data.frame(x[order(abs(x$log2FoldChange), decreasing=T),])
+y <- y[which(y$padj<0.1),]
+y <- y[which(abs(y$log2FoldChange)>0.9),]
+y <- y %>% mutate(!!identitychange := ifelse(y$log2FoldChange<0, "Down", "Up"))
+y <- y %>% mutate(change_metric = log2FoldChange * -log10(padj))
+y <- y %>% dplyr::select(c(!!identitychange, log2FoldChange, padj, change_metric))
+y <- y %>% arrange(desc(abs(y$change_metric)))
+
+if(include_symbol==TRUE){
+y <- y %>% mutate(Geneid=row.names(y), .before=!!identitychange)
+}
+
+if(direction=="Down"){
+  y <- y %>% filter(change_metric<0)
+}
+if(direction=="Up"){
+  y <- y %>% filter(change_metric>0)
+}
+y <- y %>% dplyr::rename(!!identitypadj := "padj")
+y <- y %>% dplyr::rename(!!identityfc := "log2FoldChange")
+y <- y %>% arrange(desc(abs(y$change_metric)))
+y <- y %>% dplyr::rename(!!identitycm := "change_metric")
+}
+
+#generate lists of differentially accessible genes for all compparisons
+
+listNPPBN <- genList(res.NPPBN)
+listNPP5N <- genList(res.NPP5N)
+listNPP5NPPB <- genList(res.NPP5NPPB)
+
+listSPP5NPP5 <- genList(res.SPP5NPP5)
+listSPPBSUB <- genList(res.SPPBSUB)
+listSPP5SUB <- genList(res.SPP5SUB)
+listSPP7SUB <- genList(res.SPP7SUB)
+listSPP7SPP5 <- genList(res.SPP7SPP5)
+
+listSUBNPP5 <- genList(res.SUBNPP5)
+listSUBN <- genList(res.SUBN)
+
+res <- ls(pattern="res.")
+for(i in res){
+  dfin <- eval(str2lang(i))
+  down <- genList(dfin, "Down")
+  up <- genList(dfin, "Up")
+  assign(str_c(i, "Down", sep=""), down, envir = .GlobalEnv)
+  assign(str_c(i, "Up", sep=""), up, envir = .GlobalEnv)
+  rm(dfin)
+  rm(up)
+  rm(down)
+  rm(i)
+}
+
+#Which genes are different in both SPP5SUB and SPP7SUB
+
+mergeSPP5SUB <- listSPP5SUB %>% mutate(gene = row.names(listSPP5SUB))
+mergeSPP7SUB <- listSPP7SUB %>% mutate(gene = row.names(listSPP7SUB))
+
+listSPP5SPP7SUB <- merge(mergeSPP5SUB, mergeSPP7SUB, by="gene")
+listSPP5SPP7SUB <- listSPP5SPP7SUB %>% mutate(total_change= `SPP5SUB_Change Metric` + `SPP7SUB_Change Metric`)
+
+listSPP5SPP7SUB <- listSPP5SPP7SUB %>% dplyr::select("gene", "SPP5SUB_change", "SPP7SUB_change", "total_change") %>% arrange(desc(abs(listSPP5SPP7SUB$total_change)))
+
+#this function merges all lists generated above into one DF
+bigMerge <- function(a, b, ...){
+  
+  argnames <- sys.call()
+  list <- paste(lapply(argnames[-1], as.character))
+  
+  x <- merge(a, b, by=0,  all=TRUE)
+  rownames(x) <- x$Row.names
+  if(as.numeric(length(list))>=3){
+    x <- x %>% dplyr::select(-c(Row.names))
+    for(i in list[3:(as.numeric(length(list)))]){
+      
+      name <- deparse(substitute(i))
+      name <- str_replace(name, "\"", "")
+      name <- str_replace(name, "\"", "")
+      x <- merge(x, get(name), by=0,  all=TRUE)
+      rownames(x) <- x$Row.names
+      if(i != list[as.numeric(length(list))]){
+        x <- x %>% dplyr::select(-c(Row.names))
+        }
+    }
+  }
+  else{
+  x <- x[!(row.names(x) %in% c(1)),]
+  dplyr::rename(x, "gene" = "Row.names")
+  x <- x %>% dplyr::select(-c(Row.names))
+  }
+  x <- x[!(row.names(x) %in% c(1)),]
+  dplyr::rename(x, "gene" = "Row.names")
+}
+
+
+diffGeneList <- bigMerge(listNPPBN, listNPP5N, listNPP5NPPB, listSPP5NPP5, listSPPBSUB, listSPP5SUB, listSPP7SUB, listSPP7SPP5, listSUBN)
+
+diffGeneList$FCmean <- rowMeans(diffGeneList[,c("NPPBN_log2FC", "NPP5N_log2FC", "NPP5NPPB_log2FC", "SPP5NPP5_log2FC", "SPPBSUB_log2FC", "SPP5SUB_log2FC", "SPP7SUB_log2FC", "SPP7SPP5_log2FC", "SUBN_log2FC")], na.rm=TRUE)
+
+#focus if: Log2foldchange>3, if rowSum(is.na)<=6 (means 4 different groups change), or if FCmean>2
+diffGeneList <- diffGeneList %>% mutate(
+  focus=ifelse(abs(diffGeneList$NPPBN_log2FC)>3 | abs(diffGeneList$NPP5N_log2FC)>3 | abs(diffGeneList$NPP5NPPB_log2FC)>3 | abs(diffGeneList$SPP5NPP5_log2FC)>3 | abs(diffGeneList$SPPBSUB_log2FC)>3 | abs(diffGeneList$SPP5SUB_log2FC)>3 | abs(diffGeneList$SPP7SUB_log2FC)>3 | abs(diffGeneList$SPP7SPP5_log2FC)>3 | abs(diffGeneList$SUBN_log2FC)>3 | rowSums(!is.na(diffGeneList))>=12 | diffGeneList$FCmean>2, 
+               "Focus", "No"))
+
+#prepare geneList for exporting as a separate object
+diffGeneList <- diffGeneList %>% arrange(focus)
+diffGeneList$gene <- gsub('_[^_]*$', '', diffGeneList$gene)
+write.csv(diffGeneList, file="CD8genelist.csv", col.names=TRUE, row.names=FALSE, quote=FALSE)
+
+#export lists for individual group comparisons
+expList <- function(x){
+  name <- x
+  identity <- str_replace(x, "list", "")
+  x <- eval(x) 
+  x <- x %>% mutate(gene=row.names(x))
+  x$gene <- gsub('_[^_]*$', '', x$gene)
+  x <- x[,c(ncol(x),1:ncol(x)-1)]
+  write.csv(x, file=paste("CD8", identity, "genelist.csv", sep=""), col.names=FALSE, row.names=TRUE, quote=FALSE)
+}
+
+comparisons <- c(ls(pattern="Up"), ls(pattern="Down"))
+
+for(i in comparisons){
+  expList(str2lang(i))
+}
+```
+
+```{R GeneRegions}
+#merge differentially accessible genes with genome locations (for ATAC-Style heatmap)
+diffGeneListSPPSUB <- diffGeneList %>% dplyr::select(SPPBSUB_log2FC, SPP5SUB_log2FC, SPP7SUB_log2FC, SPP7SPP5_log2FC)
+diffGeneListSPPSUB <- diffGeneListSPPSUB[rowSums(is.na(diffGeneListSPPSUB)) != ncol(diffGeneListSPPSUB),]
+
+diffGeneListSPPSUB <- diffGeneListSPPSUB %>% arrange(desc(SPPBSUB_log2FC), desc(SPP5SUB_log2FC), desc(SPP7SUB_log2FC), desc(SPP7SPP5_log2FC))
+diffGeneBEDSPPSUB <- merge(diffGeneListSPPSUB, regionsMatrix, by=0)
+diffGeneBEDSPPSUB <- diffGeneBEDSPPSUB %>% arrange(desc(SPPBSUB_log2FC), desc(SPP5SUB_log2FC), desc(SPP7SUB_log2FC), desc(SPP7SPP5_log2FC))
+diffGeneBEDSPPSUB <- diffGeneBEDSPPSUB %>% dplyr::select("chr", "start", "end")
+diffGeneBEDSPPSUB$chr <- str_replace(diffGeneBEDSPPSUB$chr, "chr", "")
+
+write.table(diffGeneBEDSPPSUB, file="CD8SPPSUBdiffgenes.bed", col.names=FALSE, row.names=FALSE, sep="\t", quote=FALSE)
+
+
+
+diffGeneListNPPN <- diffGeneList %>% dplyr::select(NPPBN_log2FC, NPP5N_log2FC, NPP5NPPB_log2FC, SPP5NPP5_log2FC)
+diffGeneListNPPN <- diffGeneListNPPN[rowSums(is.na(diffGeneListNPPN)) != ncol(diffGeneListNPPN),]
+
+diffGeneListNPPN <- diffGeneListNPPN %>% arrange(desc(NPPBN_log2FC), desc(NPP5N_log2FC), desc(NPP5NPPB_log2FC), desc(SPP5NPP5_log2FC))
+diffGeneBEDNPPN <- merge(diffGeneListNPPN, regionsMatrix, by=0)
+diffGeneBEDNPPN <- diffGeneBEDNPPN %>% arrange(desc(NPPBN_log2FC), desc(NPP5N_log2FC), desc(NPP5NPPB_log2FC), desc(SPP5NPP5_log2FC))
+diffGeneBEDNPPN <- diffGeneBEDNPPN %>% dplyr::select("chr", "start", "end")
+diffGeneBEDNPPN$chr <- str_replace(diffGeneBEDNPPN$chr, "chr", "")
+
+write.table(diffGeneBEDNPPN, file="CD8NPPNdiffgenes.bed", col.names=FALSE, row.names=FALSE, sep="\t", quote=FALSE)
+
+```
+
+
+##Plot Heatmap with top differentially accessible peaks
+```{R PlotHeatmap}
+
+#Generate heatmap----
+
+#generate list of regions for heatmap
+hmgenelist <- rbind(listNPPBN %>% select(Geneid), listNPP5N %>% select(Geneid), listSPP5NPP5 %>% select(Geneid), listSPPBSUB %>% select(Geneid), listSPP5SUB %>% select(Geneid), listSPP7SUB %>% select(Geneid), listSPP7SPP5 %>% select(Geneid), listSUBN %>% select(Geneid), listSUBNPP5 %>% select(Geneid))
+hmgenelist <- hmgenelist %>% distinct(Geneid, .keep_all = TRUE)
+
+#format and scale expression/peak data
+heatmapdata <- as.data.frame(assay(rld))
+heatmapdata$gene <- as.character(row.names(heatmapdata))
+heatmapdata <- heatmapdata %>% dplyr::filter(gene %in% hmgenelist$Geneid)
+heatmapdata <- heatmapdata %>% dplyr::select(-c(gene))
+heatmapdata <- heatmapdata %>% relocate(B6NPP1_C5, .after=B6NPP2_B) %>% relocate(B6NPP3_B, .after=B6NPP2_B) %>% relocate(B6SPP2_B, .after=B6SPP1_B)  %>% relocate(B6SPP3_B, .after=B6SPP2_B) %>% relocate(B6SPP4_B, .after=B6SPP3_B) %>% relocate(B6SPP1_C5, .after=B6SPP4_B) %>% relocate(B6SPP2_C5, .after=B6SPP1_C5) %>% relocate(B6SPP3_C5, .after=B6SPP2_C5) %>% relocate(B6SPP4_C5, .after=B6SPP3_C5) %>% relocate(B6SPP1_C7, .after=B6SPP4_C5) %>% relocate(B6SPP2_C7, .after=B6SPP1_C7) %>% relocate(B6SPP3_C7, .after=B6SPP2_C7) %>% relocate(B6SPP4_C7, .after=B6SPP3_C7) %>% relocate(B6SUB1, B6SUB2, .after=B6SUB4)
+heatmapdata_scaled <- t(scale(t(heatmapdata)))
+
+#define color palettes for heatmap and cluster sidebar
+clusterpalette <- brewer.pal(8, "Accent")
+heatmapgroupcolors <- c(rep(colors_fill[1], 3), rep(alpha(colors_fill[2], 0.6), 3), rep(colors_fill[2], 3), rep(colors_fill[3], 4), rep(alpha(colors_fill[4], 0.72), 4), rep(colors_fill[4], 4), rep(colors_fill[4], 4))
+
+#K-means clustering
+hmclusters4 <- kmeans(heatmapdata_scaled, 4, iter.max=100)
+heatmapdata_clustered4 <- as.data.frame(cbind(heatmapdata_scaled, hmclusters4$cluster)) %>% dplyr::rename("cluster4" = "V26") %>% arrange(cluster4)
+
+heatmapdata_clustered4 <- heatmapdata_clustered4 %>% relocate(B6SUB1, B6SUB2, .after=B6SUB4)
+
+clustercolors4 <- unlist(lapply(heatmapdata_clustered4[,'cluster4'], function(x){
+  for(i in 1:6){
+    if(x==i) return(clusterpalette[i])
+  }
+}))
+
+dev.off()
+
+#K-Means
+heatmap.2(as.matrix(heatmapdata_clustered4[,1:(ncol(heatmapdata_clustered4)-1)]), col=plasma(n=30), main="KMeans-clustered Heatmap", trace= "none", density.info="none", key=TRUE, symkey=FALSE, keysize=1.26, key.xlab="Z-score", Colv=FALSE, Rowv=FALSE, margins=c(6,4), cexCol=1, labRow=FALSE, RowSideColors=clustercolors4, ColSideColors=heatmapgroupcolors, breaks=seq(-2, 3.5, length.out=31))
+
+#generate cluster genelists (NOTE: total numbers of loci per cluster are NOT accurate in this list, since we removed multi-peaks to keep distinct genenames)
+GeneList_hmcluster4 <- heatmapdata_clustered4 %>% select(cluster4)
+GeneList_hmcluster4 <- GeneList_hmcluster4 %>% mutate(gene=rownames(GeneList_hmcluster4), .before=cluster4)
+GeneList_hmcluster4$gene <- GeneList_hmcluster4$gene %>% str_replace_all("_[:digit:]", "")
+GeneList_hmcluster4 <- GeneList_hmcluster4 %>% distinct(gene, .keep_all = TRUE)
+GeneList_hmcluster4$cluster4 <- GeneList_hmcluster4$cluster4 %>% str_replace_all("1", "1 (Green)") %>% str_replace_all("2", "2 (Purple)") %>% str_replace_all("3", "3 (Orange)") %>% str_replace_all("4", "4 (Yellow)") %>% str_replace_all("5", "5 (Blue)") %>% str_replace_all("6", "6 (Red)")
+
+write.csv(GeneList_hmcluster4, file="CD8 ATAC ClusterGenes.csv", col.names=FALSE, row.names=TRUE, quote=FALSE)
+
+
+#Plot Boxplots of Each Cluster Expression Patterns----
+
+heatmapdata_boxplot <- heatmapdata_clustered4
+heatmapdata_boxplot <- heatmapdata_boxplot %>% rowwise() %>% 
+  mutate(Naive = mean(c(B6N1, B6N2, B6N3))) %>% 
+  mutate(NPP_B = mean(c(B6NPP1_B, B6NPP2_B, B6NPP3_B))) %>%
+  mutate(NPP_C5 = mean(c(B6NPP1_C5, B6NPP2_C5, B6NPP3_C5))) %>%
+  mutate(SUB = mean(c(B6SUB3, B6SUB4, B6SUB1, B6SUB2))) %>%
+  mutate(SPP_B = mean(c(B6SPP1_B, B6SPP2_B, B6SPP3_B, B6SPP4_B))) %>% 
+  mutate(SPP_C5 = mean(c(B6SPP1_C5, B6SPP2_C5, B6SPP3_C5, B6SPP4_C5))) %>% 
+  mutate(SPP_C7 = mean(c(B6SPP1_C7, B6SPP2_C7, B6SPP3_C7, B6SPP4_C7)))
+
+heatmapdata_boxplot <- heatmapdata_boxplot %>% select(!contains("B6", ignore.case=FALSE)) %>% rename("Cluster" = "cluster4")
+#filter+format data for boxplot
+heatmapdata_boxplot1 <- as.data.frame(heatmapdata_boxplot) %>% filter(Cluster==1)
+heatmapdata_boxplot1 <- stack(heatmapdata_boxplot1, -Cluster) %>% mutate(Cluster=1)
+heatmapdata_boxplot2 <- as.data.frame(heatmapdata_boxplot) %>% filter(Cluster==2)
+heatmapdata_boxplot2 <- stack(heatmapdata_boxplot2, -Cluster) %>% mutate(Cluster=2)
+heatmapdata_boxplot3 <- as.data.frame(heatmapdata_boxplot) %>% filter(Cluster==3)
+heatmapdata_boxplot3 <- stack(heatmapdata_boxplot3, -Cluster) %>% mutate(Cluster=3)
+heatmapdata_boxplot4 <- as.data.frame(heatmapdata_boxplot) %>% filter(Cluster==4)
+heatmapdata_boxplot4 <- stack(heatmapdata_boxplot4, -Cluster) %>% mutate(Cluster=4)
+#heatmapdata_boxplot5 <- as.data.frame(heatmapdata_boxplot) %>% filter(Cluster==5)
+#heatmapdata_boxplot5 <- stack(heatmapdata_boxplot5, -Cluster) %>% mutate(Cluster=5)
+#heatmapdata_boxplot6 <- as.data.frame(heatmapdata_boxplot) %>% filter(Cluster==6)
+#heatmapdata_boxplot6 <- stack(heatmapdata_boxplot6, -Cluster) %>% mutate(Cluster=6)
+
+#join formatted data and plot
+heatmapdata_boxplot_gg <- rbind(heatmapdata_boxplot1, heatmapdata_boxplot2, heatmapdata_boxplot3, heatmapdata_boxplot4) %>% rename("Group"="ind")
+
+heatmapdata_boxplot_gg$Cluster <- heatmapdata_boxplot_gg$Cluster %>% str_replace_all("1", "Cluster 1") %>% str_replace_all("2", "Cluster 2") %>% str_replace_all("3", "Cluster 3") %>% str_replace_all("4", "Cluster 4") %>% str_replace_all("5", "Cluster 5") %>% str_replace_all("6", "Cluster 6")
+
+b <- ggplot(data = heatmapdata_boxplot_gg, aes(x=Group, y=values))+ 
+  geom_boxplot(aes(color=Group), fill=NA, outlier.shape=NA, coef=0) +
+  geom_point(aes(color=Group, shape=Group), size=1) +
+  scale_shape_manual(values=groupshapes, labels=grouplabels) +
+  scale_color_manual(values=c(colors_fill[1], alpha(colors_fill[2], 0.4), colors_fill[2], colors_fill[3], alpha(colors_fill[4], 0.55), rep(colors_fill[4], 2)), labels=grouplabels) +
+  ylab("Z-Score")
+b <- b + facet_wrap( ~ Cluster, scales="free") + themeset + theme(axis.text.x=element_blank()) + ggtitle("Per-Cluster Gene Expression")
+b
+
+#manual inclusion of Cluster colors in facet wrap
+b_colors <- ggplot_gtable(ggplot_build(b))
+b_stripr <- which(grepl('strip-t', b_colors$layout$name))
+b_fills <- clusterpalette[1:4]
+#NOTE: GGPLOT BUILDS GROBS FROM BOTTOM TO TOP ROW: Mut re-order the grob elements to match the order of the cluster colors (Row 1-1, 1-2, 1-3 are 4-6, row 2-1+2-2 are 1+2)
+b_stripr <- b_stripr[c(3, 4, 1, 2)]
+k <- 1
+for (i in b_stripr) {
+  j <- which(grepl('rect', b_colors$grobs[[i]]$grobs[[1]]$childrenOrder))
+  b_colors$grobs[[i]]$grobs[[1]]$children[[j]]$gp$fill <- b_fills[k]
+  k <- k+1
+}
+grid.draw(b_colors)
+
+
+#Create boxplot for Regions of shared vs. unique RNA Expression----
+
+#Import RNA Shared+Unique Genelists
+filepath_RNA <- "./SPPNPP_RNA"
+files_RNA <- list.files(path=filepath_RNA, pattern=".csv")
+
+for(i in files_RNA){
+  objname <- str_replace(i, ".csv", "")
+  dfin <- read.csv(str_c(filepath_RNA, "/", i, sep=""), header=TRUE)
+  assign(objname, dfin, envir = .GlobalEnv)
+  rm(dfin)
+  rm(i)
+}
+
+#initial filter+format of dataframe
+heatmapdata_boxplot_RNA <- as.data.frame(heatmapdata_boxplot)
+heatmapdata_boxplot_RNA <- heatmapdata_boxplot_RNA %>% mutate(gene=rownames(heatmapdata_clustered4)) %>% select(-c(Cluster, NPP_B, SPP_B, SPP_C7))
+
+#create filtered dataframes with genes of interest
+heatmapdata_boxplot_NPPU_Up <- heatmapdata_boxplot_RNA %>% filter(str_detect(gene, paste(CD8R_NPP5U_Up$genename, collapse="(?![:alnum:])|")))
+heatmapdata_boxplot_NPPU_Up <- stack(heatmapdata_boxplot_NPPU_Up, -gene) %>% mutate(Expression="N+P Unique RNA Exp., Up")
+
+heatmapdata_boxplot_NPPU_Down <- heatmapdata_boxplot_RNA %>% filter(str_detect(gene, paste(CD8R_NPP5U_Down$genename, collapse="(?![:alnum:])|")))
+heatmapdata_boxplot_NPPU_Down <- stack(heatmapdata_boxplot_NPPU_Down, -gene) %>% mutate(Expression="N+P Unique RNA Exp., Down")
+
+heatmapdata_boxplot_SPPU_Up <- heatmapdata_boxplot_RNA %>% filter(str_detect(gene, paste(CD8R_SPP5U_Up$genename, collapse="(?![:alnum:])|")))
+heatmapdata_boxplot_SPPU_Up <- stack(heatmapdata_boxplot_SPPU_Up, -gene) %>% mutate(Expression="S+P Unique RNA Exp., Up")
+
+heatmapdata_boxplot_SPPU_Down <- heatmapdata_boxplot_RNA %>% filter(str_detect(gene, paste(CD8R_SPP5U_Down$genename, collapse="(?![:alnum:])|")))
+heatmapdata_boxplot_SPPU_Down <- stack(heatmapdata_boxplot_SPPU_Down, -gene) %>% mutate(Expression="S+P Unique RNA Exp., Down")
+
+heatmapdata_boxplot_Shared_Up <- heatmapdata_boxplot_RNA %>% filter(str_detect(gene, paste(CD8R_Shared_Up$genename, collapse="(?![:alnum:])|")))
+heatmapdata_boxplot_Shared_Up <- stack(heatmapdata_boxplot_Shared_Up, -gene) %>% mutate(Expression="Shared RNA Expression, Up")
+
+heatmapdata_boxplot_Shared_Down <- heatmapdata_boxplot_RNA %>% filter(str_detect(gene, paste(CD8R_Shared_Down$genename, collapse="(?![:alnum:])|")))
+heatmapdata_boxplot_Shared_Down <- stack(heatmapdata_boxplot_Shared_Down, -gene) %>% mutate(Expression="Shared RNA Expression, Down")
+
+#bind all genesets together andformat+factor for boxplot
+heatmapdata_boxplot_RNA_gg <- rbind(heatmapdata_boxplot_NPPU_Up, heatmapdata_boxplot_NPPU_Down, heatmapdata_boxplot_SPPU_Up, heatmapdata_boxplot_SPPU_Down, heatmapdata_boxplot_Shared_Up, heatmapdata_boxplot_Shared_Down) %>% rename("Group"="ind")
+
+heatmapdata_boxplot_RNA_gg$Expression <- factor(heatmapdata_boxplot_RNA_gg$Expression, levels=c("N+P Unique RNA Exp., Up", "S+P Unique RNA Exp., Up", "Shared RNA Expression, Up", "N+P Unique RNA Exp., Down", "S+P Unique RNA Exp., Down", "Shared RNA Expression, Down"))
+
+#manual line+star coordinates for significance from Prism (UGH)----
+RNA_BP_siglines <- tibble(
+  Expression=factor(c(rep("N+P Unique RNA Exp., Up", 2), rep("S+P Unique RNA Exp., Up", 2), rep("Shared RNA Expression, Up", 2), rep("N+P Unique RNA Exp., Down", 2), rep("S+P Unique RNA Exp., Down", 2), rep("Shared RNA Expression, Down", 2)), levels=levels(heatmapdata_boxplot_RNA_gg$Expression)),
+  x=c(1, 3, 1.1, 2.9, 1, 3, 1, 3, 1, 3, NA, NA) ,
+  xend=c(2, 4, 2.1, 3.9, 2, 4, 2, 4, 2, 4, NA, NA) ,
+  y=c(1.75, 1.9, 1.65, 1.32, 1.7, 1.85, 1.7, 1.9, 1.8, 1.8, NA, NA) ,
+  yend=y 
+  )
+RNA_BP_sigstars <- tibble(
+  Expression=factor(c(rep("N+P Unique RNA Exp., Up", 2), rep("S+P Unique RNA Exp., Up", 2), rep("Shared RNA Expression, Up", 2), rep("N+P Unique RNA Exp., Down", 2), rep("S+P Unique RNA Exp., Down", 2), rep("Shared RNA Expression, Down", 2)), levels=levels(heatmapdata_boxplot_RNA_gg$Expression)),
+  x=c(1.5, 3.5, 1.6, 3.4, 1.5, 3.5, 1.5, 3.5, 1.5, 3.5, NA, NA),
+  y=c(1.95, 2.1, 1.9, 1.4, 1.9, 1.9, 1.9, 2.1, 2, 1.9, NA, NA),
+  label=c("n.s", "n.s", "n.s", "*", "n.s", "****", "n.s", "n.s", "n.s", "***", NA, NA),
+  )
+
+#Plot boxplots----
+b_RNA <- ggplot(data = heatmapdata_boxplot_RNA_gg, aes(x=Group, y=values))+ 
+  geom_boxplot(aes(color=Group), fill=NA, outlier.shape=NA, coef=0) +
+  geom_point(aes(color=Group, shape=Group), size=1) +
+  scale_shape_manual(values=groupshapes[c(1,3,4,6)], labels=grouplabels[c(1,3,4,6)]) +
+  scale_color_manual(values=c(colors_fill[1], colors_fill[2], colors_fill[3], colors_fill[4]), labels=grouplabels[c(1,3,4,6)]) +
+  ylab("Z-Score")
+b_RNA <- b_RNA + facet_wrap(~Expression, scales="fixed") +
+  themeset + theme(axis.text.x=element_blank()) + 
+    ggtitle("Chromatin States in Regions of Shared+Unique RNA Expression")
+
+b_RNA + geom_segment(data=RNA_BP_siglines, aes(x=x, xend=xend, y=y, yend=yend)) +
+  geom_text(data=RNA_BP_sigstars, aes(x=x, y=y, label=label))
+
+expListRNA <- function(x){
+  name <- x
+  identity <- str_replace(x, "heatmapdata_boxplot_", "")
+  x <- eval(x) 
+  write.csv(x, file=paste(identity, "_boxplot.csv", sep=""), col.names=FALSE, row.names=TRUE, quote=FALSE)
+}
+
+RNAbox <- c(ls(pattern="boxplot_"))
+
+for(i in RNAbox){
+  expListRNA(str2lang(i))
+  rm(i)
+}
+
+```
+
+```{R Heatmap_flowMarkers}
+flowmarkers <- c("Il7r", "Il7r_1", "Il7r_2", "Il7r_3", "Il7r_4", "Cd44", "Sell", "Izumo1r", "Izumo1r_1", "Izumo1r_2", "Nt5e", "Lag3", "Tigit")
+flowmapdata <- as.data.frame(assay(rld))
+flowmapdata$gene <- as.character(row.names(flowmapdata))
+flowmapdata <- flowmapdata %>% dplyr::filter(gene %in% flowmarkers)
+flowmapdata <- flowmapdata %>% dplyr::select(-c(gene))
+flowmapdata_scaled <- t(scale(t(flowmapdata)))
+
+heatmap.2(flowmapdata_scaled, col=plasma(n=30), main="H-clustered Heatmap", trace= "none", density.info="none", key=TRUE, keysize=1, key.xlab="Z-score", Colv=FALSE, margins=c(11,8), cexCol=1, ColSideColors=heatmapgroupcolors)
+```
+
+```{R Heatmap_newMarkers}
+newmarkers <- c("Cxcr2", "Ifng", "Il12a", "Nfkbia", "Lef1", "Tgfbr2", "Smad7", "Malt1", "Bcl10", "Il7r", "Il15", "Il6st", "Tox", "Nfatc1", "Stat5b", "Tnfsf18", "Runx2", "Jak2", "Id2", "Slamf1", "Pik3r1", "Il6", "Il18rap", "Il17ra", "Tnfrsf17", "Casp1", "Serpinb9c", "Serpinb9d", "Serpinb9e")
+
+newmapdata <- as.data.frame(assay(rld)) %>% relocate(B6SUB1, B6SUB2, .after=B6SUB4)
+newmapdata$gene <- as.character(row.names(newmapdata))
+#newmapdata <- newmapdata %>% dplyr::filter(gene %in% newmarkers)
+newmapdata <- newmapdata %>% dplyr::filter(grepl('Tox|Jak2|Statb5|Slamf1|Il15|Sos1|Tnfrsf17|Ifngr1|Csf1|Lef1|Il12a|Cd226|Id2|Ifng|Tgfbr2|Ptk2|Smad7|Il7r|Tnfaip3', gene))
+newmapdata <- newmapdata %>% dplyr::select(-c(gene))
+newmapdata_scaled <- t(scale(t(newmapdata)))
+
+dev.off()
+heatmap.2(newmapdata_scaled[,10:25], col=plasma(n=30), main="H-clustered Heatmap", trace= "none", density.info="none", key=TRUE, keysize=1, key.xlab="Z-score", Colv=FALSE, margins=c(11,8), cexCol=1, ColSideColors=heatmapgroupcolors[10:25])
+```
+
+```{R VolcanoPlot}
+#Convert results to df and manipulate for Volcano Plots
+res.NPPNdf <- as.data.frame(res.NPPN)
+res.SUBNdf <- as.data.frame(res.SUBN)
+res.SPPNdf <- as.data.frame(res.SPPN)
+res.SPPNPPdf <- as.data.frame(res.SPPNPP)
+#Mark all rows as significant or N.S. (Padj<0.1 AND at least 1 Log2 change difference)
+res.NPPNdf <- res.NPPNdf %>% mutate(sig=ifelse(res.NPPNdf$padj<0.1, "FDR<0.1", "N.S."))
+res.NPPNdf[which(abs(res.NPPNdf$log2FoldChange)<1.0), "sig"] = "N.S."
+
+res.SUBNdf <- res.SUBNdf %>% mutate(sig=ifelse(res.SUBNdf$padj<0.1, "FDR<0.1", "N.S."))
+res.SUBNdf[which(abs(res.SUBNdf$log2FoldChange)<1.0), "sig"] = "N.S."
+
+res.SPPNdf <- res.SPPNdf %>% mutate(sig=ifelse(res.SPPNdf$padj<0.1, "FDR<0.1", "N.S."))
+res.SPPNdf[which(abs(res.SPPNdf$log2FoldChange)<1.0), "sig"] = "N.S."
+
+res.SPPNPPdf <- res.SPPNPPdf %>% mutate(sig=ifelse(res.SPPNPPdf$padj<0.1, "FDR<0.1", "N.S."))
+res.SPPNPPdf[which(abs(res.SPPNPPdf$log2FoldChange)<1.0), "sig"] = "N.S."
+
+#Volcano Plots
+ggplot(res.NPPNdf, aes(log2FoldChange, -log10(padj))) + geom_point(aes(col=sig)) + scale_color_manual(values=c("red", "black")) + ggtitle("NPP vs. Naive") + theme(plot.title = element_text(hjust = 0.5))
+
+ggplot(res.SUBNdf, aes(log2FoldChange, -log10(padj))) + geom_point(aes(col=sig)) + scale_color_manual(values=c("red", "black")) + ggtitle("SUB vs. Naive") + theme(plot.title = element_text(hjust = 0.5))
+
+ggplot(res.SPPNdf, aes(log2FoldChange, -log10(padj))) + geom_point(aes(col=sig)) + scale_color_manual(values=c("red", "black")) + ggtitle("SPP vs. N") + theme(plot.title = element_text(hjust = 0.5))
+
+ggplot(res.SPPNPPdf, aes(log2FoldChange, -log10(padj))) + geom_point(aes(col=sig)) + scale_color_manual(values=c("red", "black")) + ggtitle("SPP vs. NPP") + theme(plot.title = element_text(hjust = 0.5))
+```

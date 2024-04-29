@@ -1,0 +1,8 @@
+Cluster,Score,Type,Gene,Symbol,Network
+2,1.0,Clustered,12322,Camk2a,Geneid_SUB1
+2,1.0,Seed,71228,Dlg5,Geneid_SUB1
+2,1.0,Clustered,12323,Camk2b,Geneid_SUB1
+1,1.5,Clustered,18005,Nek2,Geneid_SUB2
+1,1.5,Clustered,27078,B9d1,Geneid_SUB2
+1,1.5,Clustered,53885,Nphp1,Geneid_SUB2
+1,1.5,Seed,231214,Cc2d2a,Geneid_SUB2

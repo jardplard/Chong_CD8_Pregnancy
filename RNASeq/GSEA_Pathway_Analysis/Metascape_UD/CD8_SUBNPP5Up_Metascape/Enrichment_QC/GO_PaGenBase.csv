@@ -1,0 +1,6 @@
+_MEMBER_Geneid,_LogP_Geneid,GO,_PATTERN_,_RANK_,GiniIndex,Category,CategoryID,Description,PARENT_GO,LogP,Enrichment,Z-score,#TotalGeneInLibrary,#GeneInGO,#GeneInHitList,#GeneInGOAndHitList,%InGO,STDV %InGO,GeneID,Hits,Log(q-value),EvidenceCutoff
+1,-15,PGB:00280,M1,1,0,PaGenBase,36,Cell-specific: NK cells,,-15,25,17,20504,46,233,13,5.6,1.5,16523|16641|16643|17057|17059|17086|18646|20304|27007|50928|94226|243655|381693,Kcnj8|Klrc1|Klrd1|Klrb1a|Klrb1c|Ncr1|Prf1|Ccl5|Klrk1|Klrg1|S1pr5|Klre1|Wdr95,-12,0
+1,-4.4,PGB:00246,M1,1,0,PaGenBase,36,Cell-specific: Baf3,,-4.4,9.6,6.8,20504,55,233,6,2.6,1,12571|12772|14064|30955|72685|105193,Cdk6|Ccr2|F2rl2|Pik3cg|Dnajc6|Nhlrc1,-1.9,0
+1,-2.5,PGB:00276,M1,1,0,PaGenBase,36,Cell-specific: osteoclasts,,-2.5,5.1,4.1,20504,86,233,5,2.1,0.95,22259|27226|70839|242341|320832,Nr1h3|Pla2g7|P2ry12|Atp6v0d2|Sirpb1a,-0.33,0
+1,-2.3,PGB:00236,M1,1,0,PaGenBase,36,Cell-specific: retinal pigment epithelium,,-2.3,2.5,3.2,20504,386,233,11,4.7,1.4,13819|15203|18587|19883|54403|54613|140474|230316|231440|278507|329731,Epas1|Heph|Pde6b|Rora|Slc4a4|St3gal6|Muc4|Megf9|Parm1|Wfikkn2|Tafa3,-0.19,0
+1,-2.2,PGB:00011,M1,1,0,PaGenBase,36,Tissue-specific: spleen,,-2.2,3.3,3.3,20504,189,233,7,3,1.1,12771|16641|17057|19746|20739|74466|320832,Ccr3|Klrc1|Klrb1a|Rhd|Spta1|Mfsd13b|Sirpb1a,-0.16,0

@@ -1,0 +1,5 @@
+Network,Annotation
+Geneid,GO:1903131|mononuclear cell differentiation|-10.2;GO:0002521|leukocyte differentiation|-8.6;GO:0030098|lymphocyte differentiation|-8.6
+Geneid_MCODE_ALL,R-MMU-388396|GPCR downstream signalling|-13.3;R-MMU-372790|Signaling by GPCR|-13.1;R-MMU-418594|G alpha (i) signalling events|-12.0
+Geneid_SUB2_MCODE_1,R-MMU-418594|G alpha (i) signalling events|-13.2;R-MMU-500792|GPCR ligand binding|-12.1;R-MMU-388396|GPCR downstream signalling|-11.0
+Geneid_SUB6_MCODE_2,WP2185|Purine metabolism|-6.2;ko00230|Purine metabolism|-6.2;mmu00230|Purine metabolism|-6.2

@@ -1,0 +1,497 @@
+_MEMBER_Geneid,_LogP_Geneid,GO,Description,_PATTERN_,_RANK_,GiniIndex
+1,-2.7,GO:0061178,regulation of insulin secretion involved in cellular response to glucose stimulus,M1,1,0
+1,-3.7,GO:1902107,positive regulation of leukocyte differentiation,M1,1,0
+1,-3.6,GO:0032700,negative regulation of interleukin-17 production,M1,1,0
+1,-2.2,GO:0002820,negative regulation of adaptive immune response,M1,1,0
+1,-2.2,GO:0033619,membrane protein proteolysis,M1,1,0
+1,-3.3,GO:0040017,positive regulation of locomotion,M1,1,0
+1,-2.3,R-MMU-202733,Cell surface interactions at the vascular wall,M1,1,0
+1,-2.4,GO:0043062,extracellular structure organization,M1,1,0
+1,-2.6,GO:0032733,positive regulation of interleukin-10 production,M1,1,0
+1,-4.7,GO:0050798,activated T cell proliferation,M1,1,0
+1,-2.7,GO:0051129,negative regulation of cellular component organization,M1,1,0
+1,-2.9,WP193,Hepatocyte growth factor receptor signaling,M1,1,0
+1,-2.7,GO:0097190,apoptotic signaling pathway,M1,1,0
+1,-2.7,mmu04510,Focal adhesion,M1,1,0
+1,-3.9,R-MMU-3000170,Syndecan interactions,M1,1,0
+1,-2.2,GO:0042987,amyloid precursor protein catabolic process,M1,1,0
+1,-4.4,GO:0018212,peptidyl-tyrosine modification,M1,1,0
+1,-2.7,ko05410,Hypertrophic cardiomyopathy (HCM),M1,1,0
+1,-6.9,GO:0042113,B cell activation,M1,1,0
+1,-3.3,GO:0031346,positive regulation of cell projection organization,M1,1,0
+1,-4.4,GO:0001944,vasculature development,M1,1,0
+1,-4.5,GO:0002440,production of molecular mediator of immune response,M1,1,0
+1,-2.4,GO:0001678,cellular glucose homeostasis,M1,1,0
+1,-3.7,GO:0046323,glucose import,M1,1,0
+1,-8,GO:0051250,negative regulation of lymphocyte activation,M1,1,0
+1,-2,GO:0071677,positive regulation of mononuclear cell migration,M1,1,0
+1,-4,ko04650,Natural killer cell mediated cytotoxicity,M1,1,0
+1,-5,GO:0050778,positive regulation of immune response,M1,1,0
+1,-5.2,GO:1902105,regulation of leukocyte differentiation,M1,1,0
+1,-2.3,GO:0002714,positive regulation of B cell mediated immunity,M1,1,0
+1,-3.3,GO:0043030,regulation of macrophage activation,M1,1,0
+1,-2.8,GO:0051048,negative regulation of secretion,M1,1,0
+1,-4.5,GO:0007229,integrin-mediated signaling pathway,M1,1,0
+1,-4.1,GO:0046324,regulation of glucose import,M1,1,0
+1,-2.8,GO:0048846,axon extension involved in axon guidance,M1,1,0
+1,-3.4,GO:0007044,cell-substrate junction assembly,M1,1,0
+1,-3,GO:0061035,regulation of cartilage development,M1,1,0
+1,-4.4,R-MMU-422475,Axon guidance,M1,1,0
+1,-8.3,GO:0022407,regulation of cell-cell adhesion,M1,1,0
+1,-3.7,GO:2000404,regulation of T cell migration,M1,1,0
+1,-5.8,GO:0050864,regulation of B cell activation,M1,1,0
+1,-5.2,ko05205,Proteoglycans in cancer,M1,1,0
+1,-6.3,GO:0032944,regulation of mononuclear cell proliferation,M1,1,0
+1,-2.6,WP1763,PluriNetWork: mechanisms associated with pluripotency,M1,1,0
+1,-2.6,GO:0014032,neural crest cell development,M1,1,0
+1,-2,GO:0043954,cellular component maintenance,M1,1,0
+1,-2.8,mmu04060,Cytokine-cytokine receptor interaction,M1,1,0
+1,-3,GO:1904018,positive regulation of vasculature development,M1,1,0
+1,-2.1,GO:0120035,regulation of plasma membrane bounded cell projection organization,M1,1,0
+1,-3.1,GO:1903039,positive regulation of leukocyte cell-cell adhesion,M1,1,0
+1,-5.5,GO:0002697,regulation of immune effector process,M1,1,0
+1,-3,ko04670,Leukocyte transendothelial migration,M1,1,0
+1,-3,GO:0030335,positive regulation of cell migration,M1,1,0
+1,-3.5,GO:0070848,response to growth factor,M1,1,0
+1,-5,GO:0035710,"CD4-positive, alpha-beta T cell activation",M1,1,0
+1,-2.7,GO:0010811,positive regulation of cell-substrate adhesion,M1,1,0
+1,-2.9,GO:0042130,negative regulation of T cell proliferation,M1,1,0
+1,-6.4,GO:1903038,negative regulation of leukocyte cell-cell adhesion,M1,1,0
+1,-3.4,GO:0034330,cell junction organization,M1,1,0
+1,-4,GO:0032675,regulation of interleukin-6 production,M1,1,0
+1,-3,GO:0002360,T cell lineage commitment,M1,1,0
+1,-2.7,GO:0043368,positive T cell selection,M1,1,0
+1,-2.6,GO:0050870,positive regulation of T cell activation,M1,1,0
+1,-2.1,GO:0032615,interleukin-12 production,M1,1,0
+1,-7.7,GO:0042098,T cell proliferation,M1,1,0
+1,-2.5,R-MMU-373755,Semaphorin interactions,M1,1,0
+1,-3.5,GO:1990138,neuron projection extension,M1,1,0
+1,-3.8,GO:0002702,positive regulation of production of molecular mediator of immune response,M1,1,0
+1,-2.9,WP2573,Primary focal segmental glomerulosclerosis (FSGS),M1,1,0
+1,-2.4,ko04933,AGE-RAGE signaling pathway in diabetic complications,M1,1,0
+1,-3.4,R-MMU-194138,Signaling by VEGF,M1,1,0
+1,-3.6,GO:0043373,"CD4-positive, alpha-beta T cell lineage commitment",M1,1,0
+1,-2.4,mmu04933,AGE-RAGE signaling pathway in diabetic complications,M1,1,0
+1,-4.6,GO:0032945,negative regulation of mononuclear cell proliferation,M1,1,0
+1,-2.9,GO:0008285,negative regulation of cell population proliferation,M1,1,0
+1,-3,GO:0034219,carbohydrate transmembrane transport,M1,1,0
+1,-10,GO:0050865,regulation of cell activation,M1,1,0
+1,-4.4,GO:0001505,regulation of neurotransmitter levels,M1,1,0
+1,-3.6,R-MMU-445144,Signal transduction by L1,M1,1,0
+1,-2,GO:0150116,regulation of cell-substrate junction organization,M1,1,0
+1,-2.1,GO:0001501,skeletal system development,M1,1,0
+1,-2.2,WP85,Focal adhesion,M1,1,0
+1,-2.1,GO:0046850,regulation of bone remodeling,M1,1,0
+1,-3.6,R-MMU-1280218,Adaptive Immune System,M1,1,0
+1,-2.1,GO:0010563,negative regulation of phosphorus metabolic process,M1,1,0
+1,-3.4,GO:1903530,regulation of secretion by cell,M1,1,0
+1,-4.1,GO:0002367,cytokine production involved in immune response,M1,1,0
+1,-2.1,GO:0051223,regulation of protein transport,M1,1,0
+1,-3.2,GO:0045620,negative regulation of lymphocyte differentiation,M1,1,0
+1,-5.1,mmu05205,Proteoglycans in cancer,M1,1,0
+1,-2.5,GO:0045765,regulation of angiogenesis,M1,1,0
+1,-3.9,GO:0002703,regulation of leukocyte mediated immunity,M1,1,0
+1,-2.3,GO:0044060,regulation of endocrine process,M1,1,0
+1,-2.5,GO:0006509,membrane protein ectodomain proteolysis,M1,1,0
+1,-2.5,GO:0050769,positive regulation of neurogenesis,M1,1,0
+1,-2.5,GO:0014031,mesenchymal cell development,M1,1,0
+1,-2.1,R-MMU-373760,L1CAM interactions,M1,1,0
+1,-2.7,GO:0031341,regulation of cell killing,M1,1,0
+1,-2.3,GO:0042531,positive regulation of tyrosine phosphorylation of STAT protein,M1,1,0
+1,-2.7,GO:0002724,regulation of T cell cytokine production,M1,1,0
+1,-3.4,GO:0048016,inositol phosphate-mediated signaling,M1,1,0
+1,-3.8,GO:0002260,lymphocyte homeostasis,M1,1,0
+1,-5.3,GO:0032660,regulation of interleukin-17 production,M1,1,0
+1,-2.9,R-MMU-9006934,Signaling by Receptor Tyrosine Kinases,M1,1,0
+1,-7.3,GO:0045785,positive regulation of cell adhesion,M1,1,0
+1,-4.4,GO:0018108,peptidyl-tyrosine phosphorylation,M1,1,0
+1,-3.3,GO:0022409,positive regulation of cell-cell adhesion,M1,1,0
+1,-3.7,GO:0002228,natural killer cell mediated immunity,M1,1,0
+1,-3.2,GO:0070231,T cell apoptotic process,M1,1,0
+1,-4.6,GO:0050672,negative regulation of lymphocyte proliferation,M1,1,0
+1,-2.4,mmu04659,Th17 cell differentiation,M1,1,0
+1,-2.3,GO:0106027,neuron projection organization,M1,1,0
+1,-2.5,R-MMU-1280215,Cytokine Signaling in Immune system,M1,1,0
+1,-3.1,GO:0032613,interleukin-10 production,M1,1,0
+1,-2.6,GO:0019724,B cell mediated immunity,M1,1,0
+1,-2.6,GO:0030072,peptide hormone secretion,M1,1,0
+1,-2.6,GO:0016064,immunoglobulin mediated immune response,M1,1,0
+1,-2.2,GO:0002253,activation of immune response,M1,1,0
+1,-3.5,GO:0045581,negative regulation of T cell differentiation,M1,1,0
+1,-2.5,GO:0010976,positive regulation of neuron projection development,M1,1,0
+1,-3.8,mmu04360,Axon guidance,M1,1,0
+1,-2.6,GO:0071331,cellular response to hexose stimulus,M1,1,0
+1,-2.4,GO:0014033,neural crest cell differentiation,M1,1,0
+1,-3.8,GO:0002700,regulation of production of molecular mediator of immune response,M1,1,0
+1,-2.1,GO:0048872,homeostasis of number of cells,M1,1,0
+1,-4.8,GO:0002706,regulation of lymphocyte mediated immunity,M1,1,0
+1,-3.2,GO:0032703,negative regulation of interleukin-2 production,M1,1,0
+1,-2.1,GO:0048259,regulation of receptor-mediated endocytosis,M1,1,0
+1,-6.4,GO:0002699,positive regulation of immune effector process,M1,1,0
+1,-4.3,ko04660,T cell receptor signaling pathway,M1,1,0
+1,-2.7,GO:0038179,neurotrophin signaling pathway,M1,1,0
+1,-2.1,WP488,Alpha 6 beta 4 integrin signaling pathway,M1,1,0
+1,-2.7,R-MMU-8853659,RET signaling,M1,1,0
+1,-2.8,GO:0019722,calcium-mediated signaling,M1,1,0
+1,-2.4,GO:0033173,calcineurin-NFAT signaling cascade,M1,1,0
+1,-2,GO:0003205,cardiac chamber development,M1,1,0
+1,-2.9,GO:0002286,T cell activation involved in immune response,M1,1,0
+1,-3.9,GO:0030217,T cell differentiation,M1,1,0
+1,-2.7,GO:1904645,response to amyloid-beta,M1,1,0
+1,-2.8,GO:0002757,immune response-activating signal transduction,M1,1,0
+1,-2.3,GO:0050886,endocrine process,M1,1,0
+1,-2.1,GO:1903532,positive regulation of secretion by cell,M1,1,0
+1,-7.5,GO:0032943,mononuclear cell proliferation,M1,1,0
+1,-2.6,GO:1901379,regulation of potassium ion transmembrane transport,M1,1,0
+1,-4.4,GO:0002639,positive regulation of immunoglobulin production,M1,1,0
+1,-3,GO:0048667,cell morphogenesis involved in neuron differentiation,M1,1,0
+1,-4.2,GO:0002831,regulation of response to biotic stimulus,M1,1,0
+1,-2.6,R-MMU-4420097,VEGFA-VEGFR2 Pathway,M1,1,0
+1,-4.4,mmu05321,Inflammatory bowel disease (IBD),M1,1,0
+1,-6.8,GO:0050868,negative regulation of T cell activation,M1,1,0
+1,-5,GO:1903706,regulation of hemopoiesis,M1,1,0
+1,-2.1,GO:0032655,regulation of interleukin-12 production,M1,1,0
+1,-2.8,GO:0001779,natural killer cell differentiation,M1,1,0
+1,-5.2,GO:0001504,neurotransmitter uptake,M1,1,0
+1,-2.7,ko04512,ECM-receptor interaction,M1,1,0
+1,-3.8,GO:0070232,regulation of T cell apoptotic process,M1,1,0
+1,-7.6,GO:0046651,lymphocyte proliferation,M1,1,0
+1,-4.7,GO:0002637,regulation of immunoglobulin production,M1,1,0
+1,-2.2,GO:0045058,T cell selection,M1,1,0
+1,-3.6,GO:0048514,blood vessel morphogenesis,M1,1,0
+1,-2.6,mmu05414,Dilated cardiomyopathy,M1,1,0
+1,-2.7,R-MMU-1433557,Signaling by SCF-KIT,M1,1,0
+1,-2,GO:1903556,negative regulation of tumor necrosis factor superfamily cytokine production,M1,1,0
+1,-4.5,GO:0050731,positive regulation of peptidyl-tyrosine phosphorylation,M1,1,0
+1,-2.3,GO:0002764,immune response-regulating signaling pathway,M1,1,0
+1,-2.4,GO:0030100,regulation of endocytosis,M1,1,0
+1,-5.6,GO:0042129,regulation of T cell proliferation,M1,1,0
+1,-5.3,GO:0030098,lymphocyte differentiation,M1,1,0
+1,-5.5,GO:1903131,mononuclear cell differentiation,M1,1,0
+1,-3.8,GO:0042267,natural killer cell mediated cytotoxicity,M1,1,0
+1,-3,GO:0051046,regulation of secretion,M1,1,0
+1,-3.3,GO:0043369,"CD4-positive or CD8-positive, alpha-beta T cell lineage commitment",M1,1,0
+1,-2.4,WP6,Integrin-mediated cell adhesion,M1,1,0
+1,-5.9,ko04514,Cell adhesion molecules (CAMs),M1,1,0
+1,-3.8,GO:0070228,regulation of lymphocyte apoptotic process,M1,1,0
+1,-2.3,WP572,EGFR1 signaling pathway,M1,1,0
+1,-2.7,GO:0048812,neuron projection morphogenesis,M1,1,0
+1,-3.3,GO:0071322,cellular response to carbohydrate stimulus,M1,1,0
+1,-5.1,GO:0045590,negative regulation of regulatory T cell differentiation,M1,1,0
+1,-2.5,GO:0043029,T cell homeostasis,M1,1,0
+1,-6.3,GO:0002521,leukocyte differentiation,M1,1,0
+1,-7,GO:0032103,positive regulation of response to external stimulus,M1,1,0
+1,-2.3,GO:1903202,negative regulation of oxidative stress-induced cell death,M1,1,0
+1,-3.1,GO:0001755,neural crest cell migration,M1,1,0
+1,-2.9,GO:0002889,regulation of immunoglobulin mediated immune response,M1,1,0
+1,-6.1,GO:0022408,negative regulation of cell-cell adhesion,M1,1,0
+1,-2.6,GO:0048858,cell projection morphogenesis,M1,1,0
+1,-3.5,GO:0002363,alpha-beta T cell lineage commitment,M1,1,0
+1,-5.4,GO:0031589,cell-substrate adhesion,M1,1,0
+1,-2.2,GO:0043534,blood vessel endothelial cell migration,M1,1,0
+1,-3.8,GO:0002292,T cell differentiation involved in immune response,M1,1,0
+1,-2.4,GO:0061756,leukocyte adhesion to vascular endothelial cell,M1,1,0
+1,-2.5,GO:0032990,cell part morphogenesis,M1,1,0
+1,-6.4,GO:0050670,regulation of lymphocyte proliferation,M1,1,0
+1,-2.7,GO:0042060,wound healing,M1,1,0
+1,-2.5,GO:0031344,regulation of cell projection organization,M1,1,0
+1,-2.4,GO:0097061,dendritic spine organization,M1,1,0
+1,-2.5,GO:0072538,T-helper 17 type immune response,M1,1,0
+1,-3.9,ko04360,Axon guidance,M1,1,0
+1,-2.9,GO:0042982,amyloid precursor protein metabolic process,M1,1,0
+1,-3,GO:0048863,stem cell differentiation,M1,1,0
+1,-3.9,GO:0032635,interleukin-6 production,M1,1,0
+1,-2.7,GO:0002768,immune response-regulating cell surface receptor signaling pathway,M1,1,0
+1,-3.3,GO:0042593,glucose homeostasis,M1,1,0
+1,-3.5,GO:0002312,B cell activation involved in immune response,M1,1,0
+1,-4.8,GO:0001818,negative regulation of cytokine production,M1,1,0
+1,-3.2,GO:0048843,negative regulation of axon extension involved in axon guidance,M1,1,0
+1,-5.5,GO:0002717,positive regulation of natural killer cell mediated immunity,M1,1,0
+1,-2.5,GO:0048864,stem cell development,M1,1,0
+1,-2.6,GO:0045165,cell fate commitment,M1,1,0
+1,-6.2,GO:0007162,negative regulation of cell adhesion,M1,1,0
+1,-3.4,GO:0034762,regulation of transmembrane transport,M1,1,0
+1,-4.3,R-MMU-210990,PECAM1 interactions,M1,1,0
+1,-5.8,GO:0007160,cell-matrix adhesion,M1,1,0
+1,-2.9,R-MMU-1474244,Extracellular matrix organization,M1,1,0
+1,-3.1,GO:0046634,regulation of alpha-beta T cell activation,M1,1,0
+1,-3.6,GO:0071363,cellular response to growth factor stimulus,M1,1,0
+1,-3.2,GO:0046883,regulation of hormone secretion,M1,1,0
+1,-2.1,GO:0051893,regulation of focal adhesion assembly,M1,1,0
+1,-3.2,GO:0006935,chemotaxis,M1,1,0
+1,-2.7,GO:2000516,"positive regulation of CD4-positive, alpha-beta T cell activation",M1,1,0
+1,-3.3,GO:0045088,regulation of innate immune response,M1,1,0
+1,-10,GO:0001817,regulation of cytokine production,M1,1,0
+1,-4.7,GO:0046631,alpha-beta T cell activation,M1,1,0
+1,-2.7,GO:0120039,plasma membrane bounded cell projection morphogenesis,M1,1,0
+1,-4.6,GO:0032609,interferon-gamma production,M1,1,0
+1,-5.5,GO:0050869,negative regulation of B cell activation,M1,1,0
+1,-9.3,GO:0002695,negative regulation of leukocyte activation,M1,1,0
+1,-2.7,GO:0070371,ERK1 and ERK2 cascade,M1,1,0
+1,-3.5,GO:0032715,negative regulation of interleukin-6 production,M1,1,0
+1,-3.1,GO:0044057,regulation of system process,M1,1,0
+1,-2.3,GO:0070372,regulation of ERK1 and ERK2 cascade,M1,1,0
+1,-2.3,R-MMU-186797,Signaling by PDGF,M1,1,0
+1,-2.7,GO:0001782,B cell homeostasis,M1,1,0
+1,-3.2,GO:0010810,regulation of cell-substrate adhesion,M1,1,0
+1,-2,GO:0061387,regulation of extent of cell growth,M1,1,0
+1,-2.3,GO:1903707,negative regulation of hemopoiesis,M1,1,0
+1,-2.8,ko04510,Focal adhesion,M1,1,0
+1,-4.5,R-MMU-388841,Costimulation by the CD28 family,M1,1,0
+1,-2.3,GO:0097720,calcineurin-mediated signaling,M1,1,0
+1,-2.9,GO:0072539,T-helper 17 cell differentiation,M1,1,0
+1,-3.2,GO:0042330,taxis,M1,1,0
+1,-3.2,GO:2000401,regulation of lymphocyte migration,M1,1,0
+1,-2.4,GO:0015833,peptide transport,M1,1,0
+1,-3.6,GO:0007409,axonogenesis,M1,1,0
+1,-2.7,mmu04512,ECM-receptor interaction,M1,1,0
+1,-9.5,GO:0042110,T cell activation,M1,1,0
+1,-4.1,GO:0001568,blood vessel development,M1,1,0
+1,-2.4,GO:0070229,negative regulation of lymphocyte apoptotic process,M1,1,0
+1,-2.8,GO:1902284,neuron projection extension involved in neuron projection guidance,M1,1,0
+1,-4.1,GO:0002696,positive regulation of leukocyte activation,M1,1,0
+1,-3.6,GO:0010827,regulation of glucose transmembrane transport,M1,1,0
+1,-2.2,GO:0006898,receptor-mediated endocytosis,M1,1,0
+1,-3.1,GO:1903531,negative regulation of secretion by cell,M1,1,0
+1,-2,GO:0032720,negative regulation of tumor necrosis factor production,M1,1,0
+1,-3.7,GO:1903708,positive regulation of hemopoiesis,M1,1,0
+1,-6.1,GO:0070663,regulation of leukocyte proliferation,M1,1,0
+1,-3.4,GO:0051216,cartilage development,M1,1,0
+1,-3.1,GO:0032653,regulation of interleukin-10 production,M1,1,0
+1,-2.3,GO:0090303,positive regulation of wound healing,M1,1,0
+1,-2.6,ko05414,Dilated cardiomyopathy,M1,1,0
+1,-2.2,WP3625,Tyrobp causal network in microglia,M1,1,0
+1,-2.6,GO:0061448,connective tissue development,M1,1,0
+1,-3.9,GO:0032689,negative regulation of interferon-gamma production,M1,1,0
+1,-3.4,R-MMU-198933,Immunoregulatory interactions between a Lymphoid and a non-Lymphoid cell,M1,1,0
+1,-2.1,GO:0001525,angiogenesis,M1,1,0
+1,-7.8,GO:0007159,leukocyte cell-cell adhesion,M1,1,0
+1,-2.2,GO:0045190,isotype switching,M1,1,0
+1,-2.4,GO:0030593,neutrophil chemotaxis,M1,1,0
+1,-4.3,GO:2001237,negative regulation of extrinsic apoptotic signaling pathway,M1,1,0
+1,-3.2,GO:0070233,negative regulation of T cell apoptotic process,M1,1,0
+1,-2.2,GO:0050922,negative regulation of chemotaxis,M1,1,0
+1,-4,GO:0002293,alpha-beta T cell differentiation involved in immune response,M1,1,0
+1,-2.9,GO:0009746,response to hexose,M1,1,0
+1,-3,GO:0015749,monosaccharide transmembrane transport,M1,1,0
+1,-3.5,GO:0009743,response to carbohydrate,M1,1,0
+1,-4,GO:0002287,alpha-beta T cell activation involved in immune response,M1,1,0
+1,-2,GO:1990266,neutrophil migration,M1,1,0
+1,-4.9,GO:0045596,negative regulation of cell differentiation,M1,1,0
+1,-2.9,mmu05412,Arrhythmogenic right ventricular cardiomyopathy (ARVC),M1,1,0
+1,-4.1,GO:0030888,regulation of B cell proliferation,M1,1,0
+1,-2.6,GO:0002790,peptide secretion,M1,1,0
+1,-4.3,GO:0070227,lymphocyte apoptotic process,M1,1,0
+1,-2.1,GO:0045936,negative regulation of phosphate metabolic process,M1,1,0
+1,-2.7,GO:0051962,positive regulation of nervous system development,M1,1,0
+1,-2.9,GO:0009749,response to glucose,M1,1,0
+1,-3.8,GO:0002381,immunoglobulin production involved in immunoglobulin-mediated immune response,M1,1,0
+1,-3.5,GO:0048675,axon extension,M1,1,0
+1,-5.4,GO:0006954,inflammatory response,M1,1,0
+1,-3.6,R-MMU-389513,CTLA4 inhibitory signaling,M1,1,0
+1,-2.7,GO:0032729,positive regulation of interferon-gamma production,M1,1,0
+1,-3,GO:0002507,tolerance induction,M1,1,0
+1,-2.4,GO:0090087,regulation of peptide transport,M1,1,0
+1,-2.5,GO:0090132,epithelium migration,M1,1,0
+1,-5.6,GO:0045954,positive regulation of natural killer cell mediated cytotoxicity,M1,1,0
+1,-4.3,mmu04660,T cell receptor signaling pathway,M1,1,0
+1,-2.5,GO:0010631,epithelial cell migration,M1,1,0
+1,-2.5,WP4466,Oxidative stress and redox pathway,M1,1,0
+1,-5,GO:0002377,immunoglobulin production,M1,1,0
+1,-2.7,GO:0048771,tissue remodeling,M1,1,0
+1,-3.2,GO:0046887,positive regulation of hormone secretion,M1,1,0
+1,-3.1,GO:0048008,platelet-derived growth factor receptor signaling pathway,M1,1,0
+1,-2.3,GO:0045124,regulation of bone resorption,M1,1,0
+1,-3.8,GO:0046326,positive regulation of glucose import,M1,1,0
+1,-3.5,GO:0032946,positive regulation of mononuclear cell proliferation,M1,1,0
+1,-3.4,GO:0002443,leukocyte mediated immunity,M1,1,0
+1,-4,GO:0033627,cell adhesion mediated by integrin,M1,1,0
+1,-2.3,GO:0043536,positive regulation of blood vessel endothelial cell migration,M1,1,0
+1,-2.1,GO:0043523,regulation of neuron apoptotic process,M1,1,0
+1,-3.4,GO:0010828,positive regulation of glucose transmembrane transport,M1,1,0
+1,-5.3,GO:0045066,regulatory T cell differentiation,M1,1,0
+1,-3.6,GO:0030889,negative regulation of B cell proliferation,M1,1,0
+1,-2.2,GO:0002204,somatic recombination of immunoglobulin genes involved in immune response,M1,1,0
+1,-2.6,R-MMU-1266738,Developmental Biology,M1,1,0
+1,-4.1,GO:0023061,signal release,M1,1,0
+1,-2.9,R-MMU-2129379,Molecules associated with elastic fibres,M1,1,0
+1,-4.6,GO:0034113,heterotypic cell-cell adhesion,M1,1,0
+1,-4,GO:0050920,regulation of chemotaxis,M1,1,0
+1,-5.8,mmu04514,Cell adhesion molecules (CAMs),M1,1,0
+1,-2.4,ko04659,Th17 cell differentiation,M1,1,0
+1,-9.6,GO:0051249,regulation of lymphocyte activation,M1,1,0
+1,-2.4,GO:2001233,regulation of apoptotic signaling pathway,M1,1,0
+1,-5.2,GO:0071604,transforming growth factor beta production,M1,1,0
+1,-2.6,R-MMU-1566948,Elastic fibre formation,M1,1,0
+1,-2.2,GO:0071675,regulation of mononuclear cell migration,M1,1,0
+1,-2,GO:0016447,somatic recombination of immunoglobulin gene segments,M1,1,0
+1,-2.2,GO:0050796,regulation of insulin secretion,M1,1,0
+1,-7.4,GO:0002683,negative regulation of immune system process,M1,1,0
+1,-3.7,GO:0048041,focal adhesion assembly,M1,1,0
+1,-4.3,GO:0098810,neurotransmitter reuptake,M1,1,0
+1,-2.4,GO:0002791,regulation of peptide secretion,M1,1,0
+1,-3.9,GO:0050900,leukocyte migration,M1,1,0
+1,-3.4,GO:0009611,response to wounding,M1,1,0
+1,-2.1,GO:0071621,granulocyte chemotaxis,M1,1,0
+1,-2,GO:0001934,positive regulation of protein phosphorylation,M1,1,0
+1,-2.3,GO:0001503,ossification,M1,1,0
+1,-2.9,GO:2000514,"regulation of CD4-positive, alpha-beta T cell activation",M1,1,0
+1,-4.6,GO:0006836,neurotransmitter transport,M1,1,0
+1,-2.4,GO:0042326,negative regulation of phosphorylation,M1,1,0
+1,-3.3,GO:0033500,carbohydrate homeostasis,M1,1,0
+1,-2.9,GO:0051051,negative regulation of transport,M1,1,0
+1,-3.4,GO:0050921,positive regulation of chemotaxis,M1,1,0
+1,-5.4,GO:0071634,regulation of transforming growth factor beta production,M1,1,0
+1,-3.6,GO:0071887,leukocyte apoptotic process,M1,1,0
+1,-3,GO:0042100,B cell proliferation,M1,1,0
+1,-2.1,GO:0000302,response to reactive oxygen species,M1,1,0
+1,-2.4,GO:0030517,negative regulation of axon extension,M1,1,0
+1,-2.2,R-MMU-449147,Signaling by Interleukins,M1,1,0
+1,-4,GO:0045580,regulation of T cell differentiation,M1,1,0
+1,-2.4,GO:0045229,external encapsulating structure organization,M1,1,0
+1,-2.6,GO:0009914,hormone transport,M1,1,0
+1,-3.3,GO:0097062,dendritic spine maintenance,M1,1,0
+1,-2.5,GO:1901342,regulation of vasculature development,M1,1,0
+1,-4.4,GO:0070664,negative regulation of leukocyte proliferation,M1,1,0
+1,-2,GO:0003279,cardiac septum development,M1,1,0
+1,-4.4,GO:0002715,regulation of natural killer cell mediated immunity,M1,1,0
+1,-2.8,GO:0150076,neuroinflammatory response,M1,1,0
+1,-3.1,GO:0050851,antigen receptor-mediated signaling pathway,M1,1,0
+1,-4.1,GO:0042093,T-helper cell differentiation,M1,1,0
+1,-2.9,GO:0034284,response to monosaccharide,M1,1,0
+1,-3,GO:2001234,negative regulation of apoptotic signaling pathway,M1,1,0
+1,-3,GO:0045766,positive regulation of angiogenesis,M1,1,0
+1,-2.7,GO:0051272,positive regulation of cellular component movement,M1,1,0
+1,-4.4,R-MMU-9675108,Nervous system development,M1,1,0
+1,-5.1,GO:0050730,regulation of peptidyl-tyrosine phosphorylation,M1,1,0
+1,-8.3,GO:0050863,regulation of T cell activation,M1,1,0
+1,-9.8,GO:0002694,regulation of leukocyte activation,M1,1,0
+1,-3.1,WP407,Kit receptor signaling pathway,M1,1,0
+1,-2.6,GO:0071333,cellular response to glucose stimulus,M1,1,0
+1,-3.1,GO:0002720,positive regulation of cytokine production involved in immune response,M1,1,0
+1,-2.4,GO:0048762,mesenchymal cell differentiation,M1,1,0
+1,-3.2,GO:0098657,import into cell,M1,1,0
+1,-2.9,GO:0002712,regulation of B cell mediated immunity,M1,1,0
+1,-2.6,GO:0046879,hormone secretion,M1,1,0
+1,-4.3,GO:0002449,lymphocyte mediated immunity,M1,1,0
+1,-3.4,GO:0031345,negative regulation of cell projection organization,M1,1,0
+1,-3.1,GO:0002062,chondrocyte differentiation,M1,1,0
+1,-7.6,GO:1903037,regulation of leukocyte cell-cell adhesion,M1,1,0
+1,-2.7,mmu05410,Hypertrophic cardiomyopathy (HCM),M1,1,0
+1,-2.5,GO:0007507,heart development,M1,1,0
+1,-3,GO:0001910,regulation of leukocyte mediated cytotoxicity,M1,1,0
+1,-2.2,GO:0051090,regulation of DNA-binding transcription factor activity,M1,1,0
+1,-2.9,GO:0034764,positive regulation of transmembrane transport,M1,1,0
+1,-2.7,GO:0001667,ameboidal-type cell migration,M1,1,0
+1,-2.7,GO:0009595,detection of biotic stimulus,M1,1,0
+1,-3.4,GO:0032330,regulation of chondrocyte differentiation,M1,1,0
+1,-5.6,GO:0002705,positive regulation of leukocyte mediated immunity,M1,1,0
+1,-2.4,GO:0050772,positive regulation of axonogenesis,M1,1,0
+1,-2.4,GO:0060326,cell chemotaxis,M1,1,0
+1,-4.4,ko05321,Inflammatory bowel disease (IBD),M1,1,0
+1,-4.6,GO:0042269,regulation of natural killer cell mediated cytotoxicity,M1,1,0
+1,-2.4,GO:0008038,neuron recognition,M1,1,0
+1,-3.2,GO:0072678,T cell migration,M1,1,0
+1,-3.6,GO:0001912,positive regulation of leukocyte mediated cytotoxicity,M1,1,0
+1,-2.1,GO:0050435,amyloid-beta metabolic process,M1,1,0
+1,-2.4,GO:0030198,extracellular matrix organization,M1,1,0
+1,-3,GO:0001776,leukocyte homeostasis,M1,1,0
+1,-3.8,GO:0061564,axon development,M1,1,0
+1,-2.7,GO:0051588,regulation of neurotransmitter transport,M1,1,0
+1,-3.1,GO:0001890,placenta development,M1,1,0
+1,-2.2,GO:0042886,amide transport,M1,1,0
+1,-3,GO:1903959,regulation of anion transmembrane transport,M1,1,0
+1,-6.8,GO:0031349,positive regulation of defense response,M1,1,0
+1,-3.1,GO:0097191,extrinsic apoptotic signaling pathway,M1,1,0
+1,-3.1,GO:0032663,regulation of interleukin-2 production,M1,1,0
+1,-2.8,GO:0050852,T cell receptor signaling pathway,M1,1,0
+1,-2.5,GO:0019932,second-messenger-mediated signaling,M1,1,0
+1,-2.4,GO:1901653,cellular response to peptide,M1,1,0
+1,-3,GO:0048011,neurotrophin TRK receptor signaling pathway,M1,1,0
+1,-3.9,GO:0046007,negative regulation of activated T cell proliferation,M1,1,0
+1,-3.4,GO:0006897,endocytosis,M1,1,0
+1,-3.1,GO:0001892,embryonic placenta development,M1,1,0
+1,-3.7,GO:0046632,alpha-beta T cell differentiation,M1,1,0
+1,-2.5,GO:0035773,insulin secretion involved in cellular response to glucose stimulus,M1,1,0
+1,-2.7,GO:0031400,negative regulation of protein modification process,M1,1,0
+1,-2.4,GO:0042116,macrophage activation,M1,1,0
+1,-4.5,GO:0043367,"CD4-positive, alpha-beta T cell differentiation",M1,1,0
+1,-2.5,GO:0002285,lymphocyte activation involved in immune response,M1,1,0
+1,-3.3,GO:0042102,positive regulation of T cell proliferation,M1,1,0
+1,-2,GO:0001952,regulation of cell-matrix adhesion,M1,1,0
+1,-2.9,ko04060,Cytokine-cytokine receptor interaction,M1,1,0
+1,-2.9,GO:1904646,cellular response to amyloid-beta,M1,1,0
+1,-2.4,GO:0002819,regulation of adaptive immune response,M1,1,0
+1,-4.1,GO:0045589,regulation of regulatory T cell differentiation,M1,1,0
+1,-2.8,GO:0030099,myeloid cell differentiation,M1,1,0
+1,-7.2,GO:0070661,leukocyte proliferation,M1,1,0
+1,-2.3,GO:0043266,regulation of potassium ion transport,M1,1,0
+1,-2.9,GO:0032623,interleukin-2 production,M1,1,0
+1,-4.8,GO:0002833,positive regulation of response to biotic stimulus,M1,1,0
+1,-4,GO:2001236,regulation of extrinsic apoptotic signaling pathway,M1,1,0
+1,-2.2,GO:0002208,somatic diversification of immunoglobulins involved in immune response,M1,1,0
+1,-2.3,GO:0043370,"regulation of CD4-positive, alpha-beta T cell differentiation",M1,1,0
+1,-8.7,GO:0050866,negative regulation of cell activation,M1,1,0
+1,-3.3,GO:0050871,positive regulation of B cell activation,M1,1,0
+1,-3,GO:0045621,positive regulation of lymphocyte differentiation,M1,1,0
+1,-4.4,GO:0002718,regulation of cytokine production involved in immune response,M1,1,0
+1,-4.2,GO:0050727,regulation of inflammatory response,M1,1,0
+1,-2.2,GO:0060840,artery development,M1,1,0
+1,-6.2,GO:0001819,positive regulation of cytokine production,M1,1,0
+1,-2.8,ko05143,African trypanosomiasis,M1,1,0
+1,-3,R-MMU-216083,Integrin cell surface interactions,M1,1,0
+1,-2.6,GO:0046888,negative regulation of hormone secretion,M1,1,0
+1,-2.5,GO:2000273,positive regulation of signaling receptor activity,M1,1,0
+1,-4.7,GO:0045089,positive regulation of innate immune response,M1,1,0
+1,-2.6,GO:0010975,regulation of neuron projection development,M1,1,0
+1,-2.8,mmu05143,African trypanosomiasis,M1,1,0
+1,-2.5,GO:0090276,regulation of peptide hormone secretion,M1,1,0
+1,-2.3,GO:0060249,anatomical structure homeostasis,M1,1,0
+1,-3.3,GO:0150115,cell-substrate junction organization,M1,1,0
+1,-2.2,GO:0003012,muscle system process,M1,1,0
+1,-2.8,GO:0007169,transmembrane receptor protein tyrosine kinase signaling pathway,M1,1,0
+1,-6.6,GO:0031347,regulation of defense response,M1,1,0
+1,-2.4,GO:0001909,leukocyte mediated cytotoxicity,M1,1,0
+1,-3.2,GO:0072676,lymphocyte migration,M1,1,0
+1,-5.7,GO:0002250,adaptive immune response,M1,1,0
+1,-5.1,GO:0032620,interleukin-17 production,M1,1,0
+1,-2.8,GO:2000147,positive regulation of cell motility,M1,1,0
+1,-2.4,GO:0090130,tissue migration,M1,1,0
+1,-2.6,GO:0071326,cellular response to monosaccharide stimulus,M1,1,0
+1,-2.9,ko05412,Arrhythmogenic right ventricular cardiomyopathy (ARVC),M1,1,0
+1,-4.8,GO:0032649,regulation of interferon-gamma production,M1,1,0
+1,-2.4,GO:0043433,negative regulation of DNA-binding transcription factor activity,M1,1,0
+1,-4,GO:0050867,positive regulation of cell activation,M1,1,0
+1,-4.1,GO:0002335,mature B cell differentiation,M1,1,0
+1,-12,GO:0030155,regulation of cell adhesion,M1,1,0
+1,-4,GO:0002294,"CD4-positive, alpha-beta T cell differentiation involved in immune response",M1,1,0
+1,-3,mmu04670,Leukocyte transendothelial migration,M1,1,0
+1,-2.2,GO:0030516,regulation of axon extension,M1,1,0
+1,-2.2,GO:0071674,mononuclear cell migration,M1,1,0
+1,-2.7,GO:0045622,regulation of T-helper cell differentiation,M1,1,0
+1,-2,GO:0001894,tissue homeostasis,M1,1,0
+1,-2.5,GO:0008643,carbohydrate transport,M1,1,0
+1,-6.1,GO:0002708,positive regulation of lymphocyte mediated immunity,M1,1,0
+1,-3,GO:0008645,hexose transmembrane transport,M1,1,0
+1,-2.8,GO:0002429,immune response-activating cell surface receptor signaling pathway,M1,1,0
+1,-2.7,GO:0034329,cell junction assembly,M1,1,0
+1,-2.3,GO:1902106,negative regulation of leukocyte differentiation,M1,1,0
+1,-2.5,GO:0050708,regulation of protein secretion,M1,1,0
+1,-3.8,GO:0046006,regulation of activated T cell proliferation,M1,1,0
+1,-4.7,GO:0051251,positive regulation of lymphocyte activation,M1,1,0
+1,-2.7,R-MMU-3000171,Non-integrin membrane-ECM interactions,M1,1,0
+1,-3.5,GO:0050671,positive regulation of lymphocyte proliferation,M1,1,0
+1,-3.8,mmu04650,Natural killer cell mediated cytotoxicity,M1,1,0
+1,-3.4,GO:0060560,developmental growth involved in morphogenesis,M1,1,0
+1,-3.4,GO:0031343,positive regulation of cell killing,M1,1,0
+1,-3.3,GO:0070665,positive regulation of leukocyte proliferation,M1,1,0
+1,-2.3,GO:0002891,positive regulation of immunoglobulin mediated immune response,M1,1,0
+1,-3.1,GO:2000106,regulation of leukocyte apoptotic process,M1,1,0
+1,-2.5,GO:0002369,T cell cytokine production,M1,1,0
+1,-3.4,GO:0048588,developmental cell growth,M1,1,0
+1,-3.1,GO:1904659,glucose transmembrane transport,M1,1,0
+1,-2,GO:0099173,postsynapse organization,M1,1,0
+1,-2.7,GO:0001933,negative regulation of protein phosphorylation,M1,1,0
+1,-2.9,GO:0048841,regulation of axon extension involved in axon guidance,M1,1,0
+1,-2.1,GO:0090109,regulation of cell-substrate junction assembly,M1,1,0
+1,-5.2,GO:0045619,regulation of lymphocyte differentiation,M1,1,0

@@ -1,0 +1,69 @@
+Name,Category,CategoryID,GO,Description,PARENT_GO,LogP,Enrichment,Z-score,#TotalGeneInLibrary,#GeneInGO,#GeneInHitList,#GeneInGOAndHitList,%InGO,STDV %InGO,GeneID,Hits,Log(q-value)
+Geneid,GO Biological Processes,19,GO:1902105,regulation of leukocyte differentiation,19_GO:0002376 immune system process,-4.3,12,7.2,20504,323,26,5,19,7.7,12192|16197|20677|21414|234515,Zfp36l1|Il7r|Sox4|Tcf7|Inpp4b,-1
+Geneid,GO Biological Processes,19,GO:0045619,regulation of lymphocyte differentiation,19_GO:0002376 immune system process,-3.9,16,7.4,20504,202,26,4,15,7.1,12192|16197|20677|21414,Zfp36l1|Il7r|Sox4|Tcf7,-0.66
+Geneid,GO Biological Processes,19,GO:1903706,regulation of hemopoiesis,19_GO:0002376 immune system process,-3.9,9.8,6.4,20504,401,26,5,19,7.7,12192|16197|20677|21414|234515,Zfp36l1|Il7r|Sox4|Tcf7|Inpp4b,-0.64
+Geneid,GO Biological Processes,19,GO:0002690,positive regulation of leukocyte chemotaxis,19_GO:0040011 locomotion,-3.6,24,8.2,20504,98,26,3,12,6.3,12273|13616|55985,C5ar1|Edn3|Cxcl13,-0.39
+Geneid,GO Biological Processes,19,GO:0030593,neutrophil chemotaxis,19_GO:0040011 locomotion,-3.5,23,8,20504,102,26,3,12,6.3,12273|13616|55985,C5ar1|Edn3|Cxcl13,-0.38
+Geneid,GO Biological Processes,19,GO:0022409,positive regulation of cell-cell adhesion,19_GO:0022610 biological adhesion,-3.4,11,6.1,20504,288,26,4,15,7.1,16197|20677|54167|55985,Il7r|Sox4|Icos|Cxcl13,-0.27
+Geneid,GO Biological Processes,19,GO:0002688,regulation of leukocyte chemotaxis,19_GO:0040011 locomotion,-3.3,19,7.2,20504,125,26,3,12,6.3,12273|13616|55985,C5ar1|Edn3|Cxcl13,-0.27
+Geneid,GO Biological Processes,19,GO:0030217,T cell differentiation,19_GO:0002376 immune system process,-3.3,10,5.9,20504,302,26,4,15,7.1,12192|16197|20677|21414,Zfp36l1|Il7r|Sox4|Tcf7,-0.27
+Geneid,GO Biological Processes,19,GO:0071621,granulocyte chemotaxis,19_GO:0040011 locomotion,-3.3,19,7.1,20504,127,26,3,12,6.3,12273|13616|55985,C5ar1|Edn3|Cxcl13,-0.27
+Geneid,GO Biological Processes,19,GO:1990266,neutrophil migration,19_GO:0040011 locomotion,-3.3,18,7.1,20504,128,26,3,12,6.3,12273|13616|55985,C5ar1|Edn3|Cxcl13,-0.27
+Geneid,Reactome Gene Sets,6,R-MMU-388396,GPCR downstream signalling,,-3.3,7.2,5.2,20504,549,26,5,19,7.7,12273|13616|18710|55985|83771,C5ar1|Edn3|Pik3r3|Cxcl13|Tas1r3,-0.27
+Geneid,GO Biological Processes,19,GO:0042110,T cell activation,19_GO:0002376 immune system process,-3.3,7.2,5.2,20504,550,26,5,19,7.7,12192|16197|20677|21414|54167,Zfp36l1|Il7r|Sox4|Tcf7|Icos,-0.27
+Geneid,Reactome Gene Sets,6,R-MMU-372790,Signaling by GPCR,,-3.2,6.8,5.1,20504,578,26,5,19,7.7,12273|13616|18710|55985|83771,C5ar1|Edn3|Pik3r3|Cxcl13|Tas1r3,-0.21
+Geneid,GO Biological Processes,19,GO:0043087,regulation of GTPase activity,19_GO:0065007 biological regulation,-3.1,9.7,5.6,20504,326,26,4,15,7.1,16475|29809|55985|67865,Ajuba|Rabgap1l|Cxcl13|Rgs10,-0.21
+Geneid,GO Biological Processes,19,GO:0050863,regulation of T cell activation,19_GO:0002376 immune system process,-3.1,9.2,5.5,20504,342,26,4,15,7.1,16197|20677|21414|54167,Il7r|Sox4|Tcf7|Icos,-0.16
+Geneid,GO Biological Processes,19,GO:0050921,positive regulation of chemotaxis,19_GO:0040011 locomotion,-3,16,6.4,20504,151,26,3,12,6.3,12273|13616|55985,C5ar1|Edn3|Cxcl13,-0.16
+Geneid,GO Biological Processes,19,GO:0051249,regulation of lymphocyte activation,19_GO:0002376 immune system process,-3,6.5,4.9,20504,611,26,5,19,7.7,12192|16197|20677|21414|54167,Zfp36l1|Il7r|Sox4|Tcf7|Icos,-0.16
+Geneid,GO Biological Processes,19,GO:0002687,positive regulation of leukocyte migration,19_GO:0040011 locomotion,-3,15,6.4,20504,153,26,3,12,6.3,12273|13616|55985,C5ar1|Edn3|Cxcl13,-0.16
+Geneid,GO Biological Processes,19,GO:0097530,granulocyte migration,19_GO:0040011 locomotion,-3,15,6.3,20504,157,26,3,12,6.3,12273|13616|55985,C5ar1|Edn3|Cxcl13,-0.15
+Geneid,GO Biological Processes,19,GO:0002521,leukocyte differentiation,19_GO:0002376 immune system process,-3,6.2,4.8,20504,633,26,5,19,7.7,12192|16197|20677|21414|234515,Zfp36l1|Il7r|Sox4|Tcf7|Inpp4b,-0.14
+Geneid,GO Biological Processes,19,GO:0045580,regulation of T cell differentiation,19_GO:0002376 immune system process,-2.9,14,6.1,20504,168,26,3,12,6.3,16197|20677|21414,Il7r|Sox4|Tcf7,-0.093
+Geneid,Reactome Gene Sets,6,R-MMU-500792,GPCR ligand binding,,-2.9,8.3,5.1,20504,381,26,4,15,7.1,12273|13616|55985|83771,C5ar1|Edn3|Cxcl13|Tas1r3,-0.092
+Geneid,Reactome Gene Sets,6,R-MMU-375276,Peptide ligand-binding receptors,,-2.8,13,5.8,20504,184,26,3,12,6.3,12273|13616|55985,C5ar1|Edn3|Cxcl13,-0.017
+Geneid,GO Biological Processes,19,GO:1902107,positive regulation of leukocyte differentiation,19_GO:0002376 immune system process,-2.8,13,5.7,20504,188,26,3,12,6.3,12192|16197|20677,Zfp36l1|Il7r|Sox4,-0.017
+Geneid,GO Biological Processes,19,GO:1903708,positive regulation of hemopoiesis,19_GO:0002376 immune system process,-2.8,13,5.7,20504,188,26,3,12,6.3,12192|16197|20677,Zfp36l1|Il7r|Sox4,-0.017
+Geneid,GO Biological Processes,19,GO:1901652,response to peptide,19_GO:0050896 response to stimulus,-2.8,7.6,4.9,20504,413,26,4,15,7.1,12192|13070|18710|20317,Zfp36l1|Cyp11a1|Pik3r3|Serpinf1,-0.017
+Geneid,GO Biological Processes,19,GO:0021915,neural tube development,19_GO:0032502 developmental process,-2.7,12,5.5,20504,197,26,3,12,6.3,12192|20677|21414,Zfp36l1|Sox4|Tcf7,0
+Geneid,GO Biological Processes,19,GO:0002694,regulation of leukocyte activation,19_GO:0002376 immune system process,-2.7,5.4,4.3,20504,725,26,5,19,7.7,12192|16197|20677|21414|54167,Zfp36l1|Il7r|Sox4|Tcf7|Icos,0
+Geneid,GO Biological Processes,19,GO:0030098,lymphocyte differentiation,19_GO:0002376 immune system process,-2.7,7.1,4.6,20504,444,26,4,15,7.1,12192|16197|20677|21414,Zfp36l1|Il7r|Sox4|Tcf7,0
+Geneid,GO Biological Processes,19,GO:0001568,blood vessel development,19_GO:0032502 developmental process,-2.6,5.2,4.2,20504,752,26,5,19,7.7,12192|12273|20317|20677|108154,Zfp36l1|C5ar1|Serpinf1|Sox4|Adamts6,0
+Geneid,GO Biological Processes,19,GO:0022407,regulation of cell-cell adhesion,19_GO:0022610 biological adhesion,-2.6,6.9,4.5,20504,457,26,4,15,7.1,16197|20677|54167|55985,Il7r|Sox4|Icos|Cxcl13,0
+Geneid,GO Biological Processes,19,GO:0050870,positive regulation of T cell activation,19_GO:0022610 biological adhesion,-2.6,11,5.2,20504,216,26,3,12,6.3,16197|20677|54167,Il7r|Sox4|Icos,0
+Geneid,GO Biological Processes,19,GO:0050865,regulation of cell activation,19_GO:0050789 regulation of biological process,-2.6,5.1,4.2,20504,770,26,5,19,7.7,12192|16197|20677|21414|54167,Zfp36l1|Il7r|Sox4|Tcf7|Icos,0
+Geneid,GO Biological Processes,19,GO:0002685,regulation of leukocyte migration,19_GO:0040011 locomotion,-2.6,11,5.1,20504,223,26,3,12,6.3,12273|13616|55985,C5ar1|Edn3|Cxcl13,0
+Geneid,GO Biological Processes,19,GO:0045785,positive regulation of cell adhesion,19_GO:0022610 biological adhesion,-2.6,6.7,4.5,20504,472,26,4,15,7.1,16197|20677|54167|55985,Il7r|Sox4|Icos|Cxcl13,0
+Geneid,GO Biological Processes,19,GO:0001944,vasculature development,19_GO:0032502 developmental process,-2.6,5,4.1,20504,789,26,5,19,7.7,12192|12273|20317|20677|108154,Zfp36l1|C5ar1|Serpinf1|Sox4|Adamts6,0
+Geneid,GO Biological Processes,19,GO:0097529,myeloid leukocyte migration,19_GO:0040011 locomotion,-2.5,10,5.1,20504,226,26,3,12,6.3,12273|13616|55985,C5ar1|Edn3|Cxcl13,0
+Geneid,GO Biological Processes,19,GO:0030595,leukocyte chemotaxis,19_GO:0040011 locomotion,-2.5,10,5.1,20504,227,26,3,12,6.3,12273|13616|55985,C5ar1|Edn3|Cxcl13,0
+Geneid,GO Biological Processes,19,GO:0050920,regulation of chemotaxis,19_GO:0040011 locomotion,-2.5,10,5,20504,230,26,3,12,6.3,12273|13616|55985,C5ar1|Edn3|Cxcl13,0
+Geneid,GO Biological Processes,19,GO:0006874,cellular calcium ion homeostasis,19_GO:0065007 biological regulation,-2.5,6.4,4.3,20504,490,26,4,15,7.1,12273|13616|55985|234515,C5ar1|Edn3|Cxcl13|Inpp4b,0
+Geneid,GO Biological Processes,19,GO:1903131,mononuclear cell differentiation,19_GO:0002376 immune system process,-2.5,6.4,4.3,20504,492,26,4,15,7.1,12192|16197|20677|21414,Zfp36l1|Il7r|Sox4|Tcf7,0
+Geneid,GO Biological Processes,19,GO:0043547,positive regulation of GTPase activity,19_GO:0065007 biological regulation,-2.5,10,5,20504,237,26,3,12,6.3,29809|55985|67865,Rabgap1l|Cxcl13|Rgs10,0
+Geneid,GO Biological Processes,19,GO:1903039,positive regulation of leukocyte cell-cell adhesion,19_GO:0022610 biological adhesion,-2.5,9.9,4.9,20504,240,26,3,12,6.3,16197|20677|54167,Il7r|Sox4|Icos,0
+Geneid,GO Biological Processes,19,GO:0055074,calcium ion homeostasis,19_GO:0065007 biological regulation,-2.4,6.2,4.2,20504,507,26,4,15,7.1,12273|13616|55985|234515,C5ar1|Edn3|Cxcl13|Inpp4b,0
+Geneid,GO Biological Processes,19,GO:0072503,cellular divalent inorganic cation homeostasis,19_GO:0065007 biological regulation,-2.4,6.1,4.2,20504,518,26,4,15,7.1,12273|13616|55985|234515,C5ar1|Edn3|Cxcl13|Inpp4b,0
+Geneid,GO Biological Processes,19,GO:1901215,negative regulation of neuron death,19_GO:0048519 negative regulation of biological process,-2.4,9.2,4.7,20504,258,26,3,12,6.3,12273|13807|20317,C5ar1|Eno2|Serpinf1,0
+Geneid,GO Biological Processes,19,GO:0071375,cellular response to peptide hormone stimulus,19_GO:0050896 response to stimulus,-2.4,8.9,4.6,20504,265,26,3,12,6.3,12192|13070|18710,Zfp36l1|Cyp11a1|Pik3r3,0
+Geneid,GO Biological Processes,19,GO:0072507,divalent inorganic cation homeostasis,19_GO:0065007 biological regulation,-2.3,5.8,4.1,20504,542,26,4,15,7.1,12273|13616|55985|234515,C5ar1|Edn3|Cxcl13|Inpp4b,0
+Geneid,Reactome Gene Sets,6,R-MMU-418594,G alpha (i) signalling events,,-2.3,8.8,4.6,20504,269,26,3,12,6.3,12273|55985|83771,C5ar1|Cxcl13|Tas1r3,0
+Geneid,GO Biological Processes,19,GO:0006650,glycerophospholipid metabolic process,19_GO:0008152 metabolic process,-2.3,8.6,4.5,20504,274,26,3,12,6.3,16475|18710|234515,Ajuba|Pik3r3|Inpp4b,0
+Geneid,Reactome Gene Sets,6,R-MMU-373076,Class A/1 (Rhodopsin-like receptors),,-2.2,7.9,4.3,20504,298,26,3,12,6.3,12273|13616|55985,C5ar1|Edn3|Cxcl13,0
+Geneid,GO Biological Processes,19,GO:1901653,cellular response to peptide,19_GO:0050896 response to stimulus,-2.2,7.7,4.2,20504,309,26,3,12,6.3,12192|13070|18710,Zfp36l1|Cyp11a1|Pik3r3,0
+Geneid,GO Biological Processes,19,GO:0060326,cell chemotaxis,19_GO:0040011 locomotion,-2.2,7.6,4.2,20504,313,26,3,12,6.3,12273|13616|55985,C5ar1|Edn3|Cxcl13,0
+Geneid,GO Biological Processes,19,GO:0006875,cellular metal ion homeostasis,19_GO:0065007 biological regulation,-2.1,5.1,3.7,20504,619,26,4,15,7.1,12273|13616|55985|234515,C5ar1|Edn3|Cxcl13|Inpp4b,0
+Geneid,GO Biological Processes,19,GO:1903037,regulation of leukocyte cell-cell adhesion,19_GO:0022610 biological adhesion,-2.1,7.1,4,20504,333,26,3,12,6.3,16197|20677|54167,Il7r|Sox4|Icos,0
+Geneid,GO Biological Processes,19,GO:0032386,regulation of intracellular transport,19_GO:0051179 localization,-2.1,7.1,4,20504,335,26,3,12,6.3,12009|234515|380918,Cep131|Inpp4b|Siah3,0
+Geneid,GO Biological Processes,19,GO:0008610,lipid biosynthetic process,19_GO:0008152 metabolic process,-2.1,4.8,3.5,20504,653,26,4,15,7.1,13070|16475|18710|29817,Cyp11a1|Ajuba|Pik3r3|Igfbp7,0
+Geneid,GO Biological Processes,19,GO:0048514,blood vessel morphogenesis,19_GO:0032502 developmental process,-2.1,4.8,3.5,20504,654,26,4,15,7.1,12192|12273|20317|20677,Zfp36l1|C5ar1|Serpinf1|Sox4,0
+Geneid,GO Biological Processes,19,GO:0010564,regulation of cell cycle process,19_GO:0050789 regulation of biological process,-2.1,4.8,3.5,20504,656,26,4,15,7.1,12009|12192|13616|20677,Cep131|Zfp36l1|Edn3|Sox4,0
+Geneid,GO Biological Processes,19,GO:0043434,response to peptide hormone,19_GO:0050896 response to stimulus,-2,6.7,3.9,20504,352,26,3,12,6.3,12192|13070|18710,Zfp36l1|Cyp11a1|Pik3r3,0
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-418594,G alpha (i) signalling events,,-5.7,76,15,20504,269,3,3,1e+02,27,12273|55985|83771,C5ar1|Cxcl13|Tas1r3,-1.7
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-500792,GPCR ligand binding,,-5.2,54,13,20504,381,3,3,1e+02,27,12273|55985|83771,C5ar1|Cxcl13|Tas1r3,-1.5
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-388396,GPCR downstream signalling,,-4.7,37,10,20504,549,3,3,1e+02,27,12273|55985|83771,C5ar1|Cxcl13|Tas1r3,-1.3
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-372790,Signaling by GPCR,,-4.7,35,10,20504,578,3,3,1e+02,27,12273|55985|83771,C5ar1|Cxcl13|Tas1r3,-1.3
+Geneid_SUB2_MCODE_1,Reactome Gene Sets,6,R-MMU-418594,G alpha (i) signalling events,,-5.7,76,15,20504,269,3,3,1e+02,27,12273|55985|83771,C5ar1|Cxcl13|Tas1r3,-1.7
+Geneid_SUB2_MCODE_1,Reactome Gene Sets,6,R-MMU-500792,GPCR ligand binding,,-5.2,54,13,20504,381,3,3,1e+02,27,12273|55985|83771,C5ar1|Cxcl13|Tas1r3,-1.5
+Geneid_SUB2_MCODE_1,Reactome Gene Sets,6,R-MMU-388396,GPCR downstream signalling,,-4.7,37,10,20504,549,3,3,1e+02,27,12273|55985|83771,C5ar1|Cxcl13|Tas1r3,-1.3
+Geneid_SUB2_MCODE_1,Reactome Gene Sets,6,R-MMU-372790,Signaling by GPCR,,-4.7,35,10,20504,578,3,3,1e+02,27,12273|55985|83771,C5ar1|Cxcl13|Tas1r3,-1.3

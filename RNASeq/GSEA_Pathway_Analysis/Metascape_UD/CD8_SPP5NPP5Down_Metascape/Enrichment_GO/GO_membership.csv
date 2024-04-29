@@ -1,0 +1,128 @@
+_MEMBER_Geneid,_LogP_Geneid,GO,Description,_PATTERN_,_RANK_,GiniIndex
+1,-3.2,GO:0031667,response to nutrient levels,M1,1,0
+1,-2.2,GO:0003015,heart process,M1,1,0
+1,-2.1,ko04071,Sphingolipid signaling pathway,M1,1,0
+1,-2.3,GO:0033555,multicellular organismal response to stress,M1,1,0
+1,-4.4,GO:0060326,cell chemotaxis,M1,1,0
+1,-2.6,mmu05418,Fluid shear stress and atherosclerosis,M1,1,0
+1,-2.2,WP3625,Tyrobp causal network in microglia,M1,1,0
+1,-2.1,GO:0002757,immune response-activating signal transduction,M1,1,0
+1,-2.1,GO:0072678,T cell migration,M1,1,0
+1,-2,GO:0050854,regulation of antigen receptor-mediated signaling pathway,M1,1,0
+1,-2.6,GO:0040017,positive regulation of locomotion,M1,1,0
+1,-2.2,GO:0032943,mononuclear cell proliferation,M1,1,0
+1,-2.3,GO:0016202,regulation of striated muscle tissue development,M1,1,0
+1,-3.2,GO:0030593,neutrophil chemotaxis,M1,1,0
+1,-2,ko04720,Long-term potentiation,M1,1,0
+1,-2.1,mmu04722,Neurotrophin signaling pathway,M1,1,0
+1,-2.1,ko04722,Neurotrophin signaling pathway,M1,1,0
+1,-2.4,mmu04916,Melanogenesis,M1,1,0
+1,-2.2,GO:0048634,regulation of muscle organ development,M1,1,0
+1,-2.1,GO:0008637,apoptotic mitochondrial changes,M1,1,0
+1,-2.6,ko05418,Fluid shear stress and atherosclerosis,M1,1,0
+1,-3.2,mmu04390,Hippo signaling pathway,M1,1,0
+1,-2.8,GO:1990266,neutrophil migration,M1,1,0
+1,-2.9,GO:0061572,actin filament bundle organization,M1,1,0
+1,-2.8,GO:0097435,supramolecular fiber organization,M1,1,0
+1,-4,GO:0032231,regulation of actin filament bundle assembly,M1,1,0
+1,-2.1,mmu04670,Leukocyte transendothelial migration,M1,1,0
+1,-2.6,GO:0031032,actomyosin structure organization,M1,1,0
+1,-2.1,GO:0042100,B cell proliferation,M1,1,0
+1,-2.4,GO:0051495,positive regulation of cytoskeleton organization,M1,1,0
+1,-2.3,GO:0016358,dendrite development,M1,1,0
+1,-2.1,GO:0014911,positive regulation of smooth muscle cell migration,M1,1,0
+1,-2.2,GO:0046651,lymphocyte proliferation,M1,1,0
+1,-2.1,GO:0070059,intrinsic apoptotic signaling pathway in response to endoplasmic reticulum stress,M1,1,0
+1,-2.6,GO:1902905,positive regulation of supramolecular fiber organization,M1,1,0
+1,-2,GO:0070661,leukocyte proliferation,M1,1,0
+1,-2.9,WP2292,Chemokine signaling pathway,M1,1,0
+1,-3,GO:0051017,actin filament bundle assembly,M1,1,0
+1,-3.4,R-MMU-380108,Chemokine receptors bind chemokines,M1,1,0
+1,-2,GO:0030098,lymphocyte differentiation,M1,1,0
+1,-2.3,GO:1903131,mononuclear cell differentiation,M1,1,0
+1,-2.3,WP512,Id signaling pathway,M1,1,0
+1,-2.1,GO:0001836,release of cytochrome c from mitochondria,M1,1,0
+1,-2.8,ko04971,Gastric acid secretion,M1,1,0
+1,-2.4,GO:1990928,response to amino acid starvation,M1,1,0
+1,-3.6,GO:1902903,regulation of supramolecular fiber organization,M1,1,0
+1,-2.3,R-MMU-372790,Signaling by GPCR,M1,1,0
+1,-3.2,GO:0051496,positive regulation of stress fiber assembly,M1,1,0
+1,-2.5,GO:0070232,regulation of T cell apoptotic process,M1,1,0
+1,-2.4,GO:0031668,cellular response to extracellular stimulus,M1,1,0
+1,-2,GO:1901890,positive regulation of cell junction assembly,M1,1,0
+1,-2.1,mmu04060,Cytokine-cytokine receptor interaction,M1,1,0
+1,-4.7,GO:0032970,regulation of actin filament-based process,M1,1,0
+1,-2.1,GO:0016311,dephosphorylation,M1,1,0
+1,-2.7,GO:0031669,cellular response to nutrient levels,M1,1,0
+1,-2.1,GO:0032103,positive regulation of response to external stimulus,M1,1,0
+1,-2.5,GO:0043408,regulation of MAPK cascade,M1,1,0
+1,-2.1,ko04670,Leukocyte transendothelial migration,M1,1,0
+1,-2.3,GO:0043547,positive regulation of GTPase activity,M1,1,0
+1,-2.8,GO:0030335,positive regulation of cell migration,M1,1,0
+1,-3.3,GO:0051492,regulation of stress fiber assembly,M1,1,0
+1,-2.4,WP373,IL-3 signaling pathway,M1,1,0
+1,-2.5,ko04974,Protein digestion and absorption,M1,1,0
+1,-3,GO:0043149,stress fiber assembly,M1,1,0
+1,-4,GO:0110053,regulation of actin filament organization,M1,1,0
+1,-2.7,GO:2000147,positive regulation of cell motility,M1,1,0
+1,-2,GO:0051101,regulation of DNA binding,M1,1,0
+1,-2.8,ko04062,Chemokine signaling pathway,M1,1,0
+1,-2.9,GO:0009991,response to extracellular stimulus,M1,1,0
+1,-4.2,GO:0006935,chemotaxis,M1,1,0
+1,-2.2,GO:0010596,negative regulation of endothelial cell migration,M1,1,0
+1,-3,GO:0030038,contractile actin filament bundle assembly,M1,1,0
+1,-2.8,mmu04971,Gastric acid secretion,M1,1,0
+1,-2.5,GO:1901888,regulation of cell junction assembly,M1,1,0
+1,-2.5,mmu04974,Protein digestion and absorption,M1,1,0
+1,-2.4,ko04916,Melanogenesis,M1,1,0
+1,-2.3,GO:0072676,lymphocyte migration,M1,1,0
+1,-2.2,GO:1901861,regulation of muscle tissue development,M1,1,0
+1,-3,ko04360,Axon guidance,M1,1,0
+1,-2.5,GO:0042554,superoxide anion generation,M1,1,0
+1,-2.9,mmu04360,Axon guidance,M1,1,0
+1,-2.2,GO:0046902,regulation of mitochondrial membrane permeability,M1,1,0
+1,-2.2,GO:0072132,mesenchyme morphogenesis,M1,1,0
+1,-3.1,GO:0110020,regulation of actomyosin structure organization,M1,1,0
+1,-2.8,mmu04062,Chemokine signaling pathway,M1,1,0
+1,-2.8,GO:0071621,granulocyte chemotaxis,M1,1,0
+1,-2.1,GO:0002768,immune response-regulating cell surface receptor signaling pathway,M1,1,0
+1,-2.1,GO:0018105,peptidyl-serine phosphorylation,M1,1,0
+1,-2.2,mmu04725,Cholinergic synapse,M1,1,0
+1,-2.1,mmu04071,Sphingolipid signaling pathway,M1,1,0
+1,-3,GO:0044089,positive regulation of cellular component biogenesis,M1,1,0
+1,-4.1,GO:0032233,positive regulation of actin filament bundle assembly,M1,1,0
+1,-2.1,GO:0030042,actin filament depolymerization,M1,1,0
+1,-3.8,GO:0032956,regulation of actin cytoskeleton organization,M1,1,0
+1,-2.8,GO:0036037,"CD8-positive, alpha-beta T cell activation",M1,1,0
+1,-2.3,GO:0030155,regulation of cell adhesion,M1,1,0
+1,-2.4,GO:0097530,granulocyte migration,M1,1,0
+1,-2.1,GO:0048813,dendrite morphogenesis,M1,1,0
+1,-2.5,WP385,Myometrial relaxation and contraction pathways,M1,1,0
+1,-2,GO:0008016,regulation of heart contraction,M1,1,0
+1,-2.1,GO:0002429,immune response-activating cell surface receptor signaling pathway,M1,1,0
+1,-2.4,GO:0050851,antigen receptor-mediated signaling pathway,M1,1,0
+1,-2.1,GO:0046631,alpha-beta T cell activation,M1,1,0
+1,-2,GO:0034329,cell junction assembly,M1,1,0
+1,-2.8,GO:0043537,negative regulation of blood vessel endothelial cell migration,M1,1,0
+1,-2.6,GO:0051272,positive regulation of cellular component movement,M1,1,0
+1,-2.1,GO:0072329,monocarboxylic acid catabolic process,M1,1,0
+1,-2.2,GO:0043087,regulation of GTPase activity,M1,1,0
+1,-3.2,GO:0050857,positive regulation of antigen receptor-mediated signaling pathway,M1,1,0
+1,-2.7,R-MMU-418594,G alpha (i) signalling events,M1,1,0
+1,-4.3,GO:0007015,actin filament organization,M1,1,0
+1,-4,GO:0030036,actin cytoskeleton organization,M1,1,0
+1,-2.1,GO:0042594,response to starvation,M1,1,0
+1,-2.5,GO:0034198,cellular response to amino acid starvation,M1,1,0
+1,-3.1,GO:0030595,leukocyte chemotaxis,M1,1,0
+1,-2.2,GO:2000106,regulation of leukocyte apoptotic process,M1,1,0
+1,-2.3,GO:0043392,negative regulation of DNA binding,M1,1,0
+1,-2.1,GO:0070231,T cell apoptotic process,M1,1,0
+1,-3.3,ko04390,Hippo signaling pathway,M1,1,0
+1,-3,GO:0051493,regulation of cytoskeleton organization,M1,1,0
+1,-2,R-MMU-112314,Neurotransmitter receptors and postsynaptic signal transmission,M1,1,0
+1,-2.3,GO:0048762,mesenchymal cell differentiation,M1,1,0
+1,-4.2,GO:0042330,taxis,M1,1,0
+1,-2.5,GO:0050921,positive regulation of chemotaxis,M1,1,0
+1,-2.2,GO:0048247,lymphocyte chemotaxis,M1,1,0
+1,-2.6,GO:0002253,activation of immune response,M1,1,0
+1,-2.1,ko04060,Cytokine-cytokine receptor interaction,M1,1,0

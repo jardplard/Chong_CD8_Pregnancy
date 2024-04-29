@@ -1,0 +1,11 @@
+Network,Annotation
+Geneid,GO:0050863|regulation of T cell activation|-7.9;GO:0006935|chemotaxis|-7.7;GO:0001817|regulation of cytokine production|-7.7
+Geneid_MCODE_ALL,GO:0006935|chemotaxis|-10.8;GO:0042330|taxis|-10.7;R-MMU-399956|CRMPs in Sema3A signaling|-7.3
+Geneid_SUB1_MCODE_1,GO:0051321|meiotic cell cycle|-5.0;ko05321|Inflammatory bowel disease (IBD)|-4.7;mmu05321|Inflammatory bowel disease (IBD)|-4.7
+Geneid_SUB1_MCODE_2,R-MMU-418594|G alpha (i) signalling events|-13.2;R-MMU-500792|GPCR ligand binding|-12.1;R-MMU-388396|GPCR downstream signalling|-11.0
+Geneid_SUB2_MCODE_3,R-MMU-163125|Post-translational modification: synthesis of GPI-anchored proteins|-14.2
+Geneid_SUB1_MCODE_4,R-MMU-8856828|Clathrin-mediated endocytosis|-11.0;R-MMU-199991|Membrane Trafficking|-7.9;R-MMU-5653656|Vesicle-mediated transport|-7.8
+Geneid_SUB1_MCODE_5,R-MMU-8957275|Post-translational protein phosphorylation|-9.0;R-MMU-381426|Regulation of Insulin-like Growth Factor (IGF) transport and uptake by Insulin-like Growth Factor Binding Proteins (IGFBPs)|-9.0;GO:0001503|ossification|-4.5
+Geneid_SUB1_MCODE_6,R-MMU-399956|CRMPs in Sema3A signaling|-12.7;R-MMU-373755|Semaphorin interactions|-10.6;GO:0007411|axon guidance|-7.6
+Geneid_SUB1_MCODE_7,R-MMU-3928665|EPH-ephrin mediated repulsion of cells|-8.4;R-MMU-2682334|EPH-Ephrin signaling|-7.5;ko04360|Axon guidance|-6.2
+Geneid_SUB4_MCODE_8,R-MMU-156590|Glutathione conjugation|-8.4;ko00480|Glutathione metabolism|-7.6;mmu00480|Glutathione metabolism|-7.6

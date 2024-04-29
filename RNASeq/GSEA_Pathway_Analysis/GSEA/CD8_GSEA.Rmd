@@ -1,0 +1,364 @@
+---
+title: "Schitinger ATAC Test DeSEQ Analysis"
+author: "Jared Pollard"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#GO Enrichment Plotting
+
+###Install Packages (If needed, set eval=TRUE): BiocManager, dplyr, gplots, ggplot2, ggrepel
+```{r install_packages, eval=FALSE, echo=FALSE}
+install.packages(c("tidyverse", "ggplot2"))
+```
+##Import libraries
+```{r import_libraries_andCounts, echo=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(ggrepel)
+library(scales)
+library(viridis)
+library(cowplot)
+
+colors_fill <- c("#38F2E0", "#1A74F8", "#F262F7", "#DA0054")
+groupshapes <- c(19, 1, 15, 19, 1, 15, 17)
+```
+##Import Files and setup ggplot options/fxn's
+```{r package_testing}
+#files+paths for new metascape (each pairwise comp. divided into closed vs. open peaks)
+filepath <- "./Results_filtered"
+files <- list.files(path=filepath, pattern=".tsv")
+
+#Unfiltered Pathways import (Select 10 most significant pathways, remove duplicates)
+for(i in files){
+  objname <- str_replace(i, ".tsv", "")
+  dfin <- read.delim(str_c(filepath, "/", i, sep=""), header=TRUE, sep="\t")
+  dfin <- dfin %>% dplyr::select(c(NAME, NES, FDR)) %>%  arrange(desc(abs(NES)))
+  dfin <- dfin %>% mutate(Y=rev(row_number()))
+  assign(objname, dfin, envir = .GlobalEnv)
+  rm(dfin)
+  rm(i)
+}
+
+themeset<- theme(
+    panel.background = element_rect(fill = "transparent"), # bg of the panel
+    plot.background = element_rect(fill = "transparent", color = NA), # bg of the plot
+    panel.grid.major = element_blank(), # get rid of major grid
+    panel.grid.minor = element_blank(), # get rid of minor grid
+    axis.line= element_line("black", 0.3),
+    axis.text.y = element_text(color = "black", size = 16)
+  )
+```
+
+##Plot NPP5U GSEA
+```{r plot_FILTEREDpairs}
+NPP5U_plot <- bind_rows("Neg"=GSEA_SPP5NPP5_NPP5U_Neg, "Pos"=GSEA_SPP5NPP5_NPP5U_Pos, .id="ID")
+
+NPP5U_plot$Y <- if_else(NPP5U_plot$ID=="Neg", (NPP5U_plot$Y * -1), (NPP5U_plot$Y * 1))
+
+NPP5U_plot <- NPP5U_plot %>% arrange(Y)
+
+NPP5U_gg <- ggplot(NPP5U_plot, aes(x=Y, y=NES, fill=FDR)) + ylab("Normalized Enrichment Score") + xlab("") + themeset
+
+NPP5U_gg <- NPP5U_gg + geom_col(color="black") +
+  labs(color='FDR q-value:') +
+  #scale_fill_gradientn(colors=mako(n=100, begin=0.71, end=0.15), limits=c(0,1)) +
+  scale_fill_gradientn(colors=plasma(n=100, begin=0.8, end=0), breaks=seq(0, 1, by=0.1)) +
+  scale_x_continuous(breaks=c(-3:-1,1:6), labels=NPP5U_plot$NAME) +
+  scale_y_continuous(breaks=c(-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2), limits=c(-2, 2)) +
+  ggtitle("GSEA Enrichment For Naive+Preg-Unique Trancription")
+
+NPP5U_gg + coord_flip()
+```
+
+
+```{r plot_UNFILTEREDpairs}
+NPP5U_plot <- bind_rows("Neg"=GSEA_SPP5NPP5_NPP5U_UFNeg, "Pos"=GSEA_SPP5NPP5_NPP5U_UFPos, .id="ID")
+
+NPP5U_plot$Y <- if_else(NPP5U_plot$ID=="Neg", (NPP5U_plot$Y * -1), (NPP5U_plot$Y * 1))
+
+NPP5U_plot <- NPP5U_plot %>% arrange(Y)
+
+NPP5U_gg <- ggplot(NPP5U_plot, aes(x=Y, y=NES, fill=FDR)) + ylab("Normalized Enrichment Score") + xlab("") + themeset
+
+NPP5U_gg <- NPP5U_gg + geom_col(color="black") +
+  labs(color='FDR q-value:') +
+  #scale_fill_gradientn(colors=mako(n=100, begin=0.71, end=0.15), limits=c(0,1)) +
+  scale_fill_gradientn(colors=plasma(n=100, begin=0.8, end=0), breaks=seq(0, 1, by=0.1)) +
+  scale_x_continuous(breaks=c(-4:-1,1:9), labels=NPP5U_plot$NAME) +
+  scale_y_continuous(breaks=c(-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2), limits=c(-2, 2)) +
+  ggtitle("GSEA Enrichment For Naive+Preg-Unique Trancription")
+
+NPP5U_gg + coord_flip()
+```
+
+##Plot SPP5U GSEA
+```{r plot_pairs}
+SPP5U_plot <- bind_rows("Neg"=GSEA_SPP5NPP5_SPP5U_Neg, "Pos"=GSEA_SPP5NPP5_SPP5U_Pos, .id="ID")
+
+SPP5U_plot$Y <- if_else(SPP5U_plot$ID=="Neg", (SPP5U_plot$Y * -1), (SPP5U_plot$Y * 1))
+
+SPP5U_plot <- SPP5U_plot %>% arrange(Y)
+
+SPP5U_gg <- ggplot(SPP5U_plot, aes(x=Y, y=NES, fill=FDR)) + ylab("Normalized Enrichment Score") + xlab("") + themeset
+
+SPP5U_gg <- SPP5U_gg + geom_col(color="black") +
+  labs(color='FDR q-value:') +
+  #scale_fill_gradientn(colors=mako(n=100, begin=0.71, end=0.15), limits=c(0,1)) +
+  scale_fill_gradientn(colors=plasma(n=100, begin=0.8, end=0), breaks=seq(0, 1, by=0.1)) +
+  scale_x_continuous(breaks=c(-5:-1,1:5), labels=SPP5U_plot$NAME) +
+  scale_y_continuous(breaks=c(-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2), limits=c(-2, 2)) +
+  ggtitle("GSEA Enrichment For Sens+Preg-Unique Trancription")
+
+SPP5U_gg + coord_flip()
+```
+
+##Plot SHARED GSEA
+```{r plot_pairs}
+Shared_plot <- bind_rows("Neg"=GSEA_SPP5NPP5Shared_Neg, "Pos"=GSEA_SPP5NPP5Shared_Pos, .id="ID")
+
+Shared_plot$Y <- if_else(Shared_plot$ID=="Neg", (Shared_plot$Y * -1), (Shared_plot$Y * 1))
+
+Shared_plot <- Shared_plot %>% arrange(Y)
+
+Shared_gg <- ggplot(Shared_plot, aes(x=Y, y=NES, fill=FDR)) + ylab("Normalized Enrichment Score") + xlab("") + themeset
+
+Shared_gg <- Shared_gg + geom_col(color="black") +
+  labs(color='FDR q-value:') +
+  #scale_fill_gradientn(colors=mako(n=100, begin=0.71, end=0.15), limits=c(0,1)) +
+  scale_fill_gradientn(colors=plasma(n=100, begin=0.8, end=0), breaks=seq(0, 1, by=0.2), limits=c(0,1)) +
+  scale_x_continuous(breaks=c(-4:-1,1:3), labels=Shared_plot$NAME) +
+  scale_y_continuous(breaks=c(-1.5, -1, -0.5, 0, 0.5, 1, 1.5), limits=c(-1.5, 1.5)) +
+  ggtitle("GSEA Enrichment For Shared Pregnancy Trancription")
+
+Shared_gg + coord_flip()
+```
+
+##Plot SUBN GSEA
+```{r plot_pairs}
+SUBN_plot <- bind_rows("Neg"=GSEA_SUBNDown, "Pos"=GSEA_SUBNUp, .id="ID")
+
+SUBN_plot$Y <- if_else(SUBN_plot$ID=="Neg", (SUBN_plot$Y * -1), (SUBN_plot$Y * 1))
+
+SUBN_plot <- SUBN_plot %>% arrange(Y)
+
+SUBN_gg <- ggplot(SUBN_plot, aes(x=Y, y=NES, fill=FDR)) + ylab("Normalized Enrichment Score") + xlab("") + themeset
+
+SUBN_gg <- SUBN_gg + geom_col(color="black") +
+  labs(color='FDR q-value:') +
+  #scale_fill_gradientn(colors=mako(n=100, begin=0.71, end=0.15), limits=c(0,1)) +
+  scale_fill_gradientn(colors=plasma(n=100, begin=0.6, end=0), breaks=seq(0, 1, by=0.1)) +
+  scale_x_continuous(breaks=c(-5:-1,1:7), labels=SUBN_plot$NAME) +
+  scale_y_continuous(breaks=c(-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2), limits=c(-2, 2)) +
+  ggtitle("GSEA Enrichment For SUB vs. N Trancription")
+
+SUBN_gg + coord_flip()
+```
+
+##Try to plot GSEA Enrichment Curves in R:
+```{r enrichmentCurves}
+#Plot NPP5N SCOTT TILS Up Enrichment Curve
+NPP5N_SCOTT_UP_EnrichData <- read_delim("EnrichmentCurveData/NPP5N_GSEA_Scott_TILS_Up.tsv")
+
+ggplot(NPP5N_SCOTT_UP_EnrichData, aes(x=Rank, y=ES)) + 
+  geom_line(color=colors_fill[2], lwd=2) +
+  geom_point(data=NPP5N_SCOTT_UP_EnrichData[which(NPP5N_SCOTT_UP_EnrichData$Plot=="TRUE"),], shape=21, fill="black", color="purple", size=4, stroke=1.2) +
+  geom_text_repel(data=NPP5N_SCOTT_UP_EnrichData[which(NPP5N_SCOTT_UP_EnrichData$Plot=="TRUE"),], aes(label=Symbol), size=6, nudge_x=100, nudge_y=-0.1, force=1.6, color=colors_fill[2], segment.size=1, segment.color="black") +
+  geom_hline(yintercept=0, lty="dotted", color="gray", size=1) +
+  xlab("Rank in Gene List") + 
+  ylab("Enrichment Score") +
+  ggtitle("NPPP5N Up in Exhaustion (Scott TILS)") +
+  themeset
+
+#Plot SPP5SUB SCOTT TILS Up Enrichment Curve
+SPP5SUB_SCOTT_UP_EnrichData <- read_delim("EnrichmentCurveData/SPP5SUB_GSEA_Scott_TILS_Up.tsv")
+
+ggplot(SPP5SUB_SCOTT_UP_EnrichData, aes(x=Rank, y=ES)) + 
+  geom_line(color=colors_fill[4], lwd=2) +
+  geom_point(data=SPP5SUB_SCOTT_UP_EnrichData[which(SPP5SUB_SCOTT_UP_EnrichData$Plot=="TRUE"),], shape=21, fill="black", color="orange", size=4, stroke=1.2) +
+  geom_text_repel(data=SPP5SUB_SCOTT_UP_EnrichData[which(SPP5SUB_SCOTT_UP_EnrichData$Plot=="TRUE"),], aes(label=Symbol), size=6, nudge_x=100, nudge_y=-0.1, force=1.6, color=colors_fill[4], segment.size=1, segment.color="black") +
+  geom_hline(yintercept=0, lty="dotted", color="gray", size=1) +
+  xlab("Rank in Gene List") + 
+  ylab("Enrichment Score") +
+  ggtitle("SPP5SUB Up in Exhaustion (Scott TILS)") +
+  themeset
+
+#Plot SPP5SUB Schietinger TILS Dn Enrichment Curve
+SPP5SUB_SCHIETINGER_DN_EnrichData <- read_delim("EnrichmentCurveData/SPP5SUB_GSEA_Schietinger_TILS_Dn.tsv")
+
+ggplot(SPP5SUB_SCHIETINGER_DN_EnrichData, aes(x=Rank, y=ES)) + 
+  geom_line(color=colors_fill[4], lwd=2) +
+  geom_point(data=SPP5SUB_SCHIETINGER_DN_EnrichData[which(SPP5SUB_SCHIETINGER_DN_EnrichData$Plot=="TRUE"),], shape=21, fill="black", color="orange", size=4, stroke=1.2) +
+  geom_text_repel(data=SPP5SUB_SCHIETINGER_DN_EnrichData[which(SPP5SUB_SCHIETINGER_DN_EnrichData$Plot=="TRUE"),], aes(label=Symbol), size=6, nudge_x=-100, nudge_y=0.1, force=1.6, color=colors_fill[4], segment.size=1, segment.color="black") +
+  geom_hline(yintercept=0, lty="dotted", color="gray", size=1) +
+  scale_y_continuous(breaks=c(-0.8, -0.6, -0.4, -0.2, 0, 0.2), limits=c(-0.8, 0.2)) +
+  xlab("Rank in Gene List") + 
+  ylab("Enrichment Score") +
+  ggtitle("SPP5SUB Down in Exhaustion (Schietinger TILS)") +
+  themeset
+
+#Plot NPP5N Bengsh Up Enrichment Curve
+NPP5N_BENGSH_UP_EnrichData <- read_delim("EnrichmentCurveData/NPP5N_GSEA_Bengsh_Ex_Up.tsv")
+
+ggplot(NPP5N_BENGSH_UP_EnrichData, aes(x=Rank, y=ES)) + 
+  geom_line(color=colors_fill[2], lwd=2) +
+  geom_point(data=NPP5N_BENGSH_UP_EnrichData[which(NPP5N_BENGSH_UP_EnrichData$Plot=="TRUE"),], shape=21, fill="black", color="purple", size=4, stroke=1.2) +
+  geom_text_repel(data=NPP5N_BENGSH_UP_EnrichData[which(NPP5N_BENGSH_UP_EnrichData$Plot=="TRUE"),], aes(label=Symbol), size=6, nudge_x=220, nudge_y=-0.066, force=200, color=colors_fill[2], segment.size=1, segment.color="black") +
+  geom_hline(yintercept=0, lty="dotted", color="gray", size=1) +
+  xlab("Rank in Gene List") + 
+  ylab("Enrichment Score") +
+  ggtitle("NPPP5N Up in Exhaustion (Bengsh)") +
+  themeset
+
+
+#Plot NPP5N Bengsh Dn Enrichment Curve
+NPP5N_BENGSH_DN_EnrichData <- read_delim("EnrichmentCurveData/NPP5N_GSEA_Bengsh_Ex_Dn.tsv")
+
+ggplot(NPP5N_BENGSH_DN_EnrichData, aes(x=Rank, y=ES)) + 
+  geom_line(color=colors_fill[2], lwd=2) +
+  geom_point(data=NPP5N_BENGSH_DN_EnrichData[which(NPP5N_BENGSH_DN_EnrichData$Plot=="TRUE"),], shape=21, fill="black", color="purple", size=4, stroke=1.2) +
+  geom_text_repel(data=NPP5N_BENGSH_DN_EnrichData[which(NPP5N_BENGSH_DN_EnrichData$Plot=="TRUE"),], aes(label=Symbol), size=6, nudge_x=-200, nudge_y=0.3, force=220, color=colors_fill[2], segment.size=1, segment.color="black") +
+  geom_hline(yintercept=0, lty="dotted", color="gray", size=1) +
+  xlab("Rank in Gene List") + 
+  ylab("Enrichment Score") +
+  ggtitle("NPPP5N Down in Exhaustion (Bengsh)") +
+  themeset
+
+
+#Plot SPP5SUB Bengsh Up Enrichment Curve
+SPP5SUB_BENGSH_UP_EnrichData <- read_delim("EnrichmentCurveData/SPP5SUB_GSEA_Bengsh_Ex_Up.tsv")
+
+ggplot(SPP5SUB_BENGSH_UP_EnrichData, aes(x=Rank, y=ES)) + 
+  geom_line(color=colors_fill[4], lwd=2) +
+  geom_point(data=SPP5SUB_BENGSH_UP_EnrichData[which(SPP5SUB_BENGSH_UP_EnrichData$Plot=="TRUE"),], shape=21, fill="black", color="orange", size=4, stroke=1.2) +
+  geom_text_repel(data=SPP5SUB_BENGSH_UP_EnrichData[which(SPP5SUB_BENGSH_UP_EnrichData$Plot=="TRUE"),], aes(label=Symbol), size=6, nudge_x=1600, nudge_y=-0.48, force=80, color=colors_fill[4], segment.size=1, segment.color="black") +
+  geom_hline(yintercept=0, lty="dotted", color="gray", size=1) +
+  xlab("Rank in Gene List") + 
+  ylab("Enrichment Score") +
+  ggtitle("SPP5SUB Up in Exhaustion (Scott TILS)") +
+  themeset
+
+
+#Plot SPP5SUB Bengsh Dn Enrichment Curve
+SPP5SUB_BENGSH_DN_EnrichData <- read_delim("EnrichmentCurveData/SPP5SUB_GSEA_Bengsh_Ex_Dn.tsv")
+
+ggplot(SPP5SUB_BENGSH_DN_EnrichData, aes(x=Rank, y=ES)) + 
+  geom_line(color=colors_fill[4], lwd=2) +
+  geom_point(data=SPP5SUB_BENGSH_DN_EnrichData[which(SPP5SUB_BENGSH_DN_EnrichData$Plot=="TRUE"),], shape=21, fill="black", color="orange", size=4, stroke=1.2) +
+  geom_text_repel(data=SPP5SUB_BENGSH_DN_EnrichData[which(SPP5SUB_BENGSH_DN_EnrichData$Plot=="TRUE"),], aes(label=Symbol), size=6, nudge_x=-400, nudge_y=0.06, force=60, color=colors_fill[4], segment.size=1, segment.color="black") +
+  geom_hline(yintercept=0, lty="dotted", color="gray", size=1) +
+  xlab("Rank in Gene List") + 
+  ylab("Enrichment Score") +
+  ggtitle("SPP5SUB Down in Exhaustion (Scott TILS)") +
+  themeset
+
+
+
+
+
+#Plot NPP5N UNIQUE SCOTT TILS Up+Down Enrichment Curve
+NPP5U_SCOTT_UP_EnrichData <- read_delim("EnrichmentCurveData/NPP5U_GSEA_Scott_TILS_Up.tsv")
+
+ggplot(NPP5U_SCOTT_UP_EnrichData, aes(x=Rank, y=ES)) + 
+  geom_line(color=colors_fill[2], lwd=2) +
+  geom_point(data=NPP5U_SCOTT_UP_EnrichData[which(NPP5U_SCOTT_UP_EnrichData$Plot=="TRUE"),], shape=21, fill="black", color="purple", size=4, stroke=1.2) +
+  geom_text_repel(data=NPP5U_SCOTT_UP_EnrichData[which(NPP5U_SCOTT_UP_EnrichData$Plot=="TRUE"),], aes(label=Symbol), size=6, nudge_x=100, nudge_y=-0.1, force=1.6, color=colors_fill[2], segment.size=1, segment.color="black") +
+  geom_hline(yintercept=0, lty="dotted", color="gray", size=1) +
+  xlab("Rank in Gene List") + 
+  ylab("Enrichment Score") +
+  ggtitle("NPP5U Up in Exhaustion (Scott TILS)") +
+  themeset
+
+NPP5U_SCOTT_DOWN_EnrichData <- read_delim("EnrichmentCurveData/NPP5U_GSEA_Scott_TILS_Dn.tsv")
+
+ggplot(NPP5U_SCOTT_DOWN_EnrichData, aes(x=Rank, y=ES)) + 
+  geom_line(color=colors_fill[2], lwd=2) +
+  geom_point(data=NPP5U_SCOTT_DOWN_EnrichData[which(NPP5U_SCOTT_DOWN_EnrichData$Plot=="TRUE"),], shape=21, fill="black", color="purple", size=4, stroke=1.2) +
+  geom_text_repel(data=NPP5U_SCOTT_DOWN_EnrichData[which(NPP5U_SCOTT_DOWN_EnrichData$Plot=="TRUE"),], aes(label=Symbol), size=6, nudge_x=100, nudge_y=-0.1, force=1.6, color=colors_fill[2], segment.size=1, segment.color="black") +
+  geom_hline(yintercept=0, lty="dotted", color="gray", size=1) +
+  xlab("Rank in Gene List") + 
+  ylab("Enrichment Score") +
+  ggtitle("NPP5U Down in Exhaustion (Scott TILS)") +
+  themeset
+
+#Plot SPP5SUB UNIQUE SCOTT TILS Up+Down Enrichment Curve
+SPP5U_SCOTT_UP_EnrichData <- read_delim("EnrichmentCurveData/SPP5U_GSEA_Scott_TILS_Up.tsv")
+
+ggplot(SPP5U_SCOTT_UP_EnrichData, aes(x=Rank, y=ES)) + 
+  geom_line(color=colors_fill[4], lwd=2) +
+  geom_point(data=SPP5U_SCOTT_UP_EnrichData[which(SPP5U_SCOTT_UP_EnrichData$Plot=="TRUE"),], shape=21, fill="black", color="orange", size=4, stroke=1.2) +
+  geom_text_repel(data=SPP5U_SCOTT_UP_EnrichData[which(SPP5U_SCOTT_UP_EnrichData$Plot=="TRUE"),], aes(label=Symbol), size=6, nudge_x=100, nudge_y=-0.1, force=1.6, color=colors_fill[4], segment.size=1, segment.color="black") +
+  geom_hline(yintercept=0, lty="dotted", color="gray", size=1) +
+  xlab("Rank in Gene List") + 
+  ylab("Enrichment Score") +
+  ggtitle("SPP5U Down in Exhaustion (Scott TILS)") +
+  themeset
+
+SPP5U_SCOTT_DOWN_EnrichData <- read_delim("EnrichmentCurveData/SPP5U_GSEA_Scott_TILS_Dn.tsv")
+
+ggplot(SPP5U_SCOTT_DOWN_EnrichData, aes(x=Rank, y=ES)) + 
+  geom_line(color=colors_fill[4], lwd=2) +
+  geom_point(data=SPP5U_SCOTT_DOWN_EnrichData[which(SPP5U_SCOTT_DOWN_EnrichData$Plot=="TRUE"),], shape=21, fill="black", color="orange", size=4, stroke=1.2) +
+  geom_text_repel(data=SPP5U_SCOTT_DOWN_EnrichData[which(SPP5U_SCOTT_DOWN_EnrichData$Plot=="TRUE"),], aes(label=Symbol), size=6, nudge_x=100, nudge_y=-0.1, force=1.6, color=colors_fill[4], segment.size=1, segment.color="black") +
+  geom_hline(yintercept=0, lty="dotted", color="gray", size=1) +
+  xlab("Rank in Gene List") + 
+  ylab("Enrichment Score") +
+  ggtitle("SPP5U Down in Exhaustion (Scott TILS)") +
+  themeset
+
+#Plot NPP5N UNIQUE Preg Up+Down Enrichment Curve
+NPP5U_Preg_UP_EnrichData <- read_delim("EnrichmentCurveData/NPP5U_GSEA_Preg_Up.tsv")
+
+ggplot(NPP5U_Preg_UP_EnrichData, aes(x=Rank, y=ES)) + 
+  geom_line(color=colors_fill[2], lwd=2) +
+  geom_point(data=NPP5U_Preg_UP_EnrichData[which(NPP5U_Preg_UP_EnrichData$Plot=="TRUE"),], shape=21, fill="black", color="purple", size=4, stroke=1.2) +
+  geom_text_repel(data=NPP5U_Preg_UP_EnrichData[which(NPP5U_Preg_UP_EnrichData$Plot=="TRUE"),], aes(label=Symbol), size=6, nudge_x=100, nudge_y=-0.1, force=1.6, color=colors_fill[2], segment.size=1, segment.color="black") +
+  geom_hline(yintercept=0, lty="dotted", color="gray", size=1) +
+  xlab("Rank in Gene List") + 
+  ylab("Enrichment Score") +
+  ggtitle("NPP5U Up in Pregnancy") +
+  themeset
+
+NPP5U_Preg_DOWN_EnrichData <- read_delim("EnrichmentCurveData/NPP5U_GSEA_Preg_Dn.tsv")
+
+ggplot(NPP5U_Preg_DOWN_EnrichData, aes(x=Rank, y=ES)) + 
+  geom_line(color=colors_fill[2], lwd=2) +
+  geom_point(data=NPP5U_Preg_DOWN_EnrichData[which(NPP5U_Preg_DOWN_EnrichData$Plot=="TRUE"),], shape=21, fill="black", color="purple", size=4, stroke=1.2) +
+  geom_text_repel(data=NPP5U_Preg_DOWN_EnrichData[which(NPP5U_Preg_DOWN_EnrichData$Plot=="TRUE"),], aes(label=Symbol), size=6, nudge_x=100, nudge_y=-0.1, force=1.6, color=colors_fill[2], segment.size=1, segment.color="black") +
+  geom_hline(yintercept=0, lty="dotted", color="gray", size=1) +
+  xlab("Rank in Gene List") + 
+  ylab("Enrichment Score") +
+  ggtitle("NPP5U Down in Pregnancy") +
+  themeset
+
+#Plot SPP5SUB UNIQUE Preg Up+Down Enrichment Curve
+SPP5U_Preg_UP_EnrichData <- read_delim("EnrichmentCurveData/SPP5U_GSEA_Preg_Up.tsv")
+
+ggplot(SPP5U_Preg_UP_EnrichData, aes(x=Rank, y=ES)) + 
+  geom_line(color=colors_fill[4], lwd=2) +
+  geom_point(data=SPP5U_Preg_UP_EnrichData[which(SPP5U_Preg_UP_EnrichData$Plot=="TRUE"),], shape=21, fill="black", color="orange", size=4, stroke=1.2) +
+  geom_text_repel(data=SPP5U_Preg_UP_EnrichData[which(SPP5U_Preg_UP_EnrichData$Plot=="TRUE"),], aes(label=Symbol), size=6, nudge_x=100, nudge_y=-0.1, force=1.6, color=colors_fill[4], segment.size=1, segment.color="black") +
+  geom_hline(yintercept=0, lty="dotted", color="gray", size=1) +
+  xlab("Rank in Gene List") + 
+  ylab("Enrichment Score") +
+  ggtitle("SPP5U Down in Pregnancy") +
+  themeset
+
+SPP5U_Preg_DOWN_EnrichData <- read_delim("EnrichmentCurveData/SPP5U_GSEA_Preg_Dn.tsv")
+
+ggplot(SPP5U_Preg_DOWN_EnrichData, aes(x=Rank, y=ES)) + 
+  geom_line(color=colors_fill[4], lwd=2) +
+  geom_point(data=SPP5U_Preg_DOWN_EnrichData[which(SPP5U_Preg_DOWN_EnrichData$Plot=="TRUE"),], shape=21, fill="black", color="orange", size=4, stroke=1.2) +
+  geom_text_repel(data=SPP5U_Preg_DOWN_EnrichData[which(SPP5U_Preg_DOWN_EnrichData$Plot=="TRUE"),], aes(label=Symbol), size=6, nudge_x=100, nudge_y=-0.1, force=1.6, color=colors_fill[4], segment.size=1, segment.color="black") +
+  geom_hline(yintercept=0, lty="dotted", color="gray", size=1) +
+  xlab("Rank in Gene List") + 
+  ylab("Enrichment Score") +
+  ggtitle("SPP5U Down in Pregnancy") +
+  themeset
+
+```

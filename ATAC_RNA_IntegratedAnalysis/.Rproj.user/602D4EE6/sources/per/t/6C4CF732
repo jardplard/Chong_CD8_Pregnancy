@@ -1,0 +1,28 @@
+{
+    "id": "6C4CF732",
+    "path": null,
+    "project_path": null,
+    "type": "object_explorer",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1648518608010.0,
+    "source_on_save": false,
+    "relative_order": 7,
+    "properties": {
+        "id": "246702de7c0a42b2bcd0dc19b936c828",
+        "name": "Shared_0_50",
+        "title": "Shared_0_50",
+        "language": "R",
+        "source_window_id": "",
+        "Source": "Source"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 4534373990,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1648518608010,
+    "read_only": false,
+    "read_only_alternatives": []
+}

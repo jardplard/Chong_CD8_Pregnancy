@@ -1,0 +1,2 @@
+_MEMBER_Geneid,_LogP_Geneid,GO,_PATTERN_,_RANK_,GiniIndex,Category,CategoryID,Description,PARENT_GO,LogP,Enrichment,Z-score,#TotalGeneInLibrary,#GeneInGO,#GeneInHitList,#GeneInGOAndHitList,%InGO,STDV %InGO,GeneID,Hits,Log(q-value),EvidenceCutoff
+1,-2.4,PGB:00011,M1,1,0,PaGenBase,36,Tissue-specific: spleen,,-2.4,4.9,3.9,20580,189,112,5,4.5,2,54710|66302|70568|110168|627782,Hs3st3b1|Rmdn1|Cpne3|Gpr18|Gm6787,0,0

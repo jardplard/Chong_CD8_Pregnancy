@@ -1,0 +1,11 @@
+_MEMBER_Geneid,_LogP_Geneid,GO,Description,_PATTERN_,_RANK_,CHILD_GO_Geneid
+1,-2.954882912936088,GO:0009987,cellular process,M1,1,GO:0007018 microtubule-based movement
+1,-2.7850988234665057,GO:0008152,metabolic process,M1,1,GO:0018195 peptidyl-arginine modification
+1,-2.759631837815865,GO:0051179,localization,M1,1,GO:0051928 positive regulation of calcium ion transport
+1,-2.738659041316914,GO:0023052,signaling,M1,1,GO:0007176 regulation of epidermal growth factor-activated receptor activity
+1,-2.7278632459966627,GO:0032502,developmental process,M1,1,GO:0042551 neuron maturation
+1,-2.422488942694433,GO:0002376,immune system process,M1,1,GO:0045577 regulation of B cell differentiation
+1,-2.302757235163691,GO:0048519,negative regulation of biological process,M1,1,GO:0010639 negative regulation of organelle organization
+1,-2.1648760179274755,GO:0050789,regulation of biological process,M1,1,GO:0051983 regulation of chromosome segregation
+1,-2.1648760179274755,GO:0022610,biological adhesion,M1,1,GO:0048041 focal adhesion assembly
+1,-2.0499677078736247,GO:0065007,biological regulation,M1,1,GO:0006873 cellular ion homeostasis

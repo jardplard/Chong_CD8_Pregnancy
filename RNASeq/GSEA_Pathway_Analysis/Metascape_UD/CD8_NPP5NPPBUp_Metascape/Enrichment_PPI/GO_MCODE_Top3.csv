@@ -1,0 +1,11 @@
+Network,Annotation
+Geneid,GO:0007159|leukocyte cell-cell adhesion|-16.1;GO:0045785|positive regulation of cell adhesion|-15.1;GO:0050863|regulation of T cell activation|-14.2
+Geneid_MCODE_ALL,ko04060|Cytokine-cytokine receptor interaction|-16.6;mmu04060|Cytokine-cytokine receptor interaction|-16.4;GO:0007159|leukocyte cell-cell adhesion|-15.5
+Geneid_SUB1_MCODE_1,GO:0050900|leukocyte migration|-11.7;R-MMU-380108|Chemokine receptors bind chemokines|-10.8;R-MMU-8957275|Post-translational protein phosphorylation|-10.7
+Geneid_SUB1_MCODE_2,ko04060|Cytokine-cytokine receptor interaction|-19.0;mmu04060|Cytokine-cytokine receptor interaction|-18.9;GO:0050863|regulation of T cell activation|-15.1
+Geneid_SUB1_MCODE_3,GO:0051301|cell division|-3.8;GO:0010564|regulation of cell cycle process|-3.7;GO:1903047|mitotic cell cycle process|-3.6
+Geneid_SUB1_MCODE_4,"R-MMU-114608|Platelet degranulation|-9.0;R-MMU-76005|Response to elevated platelet cytosolic Ca2+|-9.0;R-MMU-76002|Platelet activation, signaling and aggregation|-7.7"
+Geneid_SUB1_MCODE_5,R-MMU-416476|G alpha (q) signalling events|-6.1;GO:0030072|peptide hormone secretion|-5.6;GO:0002790|peptide secretion|-5.5
+Geneid_SUB1_MCODE_6,R-MMU-418555|G alpha (s) signalling events|-6.7;R-MMU-388396|GPCR downstream signalling|-4.7;R-MMU-372790|Signaling by GPCR|-4.7
+Geneid_SUB1_MCODE_7,R-MMU-6798695|Neutrophil degranulation|-4.8
+Geneid_SUB1_MCODE_8,R-MMU-5694530|Cargo concentration in the ER|-8.5;R-MMU-204005|COPII-mediated vesicle transport|-7.5;R-MMU-199977|ER to Golgi Anterograde Transport|-6.5

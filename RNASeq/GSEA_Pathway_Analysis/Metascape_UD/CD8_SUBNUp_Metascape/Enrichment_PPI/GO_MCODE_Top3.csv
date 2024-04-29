@@ -1,0 +1,9 @@
+Network,Annotation
+Geneid,GO:0006954|inflammatory response|-18.3;GO:0050865|regulation of cell activation|-15.4;GO:0002694|regulation of leukocyte activation|-14.9
+Geneid_MCODE_ALL,GO:0006954|inflammatory response|-20.0;ko04060|Cytokine-cytokine receptor interaction|-17.9;mmu04060|Cytokine-cytokine receptor interaction|-17.8
+Geneid_SUB1_MCODE_1,ko04060|Cytokine-cytokine receptor interaction|-9.4;mmu04060|Cytokine-cytokine receptor interaction|-9.4;GO:0035655|interleukin-18-mediated signaling pathway|-7.6
+Geneid_SUB1_MCODE_2,GO:0007159|leukocyte cell-cell adhesion|-9.2;R-MMU-216083|Integrin cell surface interactions|-8.3;ko04514|Cell adhesion molecules (CAMs)|-8.1
+Geneid_SUB1_MCODE_3,R-MMU-418594|G alpha (i) signalling events|-17.9;R-MMU-373076|Class A/1 (Rhodopsin-like receptors)|-17.4;R-MMU-500792|GPCR ligand binding|-16.3
+Geneid_SUB1_MCODE_4,R-MMU-456926|Thrombin signalling through proteinase activated receptors (PARs)|-6.5;GO:0007200|phospholipase C-activating G protein-coupled receptor signaling pathway|-4.9;R-MMU-6798695|Neutrophil degranulation|-4.2
+Geneid_SUB1_MCODE_5,GO:0016045|detection of bacterium|-9.2;GO:0098543|detection of other organism|-9.0;GO:0098581|detection of external biotic stimulus|-8.6
+Geneid_SUB1_MCODE_6,R-MMU-6798695|Neutrophil degranulation|-4.8

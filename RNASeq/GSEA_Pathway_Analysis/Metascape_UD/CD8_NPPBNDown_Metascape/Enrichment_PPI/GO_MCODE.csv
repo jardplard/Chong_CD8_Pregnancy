@@ -1,0 +1,233 @@
+Name,Category,CategoryID,GO,Description,PARENT_GO,LogP,Enrichment,Z-score,#TotalGeneInLibrary,#GeneInGO,#GeneInHitList,#GeneInGOAndHitList,%InGO,STDV %InGO,GeneID,Hits,Log(q-value)
+Geneid,Reactome Gene Sets,6,R-MMU-5653656,Vesicle-mediated transport,,-4.5,4.5,5.6,20504,566,88,11,12,3.5,11839|12663|14069|16551|20334|20739|73804|74760|77057|108800|328561,Areg|Chml|F8|Kif11|Sec23a|Spta1|Kif2c|Rab3il1|Ston1|Ston2|Apol10b,-2
+Geneid,Reactome Gene Sets,6,R-MMU-199991,Membrane Trafficking,,-4,4.4,5.2,20504,533,88,10,11,3.4,11839|12663|14069|16551|20334|20739|73804|74760|77057|108800,Areg|Chml|F8|Kif11|Sec23a|Spta1|Kif2c|Rab3il1|Ston1|Ston2,-1.6
+Geneid,GO Biological Processes,19,GO:0007059,chromosome segregation,19_GO:0009987 cellular process,-4,5.5,5.5,20504,338,88,8,9.1,3.1,23834|54141|73804|79456|83560|108000|208628|219114,Cdc6|Spag5|Kif2c|Recql4|Tex14|Cenpf|Kntc1|Ska3,-1.6
+Geneid,GO Biological Processes,19,GO:0000819,sister chromatid segregation,19_GO:0009987 cellular process,-3.8,7.4,5.8,20504,188,88,6,6.8,2.7,23834|54141|73804|79456|83560|208628,Cdc6|Spag5|Kif2c|Recql4|Tex14|Kntc1,-1.4
+Geneid,GO Biological Processes,19,GO:0098813,nuclear chromosome segregation,19_GO:0009987 cellular process,-3.8,6,5.4,20504,273,88,7,8,2.9,23834|54141|73804|79456|83560|108000|208628,Cdc6|Spag5|Kif2c|Recql4|Tex14|Cenpf|Kntc1,-1.4
+Geneid,GO Biological Processes,19,GO:0000226,microtubule cytoskeleton organization,19_GO:0009987 cellular process,-3.5,3.8,4.6,20504,620,88,10,11,3.4,12449|16551|54141|72205|73804|78801|110082|219114|231214|627872,Ccnf|Kif11|Spag5|Eml2|Kif2c|Ak7|Dnah5|Ska3|Cc2d2a|Dnah7a,-1.2
+Geneid,GO Biological Processes,19,GO:0051301,cell division,19_GO:0009987 cellular process,-3.5,3.8,4.6,20504,621,88,10,11,3.4,12449|12534|14173|16551|23834|54141|73804|83560|208628|219114,Ccnf|Cdk1|Fgf2|Kif11|Cdc6|Spag5|Kif2c|Tex14|Kntc1|Ska3,-1.2
+Geneid,Reactome Gene Sets,6,R-MMU-5694530,Cargo concentration in the ER,,-3.5,22,7.7,20504,32,88,3,3.4,1.9,11839|14069|20334,Areg|F8|Sec23a,-1.2
+Geneid,GO Biological Processes,19,GO:0008608,attachment of spindle microtubules to kinetochore,19_GO:0009987 cellular process,-3.4,21,7.6,20504,33,88,3,3.4,1.9,54141|73804|83560,Spag5|Kif2c|Tex14,-1.2
+Geneid,GO Biological Processes,19,GO:0051928,positive regulation of calcium ion transport,19_GO:0051179 localization,-3.4,8,5.6,20504,145,88,5,5.7,2.5,11941|15945|20193|22393|233081,Atp2b2|Cxcl10|S100a1|Wfs1|Ffar1,-1.1
+Geneid,GO Biological Processes,19,GO:0007018,microtubule-based movement,19_GO:0009987 cellular process,-3.4,4.5,4.7,20504,416,88,8,9.1,3.1,16551|23859|73804|78801|110082|242646|271639|627872,Kif11|Dlg2|Kif2c|Ak7|Dnah5|Dynlt4|Adcy10|Dnah7a,-1.1
+Geneid,GO Biological Processes,19,GO:0036465,synaptic vesicle recycling,19_GO:0051179 localization,-3.4,11,6.2,20504,82,88,4,4.5,2.2,26875|77057|94190|108800,Pclo|Ston1|Ophn1|Ston2,-1.1
+Geneid,GO Biological Processes,19,GO:0035082,axoneme assembly,19_GO:0009987 cellular process,-3.3,11,6,20504,86,88,4,4.5,2.2,78801|110082|231214|627872,Ak7|Dnah5|Cc2d2a|Dnah7a,-1.1
+Geneid,GO Biological Processes,19,GO:2001251,negative regulation of chromosome organization,19_GO:0048519 negative regulation of biological process,-3.3,11,6,20504,86,88,4,4.5,2.2,79456|83560|208084|208628,Recql4|Tex14|Pif1|Kntc1,-1.1
+Geneid,GO Biological Processes,19,GO:0051983,regulation of chromosome segregation,19_GO:0050789 regulation of biological process,-3.3,11,6,20504,86,88,4,4.5,2.2,23834|73804|83560|208628,Cdc6|Kif2c|Tex14|Kntc1,-1.1
+Geneid,GO Biological Processes,19,GO:0120031,plasma membrane bounded cell projection assembly,19_GO:0009987 cellular process,-3.2,3.8,4.4,20504,548,88,9,10,3.2,16475|27078|54670|77057|78801|103765|110082|231214|627872,Ajuba|B9d1|Atp8b1|Ston1|Ak7|Tmem17|Dnah5|Cc2d2a|Dnah7a,-1
+Geneid,GO Biological Processes,19,GO:0000070,mitotic sister chromatid segregation,19_GO:0009987 cellular process,-3.2,7.3,5.3,20504,159,88,5,5.7,2.5,23834|54141|73804|83560|208628,Cdc6|Spag5|Kif2c|Tex14|Kntc1,-1
+Geneid,GO Biological Processes,19,GO:0007420,brain development,19_GO:0032502 developmental process,-3.2,3.4,4.2,20504,676,88,10,11,3.4,11803|11941|12273|14130|14173|78801|94190|108000|110082|319229,Aplp1|Atp2b2|C5ar1|Fcgr2b|Fgf2|Ak7|Ophn1|Cenpf|Dnah5|Sctr,-0.99
+Geneid,GO Biological Processes,19,GO:0030031,cell projection assembly,19_GO:0009987 cellular process,-3.2,3.7,4.3,20504,563,88,9,10,3.2,16475|27078|54670|77057|78801|103765|110082|231214|627872,Ajuba|B9d1|Atp8b1|Ston1|Ak7|Tmem17|Dnah5|Cc2d2a|Dnah7a,-0.96
+Geneid,GO Biological Processes,19,GO:0003351,epithelial cilium movement involved in extracellular fluid movement,19_GO:0051179 localization,-3.1,16,6.6,20504,43,88,3,3.4,1.9,78801|110082|271639,Ak7|Dnah5|Adcy10,-0.91
+Geneid,KEGG Pathway,24,mmu04610,Complement and coagulation cascades,,-3.1,9.4,5.5,20504,99,88,4,4.5,2.2,12273|14069|15945|74145,C5ar1|F8|Cxcl10|F13a1,-0.9
+Geneid,GO Biological Processes,19,GO:0010639,negative regulation of organelle organization,19_GO:0048519 negative regulation of biological process,-3,4.5,4.4,20504,366,88,7,8,2.9,12449|20739|72205|79456|83560|208084|208628,Ccnf|Spta1|Eml2|Recql4|Tex14|Pif1|Kntc1,-0.85
+Geneid,GO Biological Processes,19,GO:0006858,extracellular transport,19_GO:0051179 localization,-3,15,6.3,20504,46,88,3,3.4,1.9,78801|110082|271639,Ak7|Dnah5|Adcy10,-0.85
+Geneid,GO Biological Processes,19,GO:0030902,hindbrain development,19_GO:0032502 developmental process,-3,6.5,4.9,20504,179,88,5,5.7,2.5,11941|12273|14130|14173|94190,Atp2b2|C5ar1|Fcgr2b|Fgf2|Ophn1,-0.84
+Geneid,Reactome Gene Sets,6,R-MMU-69620,Cell Cycle Checkpoints,,-3,5.2,4.5,20504,270,88,6,6.8,2.7,12534|23834|70024|73804|108000|208628,Cdk1|Cdc6|Mcm10|Kif2c|Cenpf|Kntc1,-0.83
+Geneid,Reactome Gene Sets,6,R-MMU-2132295,MHC class II antigen presentation,,-3,8.9,5.3,20504,105,88,4,4.5,2.2,16551|20334|64291|73804,Kif11|Sec23a|Osbpl1a|Kif2c,-0.83
+Geneid,GO Biological Processes,19,GO:0060322,head development,19_GO:0032502 developmental process,-2.9,3.2,3.9,20504,734,88,10,11,3.4,11803|11941|12273|14130|14173|78801|94190|108000|110082|319229,Aplp1|Atp2b2|C5ar1|Fcgr2b|Fgf2|Ak7|Ophn1|Cenpf|Dnah5|Sctr,-0.81
+Geneid,GO Biological Processes,19,GO:0033044,regulation of chromosome organization,19_GO:0050789 regulation of biological process,-2.9,6.3,4.8,20504,185,88,5,5.7,2.5,23834|79456|83560|208084|208628,Cdc6|Recql4|Tex14|Pif1|Kntc1,-0.81
+Geneid,GO Biological Processes,19,GO:0140014,mitotic nuclear division,19_GO:0009987 cellular process,-2.9,5,4.4,20504,279,88,6,6.8,2.7,16551|23834|54141|73804|83560|208628,Kif11|Cdc6|Spag5|Kif2c|Tex14|Kntc1,-0.78
+Geneid,GO Biological Processes,19,GO:0010948,negative regulation of cell cycle process,19_GO:0048519 negative regulation of biological process,-2.9,4.9,4.4,20504,283,88,6,6.8,2.7,12449|12534|23834|79456|83560|208628,Ccnf|Cdk1|Cdc6|Recql4|Tex14|Kntc1,-0.75
+Geneid,Reactome Gene Sets,6,R-MMU-109582,Hemostasis,,-2.8,3.7,4,20504,506,88,8,9.1,3.1,11941|14069|16551|66066|73804|74145|238393|319148,Atp2b2|F8|Kif11|Gng11|Kif2c|F13a1|Serpina3f|H3c3,-0.73
+Geneid,Reactome Gene Sets,6,R-MMU-5683057,MAPK family signaling cascades,,-2.8,4.9,4.3,20504,288,88,6,6.8,2.7,11839|12534|14173|16184|20739|545156,Areg|Cdk1|Fgf2|Il2ra|Spta1|Kalrn,-0.72
+Geneid,Reactome Gene Sets,6,R-MMU-2500257,Resolution of Sister Chromatid Cohesion,,-2.8,8,5,20504,117,88,4,4.5,2.2,12534|73804|108000|208628,Cdk1|Kif2c|Cenpf|Kntc1,-0.7
+Geneid,GO Biological Processes,19,GO:0001578,microtubule bundle formation,19_GO:0009987 cellular process,-2.8,7.8,4.9,20504,119,88,4,4.5,2.2,78801|110082|231214|627872,Ak7|Dnah5|Cc2d2a|Dnah7a,-0.68
+Geneid,GO Biological Processes,19,GO:0071103,DNA conformation change,19_GO:0009987 cellular process,-2.7,5.7,4.5,20504,203,88,5,5.7,2.5,12534|18602|56702|79456|208084,Cdk1|Padi4|H1f5|Recql4|Pif1,-0.66
+Geneid,GO Biological Processes,19,GO:0030071,regulation of mitotic metaphase/anaphase transition,19_GO:0050789 regulation of biological process,-2.7,12,5.5,20504,58,88,3,3.4,1.9,23834|83560|208628,Cdc6|Tex14|Kntc1,-0.62
+Geneid,GO Biological Processes,19,GO:0010564,regulation of cell cycle process,19_GO:0050789 regulation of biological process,-2.7,3.2,3.8,20504,656,88,9,10,3.2,12449|12534|16551|23834|54141|79456|83560|108000|208628,Ccnf|Cdk1|Kif11|Cdc6|Spag5|Recql4|Tex14|Cenpf|Kntc1,-0.62
+Geneid,GO Biological Processes,19,GO:1902099,regulation of metaphase/anaphase transition of cell cycle,19_GO:0050789 regulation of biological process,-2.6,11,5.4,20504,61,88,3,3.4,1.9,23834|83560|208628,Cdc6|Tex14|Kntc1,-0.57
+Geneid,GO Biological Processes,19,GO:0007091,metaphase/anaphase transition of mitotic cell cycle,19_GO:0050789 regulation of biological process,-2.6,11,5.4,20504,61,88,3,3.4,1.9,23834|83560|208628,Cdc6|Tex14|Kntc1,-0.57
+Geneid,GO Biological Processes,19,GO:0010965,regulation of mitotic sister chromatid separation,19_GO:0050789 regulation of biological process,-2.6,11,5.3,20504,62,88,3,3.4,1.9,23834|83560|208628,Cdc6|Tex14|Kntc1,-0.55
+Geneid,GO Biological Processes,19,GO:0051310,metaphase plate congression,19_GO:0051179 localization,-2.6,11,5.2,20504,64,88,3,3.4,1.9,54141|73804|108000,Spag5|Kif2c|Cenpf,-0.52
+Geneid,GO Biological Processes,19,GO:0044784,metaphase/anaphase transition of cell cycle,19_GO:0050789 regulation of biological process,-2.6,11,5.2,20504,64,88,3,3.4,1.9,23834|83560|208628,Cdc6|Tex14|Kntc1,-0.52
+Geneid,GO Biological Processes,19,GO:0051306,mitotic sister chromatid separation,19_GO:0009987 cellular process,-2.6,11,5.2,20504,65,88,3,3.4,1.9,23834|83560|208628,Cdc6|Tex14|Kntc1,-0.51
+Geneid,GO Biological Processes,19,GO:0007093,mitotic cell cycle checkpoint signaling,19_GO:0048519 negative regulation of biological process,-2.6,6.9,4.5,20504,136,88,4,4.5,2.2,12534|23834|83560|208628,Cdk1|Cdc6|Tex14|Kntc1,-0.5
+Geneid,GO Biological Processes,19,GO:0043270,positive regulation of ion transport,19_GO:0051179 localization,-2.5,4.2,3.9,20504,329,88,6,6.8,2.7,11941|15945|20193|22393|80906|233081,Atp2b2|Cxcl10|S100a1|Wfs1|Kcnip2|Ffar1,-0.49
+Geneid,GO Biological Processes,19,GO:0000280,nuclear division,19_GO:0009987 cellular process,-2.5,3.7,3.7,20504,443,88,7,8,2.9,16551|23834|54141|73804|83560|208628|623474,Kif11|Cdc6|Spag5|Kif2c|Tex14|Kntc1|Rad54b,-0.49
+Geneid,GO Biological Processes,19,GO:0010959,regulation of metal ion transport,19_GO:0051179 localization,-2.5,3.7,3.7,20504,444,88,7,8,2.9,11941|15945|20193|22393|56461|80906|233081,Atp2b2|Cxcl10|S100a1|Wfs1|Kcnip3|Kcnip2|Ffar1,-0.48
+Geneid,GO Biological Processes,19,GO:1903047,mitotic cell cycle process,19_GO:0009987 cellular process,-2.5,3,3.5,20504,701,88,9,10,3.2,12449|12534|16551|23834|54141|73804|83560|108000|208628,Ccnf|Cdk1|Kif11|Cdc6|Spag5|Kif2c|Tex14|Cenpf|Kntc1,-0.47
+Geneid,GO Biological Processes,19,GO:1905818,regulation of chromosome separation,19_GO:0050789 regulation of biological process,-2.5,10,5,20504,68,88,3,3.4,1.9,23834|83560|208628,Cdc6|Tex14|Kntc1,-0.47
+Geneid,Reactome Gene Sets,6,R-MMU-204005,COPII-mediated vesicle transport,,-2.5,10,5,20504,68,88,3,3.4,1.9,11839|14069|20334,Areg|F8|Sec23a,-0.47
+Geneid,GO Biological Processes,19,GO:0006873,cellular ion homeostasis,19_GO:0065007 biological regulation,-2.5,3,3.5,20504,703,88,9,10,3.2,11941|11975|12273|12709|14173|15945|22393|233081|242341,Atp2b2|Atp6v0a1|C5ar1|Ckb|Fgf2|Cxcl10|Wfs1|Ffar1|Atp6v0d2,-0.47
+Geneid,GO Biological Processes,19,GO:0033045,regulation of sister chromatid segregation,19_GO:0050789 regulation of biological process,-2.5,10,5,20504,69,88,3,3.4,1.9,23834|83560|208628,Cdc6|Tex14|Kntc1,-0.46
+Geneid,Reactome Gene Sets,6,R-MMU-199977,ER to Golgi Anterograde Transport,,-2.5,6.6,4.4,20504,142,88,4,4.5,2.2,11839|14069|20334|20739,Areg|F8|Sec23a|Spta1,-0.46
+Geneid,Reactome Gene Sets,6,R-MMU-1640170,Cell Cycle,,-2.5,3.2,3.6,20504,579,88,8,9.1,3.1,12534|16475|23834|70024|73804|108000|208084|208628,Cdk1|Ajuba|Cdc6|Mcm10|Kif2c|Cenpf|Pif1|Kntc1,-0.44
+Geneid,GO Biological Processes,19,GO:0048488,synaptic vesicle endocytosis,19_GO:0051179 localization,-2.5,9.8,4.9,20504,71,88,3,3.4,1.9,77057|94190|108800,Ston1|Ophn1|Ston2,-0.43
+Geneid,GO Biological Processes,19,GO:0140238,presynaptic endocytosis,19_GO:0051179 localization,-2.5,9.8,4.9,20504,71,88,3,3.4,1.9,77057|94190|108800,Ston1|Ophn1|Ston2,-0.43
+Geneid,GO Biological Processes,19,GO:0060271,cilium assembly,19_GO:0009987 cellular process,-2.4,4.1,3.8,20504,343,88,6,6.8,2.7,27078|78801|103765|110082|231214|627872,B9d1|Ak7|Tmem17|Dnah5|Cc2d2a|Dnah7a,-0.43
+Geneid,Reactome Gene Sets,6,R-MMU-74752,Signaling by Insulin receptor,,-2.4,9.7,4.9,20504,72,88,3,3.4,1.9,11975|14173|242341,Atp6v0a1|Fgf2|Atp6v0d2,-0.42
+Geneid,GO Biological Processes,19,GO:0002437,inflammatory response to antigenic stimulus,19_GO:0002376 immune system process,-2.4,9.4,4.8,20504,74,88,3,3.4,1.9,14130|16184|78801,Fcgr2b|Il2ra|Ak7,-0.39
+Geneid,GO Biological Processes,19,GO:0007224,smoothened signaling pathway,19_GO:0023052 signaling,-2.3,5.9,4.1,20504,157,88,4,4.5,2.2,19376|27078|103765|231214,Rab34|B9d1|Tmem17|Cc2d2a,-0.32
+Geneid,GO Biological Processes,19,GO:0006260,DNA replication,19_GO:0008152 metabolic process,-2.3,4.6,3.8,20504,253,88,5,5.7,2.5,12534|23834|70024|79456|208084,Cdk1|Cdc6|Mcm10|Recql4|Pif1,-0.32
+Geneid,GO Biological Processes,19,GO:0050878,regulation of body fluid levels,19_GO:0065007 biological regulation,-2.3,3.8,3.6,20504,367,88,6,6.8,2.7,11941|14069|22393|74145|319229|545156,Atp2b2|F8|Wfs1|F13a1|Sctr|Kalrn,-0.3
+Geneid,GO Biological Processes,19,GO:0045786,negative regulation of cell cycle,19_GO:0048519 negative regulation of biological process,-2.3,3.8,3.6,20504,368,88,6,6.8,2.7,12449|12534|23834|79456|83560|208628,Ccnf|Cdk1|Cdc6|Recql4|Tex14|Kntc1,-0.3
+Geneid,GO Biological Processes,19,GO:0050808,synapse organization,19_GO:0009987 cellular process,-2.3,3.3,3.4,20504,491,88,7,8,2.9,11941|12273|14130|26875|55983|94190|545156,Atp2b2|C5ar1|Fcgr2b|Pclo|Pdzrn3|Ophn1|Kalrn,-0.29
+Geneid,GO Biological Processes,19,GO:0051303,establishment of chromosome localization,19_GO:0051179 localization,-2.3,8.5,4.5,20504,82,88,3,3.4,1.9,54141|73804|108000,Spag5|Kif2c|Cenpf,-0.28
+Geneid,Reactome Gene Sets,6,R-MMU-69278,"Cell Cycle, Mitotic",,-2.3,3.3,3.4,20504,496,88,7,8,2.9,12534|16475|23834|70024|73804|108000|208628,Cdk1|Ajuba|Cdc6|Mcm10|Kif2c|Cenpf|Kntc1,-0.27
+Geneid,GO Biological Processes,19,GO:0048285,organelle fission,19_GO:0009987 cellular process,-2.3,3.3,3.4,20504,496,88,7,8,2.9,16551|23834|54141|73804|83560|208628|623474,Kif11|Cdc6|Spag5|Kif2c|Tex14|Kntc1|Rad54b,-0.27
+Geneid,GO Biological Processes,19,GO:0034330,cell junction organization,19_GO:0009987 cellular process,-2.3,2.7,3.2,20504,766,88,9,10,3.2,11941|12273|14130|16475|26875|55983|77057|94190|545156,Atp2b2|C5ar1|Fcgr2b|Ajuba|Pclo|Pdzrn3|Ston1|Ophn1|Kalrn,-0.27
+Geneid,GO Biological Processes,19,GO:0030879,mammary gland development,19_GO:0032502 developmental process,-2.3,5.6,3.9,20504,165,88,4,4.5,2.2,11839|11941|14173|545156,Areg|Atp2b2|Fgf2|Kalrn,-0.27
+Geneid,GO Biological Processes,19,GO:0044782,cilium organization,19_GO:0009987 cellular process,-2.3,3.7,3.5,20504,376,88,6,6.8,2.7,27078|78801|103765|110082|231214|627872,B9d1|Ak7|Tmem17|Dnah5|Cc2d2a|Dnah7a,-0.27
+Geneid,GO Biological Processes,19,GO:0050000,chromosome localization,19_GO:0051179 localization,-2.2,8.3,4.4,20504,84,88,3,3.4,1.9,54141|73804|108000,Spag5|Kif2c|Cenpf,-0.27
+Geneid,Reactome Gene Sets,6,R-MMU-5684996,MAPK1/MAPK3 signaling,,-2.2,4.4,3.7,20504,265,88,5,5.7,2.5,11839|12534|14173|16184|20739,Areg|Cdk1|Fgf2|Il2ra|Spta1,-0.27
+Geneid,Reactome Gene Sets,6,R-MMU-397014,Muscle contraction,,-2.2,5.6,3.9,20504,166,88,4,4.5,2.2,11941|17888|56461|80906,Atp2b2|Myh6|Kcnip3|Kcnip2,-0.27
+Geneid,Reactome Gene Sets,6,R-MMU-500792,GPCR ligand binding,,-2.2,3.7,3.5,20504,381,88,6,6.8,2.7,12273|15945|20305|66066|233081|319229,C5ar1|Cxcl10|Ccl6|Gng11|Ffar1|Sctr,-0.25
+Geneid,GO Biological Processes,19,GO:0035418,protein localization to synapse,19_GO:0051179 localization,-2.2,8.1,4.3,20504,86,88,3,3.4,1.9,23859|26875|545156,Dlg2|Pclo|Kalrn,-0.24
+Geneid,GO Biological Processes,19,GO:1901991,negative regulation of mitotic cell cycle phase transition,19_GO:0048519 negative regulation of biological process,-2.2,5.5,3.9,20504,169,88,4,4.5,2.2,12534|23834|83560|208628,Cdk1|Cdc6|Tex14|Kntc1,-0.24
+Geneid,Reactome Gene Sets,6,R-MMU-983712,Ion channel transport,,-2.2,5.5,3.9,20504,170,88,4,4.5,2.2,11941|11975|54670|242341,Atp2b2|Atp6v0a1|Atp8b1|Atp6v0d2,-0.24
+Geneid,Reactome Gene Sets,6,R-MMU-948021,Transport to the Golgi and subsequent modification,,-2.2,5.5,3.9,20504,170,88,4,4.5,2.2,11839|14069|20334|20739,Areg|F8|Sec23a|Spta1,-0.24
+Geneid,KEGG Pathway,24,ko04610,Complement and coagulation cascades,,-2.2,8,4.3,20504,87,88,3,3.4,1.9,12273|14069|74145,C5ar1|F8|F13a1,-0.24
+Geneid,GO Biological Processes,19,GO:0098771,inorganic ion homeostasis,19_GO:0065007 biological regulation,-2.2,2.7,3.1,20504,790,88,9,10,3.2,11941|11975|12273|12709|14173|15945|22393|233081|242341,Atp2b2|Atp6v0a1|C5ar1|Ckb|Fgf2|Cxcl10|Wfs1|Ffar1|Atp6v0d2,-0.21
+Geneid,Reactome Gene Sets,6,R-MMU-141424,Amplification of signal from the kinetochores,,-2.2,7.8,4.2,20504,90,88,3,3.4,1.9,73804|108000|208628,Kif2c|Cenpf|Kntc1,-0.21
+Geneid,Reactome Gene Sets,6,R-MMU-141444,Amplification  of signal from unattached  kinetochores via a MAD2  inhibitory signal,,-2.2,7.8,4.2,20504,90,88,3,3.4,1.9,73804|108000|208628,Kif2c|Cenpf|Kntc1,-0.21
+Geneid,GO Biological Processes,19,GO:0000075,cell cycle checkpoint signaling,19_GO:0048519 negative regulation of biological process,-2.2,5.3,3.8,20504,176,88,4,4.5,2.2,12534|23834|83560|208628,Cdk1|Cdc6|Tex14|Kntc1,-0.2
+Geneid,GO Biological Processes,19,GO:0060420,regulation of heart growth,19_GO:0040007 growth,-2.1,7.6,4.2,20504,92,88,3,3.4,1.9,12534|14173|17888,Cdk1|Fgf2|Myh6,-0.18
+Geneid,GO Biological Processes,19,GO:0099072,regulation of postsynaptic membrane neurotransmitter receptor levels,19_GO:0065007 biological regulation,-2.1,7.5,4.1,20504,93,88,3,3.4,1.9,23859|94190|545156,Dlg2|Ophn1|Kalrn,-0.18
+Geneid,GO Biological Processes,19,GO:0051924,regulation of calcium ion transport,19_GO:0051179 localization,-2.1,4.1,3.4,20504,287,88,5,5.7,2.5,11941|15945|20193|22393|233081,Atp2b2|Cxcl10|S100a1|Wfs1|Ffar1,-0.15
+Geneid,Reactome Gene Sets,6,R-MMU-5620912,Anchoring of the basal body to the plasma membrane,,-2.1,7.4,4.1,20504,95,88,3,3.4,1.9,12534|27078|231214,Cdk1|B9d1|Cc2d2a,-0.15
+Geneid,GO Biological Processes,19,GO:0044772,mitotic cell cycle phase transition,19_GO:0009987 cellular process,-2.1,3.4,3.3,20504,406,88,6,6.8,2.7,12449|12534|23834|83560|108000|208628,Ccnf|Cdk1|Cdc6|Tex14|Cenpf|Kntc1,-0.15
+Geneid,GO Biological Processes,19,GO:0034502,protein localization to chromosome,19_GO:0051179 localization,-2.1,7.3,4,20504,96,88,3,3.4,1.9,12534|56702|208628,Cdk1|H1f5|Kntc1,-0.15
+Geneid,Reactome Gene Sets,6,R-MMU-8856825,Cargo recognition for clathrin-mediated endocytosis,,-2.1,7.3,4,20504,96,88,3,3.4,1.9,11839|77057|108800,Areg|Ston1|Ston2,-0.15
+Geneid,GO Biological Processes,19,GO:0051304,chromosome separation,19_GO:0009987 cellular process,-2.1,7.3,4,20504,96,88,3,3.4,1.9,23834|83560|208628,Cdc6|Tex14|Kntc1,-0.15
+Geneid,GO Biological Processes,19,GO:0010389,regulation of G2/M transition of mitotic cell cycle,19_GO:0050789 regulation of biological process,-2.1,7.2,4,20504,97,88,3,3.4,1.9,12534|23834|108000,Cdk1|Cdc6|Cenpf,-0.14
+Geneid,GO Biological Processes,19,GO:1901990,regulation of mitotic cell cycle phase transition,19_GO:0050789 regulation of biological process,-2.1,4,3.4,20504,293,88,5,5.7,2.5,12534|23834|83560|108000|208628,Cdk1|Cdc6|Tex14|Cenpf|Kntc1,-0.13
+Geneid,Reactome Gene Sets,6,R-MMU-416476,G alpha (q) signalling events,,-2.1,5,3.6,20504,188,88,4,4.5,2.2,20305|66066|233081|545156,Ccl6|Gng11|Ffar1|Kalrn,-0.13
+Geneid,Reactome Gene Sets,6,R-MMU-68877,Mitotic Prometaphase,,-2.1,5,3.6,20504,188,88,4,4.5,2.2,12534|73804|108000|208628,Cdk1|Kif2c|Cenpf|Kntc1,-0.13
+Geneid,WikiPathways,27,WP2432,Spinal cord injury,,-2.1,7.1,4,20504,99,88,3,3.4,1.9,12534|14130|15945,Cdk1|Fcgr2b|Cxcl10,-0.12
+Geneid,GO Biological Processes,19,GO:0030003,cellular cation homeostasis,19_GO:0065007 biological regulation,-2,2.7,3,20504,686,88,8,9.1,3.1,11941|11975|12273|14173|15945|22393|233081|242341,Atp2b2|Atp6v0a1|C5ar1|Fgf2|Cxcl10|Wfs1|Ffar1|Atp6v0d2,-0.11
+Geneid,Reactome Gene Sets,6,R-MMU-388396,GPCR downstream signalling,,-2,3,3.1,20504,549,88,7,8,2.9,12273|15945|20305|66066|233081|319229|545156,C5ar1|Cxcl10|Ccl6|Gng11|Ffar1|Sctr|Kalrn,-0.11
+Geneid,GO Biological Processes,19,GO:0006310,DNA recombination,19_GO:0008152 metabolic process,-2,3.9,3.3,20504,301,88,5,5.7,2.5,56702|79456|208084|234396|623474,H1f5|Recql4|Pif1|Ankle1|Rad54b,-0.096
+Geneid,GO Biological Processes,19,GO:0030593,neutrophil chemotaxis,19_GO:0040011 locomotion,-2,6.9,3.9,20504,102,88,3,3.4,1.9,12273|15945|20305,C5ar1|Cxcl10|Ccl6,-0.095
+Geneid,GO Biological Processes,19,GO:0045765,regulation of angiogenesis,19_GO:0032502 developmental process,-2,3.9,3.3,20504,302,88,5,5.7,2.5,12273|12828|14173|15945|20193,C5ar1|Col4a3|Fgf2|Cxcl10|S100a1,-0.094
+Geneid,GO Biological Processes,19,GO:0098662,inorganic cation transmembrane transport,19_GO:0051179 localization,-2,2.7,3,20504,693,88,8,9.1,3.1,11941|11975|14173|15945|20193|56461|80906|242341,Atp2b2|Atp6v0a1|Fgf2|Cxcl10|S100a1|Kcnip3|Kcnip2|Atp6v0d2,-0.093
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-388396,GPCR downstream signalling,,-6.3,17,9.7,20504,549,13,6,46,14,12273|15945|20305|66066|233081|545156,C5ar1|Cxcl10|Ccl6|Gng11|Ffar1|Kalrn,-3.3
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-2500257,Resolution of Sister Chromatid Cohesion,,-6.2,54,14,20504,117,13,4,31,13,12534|73804|108000|208628,Cdk1|Kif2c|Cenpf|Kntc1,-3.2
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-372790,Signaling by GPCR,,-6.1,16,9.4,20504,578,13,6,46,14,12273|15945|20305|66066|233081|545156,C5ar1|Cxcl10|Ccl6|Gng11|Ffar1|Kalrn,-3.2
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-500792,GPCR ligand binding,,-5.6,21,9.8,20504,381,13,5,38,13,12273|15945|20305|66066|233081,C5ar1|Cxcl10|Ccl6|Gng11|Ffar1,-2.8
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-68877,Mitotic Prometaphase,,-5.3,34,11,20504,188,13,4,31,13,12534|73804|108000|208628,Cdk1|Kif2c|Cenpf|Kntc1,-2.6
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-416476,G alpha (q) signalling events,,-5.3,34,11,20504,188,13,4,31,13,20305|66066|233081|545156,Ccl6|Gng11|Ffar1|Kalrn,-2.6
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-68882,Mitotic Anaphase,,-5.1,30,11,20504,213,13,4,31,13,12534|73804|108000|208628,Cdk1|Kif2c|Cenpf|Kntc1,-2.4
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-2555396,Mitotic Metaphase and Anaphase,,-5.1,29,11,20504,214,13,4,31,13,12534|73804|108000|208628,Cdk1|Kif2c|Cenpf|Kntc1,-2.4
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-418594,G alpha (i) signalling events,,-4.7,23,9.3,20504,269,13,4,31,13,12273|15945|20305|66066,C5ar1|Cxcl10|Ccl6|Gng11,-2.1
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-69620,Cell Cycle Checkpoints,,-4.7,23,9.3,20504,270,13,4,31,13,12534|73804|108000|208628,Cdk1|Kif2c|Cenpf|Kntc1,-2.1
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-141444,Amplification  of signal from unattached  kinetochores via a MAD2  inhibitory signal,,-4.6,53,12,20504,90,13,3,23,12,73804|108000|208628,Kif2c|Cenpf|Kntc1,-2.1
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-141424,Amplification of signal from the kinetochores,,-4.6,53,12,20504,90,13,3,23,12,73804|108000|208628,Kif2c|Cenpf|Kntc1,-2.1
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-373076,Class A/1 (Rhodopsin-like receptors),,-4.5,21,8.8,20504,298,13,4,31,13,12273|15945|20305|233081,C5ar1|Cxcl10|Ccl6|Ffar1,-2
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0030593,neutrophil chemotaxis,19_GO:0040011 locomotion,-4.5,46,12,20504,102,13,3,23,12,12273|15945|20305,C5ar1|Cxcl10|Ccl6,-2
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-9648025,EML4 and NUDC in mitotic spindle formation,,-4.4,45,11,20504,106,13,3,23,12,73804|108000|208628,Kif2c|Cenpf|Kntc1,-1.9
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-69618,Mitotic Spindle Checkpoint,,-4.4,44,11,20504,107,13,3,23,12,73804|108000|208628,Kif2c|Cenpf|Kntc1,-1.9
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-8957275,Post-translational protein phosphorylation,,-4.3,42,11,20504,114,13,3,23,12,22393|83453|328561,Wfs1|Chrdl1|Apol10b,-1.8
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-381426,Regulation of Insulin-like Growth Factor (IGF) transport and uptake by Insulin-like Growth Factor Binding Proteins (IGFBPs),,-4.3,39,11,20504,120,13,3,23,12,22393|83453|328561,Wfs1|Chrdl1|Apol10b,-1.8
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0071621,granulocyte chemotaxis,19_GO:0040011 locomotion,-4.2,37,10,20504,127,13,3,23,12,12273|15945|20305,C5ar1|Cxcl10|Ccl6,-1.7
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:1990266,neutrophil migration,19_GO:0040011 locomotion,-4.2,37,10,20504,128,13,3,23,12,12273|15945|20305,C5ar1|Cxcl10|Ccl6,-1.7
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-5663220,RHO GTPases Activate Formins,,-4.2,36,10,20504,131,13,3,23,12,73804|108000|208628,Kif2c|Cenpf|Kntc1,-1.7
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-68886,M Phase,,-4.1,17,7.7,20504,380,13,4,31,13,12534|73804|108000|208628,Cdk1|Kif2c|Cenpf|Kntc1,-1.7
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0051928,positive regulation of calcium ion transport,19_GO:0051179 localization,-4,33,9.6,20504,145,13,3,23,12,15945|22393|233081,Cxcl10|Wfs1|Ffar1,-1.6
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0097530,granulocyte migration,19_GO:0040011 locomotion,-3.9,30,9.2,20504,157,13,3,23,12,12273|15945|20305,C5ar1|Cxcl10|Ccl6,-1.5
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0071674,mononuclear cell migration,19_GO:0040011 locomotion,-3.7,26,8.6,20504,181,13,3,23,12,12273|15945|20305,C5ar1|Cxcl10|Ccl6,-1.4
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-2467813,Separation of Sister Chromatids,,-3.7,26,8.6,20504,181,13,3,23,12,73804|108000|208628,Kif2c|Cenpf|Kntc1,-1.4
+Geneid_MCODE_ALL,WikiPathways,27,WP2292,Chemokine signaling pathway,,-3.7,26,8.6,20504,181,13,3,23,12,15945|20305|66066,Cxcl10|Ccl6|Gng11,-1.4
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-375276,Peptide ligand-binding receptors,,-3.7,26,8.5,20504,184,13,3,23,12,12273|15945|20305,C5ar1|Cxcl10|Ccl6,-1.4
+Geneid_MCODE_ALL,KEGG Pathway,24,ko04062,Chemokine signaling pathway,,-3.7,26,8.5,20504,185,13,3,23,12,15945|20305|66066,Cxcl10|Ccl6|Gng11,-1.4
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0006874,cellular calcium ion homeostasis,19_GO:0065007 biological regulation,-3.7,13,6.7,20504,490,13,4,31,13,12273|15945|22393|233081,C5ar1|Cxcl10|Wfs1|Ffar1,-1.4
+Geneid_MCODE_ALL,KEGG Pathway,24,mmu04062,Chemokine signaling pathway,,-3.7,25,8.4,20504,188,13,3,23,12,15945|20305|66066,Cxcl10|Ccl6|Gng11,-1.4
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-69278,"Cell Cycle, Mitotic",,-3.7,13,6.7,20504,496,13,4,31,13,12534|73804|108000|208628,Cdk1|Kif2c|Cenpf|Kntc1,-1.4
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0055074,calcium ion homeostasis,19_GO:0065007 biological regulation,-3.7,12,6.6,20504,507,13,4,31,13,12273|15945|22393|233081,C5ar1|Cxcl10|Wfs1|Ffar1,-1.3
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0072503,cellular divalent inorganic cation homeostasis,19_GO:0065007 biological regulation,-3.6,12,6.5,20504,518,13,4,31,13,12273|15945|22393|233081,C5ar1|Cxcl10|Wfs1|Ffar1,-1.3
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0072507,divalent inorganic cation homeostasis,19_GO:0065007 biological regulation,-3.5,12,6.3,20504,542,13,4,31,13,12273|15945|22393|233081,C5ar1|Cxcl10|Wfs1|Ffar1,-1.2
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0097529,myeloid leukocyte migration,19_GO:0040011 locomotion,-3.5,21,7.6,20504,226,13,3,23,12,12273|15945|20305,C5ar1|Cxcl10|Ccl6,-1.2
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0030595,leukocyte chemotaxis,19_GO:0040011 locomotion,-3.5,21,7.6,20504,227,13,3,23,12,12273|15945|20305,C5ar1|Cxcl10|Ccl6,-1.2
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-1640170,Cell Cycle,,-3.4,11,6.1,20504,579,13,4,31,13,12534|73804|108000|208628,Cdk1|Kif2c|Cenpf|Kntc1,-1.2
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0006875,cellular metal ion homeostasis,19_GO:0065007 biological regulation,-3.3,10,5.8,20504,619,13,4,31,13,12273|15945|22393|233081,C5ar1|Cxcl10|Wfs1|Ffar1,-1.1
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0006935,chemotaxis,19_GO:0040011 locomotion,-3.3,10,5.8,20504,623,13,4,31,13,12273|15945|20305|545156,C5ar1|Cxcl10|Ccl6|Kalrn,-1.1
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0042330,taxis,19_GO:0040011 locomotion,-3.3,10,5.8,20504,628,13,4,31,13,12273|15945|20305|545156,C5ar1|Cxcl10|Ccl6|Kalrn,-1.1
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-194315,Signaling by Rho GTPases,,-3.2,9.7,5.7,20504,652,13,4,31,13,73804|108000|208628|545156,Kif2c|Cenpf|Kntc1|Kalrn,-1
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0098813,nuclear chromosome segregation,19_GO:0009987 cellular process,-3.2,17,6.8,20504,273,13,3,23,12,73804|108000|208628,Kif2c|Cenpf|Kntc1,-1
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-9716542,"Signaling by Rho GTPases, Miro GTPases and RHOBTB3",,-3.2,9.5,5.6,20504,667,13,4,31,13,73804|108000|208628|545156,Kif2c|Cenpf|Kntc1|Kalrn,-0.99
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0030003,cellular cation homeostasis,19_GO:0065007 biological regulation,-3.2,9.2,5.5,20504,686,13,4,31,13,12273|15945|22393|233081,C5ar1|Cxcl10|Wfs1|Ffar1,-0.96
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0051924,regulation of calcium ion transport,19_GO:0051179 localization,-3.2,16,6.7,20504,287,13,3,23,12,15945|22393|233081,Cxcl10|Wfs1|Ffar1,-0.96
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:1901990,regulation of mitotic cell cycle phase transition,19_GO:0050789 regulation of biological process,-3.1,16,6.6,20504,293,13,3,23,12,12534|108000|208628,Cdk1|Cenpf|Kntc1,-0.95
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0055065,metal ion homeostasis,19_GO:0065007 biological regulation,-3.1,9,5.4,20504,700,13,4,31,13,12273|15945|22393|233081,C5ar1|Cxcl10|Wfs1|Ffar1,-0.95
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:1903047,mitotic cell cycle process,19_GO:0009987 cellular process,-3.1,9,5.4,20504,701,13,4,31,13,12534|73804|108000|208628,Cdk1|Kif2c|Cenpf|Kntc1,-0.95
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0006873,cellular ion homeostasis,19_GO:0065007 biological regulation,-3.1,9,5.4,20504,703,13,4,31,13,12273|15945|22393|233081,C5ar1|Cxcl10|Wfs1|Ffar1,-0.95
+Geneid_MCODE_ALL,Reactome Gene Sets,6,R-MMU-195258,RHO GTPase Effectors,,-3.1,16,6.4,20504,304,13,3,23,12,73804|108000|208628,Kif2c|Cenpf|Kntc1,-0.91
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0060326,cell chemotaxis,19_GO:0040011 locomotion,-3,15,6.3,20504,313,13,3,23,12,12273|15945|20305,C5ar1|Cxcl10|Ccl6,-0.89
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0043270,positive regulation of ion transport,19_GO:0051179 localization,-3,14,6.2,20504,329,13,3,23,12,15945|22393|233081,Cxcl10|Wfs1|Ffar1,-0.84
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0055080,cation homeostasis,19_GO:0065007 biological regulation,-3,8.1,5.1,20504,776,13,4,31,13,12273|15945|22393|233081,C5ar1|Cxcl10|Wfs1|Ffar1,-0.83
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0007059,chromosome segregation,19_GO:0009987 cellular process,-2.9,14,6.1,20504,338,13,3,23,12,73804|108000|208628,Kif2c|Cenpf|Kntc1,-0.83
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0007204,positive regulation of cytosolic calcium ion concentration,19_GO:0065007 biological regulation,-2.9,14,6,20504,344,13,3,23,12,12273|15945|233081,C5ar1|Cxcl10|Ffar1,-0.81
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0098771,inorganic ion homeostasis,19_GO:0065007 biological regulation,-2.9,8,5,20504,790,13,4,31,13,12273|15945|22393|233081,C5ar1|Cxcl10|Wfs1|Ffar1,-0.81
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0050900,leukocyte migration,19_GO:0040011 locomotion,-2.8,13,5.7,20504,373,13,3,23,12,12273|15945|20305,C5ar1|Cxcl10|Ccl6,-0.73
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:1901987,regulation of cell cycle phase transition,19_GO:0050789 regulation of biological process,-2.8,12,5.7,20504,379,13,3,23,12,12534|108000|208628,Cdk1|Cenpf|Kntc1,-0.71
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0051480,regulation of cytosolic calcium ion concentration,19_GO:0065007 biological regulation,-2.8,12,5.6,20504,386,13,3,23,12,12273|15945|233081,C5ar1|Cxcl10|Ffar1,-0.7
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0044772,mitotic cell cycle phase transition,19_GO:0009987 cellular process,-2.7,12,5.5,20504,406,13,3,23,12,12534|108000|208628,Cdk1|Cenpf|Kntc1,-0.64
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0006816,calcium ion transport,19_GO:0051179 localization,-2.6,11,5.3,20504,434,13,3,23,12,15945|22393|233081,Cxcl10|Wfs1|Ffar1,-0.57
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0010959,regulation of metal ion transport,19_GO:0051179 localization,-2.6,11,5.2,20504,444,13,3,23,12,15945|22393|233081,Cxcl10|Wfs1|Ffar1,-0.55
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0007346,regulation of mitotic cell cycle,19_GO:0050789 regulation of biological process,-2.6,10,5.1,20504,462,13,3,23,12,12534|108000|208628,Cdk1|Cenpf|Kntc1,-0.51
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0044770,cell cycle phase transition,19_GO:0009987 cellular process,-2.5,9.6,4.9,20504,493,13,3,23,12,12534|108000|208628,Cdk1|Cenpf|Kntc1,-0.46
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0051301,cell division,19_GO:0009987 cellular process,-2.2,7.6,4.2,20504,621,13,3,23,12,12534|73804|208628,Cdk1|Kif2c|Kntc1,-0.24
+Geneid_MCODE_ALL,GO Biological Processes,19,GO:0010564,regulation of cell cycle process,19_GO:0050789 regulation of biological process,-2.1,7.2,4.1,20504,656,13,3,23,12,12534|108000|208628,Cdk1|Cenpf|Kntc1,-0.18
+Geneid_SUB1_MCODE_1,Reactome Gene Sets,6,R-MMU-388396,GPCR downstream signalling,,-9.4,37,15,20504,549,6,6,1e+02,15,12273|15945|20305|66066|233081|545156,C5ar1|Cxcl10|Ccl6|Gng11|Ffar1|Kalrn,-5.3
+Geneid_SUB1_MCODE_1,Reactome Gene Sets,6,R-MMU-372790,Signaling by GPCR,,-9.3,35,14,20504,578,6,6,1e+02,15,12273|15945|20305|66066|233081|545156,C5ar1|Cxcl10|Ccl6|Gng11|Ffar1|Kalrn,-5.3
+Geneid_SUB1_MCODE_1,Reactome Gene Sets,6,R-MMU-500792,GPCR ligand binding,,-7.9,45,15,20504,381,6,5,83,15,12273|15945|20305|66066|233081,C5ar1|Cxcl10|Ccl6|Gng11|Ffar1,-4.5
+Geneid_SUB1_MCODE_1,Reactome Gene Sets,6,R-MMU-416476,G alpha (q) signalling events,,-7,73,17,20504,188,6,4,67,19,20305|66066|233081|545156,Ccl6|Gng11|Ffar1|Kalrn,-3.7
+Geneid_SUB1_MCODE_1,Reactome Gene Sets,6,R-MMU-418594,G alpha (i) signalling events,,-6.4,51,14,20504,269,6,4,67,19,12273|15945|20305|66066,C5ar1|Cxcl10|Ccl6|Gng11,-3.3
+Geneid_SUB1_MCODE_1,Reactome Gene Sets,6,R-MMU-373076,Class A/1 (Rhodopsin-like receptors),,-6.2,46,13,20504,298,6,4,67,19,12273|15945|20305|233081,C5ar1|Cxcl10|Ccl6|Ffar1,-3.2
+Geneid_SUB1_MCODE_1,GO Biological Processes,19,GO:0030593,neutrophil chemotaxis,19_GO:0040011 locomotion,-5.6,1e+02,17,20504,102,6,3,50,20,12273|15945|20305,C5ar1|Cxcl10|Ccl6,-2.8
+Geneid_SUB1_MCODE_1,GO Biological Processes,19,GO:0071621,granulocyte chemotaxis,19_GO:0040011 locomotion,-5.3,81,15,20504,127,6,3,50,20,12273|15945|20305,C5ar1|Cxcl10|Ccl6,-2.6
+Geneid_SUB1_MCODE_1,GO Biological Processes,19,GO:1990266,neutrophil migration,19_GO:0040011 locomotion,-5.3,80,15,20504,128,6,3,50,20,12273|15945|20305,C5ar1|Cxcl10|Ccl6,-2.6
+Geneid_SUB1_MCODE_1,GO Biological Processes,19,GO:0097530,granulocyte migration,19_GO:0040011 locomotion,-5.1,65,14,20504,157,6,3,50,20,12273|15945|20305,C5ar1|Cxcl10|Ccl6,-2.3
+Geneid_SUB1_MCODE_1,GO Biological Processes,19,GO:0006935,chemotaxis,19_GO:0040011 locomotion,-4.9,22,9.1,20504,623,6,4,67,19,12273|15945|20305|545156,C5ar1|Cxcl10|Ccl6|Kalrn,-2.2
+Geneid_SUB1_MCODE_1,GO Biological Processes,19,GO:0042330,taxis,19_GO:0040011 locomotion,-4.9,22,9,20504,628,6,4,67,19,12273|15945|20305|545156,C5ar1|Cxcl10|Ccl6|Kalrn,-2.2
+Geneid_SUB1_MCODE_1,GO Biological Processes,19,GO:0071674,mononuclear cell migration,19_GO:0040011 locomotion,-4.9,57,13,20504,181,6,3,50,20,12273|15945|20305,C5ar1|Cxcl10|Ccl6,-2.2
+Geneid_SUB1_MCODE_1,WikiPathways,27,WP2292,Chemokine signaling pathway,,-4.9,57,13,20504,181,6,3,50,20,15945|20305|66066,Cxcl10|Ccl6|Gng11,-2.2
+Geneid_SUB1_MCODE_1,Reactome Gene Sets,6,R-MMU-375276,Peptide ligand-binding receptors,,-4.9,56,13,20504,184,6,3,50,20,12273|15945|20305,C5ar1|Cxcl10|Ccl6,-2.2
+Geneid_SUB1_MCODE_1,KEGG Pathway,24,ko04062,Chemokine signaling pathway,,-4.8,55,13,20504,185,6,3,50,20,15945|20305|66066,Cxcl10|Ccl6|Gng11,-2.2
+Geneid_SUB1_MCODE_1,KEGG Pathway,24,mmu04062,Chemokine signaling pathway,,-4.8,55,13,20504,188,6,3,50,20,15945|20305|66066,Cxcl10|Ccl6|Gng11,-2.2
+Geneid_SUB1_MCODE_1,GO Biological Processes,19,GO:0097529,myeloid leukocyte migration,19_GO:0040011 locomotion,-4.6,45,11,20504,226,6,3,50,20,12273|15945|20305,C5ar1|Cxcl10|Ccl6,-2
+Geneid_SUB1_MCODE_1,GO Biological Processes,19,GO:0030595,leukocyte chemotaxis,19_GO:0040011 locomotion,-4.6,45,11,20504,227,6,3,50,20,12273|15945|20305,C5ar1|Cxcl10|Ccl6,-2
+Geneid_SUB1_MCODE_1,GO Biological Processes,19,GO:0060326,cell chemotaxis,19_GO:0040011 locomotion,-4.2,33,9.7,20504,313,6,3,50,20,12273|15945|20305,C5ar1|Cxcl10|Ccl6,-1.7
+Geneid_SUB1_MCODE_1,GO Biological Processes,19,GO:0007204,positive regulation of cytosolic calcium ion concentration,19_GO:0065007 biological regulation,-4,30,9.2,20504,344,6,3,50,20,12273|15945|233081,C5ar1|Cxcl10|Ffar1,-1.6
+Geneid_SUB1_MCODE_1,GO Biological Processes,19,GO:0050900,leukocyte migration,19_GO:0040011 locomotion,-3.9,27,8.8,20504,373,6,3,50,20,12273|15945|20305,C5ar1|Cxcl10|Ccl6,-1.5
+Geneid_SUB1_MCODE_1,GO Biological Processes,19,GO:0051480,regulation of cytosolic calcium ion concentration,19_GO:0065007 biological regulation,-3.9,27,8.7,20504,386,6,3,50,20,12273|15945|233081,C5ar1|Cxcl10|Ffar1,-1.5
+Geneid_SUB1_MCODE_1,GO Biological Processes,19,GO:0006874,cellular calcium ion homeostasis,19_GO:0065007 biological regulation,-3.6,21,7.6,20504,490,6,3,50,20,12273|15945|233081,C5ar1|Cxcl10|Ffar1,-1.3
+Geneid_SUB1_MCODE_1,GO Biological Processes,19,GO:0055074,calcium ion homeostasis,19_GO:0065007 biological regulation,-3.5,20,7.5,20504,507,6,3,50,20,12273|15945|233081,C5ar1|Cxcl10|Ffar1,-1.2
+Geneid_SUB1_MCODE_1,GO Biological Processes,19,GO:0072503,cellular divalent inorganic cation homeostasis,19_GO:0065007 biological regulation,-3.5,20,7.4,20504,518,6,3,50,20,12273|15945|233081,C5ar1|Cxcl10|Ffar1,-1.2
+Geneid_SUB1_MCODE_1,GO Biological Processes,19,GO:0072507,divalent inorganic cation homeostasis,19_GO:0065007 biological regulation,-3.5,19,7.2,20504,542,6,3,50,20,12273|15945|233081,C5ar1|Cxcl10|Ffar1,-1.2
+Geneid_SUB1_MCODE_1,GO Biological Processes,19,GO:0006875,cellular metal ion homeostasis,19_GO:0065007 biological regulation,-3.3,17,6.7,20504,619,6,3,50,20,12273|15945|233081,C5ar1|Cxcl10|Ffar1,-1.1
+Geneid_SUB1_MCODE_1,GO Biological Processes,19,GO:0030003,cellular cation homeostasis,19_GO:0065007 biological regulation,-3.2,15,6.4,20504,686,6,3,50,20,12273|15945|233081,C5ar1|Cxcl10|Ffar1,-0.96
+Geneid_SUB1_MCODE_1,GO Biological Processes,19,GO:0055065,metal ion homeostasis,19_GO:0065007 biological regulation,-3.1,15,6.3,20504,700,6,3,50,20,12273|15945|233081,C5ar1|Cxcl10|Ffar1,-0.95
+Geneid_SUB1_MCODE_1,GO Biological Processes,19,GO:0006873,cellular ion homeostasis,19_GO:0065007 biological regulation,-3.1,15,6.3,20504,703,6,3,50,20,12273|15945|233081,C5ar1|Cxcl10|Ffar1,-0.95
+Geneid_SUB1_MCODE_1,GO Biological Processes,19,GO:0006954,inflammatory response,19_GO:0050896 response to stimulus,-3.1,14,6.1,20504,739,6,3,50,20,12273|15945|20305,C5ar1|Cxcl10|Ccl6,-0.9
+Geneid_SUB1_MCODE_1,GO Biological Processes,19,GO:0055080,cation homeostasis,19_GO:0065007 biological regulation,-3,13,5.9,20504,776,6,3,50,20,12273|15945|233081,C5ar1|Cxcl10|Ffar1,-0.85
+Geneid_SUB1_MCODE_1,GO Biological Processes,19,GO:0098771,inorganic ion homeostasis,19_GO:0065007 biological regulation,-3,13,5.9,20504,790,6,3,50,20,12273|15945|233081,C5ar1|Cxcl10|Ffar1,-0.84
+Geneid_SUB1_MCODE_2,Reactome Gene Sets,6,R-MMU-2500257,Resolution of Sister Chromatid Cohesion,,-9,1.8e+02,26,20504,117,4,4,1e+02,22,12534|73804|108000|208628,Cdk1|Kif2c|Cenpf|Kntc1,-5.2
+Geneid_SUB1_MCODE_2,Reactome Gene Sets,6,R-MMU-68877,Mitotic Prometaphase,,-8.2,1.1e+02,21,20504,188,4,4,1e+02,22,12534|73804|108000|208628,Cdk1|Kif2c|Cenpf|Kntc1,-4.5
+Geneid_SUB1_MCODE_2,Reactome Gene Sets,6,R-MMU-68882,Mitotic Anaphase,,-7.9,96,20,20504,213,4,4,1e+02,22,12534|73804|108000|208628,Cdk1|Kif2c|Cenpf|Kntc1,-4.5
+Geneid_SUB1_MCODE_2,Reactome Gene Sets,6,R-MMU-2555396,Mitotic Metaphase and Anaphase,,-7.9,96,19,20504,214,4,4,1e+02,22,12534|73804|108000|208628,Cdk1|Kif2c|Cenpf|Kntc1,-4.5
+Geneid_SUB1_MCODE_2,Reactome Gene Sets,6,R-MMU-69620,Cell Cycle Checkpoints,,-7.5,76,17,20504,270,4,4,1e+02,22,12534|73804|108000|208628,Cdk1|Kif2c|Cenpf|Kntc1,-4.2
+Geneid_SUB1_MCODE_2,Reactome Gene Sets,6,R-MMU-68886,M Phase,,-6.9,54,15,20504,380,4,4,1e+02,22,12534|73804|108000|208628,Cdk1|Kif2c|Cenpf|Kntc1,-3.7
+Geneid_SUB1_MCODE_2,Reactome Gene Sets,6,R-MMU-141444,Amplification  of signal from unattached  kinetochores via a MAD2  inhibitory signal,,-6.5,1.7e+02,23,20504,90,4,3,75,22,73804|108000|208628,Kif2c|Cenpf|Kntc1,-3.4
+Geneid_SUB1_MCODE_2,Reactome Gene Sets,6,R-MMU-141424,Amplification of signal from the kinetochores,,-6.5,1.7e+02,23,20504,90,4,3,75,22,73804|108000|208628,Kif2c|Cenpf|Kntc1,-3.4
+Geneid_SUB1_MCODE_2,Reactome Gene Sets,6,R-MMU-69278,"Cell Cycle, Mitotic",,-6.5,41,13,20504,496,4,4,1e+02,22,12534|73804|108000|208628,Cdk1|Kif2c|Cenpf|Kntc1,-3.4
+Geneid_SUB1_MCODE_2,Reactome Gene Sets,6,R-MMU-9648025,EML4 and NUDC in mitotic spindle formation,,-6.3,1.5e+02,21,20504,106,4,3,75,22,73804|108000|208628,Kif2c|Cenpf|Kntc1,-3.3
+Geneid_SUB1_MCODE_2,Reactome Gene Sets,6,R-MMU-69618,Mitotic Spindle Checkpoint,,-6.3,1.4e+02,21,20504,107,4,3,75,22,73804|108000|208628,Kif2c|Cenpf|Kntc1,-3.3
+Geneid_SUB1_MCODE_2,Reactome Gene Sets,6,R-MMU-1640170,Cell Cycle,,-6.2,35,12,20504,579,4,4,1e+02,22,12534|73804|108000|208628,Cdk1|Kif2c|Cenpf|Kntc1,-3.2
+Geneid_SUB1_MCODE_2,Reactome Gene Sets,6,R-MMU-5663220,RHO GTPases Activate Formins,,-6,1.2e+02,19,20504,131,4,3,75,22,73804|108000|208628,Kif2c|Cenpf|Kntc1,-3.1
+Geneid_SUB1_MCODE_2,GO Biological Processes,19,GO:1903047,mitotic cell cycle process,19_GO:0009987 cellular process,-5.9,29,11,20504,701,4,4,1e+02,22,12534|73804|108000|208628,Cdk1|Kif2c|Cenpf|Kntc1,-3
+Geneid_SUB1_MCODE_2,Reactome Gene Sets,6,R-MMU-2467813,Separation of Sister Chromatids,,-5.6,85,16,20504,181,4,3,75,22,73804|108000|208628,Kif2c|Cenpf|Kntc1,-2.7
+Geneid_SUB1_MCODE_2,GO Biological Processes,19,GO:0098813,nuclear chromosome segregation,19_GO:0009987 cellular process,-5,56,13,20504,273,4,3,75,22,73804|108000|208628,Kif2c|Cenpf|Kntc1,-2.3
+Geneid_SUB1_MCODE_2,GO Biological Processes,19,GO:1901990,regulation of mitotic cell cycle phase transition,19_GO:0050789 regulation of biological process,-4.9,52,12,20504,293,4,3,75,22,12534|108000|208628,Cdk1|Cenpf|Kntc1,-2.2
+Geneid_SUB1_MCODE_2,Reactome Gene Sets,6,R-MMU-195258,RHO GTPase Effectors,,-4.9,51,12,20504,304,4,3,75,22,73804|108000|208628,Kif2c|Cenpf|Kntc1,-2.2
+Geneid_SUB1_MCODE_2,GO Biological Processes,19,GO:0007059,chromosome segregation,19_GO:0009987 cellular process,-4.8,45,12,20504,338,4,3,75,22,73804|108000|208628,Kif2c|Cenpf|Kntc1,-2.1
+Geneid_SUB1_MCODE_2,GO Biological Processes,19,GO:1901987,regulation of cell cycle phase transition,19_GO:0050789 regulation of biological process,-4.6,41,11,20504,379,4,3,75,22,12534|108000|208628,Cdk1|Cenpf|Kntc1,-2
+Geneid_SUB1_MCODE_2,GO Biological Processes,19,GO:0044772,mitotic cell cycle phase transition,19_GO:0009987 cellular process,-4.5,38,10,20504,406,4,3,75,22,12534|108000|208628,Cdk1|Cenpf|Kntc1,-2
+Geneid_SUB1_MCODE_2,GO Biological Processes,19,GO:0007346,regulation of mitotic cell cycle,19_GO:0050789 regulation of biological process,-4.3,33,9.8,20504,462,4,3,75,22,12534|108000|208628,Cdk1|Cenpf|Kntc1,-1.8
+Geneid_SUB1_MCODE_2,GO Biological Processes,19,GO:0044770,cell cycle phase transition,19_GO:0009987 cellular process,-4.3,31,9.5,20504,493,4,3,75,22,12534|108000|208628,Cdk1|Cenpf|Kntc1,-1.8
+Geneid_SUB1_MCODE_2,GO Biological Processes,19,GO:0051301,cell division,19_GO:0009987 cellular process,-4,25,8.4,20504,621,4,3,75,22,12534|73804|208628,Cdk1|Kif2c|Kntc1,-1.5
+Geneid_SUB1_MCODE_2,Reactome Gene Sets,6,R-MMU-194315,Signaling by Rho GTPases,,-3.9,24,8.2,20504,652,4,3,75,22,73804|108000|208628,Kif2c|Cenpf|Kntc1,-1.5
+Geneid_SUB1_MCODE_2,GO Biological Processes,19,GO:0010564,regulation of cell cycle process,19_GO:0050789 regulation of biological process,-3.9,23,8.2,20504,656,4,3,75,22,12534|108000|208628,Cdk1|Cenpf|Kntc1,-1.5
+Geneid_SUB1_MCODE_2,Reactome Gene Sets,6,R-MMU-9716542,"Signaling by Rho GTPases, Miro GTPases and RHOBTB3",,-3.9,23,8.1,20504,667,4,3,75,22,73804|108000|208628,Kif2c|Cenpf|Kntc1,-1.5
+Geneid_SUB4_MCODE_3,Reactome Gene Sets,6,R-MMU-8957275,Post-translational protein phosphorylation,,-6.8,1.8e+02,23,20504,114,3,3,1e+02,27,22393|83453|328561,Wfs1|Chrdl1|Apol10b,-3.5
+Geneid_SUB4_MCODE_3,Reactome Gene Sets,6,R-MMU-381426,Regulation of Insulin-like Growth Factor (IGF) transport and uptake by Insulin-like Growth Factor Binding Proteins (IGFBPs),,-6.7,1.7e+02,23,20504,120,3,3,1e+02,27,22393|83453|328561,Wfs1|Chrdl1|Apol10b,-3.5

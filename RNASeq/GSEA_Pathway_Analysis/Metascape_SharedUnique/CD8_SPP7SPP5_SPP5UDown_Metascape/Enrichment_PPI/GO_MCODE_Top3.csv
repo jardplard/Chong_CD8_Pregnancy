@@ -1,0 +1,5 @@
+Network,Annotation
+Geneid,GO:0045596|negative regulation of cell differentiation|-7.3;GO:0006468|protein phosphorylation|-6.0;WP85|Focal adhesion|-6.0
+Geneid_MCODE_ALL,mmu04931|Insulin resistance|-5.7;R-MMU-380108|Chemokine receptors bind chemokines|-4.9;GO:0062012|regulation of small molecule metabolic process|-4.9
+Geneid_SUB1_MCODE_1,GO:0060326|cell chemotaxis|-8.0;R-MMU-373076|Class A/1 (Rhodopsin-like receptors)|-7.4;R-MMU-380108|Chemokine receptors bind chemokines|-7.2
+Geneid_SUB1_MCODE_5,mmu04931|Insulin resistance|-6.8

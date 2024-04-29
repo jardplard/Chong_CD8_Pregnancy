@@ -1,0 +1,2 @@
+_MEMBER_Geneid,_LogP_Geneid,GO,_PATTERN_,_RANK_,GiniIndex,Category,CategoryID,Description,PARENT_GO,LogP,Enrichment,Z-score,#TotalGeneInLibrary,#GeneInGO,#GeneInHitList,#GeneInGOAndHitList,%InGO,STDV %InGO,GeneID,Hits,Log(q-value),EvidenceCutoff
+1,-2.4,PGB:00215,M1,1,0,PaGenBase,36,Cell-specific: min6,,-2.4,4,3.7,20580,279,110,6,5.5,2.2,23963|54670|66442|70638|106757|215821,Tenm1|Atp8b1|Spc25|Fam189a1|Catsperd|Arfgef3,0,0

@@ -1,0 +1,7 @@
+Cluster,Score,Type,Gene,Symbol,Network
+1,2.5,Clustered,57349,Ppbp,Geneid_SUB1
+1,2.5,Clustered,12775,Ccr7,Geneid_SUB1
+1,2.5,Seed,12769,Ccr9,Geneid_SUB1
+1,2.5,Clustered,13609,S1pr1,Geneid_SUB1
+1,2.5,Clustered,14678,Gnai2,Geneid_SUB1
+1,2.5,Clustered,20290,Ccl1,Geneid_SUB1

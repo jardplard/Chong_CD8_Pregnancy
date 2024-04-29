@@ -1,0 +1,27 @@
+{
+    "id": "13BD09DD",
+    "path": "/Volumes/Extreme SSD/Chong Lab Data/Sequencing Data/ATAC/CD8 ATAC/CD8_DSPlease/CD8_DeSEQ2.Rmd",
+    "project_path": "CD8_DeSEQ2.Rmd",
+    "type": "r_markdown",
+    "hash": "3157367937",
+    "contents": "",
+    "dirty": false,
+    "created": 1627359591947.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "cursorPosition": "420,0",
+        "last_setup_crc32": "",
+        "scrollLine": "411",
+        "Source": "Source",
+        "chunk_output_type": "console"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1677055016,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1677055016,
+    "read_only": false,
+    "read_only_alternatives": []
+}

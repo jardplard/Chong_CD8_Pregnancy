@@ -1,0 +1,10 @@
+Network,Annotation
+Geneid,GO:0030155|regulation of cell adhesion|-12.8;GO:0042110|T cell activation|-11.8;GO:0050863|regulation of T cell activation|-11.8
+Geneid_MCODE_ALL,R-MMU-399956|CRMPs in Sema3A signaling|-9.6;GO:0030155|regulation of cell adhesion|-9.5;GO:0031589|cell-substrate adhesion|-8.9
+Geneid_SUB1_MCODE_1,"GO:0042093|T-helper cell differentiation|-7.0;GO:0002294|CD4-positive, alpha-beta T cell differentiation involved in immune response|-7.0;GO:0002293|alpha-beta T cell differentiation involved in immune response|-7.0"
+Geneid_SUB1_MCODE_2,R-MMU-399956|CRMPs in Sema3A signaling|-13.3;GO:0007229|integrin-mediated signaling pathway|-11.4;R-MMU-399955|SEMA3A-Plexin repulsion signaling by inhibiting Integrin adhesion|-11.0
+Geneid_SUB1_MCODE_3,R-MMU-418594|G alpha (i) signalling events|-15.1;R-MMU-500792|GPCR ligand binding|-13.9;R-MMU-375276|Peptide ligand-binding receptors|-13.5
+Geneid_SUB2_MCODE_4,R-MMU-163125|Post-translational modification: synthesis of GPI-anchored proteins|-14.2
+Geneid_SUB1_MCODE_5,R-MMU-8957275|Post-translational protein phosphorylation|-11.3;R-MMU-381426|Regulation of Insulin-like Growth Factor (IGF) transport and uptake by Insulin-like Growth Factor Binding Proteins (IGFBPs)|-11.2;WP2841|Focal adhesion: PI3K-Akt-mTOR signaling pathway|-4.4
+Geneid_SUB1_MCODE_6,R-MMU-8856828|Clathrin-mediated endocytosis|-11.0;R-MMU-199991|Membrane Trafficking|-7.9;R-MMU-5653656|Vesicle-mediated transport|-7.8
+Geneid_SUB3_MCODE_7,R-MMU-156590|Glutathione conjugation|-8.4;ko00480|Glutathione metabolism|-7.6;mmu00480|Glutathione metabolism|-7.6

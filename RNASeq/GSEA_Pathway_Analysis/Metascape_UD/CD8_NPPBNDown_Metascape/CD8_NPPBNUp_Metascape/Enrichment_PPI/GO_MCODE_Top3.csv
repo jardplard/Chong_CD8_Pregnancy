@@ -1,0 +1,6 @@
+Network,Annotation
+Geneid,GO:0045785|positive regulation of cell adhesion|-7.3;GO:0002695|negative regulation of leukocyte activation|-6.9;GO:0050866|negative regulation of cell activation|-6.5
+Geneid_MCODE_ALL,ko04924|Renin secretion|-6.3;mmu04924|Renin secretion|-6.2;GO:0016045|detection of bacterium|-6.2
+Geneid_SUB1_MCODE_1,WP2185|Purine metabolism|-8.3;ko00230|Purine metabolism|-8.3;mmu00230|Purine metabolism|-8.3
+Geneid_SUB3_MCODE_5,GO:0016045|detection of bacterium|-9.2;GO:0098543|detection of other organism|-9.0;GO:0098581|detection of external biotic stimulus|-8.6
+Geneid_SUB4_MCODE_6,R-MMU-418594|G alpha (i) signalling events|-5.7;R-MMU-373076|Class A/1 (Rhodopsin-like receptors)|-5.5;R-MMU-500792|GPCR ligand binding|-5.2

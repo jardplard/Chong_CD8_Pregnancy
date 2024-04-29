@@ -1,0 +1,8 @@
+Network,Annotation
+Geneid,GO:0001817|regulation of cytokine production|-8.4;GO:0030155|regulation of cell adhesion|-7.7;GO:0031344|regulation of cell projection organization|-7.2
+Geneid_MCODE_ALL,R-MMU-163125|Post-translational modification: synthesis of GPI-anchored proteins|-8.4;GO:0055074|calcium ion homeostasis|-6.3;GO:0072507|divalent inorganic cation homeostasis|-6.1
+Geneid_SUB1_MCODE_1,"GO:0043367|CD4-positive, alpha-beta T cell differentiation|-6.0;GO:0001819|positive regulation of cytokine production|-6.0;GO:0035710|CD4-positive, alpha-beta T cell activation|-5.8"
+Geneid_SUB1_MCODE_2,R-MMU-8957275|Post-translational protein phosphorylation|-7.2;R-MMU-381426|Regulation of Insulin-like Growth Factor (IGF) transport and uptake by Insulin-like Growth Factor Binding Proteins (IGFBPs)|-7.1;GO:0006874|cellular calcium ion homeostasis|-6.5
+Geneid_SUB2_MCODE_3,R-MMU-163125|Post-translational modification: synthesis of GPI-anchored proteins|-14.2
+Geneid_SUB1_MCODE_4,R-MMU-8856828|Clathrin-mediated endocytosis|-11.0;R-MMU-199991|Membrane Trafficking|-7.9;R-MMU-5653656|Vesicle-mediated transport|-7.8
+Geneid_SUB3_MCODE_5,R-MMU-156590|Glutathione conjugation|-8.4;mmu00982|Drug metabolism - cytochrome P450|-7.4;mmu00480|Glutathione metabolism|-7.4

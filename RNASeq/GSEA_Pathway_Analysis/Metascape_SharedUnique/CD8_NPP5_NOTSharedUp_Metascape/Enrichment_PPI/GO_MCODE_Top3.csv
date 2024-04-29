@@ -1,0 +1,12 @@
+Network,Annotation
+Geneid,GO:0001775|cell activation|-12.0;GO:0045321|leukocyte activation|-10.9;GO:0006954|inflammatory response|-9.5
+Geneid_MCODE_ALL,GO:0006954|inflammatory response|-9.8;R-MMU-388396|GPCR downstream signalling|-9.1;mmu04924|Renin secretion|-9.1
+Geneid_SUB1_MCODE_1,R-MMU-6798695|Neutrophil degranulation|-5.7;mmu04611|Platelet activation|-5.6;mmu04270|Vascular smooth muscle contraction|-5.3
+Geneid_SUB1_MCODE_2,R-MMU-418594|G alpha (i) signalling events|-11.3;WP2292|Chemokine signaling pathway|-9.5;R-MMU-388396|GPCR downstream signalling|-9.5
+Geneid_SUB1_MCODE_3,"R-MMU-418555|G alpha (s) signalling events|-11.2;WP1396|GPCRs, non-odorant|-9.5;mmu04080|Neuroactive ligand-receptor interaction|-8.7"
+Geneid_SUB1_MCODE_4,GO:0007017|microtubule-based process|-7.1;R-MMU-983189|Kinesins|-6.8;GO:0007052|mitotic spindle organization|-6.1
+Geneid_SUB1_MCODE_5,R-MMU-8957275|Post-translational protein phosphorylation|-9.0;R-MMU-381426|Regulation of Insulin-like Growth Factor (IGF) transport and uptake by Insulin-like Growth Factor Binding Proteins (IGFBPs)|-9.0
+Geneid_SUB1_MCODE_6,R-MMU-6798695|Neutrophil degranulation|-4.2;GO:0050865|regulation of cell activation|-3.7
+Geneid_SUB1_MCODE_7,GO:0070269|pyroptosis|-11.2;mmu04621|NOD-like receptor signaling pathway|-8.0;mmu05132|Salmonella infection|-7.7
+Geneid_SUB1_MCODE_8,R-MMU-5576891|Cardiac conduction|-6.2;R-MMU-397014|Muscle contraction|-5.7;GO:0010959|regulation of metal ion transport|-4.4
+Geneid_SUB1_MCODE_9,R-MMU-5676594|TNF receptor superfamily (TNFSF) members mediating non-canonical NF-kB pathway|-9.3;R-MMU-5668541|TNFR2 non-canonical NF-kB pathway|-7.0;mmu04064|NF-kappa B signaling pathway|-6.9

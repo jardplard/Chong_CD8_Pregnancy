@@ -1,0 +1,188 @@
+_MEMBER_Geneid,_LogP_Geneid,GO,Description,_PATTERN_,_RANK_,GiniIndex
+1,-2.3,ko05203,Viral carcinogenesis,M1,1,0
+1,-5,GO:0002449,lymphocyte mediated immunity,M1,1,0
+1,-2,GO:0033028,myeloid cell apoptotic process,M1,1,0
+1,-2.9,GO:0001913,T cell mediated cytotoxicity,M1,1,0
+1,-3,WP2292,Chemokine signaling pathway,M1,1,0
+1,-5.4,GO:0042267,natural killer cell mediated cytotoxicity,M1,1,0
+1,-3.2,R-MMU-388396,GPCR downstream signalling,M1,1,0
+1,-7.2,GO:0001909,leukocyte mediated cytotoxicity,M1,1,0
+1,-3.2,GO:0031342,negative regulation of cell killing,M1,1,0
+1,-5.3,GO:0002715,regulation of natural killer cell mediated immunity,M1,1,0
+1,-2.2,mmu04062,Chemokine signaling pathway,M1,1,0
+1,-3.8,GO:0002858,regulation of natural killer cell mediated cytotoxicity directed against tumor cell target,M1,1,0
+1,-3.5,GO:0002837,regulation of immune response to tumor cell,M1,1,0
+1,-2.4,GO:1904018,positive regulation of vasculature development,M1,1,0
+1,-2.3,ko04062,Chemokine signaling pathway,M1,1,0
+1,-2.9,GO:0002697,regulation of immune effector process,M1,1,0
+1,-3,mmu05332,Graft-versus-host disease,M1,1,0
+1,-2.6,GO:0045765,regulation of angiogenesis,M1,1,0
+1,-3.5,GO:0034112,positive regulation of homotypic cell-cell adhesion,M1,1,0
+1,-4,GO:0002347,response to tumor cell,M1,1,0
+1,-3.5,GO:0001911,negative regulation of leukocyte mediated cytotoxicity,M1,1,0
+1,-2.4,GO:0002460,adaptive immune response based on somatic recombination of immune receptors built from immunoglobulin superfamily domains,M1,1,0
+1,-2.8,GO:0033033,negative regulation of myeloid cell apoptotic process,M1,1,0
+1,-2.9,GO:0002705,positive regulation of leukocyte mediated immunity,M1,1,0
+1,-3.2,GO:0002694,regulation of leukocyte activation,M1,1,0
+1,-2.2,GO:0050778,positive regulation of immune response,M1,1,0
+1,-7,GO:0031349,positive regulation of defense response,M1,1,0
+1,-2.3,GO:0097722,sperm motility,M1,1,0
+1,-2.4,GO:0019216,regulation of lipid metabolic process,M1,1,0
+1,-4.9,GO:0002706,regulation of lymphocyte mediated immunity,M1,1,0
+1,-2.1,GO:0072659,protein localization to plasma membrane,M1,1,0
+1,-3.1,ko05332,Graft-versus-host disease,M1,1,0
+1,-2.7,GO:0090026,positive regulation of monocyte chemotaxis,M1,1,0
+1,-2.9,R-MMU-375276,Peptide ligand-binding receptors,M1,1,0
+1,-4.5,GO:0034109,homotypic cell-cell adhesion,M1,1,0
+1,-3.8,GO:0140546,defense response to symbiont,M1,1,0
+1,-3.9,GO:0003351,epithelial cilium movement involved in extracellular fluid movement,M1,1,0
+1,-2.6,GO:0050766,positive regulation of phagocytosis,M1,1,0
+1,-7.4,GO:1990840,response to lectin,M1,1,0
+1,-4.3,GO:0035082,axoneme assembly,M1,1,0
+1,-3.5,R-MMU-2424491,DAP12 signaling,M1,1,0
+1,-2.6,GO:0002716,negative regulation of natural killer cell mediated immunity,M1,1,0
+1,-6.3,GO:0031341,regulation of cell killing,M1,1,0
+1,-4.5,GO:0030101,natural killer cell activation,M1,1,0
+1,-3.5,GO:0002834,regulation of response to tumor cell,M1,1,0
+1,-2,GO:0031589,cell-substrate adhesion,M1,1,0
+1,-2.2,GO:0008285,negative regulation of cell population proliferation,M1,1,0
+1,-2.2,GO:0033032,regulation of myeloid cell apoptotic process,M1,1,0
+1,-2.6,R-MMU-373076,Class A/1 (Rhodopsin-like receptors),M1,1,0
+1,-2.1,GO:0061351,neural precursor cell proliferation,M1,1,0
+1,-5.5,GO:0002717,positive regulation of natural killer cell mediated immunity,M1,1,0
+1,-6.6,mmu04650,Natural killer cell mediated cytotoxicity,M1,1,0
+1,-2.4,GO:0050866,negative regulation of cell activation,M1,1,0
+1,-3.9,GO:0022409,positive regulation of cell-cell adhesion,M1,1,0
+1,-3.3,GO:0050865,regulation of cell activation,M1,1,0
+1,-3,GO:0050878,regulation of body fluid levels,M1,1,0
+1,-3.3,GO:0002675,positive regulation of acute inflammatory response,M1,1,0
+1,-6.9,GO:0002220,innate immune response activating cell surface receptor signaling pathway,M1,1,0
+1,-2.4,GO:0007599,hemostasis,M1,1,0
+1,-2.2,GO:0010574,regulation of vascular endothelial growth factor production,M1,1,0
+1,-2.2,GO:0001568,blood vessel development,M1,1,0
+1,-3.3,GO:0001525,angiogenesis,M1,1,0
+1,-3.8,GO:0051607,defense response to virus,M1,1,0
+1,-3.7,GO:0002423,natural killer cell mediated immune response to tumor cell,M1,1,0
+1,-3.1,GO:0034110,regulation of homotypic cell-cell adhesion,M1,1,0
+1,-2.7,GO:0032102,negative regulation of response to external stimulus,M1,1,0
+1,-2.2,GO:0032816,positive regulation of natural killer cell activation,M1,1,0
+1,-2.2,GO:0042102,positive regulation of T cell proliferation,M1,1,0
+1,-7.4,GO:1990858,cellular response to lectin,M1,1,0
+1,-2.7,GO:0097530,granulocyte migration,M1,1,0
+1,-4.2,GO:0002443,leukocyte mediated immunity,M1,1,0
+1,-4.2,GO:0001912,positive regulation of leukocyte mediated cytotoxicity,M1,1,0
+1,-4.3,GO:0002274,myeloid leukocyte activation,M1,1,0
+1,-4.5,GO:0002434,immune complex clearance,M1,1,0
+1,-2.4,GO:0007264,small GTPase mediated signal transduction,M1,1,0
+1,-3,GO:0009615,response to virus,M1,1,0
+1,-2.7,GO:0002262,myeloid cell homeostasis,M1,1,0
+1,-2.4,GO:0045766,positive regulation of angiogenesis,M1,1,0
+1,-2.3,GO:0030317,flagellated sperm motility,M1,1,0
+1,-2.5,GO:0006925,inflammatory cell apoptotic process,M1,1,0
+1,-2.3,GO:0000226,microtubule cytoskeleton organization,M1,1,0
+1,-2,GO:0001944,vasculature development,M1,1,0
+1,-2.4,GO:0050900,leukocyte migration,M1,1,0
+1,-2.3,GO:0002696,positive regulation of leukocyte activation,M1,1,0
+1,-2.4,GO:0050817,coagulation,M1,1,0
+1,-3.8,GO:0002703,regulation of leukocyte mediated immunity,M1,1,0
+1,-2.5,mmu05150,Staphylococcus aureus infection,M1,1,0
+1,-5.7,GO:0001906,cell killing,M1,1,0
+1,-2.3,GO:0006909,phagocytosis,M1,1,0
+1,-2.5,GO:1990266,neutrophil migration,M1,1,0
+1,-2.9,GO:1903317,regulation of protein maturation,M1,1,0
+1,-3.5,GO:0006935,chemotaxis,M1,1,0
+1,-3.3,GO:0003341,cilium movement,M1,1,0
+1,-4,GO:0042330,taxis,M1,1,0
+1,-2,GO:0060285,cilium-dependent cell motility,M1,1,0
+1,-5.3,GO:0002228,natural killer cell mediated immunity,M1,1,0
+1,-4.3,GO:0002835,negative regulation of response to tumor cell,M1,1,0
+1,-2.6,GO:0090207,regulation of triglyceride metabolic process,M1,1,0
+1,-2.2,GO:0060294,cilium movement involved in cell motility,M1,1,0
+1,-2.1,GO:0019722,calcium-mediated signaling,M1,1,0
+1,-2.2,GO:0050867,positive regulation of cell activation,M1,1,0
+1,-2.7,GO:0002695,negative regulation of leukocyte activation,M1,1,0
+1,-4.6,GO:0002418,immune response to tumor cell,M1,1,0
+1,-3,GO:0048872,homeostasis of number of cells,M1,1,0
+1,-2.3,GO:0035455,response to interferon-alpha,M1,1,0
+1,-3.1,GO:0002707,negative regulation of lymphocyte mediated immunity,M1,1,0
+1,-2.3,mmu05203,Viral carcinogenesis,M1,1,0
+1,-3.8,GO:0006858,extracellular transport,M1,1,0
+1,-3.6,GO:0097529,myeloid leukocyte migration,M1,1,0
+1,-3.2,R-MMU-2172127,DAP12 interactions,M1,1,0
+1,-3,GO:0070613,regulation of protein processing,M1,1,0
+1,-3.6,GO:0060326,cell chemotaxis,M1,1,0
+1,-7.4,GO:0002223,stimulatory C-type lectin receptor signaling pathway,M1,1,0
+1,-3.9,GO:0045089,positive regulation of innate immune response,M1,1,0
+1,-3.6,WP1396,"GPCRs, non-odorant",M1,1,0
+1,-3.1,GO:0010573,vascular endothelial growth factor production,M1,1,0
+1,-3.7,GO:0045088,regulation of innate immune response,M1,1,0
+1,-3.1,GO:0002683,negative regulation of immune system process,M1,1,0
+1,-6.7,GO:0002758,innate immune response-activating signal transduction,M1,1,0
+1,-2.6,GO:0045953,negative regulation of natural killer cell mediated cytotoxicity,M1,1,0
+1,-3,R-MMU-372790,Signaling by GPCR,M1,1,0
+1,-3.3,GO:0030155,regulation of cell adhesion,M1,1,0
+1,-2.8,GO:0002526,acute inflammatory response,M1,1,0
+1,-3.8,GO:0002420,natural killer cell mediated cytotoxicity directed against tumor cell target,M1,1,0
+1,-2.5,GO:0007596,blood coagulation,M1,1,0
+1,-2.5,R-MMU-380108,Chemokine receptors bind chemokines,M1,1,0
+1,-3.5,GO:0030595,leukocyte chemotaxis,M1,1,0
+1,-2.4,GO:0120031,plasma membrane bounded cell projection assembly,M1,1,0
+1,-3.5,GO:0002456,T cell mediated immunity,M1,1,0
+1,-3.3,R-MMU-418990,Adherens junctions interactions,M1,1,0
+1,-2,GO:0001539,cilium or flagellum-dependent cell motility,M1,1,0
+1,-3.2,GO:0016339,calcium-dependent cell-cell adhesion via plasma membrane cell adhesion molecules,M1,1,0
+1,-4.5,GO:0002673,regulation of acute inflammatory response,M1,1,0
+1,-3.1,GO:0022407,regulation of cell-cell adhesion,M1,1,0
+1,-2.9,GO:0048514,blood vessel morphogenesis,M1,1,0
+1,-6.3,GO:0032103,positive regulation of response to external stimulus,M1,1,0
+1,-2.5,GO:0048247,lymphocyte chemotaxis,M1,1,0
+1,-4.5,GO:0002831,regulation of response to biotic stimulus,M1,1,0
+1,-2.3,GO:0051056,regulation of small GTPase mediated signal transduction,M1,1,0
+1,-4.9,GO:0006954,inflammatory response,M1,1,0
+1,-4.7,GO:0031343,positive regulation of cell killing,M1,1,0
+1,-2.4,GO:0002698,negative regulation of immune effector process,M1,1,0
+1,-6,ko04650,Natural killer cell mediated cytotoxicity,M1,1,0
+1,-2.5,GO:0010954,positive regulation of protein processing,M1,1,0
+1,-2.9,WP234,"GPCRs, peptide",M1,1,0
+1,-2.2,R-MMU-446728,Cell junction organization,M1,1,0
+1,-2.3,GO:0030031,cell projection assembly,M1,1,0
+1,-4.4,GO:0050727,regulation of inflammatory response,M1,1,0
+1,-3.6,GO:0002704,negative regulation of leukocyte mediated immunity,M1,1,0
+1,-3.3,GO:0002548,monocyte chemotaxis,M1,1,0
+1,-2.6,GO:0050777,negative regulation of immune response,M1,1,0
+1,-2.3,GO:0014065,phosphatidylinositol 3-kinase signaling,M1,1,0
+1,-5.5,GO:0042269,regulation of natural killer cell mediated cytotoxicity,M1,1,0
+1,-5.7,GO:0045954,positive regulation of natural killer cell mediated cytotoxicity,M1,1,0
+1,-3.6,R-MMU-418594,G alpha (i) signalling events,M1,1,0
+1,-4.3,GO:0002838,negative regulation of immune response to tumor cell,M1,1,0
+1,-2.5,GO:0001780,neutrophil homeostasis,M1,1,0
+1,-2.1,GO:0070371,ERK1 and ERK2 cascade,M1,1,0
+1,-2.8,R-MMU-500792,GPCR ligand binding,M1,1,0
+1,-3.8,GO:0002833,positive regulation of response to biotic stimulus,M1,1,0
+1,-3.1,GO:0002250,adaptive immune response,M1,1,0
+1,-4.2,GO:0001578,microtubule bundle formation,M1,1,0
+1,-8.3,GO:0031347,regulation of defense response,M1,1,0
+1,-2.3,GO:1905517,macrophage migration,M1,1,0
+1,-3,R-MMU-421270,Cell-cell junction organization,M1,1,0
+1,-2.3,GO:1905523,positive regulation of macrophage migration,M1,1,0
+1,-5,GO:0001910,regulation of leukocyte mediated cytotoxicity,M1,1,0
+1,-3.2,GO:0071621,granulocyte chemotaxis,M1,1,0
+1,-2.1,GO:0019932,second-messenger-mediated signaling,M1,1,0
+1,-3.8,R-MMU-198933,Immunoregulatory interactions between a Lymphoid and a non-Lymphoid cell,M1,1,0
+1,-2.2,GO:0014066,regulation of phosphatidylinositol 3-kinase signaling,M1,1,0
+1,-4.6,GO:0002218,activation of innate immune response,M1,1,0
+1,-2.2,GO:0042116,macrophage activation,M1,1,0
+1,-2.7,GO:0002699,positive regulation of immune effector process,M1,1,0
+1,-3.4,GO:0031348,negative regulation of defense response,M1,1,0
+1,-2.2,GO:0050728,negative regulation of inflammatory response,M1,1,0
+1,-3.3,GO:0002708,positive regulation of lymphocyte mediated immunity,M1,1,0
+1,-2.8,GO:0048871,multicellular organismal homeostasis,M1,1,0
+1,-2.5,ko05150,Staphylococcus aureus infection,M1,1,0
+1,-2.3,WP3632,Lung fibrosis,M1,1,0
+1,-3,GO:0030593,neutrophil chemotaxis,M1,1,0
+1,-2.4,GO:0050729,positive regulation of inflammatory response,M1,1,0
+1,-2.4,GO:1903319,positive regulation of protein maturation,M1,1,0
+1,-3.7,GO:0002855,regulation of natural killer cell mediated immune response to tumor cell,M1,1,0
+1,-2.6,GO:1901342,regulation of vasculature development,M1,1,0
+1,-2.3,GO:0090025,regulation of monocyte chemotaxis,M1,1,0
+1,-4.5,GO:0045785,positive regulation of cell adhesion,M1,1,0

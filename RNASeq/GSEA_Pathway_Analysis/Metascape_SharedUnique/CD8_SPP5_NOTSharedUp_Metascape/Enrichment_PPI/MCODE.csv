@@ -1,0 +1,17 @@
+Cluster,Score,Type,Gene,Symbol,Network
+1,2.5,Clustered,55985,Cxcl13,Geneid_SUB1
+1,2.5,Clustered,66066,Gng11,Geneid_SUB1
+1,2.5,Clustered,18390,Oprm1,Geneid_SUB1
+1,2.5,Clustered,12776,Ccr8,Geneid_SUB1
+1,2.5,Clustered,15945,Cxcl10,Geneid_SUB1
+1,2.5,Seed,12145,Cxcr5,Geneid_SUB1
+2,1.5,Clustered,21923,Tnc,Geneid_SUB1
+2,1.5,Clustered,22393,Wfs1,Geneid_SUB1
+2,1.5,Seed,83453,Chrdl1,Geneid_SUB1
+2,1.5,Clustered,12977,Csf1,Geneid_SUB1
+3,1.0,Clustered,66213,Med7,Geneid_SUB1
+3,1.0,Clustered,12316,Aspm,Geneid_SUB1
+3,1.0,Clustered,12315,Calm3,Geneid_SUB1
+4,1.0,Clustered,12180,Smyd1,Geneid_SUB1
+4,1.0,Seed,12615,Cenpa,Geneid_SUB1
+4,1.0,Clustered,114642,Brdt,Geneid_SUB1

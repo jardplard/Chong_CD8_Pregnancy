@@ -1,0 +1,5 @@
+Network,Annotation
+Geneid,GO:0001578|microtubule bundle formation|-5.1;GO:0006935|chemotaxis|-4.9;GO:0042330|taxis|-4.9
+Geneid_MCODE_ALL,R-MMU-5620912|Anchoring of the basal body to the plasma membrane|-7.8;R-MMU-5617833|Cilium Assembly|-6.6;R-MMU-1852241|Organelle biogenesis and maintenance|-6.3
+Geneid_SUB2_MCODE_1,R-MMU-5620912|Anchoring of the basal body to the plasma membrane|-9.4;R-MMU-5617833|Cilium Assembly|-8.1;R-MMU-1852241|Organelle biogenesis and maintenance|-7.9
+Geneid_SUB1_MCODE_2,GO:0060996|dendritic spine development|-6.6;GO:0016358|dendrite development|-5.5

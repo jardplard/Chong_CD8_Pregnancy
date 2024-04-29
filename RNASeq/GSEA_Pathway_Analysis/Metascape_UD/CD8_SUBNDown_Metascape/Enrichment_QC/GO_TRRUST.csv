@@ -1,0 +1,2 @@
+_MEMBER_Geneid,_LogP_Geneid,GO,_PATTERN_,_RANK_,GiniIndex,Category,CategoryID,Description,PARENT_GO,LogP,Enrichment,Z-score,#TotalGeneInLibrary,#GeneInGO,#GeneInHitList,#GeneInGOAndHitList,%InGO,STDV %InGO,GeneID,Hits,Log(q-value),EvidenceCutoff
+1,-2.7,TRR01205,M1,1,0,TRRUST,34,Regulated by: Runx2,,-2.7,7.4,4.7,20504,64,173,4,2.3,1.1,11647|13070|16842|21414,Alpl|Cyp11a1|Lef1|Tcf7,0,0

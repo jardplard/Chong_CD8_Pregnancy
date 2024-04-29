@@ -1,0 +1,393 @@
+---
+title: "Schitinger ATAC Test DeSEQ Analysis"
+author: "Jared Pollard"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Differential Accesibility Analysis
+
+###Install Packages (If needed, set eval=TRUE): BiocManager, dplyr, gplots, ggplot2, ggrepel
+```{r install_packages, eval=FALSE, echo=FALSE}
+install.packages(c('BiocManager', 'dplyr', 'gplots', 'ggplot2', 'ggrepel', 'stringr', 'Signac'))
+BiocManager::install(c('imma', 'DESeq2', 'AnnotationDbi', 'org.Mm.eg.db', 'ReportingTools', 'GO.db', 'GOstats', 'pathview', 'gage', 'gageData', 'select', 'ChIPpeakAnno', 'GenomicRanges', 'EnsDb.Mmusculus.v79'))
+BiocManager::install('Repitools')
+install.packages("viridis")
+```
+##Import libraries and counts file
+There is some specific code in this file, as I forgot to remove the rownames before sorting the file in linux. normally, this will not be an issue, and the lines with as.integer and filter_all won't be necessary
+```{r import_libraries_andCounts, echo=FALSE}
+library(GenomicRanges)
+library(ChIPpeakAnno)
+library("EnsDb.Mmusculus.v79")
+library(org.Mm.eg.db)
+library(Repitools)
+library(DESeq2)
+library(gplots)
+library(ggplot2)
+library(tidyverse)
+
+rawCounts <- read.csv('CD8_featureCounts_batch1.csv', header=1)
+RNA_regions <- read.csv('CD8_featureCounts_TSS.csv', header=1)
+RNA_regions <- RNA_regions %>% dplyr::select(Geneid, Chr, Start) %>% rename(gene_id=Geneid) %>% rename(chr=Chr) %>% rename(start=Start)
+row.names(RNA_regions) <- RNA_regions$gene_id
+colors_fill <- c("#38F2E0", "#1A74F8", "#F262F7", "#DA0054")
+```
+
+#Annotate DeSEQ Results with Gene Symbol (If Needed)
+```{r annotate_geneSymbol}
+#Generate list of Gene ID's and Symbols
+anno <- AnnotationDbi::select(org.Mm.eg.db,keys=rawCounts$Geneid,
+              columns=c("ENSEMBL","SYMBOL"),
+              keytype="ENSEMBL")
+anno <- anno %>% filter(!duplicated(ENSEMBL))
+```
+
+
+#Annotate ATAC peaks with Gene Symbol
+```{r CPA_annotate}
+ArawCounts <- read.csv('CD8CountsFin.csv', header=1)
+#convert counts data and annotations to GRanges objects
+AgeneCounts <- makeGRangesFromDataFrame(ArawCounts,
+                         keep.extra.columns=TRUE,
+                         ignore.strand=TRUE,
+                         seqinfo=NULL,
+                         seqnames.field=c("chr"),
+                         start.field=c("start"),
+                         end.field=c("end"),
+                         strand.field="strand",
+                         starts.in.df.are.0based=FALSE)
+#import Ensdb into GRanges object
+AannoData <- toGRanges(EnsDb.Mmusculus.v79)
+
+
+## keep the seqnames in the same style
+seqlevelsStyle(AgeneCounts) <- seqlevelsStyle(AannoData)
+
+## do annotation by nearest TSS, add gene symbol and convert back to dataframe
+AcountsAnno <- annotatePeakInBatch(AgeneCounts, AnnotationData=AannoData)
+
+AcountsAnno <- addGeneIDs(AcountsAnno, orgAnn="org.Mm.eg.db", 
+                  feature_id_type="ensembl_gene_id",
+                   IDs2Add=c("symbol"))
+
+AcountsAnnoMatrix <- annoGR2DF(AcountsAnno)
+
+
+#select for counts, add EnsID and GeneName----
+AcountsAnnoFinal <- AcountsAnnoMatrix %>% dplyr::select("feature", "chr", "start", "end", "B6N1",	"B6N2",	"B6N3",	"B6NPP1_B",	"B6NPP1_C5",	"B6NPP2_B",	"B6NPP2_C5",	"B6NPP3_B",	"B6NPP3_C5",	"B6SUB1",	"B6SUB2",	"B6SUB3",	"B6SUB4",	"B6SPP1_B",	"B6SPP1_C5", "B6SPP1_C7",	"B6SPP2_B", "B6SPP2_C5",	"B6SPP2_C7",	"B6SPP3_B",	"B6SPP3_C5",	"B6SPP3_C7",	"B6SPP4_B",	"B6SPP4_C5",	"B6SPP4_C7")
+
+#Merge GeneNames and replace with EnsID if none, and add tags for duplicate gene peaks
+AcountsAnnoFinal$chr <- AcountsAnnoFinal$chr %>% str_replace_all("chr", "")
+AcountsAnnoFinal$gene_id <- make.unique(as.character(AcountsAnnoFinal$feature), sep = "_")
+AcountsAnnoFinal <- AcountsAnnoFinal %>% relocate(gene_id, .before=feature) %>% dplyr::select(-c(feature))
+#Omit NA (CHECK final rowcount). change genename to rownames and drop symbol+feature.
+AcountsAnnoFinal <- AcountsAnnoFinal %>% drop_na(gene_id)
+rownames(AcountsAnnoFinal) = AcountsAnnoFinal$gene_id
+
+#create regions matrix before final processing
+ATAC_regions <- AcountsAnnoFinal %>% dplyr::select(gene_id, chr, start, end)
+
+#Final column selectino and convert counts columns to numeric
+AcountsAnnoFinal <- AcountsAnnoFinal %>% dplyr::select(-c(gene_id, chr, start, end))
+AcountsAnnoFinal[] <- sapply(AcountsAnnoFinal, as.numeric)
+
+#run deseq on ATAC data
+Asampleinfo <- read.csv("CD8_ATACsampleinfo.csv", header=1)
+rownames(Asampleinfo) = Asampleinfo$X
+Asampleinfo <- Asampleinfo %>% dplyr::select(-c(X))
+
+#construct DeSeqDataSet, Filter for low read counts, set Naive as ref/control
+Adds <- DESeqDataSetFromMatrix(countData = AcountsAnnoFinal,
+                              colData = Asampleinfo,
+                              design = ~ condition)
+Akeep <- rowSums(counts(Adds)) >= 10
+Adds <- Adds[Akeep,]
+Adds$condition <- relevel(Adds$condition, ref = "Naive")
+
+#Run Deseq and Size Factors for BigWIGs (DESeq fxn has normalization built in)
+Adseq <- DESeq(Adds)
+```
+
+#Differential Expression Analysis! Construct DDS, run deseq, obtain pairwise results
+```{r DESeq_RNA}
+#import sample metadata
+sampleinfo <- read.csv("CD8_RNAsampleinfo.csv", header=1)
+rownames(sampleinfo) = sampleinfo$X
+sampleinfo <- sampleinfo %>% dplyr::select(-c(X))
+
+#Add rownames to rawCounts
+countsMatrix <- rawCounts
+row.names(countsMatrix) <- countsMatrix$Geneid
+countsMatrix <- countsMatrix %>% dplyr::select(-c(Geneid))
+countsMatrix[] <- sapply(countsMatrix, as.numeric)
+
+#construct DeSeqDataSet, Filter for low read counts, set Naive as ref/control
+dds <- DESeqDataSetFromMatrix(countData = countsMatrix,
+                              colData = sampleinfo,
+                              design = ~ condition)
+keep <- rowSums(counts(dds)) >= 250
+dds <- dds[keep,]
+dds$condition <- relevel(dds$condition, ref = "Naive")
+
+#Run Deseq and Size Factors for BigWIGs (DESeq fxn has normalization built in)
+dseq <- DESeq(dds)
+
+vsd <- vst(dseq)
+vsd$condition <- factor(vsd$condition, levels=c("Naive", "NPP_B", "NPP_C5", "SUB", "SPP_B", "SPP_C5", "SPP_C7"))
+
+#ggplot options
+themeset<- theme(
+    panel.background = element_rect(fill = "transparent"), # bg of the panel
+    plot.background = element_rect(fill = "transparent", color = NA), # bg of the plot
+    panel.grid.major = element_blank(), # get rid of major grid
+    panel.grid.minor = element_blank(), # get rid of minor grid
+    axis.line= element_line("black", 0.3),
+    aspect.ratio=1,
+    plot.title = element_text(hjust = 0.5)
+  )
+```
+
+##Identify lists of differential peaks for each pair, merge all pairs and match with regions
+```{R DiffGeneLists}
+#This function parses results down to significant changes, adds "change metric" which is q x log2FC, and orders from highest to lowest Change Metric,
+#and adds "identity" column specifying direction of change (for future merging)
+genList <- function(x, direction="NULL", include_symbol=TRUE){
+name <- deparse(substitute(x))
+identity <- str_replace(name, "res.", "")
+identitychange <- paste(identity, "change", sep="_")
+identitypadj <- paste(identity, "padj", sep="_")
+identityfc <- paste(identity, "log2FC", sep="_")
+identitycm <- paste(identity, "Change Metric", sep="_")
+
+y <- as.data.frame(x[order(abs(x$log2FoldChange), decreasing=T),])
+y <- y[which(y$padj<0.1),]
+y <- y[which(abs(y$log2FoldChange)>0.9),]
+y <- y %>% mutate(!!identitychange := ifelse(y$log2FoldChange<0, "Down", "Up"))
+y <- y %>% mutate(change_metric = log2FoldChange * -log10(padj))
+y <- y %>% dplyr::select(c(!!identitychange, log2FoldChange, padj, change_metric))
+y <- y %>% arrange(desc(abs(y$change_metric)))
+
+if(include_symbol==TRUE){
+y <- y %>% mutate(Geneid=row.names(y), .before=!!identitychange) %>% left_join(anno, by=c("Geneid" = "ENSEMBL")) %>% relocate(SYMBOL, .after=Geneid) %>% mutate(genename = coalesce(SYMBOL, Geneid), .after=Geneid) %>% select(-c(SYMBOL))
+}
+
+if(direction=="Down"){
+  y <- y %>% filter(change_metric<0)
+}
+if(direction=="Up"){
+  y <- y %>% filter(change_metric>0)
+}
+y <- y %>% dplyr::rename(!!identitypadj := "padj")
+y <- y %>% dplyr::rename(!!identityfc := "log2FoldChange")
+y <- y %>% arrange(desc(abs(y$change_metric)))
+y <- y %>% dplyr::rename(!!identitycm := "change_metric")
+}
+genListATAC <- function(x){
+name <- deparse(substitute(x))
+identity <- str_replace(name, "res.", "")
+identitychange <- paste(identity, "change", sep="_")
+identitypadj <- paste(identity, "padj", sep="_")
+identityfc <- paste(identity, "log2FC", sep="_")
+identitycm <- paste(identity, "Change Metric", sep="_")
+
+y <- as.data.frame(x[order(abs(x$log2FoldChange), decreasing=T),])
+y <- y %>% mutate(!!identitychange := ifelse(y$log2FoldChange<0, "Down", "Up"))
+y <- y %>% mutate(change_metric = log2FoldChange * -log10(padj))
+y <- y %>% dplyr::select(c(!!identitychange, log2FoldChange, padj, change_metric))
+y <- y %>% arrange(desc(abs(y$change_metric)))
+y <- y %>% arrange(desc(abs(y$change_metric)))
+y <- y %>% mutate(gene_id=row.names(y), .before=!!identitychange)
+}
+
+#res and genlist----
+Rres.NPP5N <- results(dseq, contrast=c("condition","NPP_C5","Naive"))
+Rres.SPP5SUB <- results(dseq, contrast=c("condition","SPP_C5","SUB"))
+
+Ares.NPP5N <- results(Adseq, contrast=c("condition","NPP_C5","Naive"))
+Ares.SPP5SUB <- results(Adseq, contrast=c("condition","SPP_C5","SUB"))
+
+#generate lists
+AlistNPP5N <- genListATAC(Ares.NPP5N)
+AlistSPP5SUB <- genListATAC(Ares.SPP5SUB)
+
+#generate lists of up vs. downregulated genes
+res <- ls(pattern="Rres.")
+for(i in res){
+  dfin <- eval(str2lang(i))
+  down <- genList(dfin, "Down")
+  up <- genList(dfin, "Up")
+  assign(str_c(str_replace(i, "Rres.", "list"), "Down", sep=""), down, envir = .GlobalEnv)
+  assign(str_c(str_replace(i, "Rres.", "list"), "Up", sep=""), up, envir = .GlobalEnv)
+  rm(dfin)
+  rm(up)
+  rm(down)
+  rm(i)
+}
+
+#Retrieve fold-changes of peakset various distances from RNA TSS
+foldChangeList <- function(RNAlist, ATAClist, distance1=0, distance2=5000, RNAregions=RNA_regions, ATACregions=ATAC_regions){
+filtered_RNA_regions <- RNAregions %>% filter(gene_id %in% RNAlist$Geneid)
+
+peakCount <- numeric()
+meanATACchange <- numeric()
+
+for (i in 1:length(filtered_RNA_regions$gene_id)){
+  z <- NULL
+  z <- ATACregions[which(ATACregions$chr==filtered_RNA_regions$chr[i] & (between(abs(filtered_RNA_regions$start[i]-ATACregions$start), distance1, distance2)==TRUE | between(abs(filtered_RNA_regions$start[i]-ATACregions$end), distance1, distance2)==TRUE)),]
+  filteredATAClist <- ATAClist %>% filter(gene_id %in% z$gene_id)
+  peakCount[i] <- length(filteredATAClist$log2FoldChange)
+  meanATACchange[i] <- mean(filteredATAClist$log2FoldChange)
+  }
+a <- cbind(filtered_RNA_regions, meanATACchange, peakCount) 
+ return(a)
+}
+
+GeneralExploration <- function(distance1, distance2, ylim=0.3, checkpeaks=FALSE){
+  
+FCNPP_Up <- foldChangeList(RlistNPP5NUp, AlistNPP5N, distance1, distance2)
+FCSPP_Up <- foldChangeList(RlistSPP5SUBUp, AlistSPP5SUB, distance1, distance2)
+FCNPP_Down <- foldChangeList(RlistNPP5NDown, AlistNPP5N, distance1, distance2)
+FCSPP_Down <- foldChangeList(RlistSPP5SUBDown, AlistSPP5SUB, distance1, distance2)
+
+FCNPP_Up <- FCNPP_Up %>% mutate(Identity="Naive+PP Up")
+FCSPP_Up <- FCSPP_Up %>% mutate(Identity="Mem+PP Up")
+FCNPP_Down <- FCNPP_Down %>% mutate(Identity="Naive+PP Down")
+FCSPP_Down <- FCSPP_Down %>% mutate(Identity="Mem+PP Down")
+
+GraphData <- rbind(FCNPP_Up, FCSPP_Up, FCNPP_Down, FCSPP_Down) %>% select(meanATACchange, Identity) %>% filter(!is.na(meanATACchange))
+GraphData$Identity <- factor(GraphData$Identity, levels=c("Naive+PP Up", "Mem+PP Up", "Naive+PP Down", "Mem+PP Down"))
+GraphData.agg <- aggregate(meanATACchange ~ Identity, GraphData, mean)
+x <- ggplot(data=GraphData.agg, aes(x=Identity, y=meanATACchange, fill=Identity)) + geom_bar(stat= "identity") + 
+  scale_fill_manual(values=rep(c(colors_fill[2], colors_fill[4]), 2)) +
+  scale_y_continuous(breaks=c(-0.4, -0.3, -0.2, -0.1, 0, 0.1, 0.2, 0.3, 0.4), limits = c(-ylim,ylim)) +
+  ylab("Mean ATAC-Seq Peak Change") +
+  xlab("RNA-Seq Change") +
+  labs(title=str_c("Overall Epigenetic Changes,", distance1/1000, "-", distance2/1000, "kb")) +
+  theme(axis.text.x = element_text(angle=45, hjust=1, size=10), legend.position="none") +
+  themeset
+
+if(checkpeaks==FALSE){
+return(x)
+}
+
+if(checkpeaks==TRUE){
+  down <- mean(FCNPP_Down$peakCount)
+  up <- mean(FCNPP_Up$peakCount)
+  
+  return(str_c("Average Down Peaks:", down, " | ", "Average Up Peaks:", up))
+}
+}
+
+GeneralExploration(0,50000, checkpeaks=TRUE)
+GeneralExploration(50000,100000, checkpeaks=TRUE)
+GeneralExploration(100000,250000, checkpeaks=TRUE)
+GeneralExploration(250000,500000, checkpeaks=TRUE)
+
+General_0_50 <- GeneralExploration(0,50000, ylim=0.2)
+General_50_100 <- GeneralExploration(50000,100000, ylim=0.2)
+General_100_250 <- GeneralExploration(100000,250000, ylim=0.2)
+General_250_500 <- GeneralExploration(250000,500000, ylim=0.2)
+
+#Repeat Analysis with genes that are SHARED with both NPP and SPP
+RlistSharedUp <- inner_join(RlistNPP5NUp, RlistSPP5SUBUp, by="Geneid")
+RlistSharedDown <- inner_join(RlistNPP5NDown, RlistSPP5SUBDown, by="Geneid")
+
+SharedExploration <- function(distance1, distance2, ylim=0.3, checkpeaks=FALSE, returndata=FALSE){
+  
+FCNPP_Up_Shared <- foldChangeList(RlistSharedUp, AlistNPP5N, distance1, distance2)
+FCSPP_Up_Shared <- foldChangeList(RlistSharedUp, AlistSPP5SUB, distance1, distance2)
+FCNPP_Down_Shared <- foldChangeList(RlistSharedDown, AlistNPP5N, distance1, distance2)
+FCSPP_Down_Shared <- foldChangeList(RlistSharedDown, AlistSPP5SUB, distance1, distance2)
+
+#FILTERING for regions that go up/down in SPP to match transcription
+FCNPP_Up_Shared <- FCNPP_Up_Shared %>% mutate(Identity="Up in N+P vs. N") %>% filter(FCSPP_Up_Shared$meanATACchange>0)
+FCSPP_Up_Shared <- FCSPP_Up_Shared %>% mutate(Identity="Up in S+P vs. S") %>% filter(FCSPP_Up_Shared$meanATACchange>0)
+FCNPP_Down_Shared <- FCNPP_Down_Shared %>% mutate(Identity="Down in N+P vs. N") %>% filter(FCSPP_Down_Shared$meanATACchange<0)
+FCSPP_Down_Shared <- FCSPP_Down_Shared %>% mutate(Identity="Down in S+P vs. S") %>% filter(FCSPP_Down_Shared$meanATACchange<0)
+
+GraphData_Shared <- rbind(FCNPP_Up_Shared, FCSPP_Up_Shared, FCNPP_Down_Shared, FCSPP_Down_Shared) %>% select(meanATACchange, Identity) %>% filter(!is.na(meanATACchange))
+GraphData_Shared$Identity <- factor(GraphData_Shared$Identity, levels=c("Up in N+P vs. N", "Up in S+P vs. S", "Down in N+P vs. N", "Down in S+P vs. S"))
+GraphData_Shared.agg <- aggregate(meanATACchange ~ Identity, GraphData_Shared, mean)
+x <- ggplot(data=GraphData_Shared.agg, aes(x=Identity, y=meanATACchange, fill=Identity)) + geom_bar(stat= "identity") + 
+  scale_fill_manual(values=rep(c(colors_fill[2], colors_fill[4]), 2)) +
+  scale_y_continuous(breaks=seq(-1,1, by=0.2), limits = c(-ylim,ylim)) +
+  ylab("Mean ATAC-Seq Peak Change") +
+  xlab("RNA-Seq Change") +
+  labs(title=str_c("Epigenetic Changes for Shared RNA Loci,", distance1/1000, "-", distance2/1000, "kb")) +
+  theme(axis.text.x = element_text(angle=45, hjust=1, size=10), legend.position="none") +
+  themeset
+
+if(checkpeaks==FALSE){
+  if(returndata==FALSE){
+    return(x)
+  }
+  if(returndata==TRUE){
+    return(GraphData_Shared)
+  }
+}
+
+if(checkpeaks==TRUE){
+  down <- mean(FCNPP_Down_Shared$peakCount)
+  up <- mean(FCNPP_Up_Shared$peakCount)
+  
+  return(str_c("Average Down Peaks:", down, " | ", "Average Up Peaks:", up))
+}
+}
+
+SharedExploration(0,50000, checkpeaks=TRUE)
+SharedExploration(50000,100000, checkpeaks=TRUE)
+SharedExploration(100000,250000, checkpeaks=TRUE)
+SharedExploration(250000,500000, checkpeaks=TRUE)
+
+Shared_0_50 <- SharedExploration(0,50000, ylim=0.8)
+Shared_50_100 <- SharedExploration(50000,100000, ylim=0.84)
+Shared_100_250 <- SharedExploration(100000,250000, ylim=0.4)
+Shared_250_500 <- SharedExploration(250000,500000, ylim=0.4)
+
+Shared_0_50_data3 <- SharedExploration(0,50000, returndata=TRUE)
+Shared_50_100_data <- SharedExploration(50000,100000, returndata=TRUE)
+
+write.csv(Shared_0_50_data, file="Shared_0_50_StatsData.csv", col.names=FALSE, row.names=TRUE, quote=FALSE)
+write.csv(Shared_50_100_data, file="Shared_50_100_StatsData.csv", col.names=FALSE, row.names=TRUE, quote=FALSE)
+
+Shared_050_siglines <- tibble(
+  x=c(1, 3),
+  xend=c(2, 4),
+  y=c(0.6, 0.2),
+  yend=y 
+  )
+Shared_50100_siglines <- tibble(
+  x=c(1, 3),
+  xend=c(2, 4),
+  y=c(0.6, 0.2),
+  yend=y 
+  )
+Shared_050_sigstars <- tibble(
+  x=c(1.5, 3.5),
+  y=c(0.62, 0.22),
+  label=c("****", "**")
+  )
+Shared_50100_sigstars <- tibble(
+  x=c(1.5, 3.5),
+  y=c(0.62, 0.22),
+  label=c("****", "**")
+  )
+
+
+
+Shared_0_50 + 
+  geom_segment(data=Shared_050_siglines, aes(x=x, xend=xend, y=y, yend=yend), inherit.aes=FALSE) +
+  geom_text(data=Shared_050_sigstars, aes(x=x, y=y, label=label), inherit.aes=FALSE)
+Shared_50_100 + 
+  geom_segment(data=Shared_50100_siglines, aes(x=x, xend=xend, y=y, yend=yend), inherit.aes=FALSE) +
+  geom_text(data=Shared_50100_sigstars, aes(x=x, y=y, label=label), inherit.aes=FALSE)
+Shared_100_250
+Shared_250_500
+
+```

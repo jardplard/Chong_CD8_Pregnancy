@@ -1,0 +1,5 @@
+_MEMBER_Geneid,_LogP_Geneid,GO,_PATTERN_,_RANK_,GiniIndex,Category,CategoryID,Description,PARENT_GO,LogP,Enrichment,Z-score,#TotalGeneInLibrary,#GeneInGO,#GeneInHitList,#GeneInGOAndHitList,%InGO,STDV %InGO,GeneID,Hits,Log(q-value),EvidenceCutoff
+1,-3.1,PGB:00013,M1,1,0,PaGenBase,36,Tissue-specific: brain,,-3.1,2.8,4,20504,661,143,13,9.1,2.4,15898|17957|24001|26875|57776|76886|77531|80749|108699|110197|216049|237253|240063,Icam5|Napb|Tiam2|Pclo|Ttyh1|Fam81a|Anks1b|Lrfn1|Chn1|Dgkg|Zfp365|Lrp11|Zfp811,-0.16,0
+1,-2.5,PGB:00276,M1,1,0,PaGenBase,36,Cell-specific: osteoclasts,,-2.5,6.7,4.4,20504,86,143,4,2.8,1.4,11846|22259|231717|320832,Arg1|Nr1h3|Pheta1|Sirpb1a,0,0
+1,-2.4,PGB:00223,M1,1,0,PaGenBase,36,Tissue-specific: lymph node,,-2.4,3.9,3.7,20504,219,143,6,4.2,1.7,11733|12322|75973|78373|170752|320898,Ank1|Camk2a|Ccdc162|Nudt17|Bco2|Trav3-3,0,0
+1,-2.1,PGB:00244,M1,1,0,PaGenBase,36,Cell-specific: M-1,,-2.1,3.1,3.2,20504,324,143,7,4.9,1.8,12579|16763|18005|18602|50490|67071|98402,Cdkn2b|Lad1|Nek2|Padi4|Nox4|Rps6ka6|Sh3bp4,0,0

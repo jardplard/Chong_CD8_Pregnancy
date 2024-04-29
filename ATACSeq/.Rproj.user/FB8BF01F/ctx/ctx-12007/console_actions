@@ -1,0 +1,28 @@
+{
+    "type": [
+        2,
+        2,
+        0,
+        1,
+        2,
+        0,
+        1,
+        3,
+        3,
+        3,
+        2
+    ],
+    "data": [
+        "\nR version 4.3.1 (2023-06-16) -- \"Beagle Scouts\"\nCopyright (C) 2023 The R Foundation for Statistical Computing\nPlatform: aarch64-apple-darwin20 (64-bit)\n\nR is free software and comes with ABSOLUTELY NO WARRANTY.\nYou are welcome to redistribute it under certain conditions.\nType 'license()' or 'licence()' for distribution details.\n\n  Natural language support but running in an English locale\n\nR is a collaborative project with many contributors.\nType 'contributors()' for more information and\n'citation()' on how to cite R or R packages in publications.\n\n",
+        "Type 'demo()' for some demos, 'help()' for on-line help, or\n'help.start()' for an HTML browser interface to help.\nType 'q()' to quit R.\n\n[Workspace loaded from /Volumes/Extreme SSD/Chong Lab Data/Sequencing Data/ATAC/CD8 ATAC/CD8_DSPlease/.RData]\n\n",
+        "> ",
+        "install.packages(c('BiocManager', 'dplyr', 'gplots', 'ggplot2', 'ggrepel', 'stringr', 'Signac'))",
+        "Error in install.packages : Updating loaded packages\n",
+        "> ",
+        "BiocManager::install(c('imma', 'DESeq2', 'AnnotationDbi', 'org.Mm.eg.db', 'ReportingTools', 'GO.db', 'GOstats', 'pathview', 'gage', 'gageData', 'select', 'ChIPpeakAnno', 'GenomicRanges', 'EnsDb.Mmusculus.v79'))",
+        "'getOption(\"repos\")' replaces Bioconductor standard repositories, see 'help(\"repositories\", package =\n\"BiocManager\")' for details.\nReplacement repositories:\n    CRAN: https://cran.rstudio.com/\n",
+        "Bioconductor version 3.17 (BiocManager 1.30.21), R 4.3.1 (2023-06-16)\n",
+        "Installing package(s) 'imma', 'select'\n",
+        "\nRestarting R session...\n\n"
+    ]
+}

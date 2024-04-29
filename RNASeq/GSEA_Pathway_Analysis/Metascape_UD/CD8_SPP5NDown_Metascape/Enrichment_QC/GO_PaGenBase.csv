@@ -1,0 +1,4 @@
+_MEMBER_Geneid,_LogP_Geneid,GO,_PATTERN_,_RANK_,GiniIndex,Category,CategoryID,Description,PARENT_GO,LogP,Enrichment,Z-score,#TotalGeneInLibrary,#GeneInGO,#GeneInHitList,#GeneInGOAndHitList,%InGO,STDV %InGO,GeneID,Hits,Log(q-value),EvidenceCutoff
+1,-6,PGB:00016,M1,1,0,PaGenBase,36,Tissue-specific: thymus,,-6,4.4,6.5,20504,297,253,16,6.3,1.5,12769|15979|16428|16490|16842|17444|20230|21673|22165|77647|217151|217316|226594|241303|320913|621968,Ccr9|Ifngr1|Itk|Kcna2|Lef1|Grap2|Satb1|Dntt|Txk|Trat1|Arl5c|Slc16a5|Rcsd1|Fam78a|Trdv2-2|Trbv1,-3,0
+1,-3.1,PGB:00268,M1,1,0,PaGenBase,36,Cell-specific: cd8+ T cell,,-3.1,16,6.6,20504,15,253,3,1.2,0.68,12769|16407|382045,Ccr9|Itgae|Adgrg5,-0.63,0
+1,-2.2,PGB:00260,M1,1,0,PaGenBase,36,Cell-specific: thymocyte DP CD4+CD8+,,-2.2,7.6,4.2,20504,32,253,3,1.2,0.68,11870|21673|226594,Art1|Dntt|Rcsd1,-0.18,0

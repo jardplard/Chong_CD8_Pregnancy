@@ -1,0 +1,20 @@
+_MEMBER_Geneid,_LogP_Geneid,GO,Description,_PATTERN_,_RANK_,CHILD_GO_Geneid
+1,-19.1310094599165,GO:0022610,biological adhesion,M1,1,GO:0030155 regulation of cell adhesion
+1,-18.629360745150482,GO:0050789,regulation of biological process,M1,1,GO:0050865 regulation of cell activation
+1,-18.48118068757958,GO:0002376,immune system process,M1,1,GO:0002683 negative regulation of immune system process
+1,-18.427531718079162,GO:0032501,multicellular organismal process,M1,1,GO:0001817 regulation of cytokine production
+1,-18.35186957563134,GO:0050896,response to stimulus,M1,1,GO:0031347 regulation of defense response
+1,-16.665903475404182,GO:0048518,positive regulation of biological process,M1,1,GO:0032103 positive regulation of response to external stimulus
+1,-14.257481481321166,GO:0009987,cellular process,M1,1,GO:0032943 mononuclear cell proliferation
+1,-13.026000557724188,GO:0048519,negative regulation of biological process,M1,1,GO:0050866 negative regulation of cell activation
+1,-10.768577477428911,GO:0040011,locomotion,M1,1,GO:0050900 leukocyte migration
+1,-9.670486861272316,GO:0023052,signaling,M1,1,GO:0019932 second-messenger-mediated signaling
+1,-9.47173724931847,GO:0044419,biological process involved in interspecies interaction between organisms,M1,1,GO:0045089 positive regulation of innate immune response
+1,-7.891780619382073,GO:0051179,localization,M1,1,GO:0051272 positive regulation of cellular component movement
+1,-6.919663390673364,GO:0065007,biological regulation,M1,1,GO:0072507 divalent inorganic cation homeostasis
+1,-6.790128806126736,GO:0032502,developmental process,M1,1,GO:0001944 vasculature development
+1,-5.910494099860054,GO:0008152,metabolic process,M1,1,GO:0018108 peptidyl-tyrosine phosphorylation
+1,-4.328079011202862,GO:0040007,growth,M1,1,GO:0048588 developmental cell growth
+1,-3.180226787707375,GO:0022414,reproductive process,M1,1,GO:0060706 cell differentiation involved in embryonic placenta development
+1,-2.798613192135567,GO:0110148,biomineralization,M1,1,GO:0031214 biomineral tissue development
+1,-2.427087577508892,GO:0051704,multi-organism process,M1,1,GO:0001893 maternal placenta development
